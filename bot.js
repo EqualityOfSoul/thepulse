@@ -806,6 +806,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("Вы не являетесь модератором");
 		    
     message.channel.send(`Пользователь ${member.user} получил предупреждение по причине: **` + WarnMessage + "**");
+		    }
           });
           collector.stop();
     } else if (['embedsay'].includes(command)) {
