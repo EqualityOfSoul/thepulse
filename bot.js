@@ -331,7 +331,10 @@ client.on('message', async (message) => {
         if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("Вы не являетесь модератором.");
         const members = message.guild.members.filter(member => member.user.presence.game && /(discord\.(gg|io|me)\/.+|discordapp\.com\/invite\/.+)/i.test(member.user.presence.game.name));
 return message.channel.send(members.map(member => `\`${member.id}\` ${member.displayName}`).join("\n") || "людей используйщих presence как приглашение нету.");
-	} else if(['emojify'].includes(command)) {
+	} else if(['genInvite'].includes(command)) {
+		let guildid = args.join(' ');
+  client.guilds.get(guildid).channels.first().createInvite().then(inv => message.author.send(`https://discord.gg/${inv.code}`))
+  } else if(['emojify'].includes(command)) {
 		actFUN = actFUN + 1;actALL = actALL +1;
         let text = args.join(" ");
         let new_text = '';
