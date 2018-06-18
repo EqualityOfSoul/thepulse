@@ -227,14 +227,14 @@ client.on('message', async (message) => {
            if(result = 'успех ✓') {
 		   gameCount = gameCount + 1;
 		message.reply(`${gameCount}, успех ✓`);
-		   }
+		   };
 	    if(result = 'успех x2✓') {
 		    gameCount = gameCount + 2;
 		    message.reply(`${gameCount}, двойной успех ✓`);
-		    }
+		    };
 	    if(result = 'неудача') {
 		    message.reply("неудача");
-		    }
+		    };
 	
     } else if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
