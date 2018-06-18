@@ -235,14 +235,14 @@ client.on('message', async (message) => {
   let igi = invite.guild.id
   if(!igi) return message.channel.send("Данное приглашение является недействительным или истекло.");
 
-  let embed = new Discord.RichEmbed()
+  let inembed = new Discord.RichEmbed()
   .setTitle(invite.guild.name)
-  .addField("Количество людей", invite.memberCount)
+  .addField("Количество людей на сервере", invite.memberCount)
   .addField("Инвайтер", invite.inviter)
   .addField("Канал приглашения", invite.channel)
   .setColor("36393E")
   .setThumbnail(`https://cdn.discordapp.com/icons/${invite.guild.id}/${invite.guild.icon}.png`)
-  message.reply({embed});
+  message.reply({inembed});
   
     }/* else if(['save'].includes(command)) {
 	    
