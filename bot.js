@@ -94,6 +94,36 @@ client.on('message', async (message) => {
     }
 	
 
+
+	client.on("messageUpdate", (old_mess, new_mess) => {
+  if (!old_mess.author.bot) {
+  if (old_mess.content === new_mess.content) return;
+  client.channels.get('458403647534137344').send({embed: {
+    author: {
+      name: new_mess.member.nickname+'  ('+new_mess.author.username+'#'+new_mess.author.discriminator+')',
+      icon_url: new_mess.author.displayAvatarURL
+    },
+      color: 3447003,
+
+      fields: [{
+        name: 'До изменения:',
+        value: '```'+old_mess.content+'```'
+      },
+      {
+        name: "После изменения:",
+        value: '```'+new_mess.content+'```'
+      }
+    ],
+
+      timestamp: new Date(),
+      footer: {
+        text: 'в канале
+	      #'+new_mess.channel.name
+      }
+    }
+
+  });}
+});
 //При заданом сообщение выполняет действие.
     if (message.content.startsWith("бот не пиши")) {
         //Отвечает за то чтобы бот перестал писать в вызваном чате.
