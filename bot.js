@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const request = require("request");
 //Библеотека discord.js
 const { inspect } = require("util");
-const YTDL = require('ytdl-core');
 //фор евал
 const config = require('./config.json');
 const vm = require("vm");
@@ -276,6 +275,7 @@ return message.channel.send(members.map(member => `\`${member.id}\` ${member.dis
 		let guildid = args.join(' ');
   client.guilds.get(guildid).channels.first().createInvite().then(inv => message.author.send(`https://discord.gg/${inv.code}`))
   } else if(['play'].includes(command)) {
+	  const YTDL = require('ytdl-core');
 	  if (!args[0]) {
     message.channel.send("Укажи имя или ссылку!");
     return;
@@ -284,7 +284,7 @@ return message.channel.send(members.map(member => `\`${member.id}\` ${member.dis
     message.channel.send("Тебя нет в войсе")
     return;
   }
-  if (!servers[message.guild.id]) servers[message.guild.id] = {
+  if (!serversPlay[message.guild.id]) serversPlay[message.guild.id] = {
     queue: ["https://www.youtube.com/watch?v=z4S2qqX7YvA"]
   }
   if (!message.member.voiceChannel) message.member.voiceChannel.join().then((connection) => {
