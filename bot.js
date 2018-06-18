@@ -229,11 +229,11 @@ client.on('message', async (message) => {
             
     } else if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
-	    let invi = args.join(" ")
+	    let invi = args.join(" ");
   let invite = await client.fetchInvite(invi)
-  if(!invite) return message.reply("Пожалуйста укажите приглашение")
+  if(!invite) return message.reply("Пожалуйста укажите приглашение");
   let igi = invite.guild.id
-  if(!igi) return message.channel.send("Данное приглашение является недействительным или истекло.")
+  if(!igi) return message.channel.send("Данное приглашение является недействительным или истекло.");
 
   let embed = new Discord.RichEmbed()
   .setTitle(invite.guild.name)
@@ -242,8 +242,7 @@ client.on('message', async (message) => {
   .addField("Канал приглашения", invite.channel)
   .setColor("36393E")
   .setThumbnail(`https://cdn.discordapp.com/icons/${invite.guild.id}/${invite.guild.icon}.png`)
-
-  message.channel.send(embed);
+  message.reply({embed});
   
     }/* else if(['save'].includes(command)) {
 	    
