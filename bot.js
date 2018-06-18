@@ -245,66 +245,7 @@ client.on('message', async (message) => {
 
   message.channel.send(embed);
   
-    }/* else if(['save'].includes(command)) {
-	    
-	    message.channel.send("**Disclaimer:** ваш ключ сохранен не навсегда, ключ будет удален при перезапуске бота.");
-			if(args.length < 2){
-				message.channel.send(`Сохраните сообщение в ключ \`${prefix}save <key> <message>\``);
-				return;
-			}
-			var key = args[0];
-			var messageToSave = "";
-			for(var i = 0; i < args.length - 2; i++){
-				messageToSave += args[i + 1] + " ";
-			}
-			messageToSave += args[args.length - 1];
-			fs.readFile("save.json", "utf8", function(err, data){
-				if(err) throw err;
-				var save = JSON.parse(data);
-				if(save[message.author.username] === undefined){
-					save[message.author.username] = {};
-				}
-				save[message.author.username][key] = messageToSave;
-				fs.writeFile("save.json", JSON.stringify(save), "utf8", function(err){
-					if(err) throw err;
-					message.channel.send(`Ваше сообщение сохранено под ключем \`${key}\`! :tada:`);
-				});
-			});
-		} else if(['view'].includes(command)) {
-			fs.readFile("save.json", "utf8", function(err, data){
-				if(err) throw err;
-				var save = JSON.parse(data);
-				if(args.length === 0){
-					var messageKeys;
-					var savedMessages = "";
-					try{
-						messageKeys = Object.keys(save[message.author.username]);
-					} catch(e){
-						message.reply("У вас еще нет ключей, но вы можете их создать.");
-						return;
-					}
-					if(messageKeys.length === 0){
-						message.reply("У вас еще нет ключей, но вы можете их создать.");
-						return;
-					}
-					for(var i = 0; i < messageKeys.length - 1; i++){
-						savedMessages += messageKeys[i] + ", ";
-					}
-					savedMessages += messageKeys[messageKeys.length - 1];
-					message.reply("Вот ваши ключи: **" + savedMessages + "**")
-				} else{
-					var key = args[0];
-					var recalledMessage;
-					try{
-						recalledMessage = save[message.author.username][key];
-					} catch(e){
-						message.reply(`У вас нет ключей именуемые \`${key}\``)
-						return;
-					}
-					message.channel.send(`${key}: ${recalledMessage}`);
-				}
-			});
-		}*/
+    }
         if(['timer'].includes(command)) {
 		actFUN = actFUN + 1;actALL = actALL +1;
         const vremya = args.join(" ");
@@ -506,13 +447,13 @@ message.edit(body);
 	    //ALLERT DOLBAEB ALLERT//
     } else if(['support'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
-	    const se = new Discord.RichEmbed()
+	    const embed = new Discord.RichEmbed()
 	    .setTitle("support")
 	    .setColor("#00ff0")
 	    .setDescription("**[Перейти на сервер можно нажав на данный текст](https://discord.io/gspace)**")
 	    .setImage("https://cdn.discordapp.com/attachments/402336140658606082/458367783932002306/20180618_232844.gif")
 	    .setTimestamp();
-	    message.reply(se);
+	    message.reply(embed);
     } else if(['google'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let searh = args.join(" ")
