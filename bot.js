@@ -226,12 +226,15 @@ client.on('message', async (message) => {
 	   let num = Math.floor((Math.random() * replies.length));
            switch (num) {
            case 1:
-           message.reply("1");
+           gameCount = gameCount + 1;
+           message.reply(`${gameCount} успех ✓`);
            break;
            case 2:
-           message.reply("2");
+           gameCount = gameCount + 2;
+           message.reply(`${gameCount} успех x2 ✓`);
+           break;
            case 3:
-           message.reply("3")
+           message.reply("неудача");
            break;
            };
     } else if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
