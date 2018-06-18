@@ -222,18 +222,18 @@ client.on('message', async (message) => {
 	    message.channel.send(ttsmessage, {tts: true});
 	    message.delete(); 
     } else if(['count', 'копить'].includes(command)) {
-	   let replies = [1, 2, 3];
+	   let replies = [1, 2];
 	   let num = Math.floor((Math.random() * replies.length));
            switch (num) {
            case 1:
            gameCount = gameCount + 1;
            message.reply(`${gameCount} успех ✓`);
            break;
-           case 2:
+           case 3:
            gameCount = gameCount + 2;
            message.reply(`${gameCount} успех x2 ✓`);
            break;
-           case 3:
+           case 2:
            gameCount = gameCount + 0;
            message.reply(`${gameCount} неудача.`);
            break;
