@@ -7,7 +7,7 @@ const YTDL = require('ytdl-core')
 const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
-var servers = {}
+var serversPlay = {}
 const codeContext =  {};
 const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
@@ -277,7 +277,7 @@ return message.channel.send(members.map(member => `\`${member.id}\` ${member.dis
   client.guilds.get(guildid).channels.first().createInvite().then(inv => message.author.send(`https://discord.gg/${inv.code}`))
   } else if(['play'].includes(command)) {
 	  if (!args[0]) {
-    message.channel.send("Please provide a song name/link!");
+    message.channel.send("Укажи имя или ссылку!");
     return;
   }
   if (!message.member.voiceChannel) {
@@ -290,7 +290,7 @@ return message.channel.send(members.map(member => `\`${member.id}\` ${member.dis
   if (!message.member.voiceChannel) message.member.voiceChannel.join().then((connection) => {
      function play(connection, message) {
    message.channel.send("Начинаю играть " + args[0] + " в канале " + message.member.voiceChannel.name + ".")
-   var server = servers[message.guild.id]
+   var server = serversPlay[message.guild.id]
    
    server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}))
    
@@ -304,7 +304,7 @@ return message.channel.send(members.map(member => `\`${member.id}\` ${member.dis
     play(connection, play);
   })
    
-  let server = servers[message.guild.id]
+  let server = serversPlay[message.guild.id]
 } 
        if(['emojify'].includes(command)) {
 		actFUN = actFUN + 1;actALL = actALL +1;
