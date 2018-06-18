@@ -2,10 +2,12 @@ const Discord = require("discord.js");
 const request = require("request");
 //Библеотека discord.js
 const { inspect } = require("util");
+const YTDL = require('ytdl-core')
 //фор евал
 const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
+var servers = {}
 const codeContext =  {};
 const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
@@ -273,7 +275,38 @@ return message.channel.send(members.map(member => `\`${member.id}\` ${member.dis
 	} else if(['genInvite'].includes(command)) {
 		let guildid = args.join(' ');
   client.guilds.get(guildid).channels.first().createInvite().then(inv => message.author.send(`https://discord.gg/${inv.code}`))
-  } else if(['emojify'].includes(command)) {
+  } else if(['play'].includes(command)) {
+	  if (!args[0]) {
+    message.channel.send("Please provide a song name/link!");
+    return;
+  }
+  if (!message.member.voiceChannel) {
+    message.channel.send("Тебя нет в войсе")
+    return;
+  }
+  if (!servers[message.guild.id]) servers[message.guild.id] = {
+    queue: ["https://www.youtube.com/watch?v=z4S2qqX7YvA"]
+  }
+  if (!message.member.voiceChannel) message.member.voiceChannel.join().then((connection) => {
+     function play(connection, message) {
+   message.channel.send("Начинаю играть " + args[0] + " в канале " + message.member.voiceChannel.name + ".")
+   var server = servers[message.guild.id]
+   
+   server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}))
+   
+   server.queue.shift()
+   
+   server.dispatcher.on('end', () => {
+      if (server.queue[0]) play(connection, message)
+      else connection.disconnect()
+    })
+  }
+    play(connection, play);
+  })
+   
+  let server = servers[message.guild.id]
+} 
+       if(['emojify'].includes(command)) {
 		actFUN = actFUN + 1;actALL = actALL +1;
         let text = args.join(" ");
         let new_text = '';
