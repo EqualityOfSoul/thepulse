@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const request = require("request");
 //Библеотека discord.js
 const { inspect } = require("util");
-const YTDL = require('ytdl-core')
+const YTDL = require('ytdl-core');
 //фор евал
 const config = require('./config.json');
 const vm = require("vm");
