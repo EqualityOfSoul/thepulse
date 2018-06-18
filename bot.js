@@ -790,12 +790,9 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         args.shift();
         message.delete();
         summoned.send(`Вас вызвали на сервере **${message.channel.guild.name}**. \nПользователем **${message.author}** (**${message.author.username}**) \nВ канале **${message.channel}** \n**Для быстрого перехода нажмите на название канала.** \nНужда:**${SummonMessage}** `)
-    } else if (['warn'].includes(command)) {
+    } else if (['warn'].includes(command) && message.member.hasPermission('MANAGE_MESSAGES'))  {
 	    actMOD = actMOD + 1;actALL = actALL +1;
-	   const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, { time: 60000 });
-        collector.on('collect', msg => {
-            if (['да', 'ага', 'кнш', 'конечно', 'конешно', 'давай', 'йес', 'yes', 'y', 'aga', 'go', 'da', 'го'].includes(msg.content.toLowerCase())) {
-                 
+	   
         let member = message.mentions.members.first();
     args.shift();
     const WarnMessage = args.join(" ");
@@ -803,12 +800,9 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         if (member.user.id === message.author.id) return message.channel.send("Невозможно выписать предупреждение самому себе.")
         if (member.user.id === message.author.bot) return message.reply('Невозможно предупредить бота.')
     if (member.user.id === message.channel.guild.ownerID) return message.channel.send("Невозможно предупредить создателя сервера.")
-        if (!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("Вы не являетесь модератором");
 		    
     message.channel.send(`Пользователь ${member.user} получил предупреждение по причине: **` + WarnMessage + "**");
-		    }
-          });
-          collector.stop();
+          
     } else if (['embedsay'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
   const embedColor = args.shift();
