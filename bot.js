@@ -234,7 +234,8 @@ client.on('message', async (message) => {
            message.reply(`${gameCount} успех x2 ✓`);
            break;
            case 3:
-           message.reply("неудача");
+           gameCount = gameCount + 0;
+           message.reply(`${gameCount} неудача.`);
            break;
            };
     } else if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
