@@ -222,11 +222,20 @@ client.on('message', async (message) => {
 	    message.channel.send(ttsmessage, {tts: true});
 	    message.delete(); 
     } else if(['count', 'копить'].includes(command)) {
-	   // let replies = ['успех ✓', 'успех x2✓', 'неудача'];
-	  //  let result = Math.floor((Math.random() * replies.length));
-            message.channel.send(`${gameCount}, успех ✓`)
-	    gameCount = gameCount + 1;actFUN = actFUN + 1;actALL = actALL +1;
-            
+	   let replies = ['успех ✓', 'успех x2✓', 'неудача'];
+	   let result = Math.floor((Math.random() * replies.length));
+           if(result = 'успех ✓') {
+		   gameCount = gameCount + 1;
+		message.reply(`${gameCount}, успех ✓`);
+		   }
+	    if(result = 'успех x2✓') {
+		    gameCount = gameCount + 2;
+		    message.reply(`${gameCount}, двойной успех ✓`);
+		    }
+	    if(result = 'неудача') {
+		    message.reply("неудача");
+		    }
+	
     } else if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let invi = args.join(" ")
@@ -488,7 +497,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         
         if(!args[1]) return message.channel.send("**Слишком мало выборов, Пример: да нет**");
 
-   let replies = [`${args[0]}`, `${args[1]}`];
+    replies = [`${args[0]}`, `${args[1]}`];
    let result = Math.floor((Math.random() * replies.length));
 
    message.channel.send((replies[result]))
