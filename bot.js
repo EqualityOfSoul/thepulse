@@ -117,12 +117,12 @@ client.on('message', async (message) => {
 
       timestamp: new Date(),
       footer: {
-        text: 'в канале
-	      #'+new_mess.channel.name
+        text: 'в канале #'+new_mess.channel.name
       }
     }
 
-  });}
+  });
+  }
 });
 //При заданом сообщение выполняет действие.
     if (message.content.startsWith("бот не пиши")) {
