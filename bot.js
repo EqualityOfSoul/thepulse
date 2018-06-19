@@ -223,6 +223,15 @@ client.on('message', async (message) => {
 	    const ttsmessage = args.join(" ")
 	    message.channel.send(ttsmessage, {tts: true});
 	    message.delete(); 
+    } else if(['support'].includes(command)) {
+	    actFUN = actFUN + 1;actALL = actALL +1;
+	    const embed = new Discord.RichEmbed()
+	    .setTitle("support")
+	    .setColor("#00ff0")
+	    .setDescription("**[Перейти на сервер можно нажав на данный текст](https://discord.io/gspace)**")
+	    .setImage("https://cdn.discordapp.com/attachments/402336140658606082/458367783932002306/20180618_232844.gif")
+	    .setTimestamp();
+	    message.reply(embed);
     } else if(['count', 'копить'].includes(command)) {
 	    gameCount = gameCount + 1; actALL = actALL + 1;
 	   message.reply(`${gameCount}, успех ✓`);
