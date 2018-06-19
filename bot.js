@@ -225,14 +225,14 @@ client.on('message', async (message) => {
 	    message.delete(); 
     } else if(['count', 'копить'].includes(command)) {
 	    gameCount = gameCount + 1; actALL = actALL + 1;
-	   message.reply(`успех,`, gameCount);
+	   message.reply(`${gameCount}, успех ✓`);
     } else if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let invi = args.join(" ")
   let invite = await client.fetchInvite(invi)
-  if(!invite) return message.reply("Пожалуйста укажите приглашение")
+  if(!invite) return message.reply("Пожалуйста укажите приглашение");
   let igi = invite.guild.id
-  if(!igi) return message.channel.send("Данное приглашение является недействительным или истекло.")
+  if(!igi) return message.channel.send("Данное приглашение является недействительным или истекло.");
 
   let embed = new Discord.RichEmbed()
   .setTitle(invite.guild.name)
@@ -1060,12 +1060,12 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 	       return message.channel.send(modEmbed);
 		    }
 	    if(args[0] === 'owner') {
-            if(!message.author.id === '361951318929309707') return message.reply("Данная категория доступна только создателю(ям) бота.");
             const ownEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория Bot owner")
 	    .addField("Bot own", "**x!eval** [code] - эмуляция js кода. \n**x!presence** __[type] [status]__ - смена статуса. \n**x!us** - приватное сообщение от лица бота.")
             .setColor("#ff00ff");
             return message.channel.send(ownEmbed);
+		if(!message.author.id === '361951318929309707') return message.reply("Данная категория доступна только создателю(ям) бота.");
 		    }
 	    if(args[0] === 'images') {
             const imgEmbed = new Discord.RichEmbed()
