@@ -1529,6 +1529,15 @@ message.channel.send('RAS');
                 } catch (e) {console.log(e)}
             });
         });
+    } else if(['cry', 'плакать'].includes(command)) {
+	    message.channel.send('Загрузка...').then(msg => {
+        const urls = ['https://media1.tenor.com/images/6d55ad934bb27473d3df8211bb8831bf/tenor.gif?itemid=9975194', 'https://media2.giphy.com/media/ROF8OQvDmxytW/giphy.gif', 'http://gifimage.net/wp-content/uploads/2017/07/anime-cry-gif-28.gif', 'http://gifimage.net/wp-content/uploads/2017/10/cry-anime-gif-9.gif', 'http://i0.kym-cdn.com/photos/images/original/000/980/628/a33.gif', 'http://gifimage.net/wp-content/uploads/2017/07/anime-cry-gif-24.gif', 'https://i.gifer.com/Drie.gif', 'https://media.giphy.com/media/3o6ZtqXXIROMIDjrSE/source.gif', 'http://37.media.tumblr.com/bf5836922dc31ccabb555c7a0db00e10/tumblr_n7fmo4Y8V31sppmhjo1_500.gif', 'https://i.pinimg.com/originals/08/43/e8/0843e8663770d63ce16c3828f9a57ccf.gif', 'https://i.gifer.com/Yf7N.gif', 'https://thumbs.gfycat.com/GoodnaturedRemarkableFurseal-size_restricted.gif']
+                    let embed = new Discord.RichEmbed()
+                        .setDescription(`${message.author.username} заплакал`)
+                        .setImage(urls[Math.floor(Math.random() * urls.length)])
+                        .setColor('#ffff00');
+                    msg.edit({embed});
+        });
     } else if(['wasted', 'уебать'].includes(command)) {
 	    actRCT = actRCT + 1;actALL = actALL +1;
         message.delete();
@@ -1543,8 +1552,7 @@ message.channel.send('RAS');
                     let embed = new Discord.RichEmbed()
                         .setDescription(`${user1} got WASTED by ${user}`)
                         .setImage(urls[Math.floor(Math.random() * urls.length)])
-                        .setColor('#ffff00')
-		        .setFooter("powered by nekos.life");
+                        .setColor('#ffff00');
                     msg.edit(`${user1}`, {embed});
         });
     } else if(['cat'].includes(command)) {
