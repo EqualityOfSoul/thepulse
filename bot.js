@@ -1020,7 +1020,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
                 embed.addField('>Owner<', message.channel.guild.owner, true)
                 embed.addField('Owner ID', message.channel.guild.ownerID, true)
                 embed.addField('>Уровень верификации<', message.channel.guild.verificationLevel, true)
-                embed.addField('>Количество пользователей<', `${message.channel.guild.memberCount} пользователей из которых ${b} ботов и ${i} людей`, false)
+                embed.setFooter(`Количество пользователей: ${message.channel.guild.memberCount} пользователей из которых ${b} ботов и ${i} людей`)
                 //embed.addField('>Пользователи в голосовых каналах (всего)', voice)
                 embed.addField('>Количество ролей<', message.channel.guild.roles.size, true)
                 embed.addField('>Количество эмодзи<', message.channel.guild.emojis.size, true)
@@ -1034,7 +1034,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
                 embed.addField('>AFK канал<', message.channel.guild.afkChannel !== null ? message.channel.guild.afkChannel : 'Нету.', true)
                 embed.addField('>ID AFK канала<', message.channel.guild.afkChannelID !== null ? message.channel.guild.afkChannelID : 'Нету.', true)
                 embed.addField('>Регион<', message.channel.guild.region, true)
-                embed.setFooter(`requested by ${message.author.username}`)
+               // embed.setFooter(`requested by ${message.author.username}`)
                 embed.setTimestamp(); message.react("✅");
             message.channel.send({embed});
     } else if(['h', 'help'].includes(command)) {
