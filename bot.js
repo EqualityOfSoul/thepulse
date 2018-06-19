@@ -1044,57 +1044,57 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
 	    if(!args[0]) {
-		    var categoryEmbed = new Discord.RichEmbed()
+		    const categoryEmbed = new Discord.RichEmbed()
 		    .setTitle("Пожалуйста выберите категорию")
 		    .addField("Категории", "**`fun, moderation, owner, images, reactions, nsfw`**")
 		    .setFooter("Пригласить на ваш сервер x!invite")
 		    .setColor("#0000ff")
 		    .setTimestamp();
-		    return message.reply({categoryEmbed})
+		    return message.reply(categoryEmbed);
 		    }
 	    if(args[0] === 'fun') {
-		    var funEmbed = new Discord.RichEmbed()
+		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
 		    .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!rs [ид канала] [сообщение]** отослать сообщение из 1 чата в другой. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест команда эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
                     .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, время учитывается в миллисекундах (1000ms = 1 секунда) \n**x!save** [key] [text] - сохранить ключ. \n**x!view** <key> - просмотреть список ключей или просмотреть ключ. \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1 \n**x!support** - ссылка на сервер где можно задать вопрос (а может и нет)")
 		    .setColor("#00ff0");
-                return message.channel.send({funEmbed});
+                return message.channel.send(funEmbed);
 		    }
 	    if(args[0] === 'moderation') {
-	    var modEmbed = new Discord.RichEmbed()
+	    const modEmbed = new Discord.RichEmbed()
 	       .setTitle("Категория Moderation")
 	       .addField("Mod", "**x!ban** [user] -бан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
                .setColor("#ff0000");
-	       return message.channel.send({modEmbed});
+	       return message.channel.send(modEmbed);
 		    }
 	    if(args[0] === 'owner') {
             if(!message.author.id === '361951318929309707') return message.reply("Данная категория доступна только создателю(ям) бота.");
-            var ownEmbed = new Discord.RichEmbed()
+            const ownEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория Bot owner")
 	    .addField("Bot own", "**x!eval** [code] - эмуляция js кода. \n**x!presence** __[type] [status]__ - смена статуса. \n**x!us** - приватное сообщение от лица бота.")
             .setColor("#ff00ff");
-            return message.channel.send({ownEmbed});
+            return message.channel.send(ownEmbed);
 		    }
 	    if(args[0] === 'images') {
-            var imgEmbed = new Discord.RichEmbed()
+            const imgEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория Images")
 	    .setColor("#00ff00")
 	    .addField("Images", "**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.");
-            return message.channel.send({ownEmbed});
+            return message.channel.send(imgEmbed);
 		   }
 	    if(args[0] === 'reactions') {
-            var rctEmbed = new Discord.RichEmbed()
+            const rctEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория Reactions")
 	    .addField("Reactions", "**x!kiss** [user] - поцелуй. \n**x!pat** [user] - погладить. \n**x!nom** [user] - дать поесть. \n**x!slap** [user] - ударить. \n**x!hug** [user] - обнять. \n**x!cuddle** [user] - прижаться. \n**x!tickle** [user] - пощекотать. \n**x!poke** [user] - тыкнуть.")
             .setColor("#00ff00");
-            return message.channel.send({rctEmbed});
+            return message.channel.send(rctEmbed);
 		    }
 	    if(args[0] === 'nsfw') {
-            var nsfwEmbed = new Discord.RichEmbed()
+            const nsfwEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория NSFW")
 	    .addField("NSFW", "**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
             .setColor("#ff00ff");
-            return message.channel.send({nsfwEmbed});
+            return message.channel.send(nsfwEmbed);
 		    }
     } else if (['helpembed'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
