@@ -36,9 +36,8 @@ client.on("ready", () => {
     console.log(`Успешный старт. ${client.guilds.size} серверов`);
     //Ставит боту статус.
     client.user.setPresence({
-	    game: { 
+	    streaming: { 
             name: `x!help | ${client.guilds.size} servers`,
-            type: 3,
 	    url: 'https://discord.io/gspace'
 	    }
     }).catch();
