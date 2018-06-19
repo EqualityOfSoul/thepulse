@@ -1043,15 +1043,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 24 часа с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
-	    if(args[0] === '') {
-		    const categoryEmbed = new Discord.RichEmbed()
-		    .setTitle("Пожалуйста выберите категорию")
-		    .addField("Категории", "**`fun, moderation, owner, images, reactions, nsfw`**")
-		    .setFooter("Пригласить на ваш сервер x!invite")
-		    .setColor("#0000ff")
-		    .setTimestamp();
-		    return message.reply(categoryEmbed);
-		    }
+	    if(!args[0]) return message.reply("```fix \nПожалуйста выберите категорию. \nКатегории: **`fun, moderation, owner, images, reactions, nsfw`** \nПригласить бота на сервер x!invite \n```");
 	    if(args[0] === 'fun') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
