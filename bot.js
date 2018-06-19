@@ -1089,7 +1089,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 	    if(args[0] === 'reactions') {
             const rctEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория Reactions")
-	    .addField("Reactions", "**x!kiss** [user] - поцелуй. \n**x!pat** [user] - погладить. \n**x!nom** [user] - дать поесть. \n**x!slap** [user] - ударить. \n**x!hug** [user] - обнять. \n**x!cuddle** [user] - прижаться. \n**x!tickle** [user] - пощекотать. \n**x!poke** [user] - тыкнуть.")
+	    .addField("Reactions", "**x!wasted** [user] - уебать. \n**x!kiss** [user] - поцелуй. \n**x!pat** [user] - погладить. \n**x!nom** [user] - дать поесть. \n**x!slap** [user] - ударить. \n**x!hug** [user] - обнять. \n**x!cuddle** [user] - прижаться. \n**x!tickle** [user] - пощекотать. \n**x!poke** [user] - тыкнуть.")
             .setColor("#00ff00");
             return message.channel.send(rctEmbed);
 		    }
@@ -1507,8 +1507,7 @@ message.channel.send('RAS');
                 } catch (e) {console.log(e)}
             });
         });
-    } 
-    else if(['feed', 'nom'].includes(command)) {
+    } else if(['feed', 'nom'].includes(command)) {
 	    actRCT = actRCT + 1;actALL = actALL +1;
         message.delete();
         let user = message.author;
@@ -1529,6 +1528,24 @@ message.channel.send('RAS');
                     msg.edit(`${user1}`, {embed});
                 } catch (e) {console.log(e)}
             });
+        });
+    } else if(['wasted', 'уебать'].includes(command)) {
+	    actRCT = actRCT + 1;actALL = actALL +1;
+        message.delete();
+        let user = message.author;
+        let user1 = message.mentions.users.first();
+        if (!user1 || user1.id === user.id) {
+            user = client.user;
+            user1 = message.author;
+        }
+        message.channel.send('Загрузка...').then(msg => {
+        const urls = ['https://media1.tenor.com/images/cbb1642c9aeb06b4055a9ce5bbdc908a/tenor.gif?itemid=5749160', 'https://media1.tenor.com/images/ff0ccdb63bf7ce876a6bc731dbf7784e/tenor.gif?itemid=9805109', 'http://animechan.ru/uploads/posts/2015-02/1423341861_tumblr_nioc9ae4901r43ut4o1_500.gif', 'https://pa1.narvii.com/5748/8c6805c5fb2172cfdc445ef193a4527f4492012a_hq.gif', 'https://media1.tenor.com/images/87cf4e6c9d7d523d736f9e8fddc4e951/tenor.gif?itemid=5502476', 'https://78.media.tumblr.com/4fdd8d9d7f8b540c438c4549b8f3c148/tumblr_omv9xc9j671rbw9ito1_r9_500.gif', 'https://i.gifer.com/Awcf.gif', 'http://i0.kym-cdn.com/photos/images/original/000/878/461/075.gif', 'https://78.media.tumblr.com/75dc51bcc17d5e5345874d20da86c83d/tumblr_ntk7t9sn2i1r72ht7o1_500.gif', 'http://i0.kym-cdn.com/photos/images/original/001/224/791/107.gif', 'http://gifimage.net/wp-content/uploads/2017/06/wasted-gif-3.gif'];
+                    let embed = new Discord.RichEmbed()
+                        .setDescription(`${user1} got WASTED by ${user}`)
+                        .setImage(urls[Math.floor(Math.random() * urls.length)])
+                        .setColor('#ffff00')
+		        .setFooter("powered by nekos.life");
+                    msg.edit(`${user1}`, {embed});
         });
     } else if(['cat'].includes(command)) {
         actIMG = actIMG + 1;actALL = actALL +1;
