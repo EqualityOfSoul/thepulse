@@ -1533,7 +1533,7 @@ message.channel.send('RAS');
 	    message.channel.send('Загрузка...').then(msg => {
          const urls = ['https://i.gifer.com/3ZvS.gif', 'http://gifimage.net/wp-content/uploads/2017/07/anime-suicide-gif-8.gif', 'https://i.pinimg.com/originals/a5/f1/96/a5f196464ed42f493b95a600099e83b9.gif', 'https://cdn60.picsart.com/182542841000202.gif?r1024x1024', 'https://zippy.gfycat.com/EquatorialGleefulArabianhorse.gif', 'http://data.whicdn.com/images/107593752/large.gif', 'https://i.gifer.com/Rk5D.gif', 'https://pa1.narvii.com/6535/3eb238ede3ccbc364d487c60f9d8b9c9fcb4f515_hq.gif', 'http://gifimage.net/wp-content/uploads/2017/07/anime-suicide-gif-2.gif'];
                     let embed = new Discord.RichEmbed()
-                        .setDescription(`${message.author.username} совершил суицид..`)
+                        .setDescription(`${message.author.username} совершил(а) суицид..`)
                         .setImage(urls[Math.floor(Math.random() * urls.length)])
                         .setColor('#ff0000');
                     msg.edit({embed});
@@ -1542,7 +1542,7 @@ message.channel.send('RAS');
 	    message.channel.send('Загрузка...').then(msg => {
         const urls = ['https://media1.tenor.com/images/6d55ad934bb27473d3df8211bb8831bf/tenor.gif?itemid=9975194', 'https://media2.giphy.com/media/ROF8OQvDmxytW/giphy.gif', 'http://gifimage.net/wp-content/uploads/2017/07/anime-cry-gif-28.gif', 'http://gifimage.net/wp-content/uploads/2017/10/cry-anime-gif-9.gif', 'http://i0.kym-cdn.com/photos/images/original/000/980/628/a33.gif', 'http://gifimage.net/wp-content/uploads/2017/07/anime-cry-gif-24.gif', 'https://i.gifer.com/Drie.gif', 'https://media.giphy.com/media/3o6ZtqXXIROMIDjrSE/source.gif', 'http://37.media.tumblr.com/bf5836922dc31ccabb555c7a0db00e10/tumblr_n7fmo4Y8V31sppmhjo1_500.gif', 'https://i.pinimg.com/originals/08/43/e8/0843e8663770d63ce16c3828f9a57ccf.gif', 'https://i.gifer.com/Yf7N.gif', 'https://thumbs.gfycat.com/GoodnaturedRemarkableFurseal-size_restricted.gif'];
                     let embed = new Discord.RichEmbed()
-                        .setDescription(`${message.author.username} заплакал`)
+                        .setDescription(`${message.author.username} заплакал(а)`)
                         .setImage(urls[Math.floor(Math.random() * urls.length)])
                         .setColor('#ffff00');
                     msg.edit({embed});
