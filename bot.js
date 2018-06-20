@@ -37,7 +37,7 @@ client.on("ready", () => {
     //Ставит боту статус.
     client.user.setPresence({
 	    streaming: { 
-            name: `x!help | ${client.guilds.size} servers`,
+            name: `x!help • ${client.guilds.size} servers`,
 	    url: 'https://discord.io/gspace'
 	    }
     }).catch();
@@ -118,7 +118,7 @@ client.on('message', async (message) => {
     }
     if (message.content.startsWith("говно бот")) {
         //пугаем пидора ответом.
-        message.reply("ты это мне?);
+        message.reply("ты это мне?");
     }
           
     function clear_count (channel, count, count_all = 0) {
