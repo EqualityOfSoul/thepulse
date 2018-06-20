@@ -8,6 +8,7 @@ const vm = require("vm");
 const fs = require("fs");
 var serversPlay = {}
 const codeContext =  {};
+const os = require('os');
 const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
 const querystring = require('querystring');
@@ -237,6 +238,11 @@ client.on('message', async (message) => {
 	    .setImage("https://cdn.discordapp.com/attachments/402336140658606082/458367783932002306/20180618_232844.gif")
 	    .setTimestamp();
 	    message.reply(embed);*/
+    } else if(['time', 'время'].includes(command)) {
+	    message.channel.send({embed: new Discord.RichEmbed()
+		    .setTitle("время")
+		    .setDescription((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')})
+	            .setColor("00ff00");
     } else if(['count', 'копить'].includes(command)) {
 	    gameCount = gameCount + 1; actALL = actALL + 1;
       message.reply(`${gameCount}, успех ✓`);
