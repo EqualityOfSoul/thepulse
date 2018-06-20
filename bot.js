@@ -110,7 +110,7 @@ client.on('message', async (message) => {
 
    if (message.content.startsWith("xeval говно")) {
         //сам говно.
-        message.channel.send(`${message.author.usernam}, свыш пидор, а бота получше меня сможешь написать?`);
+        message.channel.send(`${message.author.username}, свыш пидор, а бота получше меня сможешь написать?`);
     }
     if (message.content.startsWith("бот говно")) {
         //он первый начал
