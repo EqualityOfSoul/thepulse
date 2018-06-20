@@ -108,17 +108,17 @@ client.on('message', async (message) => {
     }
     
 
-   if (message.content.startsWith("слава книге")) {
-        //Заканчивает процесс.
-        message.pin();
+   if (message.content.startsWith("xeval говно")) {
+        //сам говно.
+        message.channel.send(`${message.author.usernam}, свыш пидор, а бота получше меня сможешь написать?`);
     }
-    if (message.content.startsWith("во слава книге")) {
-        //Заканчивает процесс.
-        message.pin();
+    if (message.content.startsWith("бот говно")) {
+        //он первый начал
+        message.reply("ты это мне?");
     }
-    if (message.content.startsWith("во славу книге")) {
-        //Заканчивает процесс.
-        message.pin();
+    if (message.content.startsWith("говно бот")) {
+        //пугаем пидора ответом.
+        message.reply("ты это мне?);
     }
           
     function clear_count (channel, count, count_all = 0) {
@@ -287,7 +287,7 @@ client.on('message', async (message) => {
 	    actMOD = actMOD + 1;actALL = actALL +1;
         if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("Вы не являетесь модератором.");
         const members = message.guild.members.filter(member => member.user.presence.game && /(discord\.(gg|io|me)\/.+|discordapp\.com\/invite\/.+)/i.test(member.user.presence.game.name));
-return message.channel.send(members.map(member => `\`${member.id}\` ${member.displayName}`).join("\n") || "людей используйщих presence как приглашение нету.");
+return message.channel.send(members.map(member => `\```${member.id}\``` ${member.displayName}`).join("\n") || "людей используйщих presence как приглашение нету.");
 	} else if(['genInvite'].includes(command)) {
 		let guildid = args.join(' ');
   client.guilds.get(guildid).channels.first().createInvite().then(inv => message.author.send(`https://discord.gg/${inv.code}`))
@@ -709,14 +709,14 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         member.kick('кикнут').then(() => {
           message.reply(`успешно кикнул ${user.tag}`);
         }).catch(err => {
-          message.reply('У меня недостаточно прав!');
+          message.reply('У меня недостаточно прав.');
           console.error(err);
         });
       } else {
-        message.reply('Его нету на этом сервере!');
+        message.reply('Его нету на этом сервере.');
       }
     } else {
-      message.reply('У тебя нет прав!');
+      message.reply('Укажите цель');
     }
   } else if (['xkick'].includes(command) && message.author.id === "361951318929309707") {
 	  actOWN = actOWN + 1;actALL = actALL +1;
@@ -724,7 +724,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     if (user) {
       const member = message.guild.member(user);
       if (member) {
-        member.kick('кикнут').then(() => {
+        member.kick('заслужил, хуле, походу на овнера нарвался').then(() => {
           message.reply(`успешно кикнул ${user.tag}`);
         }).catch(err => {
           message.reply('У меня недостаточно прав!');
@@ -734,7 +734,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         message.reply('Его нету на этом сервере!');
       }
     } else {
-      message.reply('У тебя нет прав!');
+      message.reply('цель блять выбери!');
     }
   } else if (['avatar', 'av'].includes(command)) {
 	  actFUN = actFUN + 1;actALL = actALL +1;
@@ -779,8 +779,8 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         let summoned = message.mentions.members.first();
         if (!summoned) return;
         if (summoned.id === '421030089732653057') return message.channel.send('соси хуй :3');
-        const SummonMessage = args.join(" ");
         args.shift();
+        const SummonMessage = args.join(" ");
         message.delete();
         summoned.send(`Вас вызвали на сервере **${message.channel.guild.name}**. \nПользователем **${message.author}** (**${message.author.username}**) \nВ канале **${message.channel}** \n**Для быстрого перехода нажмите на название канала.** \nНужда:**${SummonMessage}** `)
     } else if (['warn'].includes(command) && message.member.hasPermission('MANAGE_MESSAGES'))  {
@@ -792,8 +792,10 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         if (!member.user.id) return message.channel.send("Пользователь не указан.");
         if (member.user.id === message.author.id) return message.channel.send("Невозможно выписать предупреждение самому себе.")
         if (member.user.id === message.author.bot) return message.reply('Невозможно предупредить бота.')
-    if (member.user.id === message.channel.guild.ownerID) return message.channel.send("Невозможно предупредить создателя сервера.")
-		    
+        if (member.user.id === message.channel.guild.ownerID) return message.channel.send("Невозможно предупредить создателя сервера.")
+	    if(!WarnMessage) {
+		    WarnMessage === 'причина не указана'
+		    }
     message.channel.send(`Пользователь ${member.user} получил предупреждение по причине: **` + WarnMessage + "**");
           
     } else if (['embedsay'].includes(command)) {
@@ -1009,6 +1011,14 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
   message.guild.members.forEach(member => {
       if(!member.user.bot) i = i + 1;
   });
+	let dnd = 0;
+  message.guild.members.forEach(member => {
+      if(member.user.status === 'dnd') dnd = dnd + 1;
+  });
+	let idle = 0;
+  message.guild.members.forEach(member => {
+      if(member.user.status === 'idle') idle = idle + 1;
+  });
         let b = 0;
   message.guild.members.forEach(member => {
       if(member.user.bot) b = b + 1;
@@ -1025,7 +1035,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
                 embed.addField('>Owner<', message.channel.guild.owner, true)
                 embed.addField('Owner ID', message.channel.guild.ownerID, true)
                 embed.addField('>Уровень верификации<', message.channel.guild.verificationLevel, true)
-                embed.setFooter(`Количество пользователей: ${message.channel.guild.memberCount} пользователей из которых ${b} ботов и ${i} людей`)
+                embed.addField(`Количество пользователей: ${message.channel.guild.memberCount} пользователей из которых ${b} ботов и ${i} людей \nлюдей со статусом idle: ${idle} \nлюдей со статусом dnd: ${dnd}`)
                 //embed.addField('>Пользователи в голосовых каналах (всего)', voice)
                 embed.addField('>Количество ролей<', message.channel.guild.roles.size, true)
                 embed.addField('>Количество эмодзи<', message.channel.guild.emojis.size, true)
@@ -1039,7 +1049,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
                 embed.addField('>AFK канал<', message.channel.guild.afkChannel !== null ? message.channel.guild.afkChannel : 'Нету.', true)
                 embed.addField('>ID AFK канала<', message.channel.guild.afkChannelID !== null ? message.channel.guild.afkChannelID : 'Нету.', true)
                 embed.addField('>Регион<', message.channel.guild.region, true)
-               // embed.setFooter(`requested by ${message.author.username}`)
+                embed.setFooter(`requested by ${message.author.username}`)
                 embed.setTimestamp(); message.react("✅");
             message.channel.send({embed});
     } else if(['h', 'help'].includes(command)) {
@@ -1065,7 +1075,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
 		    .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!rs [ид канала] [сообщение]** отослать сообщение из 1 чата в другой. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест команда эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
-                    .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, время учитывается в миллисекундах (1000ms = 1 секунда) \n**x!save** [key] [text] - сохранить ключ. \n**x!view** <key> - просмотреть список ключей или просмотреть ключ. \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1 \n**x!support** - ссылка на сервер где можно задать вопрос (а может и нет)")
+                    .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, время учитывается в миллисекундах (1000ms = 1 секунда) \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1")
 		    .setColor("#00ff0");
                 return message.channel.send(funEmbed);
 		    }
