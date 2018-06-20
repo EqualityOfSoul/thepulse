@@ -229,7 +229,7 @@ client.on('message', async (message) => {
 	    const ttsmessage = args.join(" ")
 	    message.channel.send(ttsmessage, {tts: true});
 	    message.delete(); 
-   /* } /*else if(['support'].includes(command)) {
+   /* } else if(['support'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    const embed = new Discord.RichEmbed()
 	    .setTitle("support")
@@ -242,7 +242,7 @@ client.on('message', async (message) => {
 	    message.channel.send({embed: new Discord.RichEmbed()
 		    .setTitle("время")
 		    .setDescription((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')})
-	            .setColor("00ff00");
+	            .setColor("#00ff00");
     } else if(['count', 'копить'].includes(command)) {
 	    gameCount = gameCount + 1; actALL = actALL + 1;
       message.reply(`${gameCount}, успех ✓`);
@@ -299,7 +299,7 @@ message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1
   if(!vremya) return message.reply("Пожалуйста укажите время. \n**`x!timer [time]`**")
   if(vremya < 10000) return message.reply("Ваше число слишком мало");
   if(vremya > 31536000000) return message.reply("Ваше число превышает лимит.");
-  if(vremya === 'NaN') return message.reply("Пожалуйста укажите время. \n**`x!timer [time]`**")
+  if(vremya === 'undefined') return message.reply("Пожалуйста укажите время. \n**`x!timer [time]`**")
   let embed = new Discord.RichEmbed()
   .setTitle("Timer")
 
@@ -516,20 +516,15 @@ message.edit("```"+body+"```");
     }).catch(function() {});
 });
 	    //ALLERT DOLBAEB ALLERT//
-    } else if(['github'].includes(command)) {
-	    actFUN = actFUN + 1;actALL = actALL +1;
-        request('https://github.com/search?utf8=✓&q='+args.join(' '), function (error, response, body) {
-            message.channel.send('<a:loading:435849475865575424> Обрабатываю запрос...').then(function(message) {
-message.edit(body);
-    }).catch(function() {});
-});
 	    //ALLERT DOLBAEB ALLERT//
 
     } else if(['google'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let searh = args.join(" ")
 	    searh = searh.replaceAll('порно', 'котята')
-	   /* message.content = message.content.replaceAll('порно', 'котята')*/
+	    searh = searh.replaceAll('порнуха', 'котята')
+	    searh = searh.replaceAll('секс', 'котята')
+	    searh = searh.replaceAll('ебля', 'котята')
 	    if(message.channel.guild.id === '417266233562365952') return message.reply("отключено для данного сервера");
 let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
   message.channel.send(`Ищу в google ${searh}...`)
@@ -828,18 +823,6 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 		    WarnMessage === 'причина не указана'
 		    }
     message.channel.send(`Пользователь ${member.user} получил предупреждение по причине: **` + WarnMessage + "**");
-          
-    } else if (['embedsay'].includes(command)) {
-	    actFUN = actFUN + 1;actALL = actALL +1;
-  const embedColor = args.shift();
-        const embedsayMessage = args.join(" ");
-      
-        const embed = new Discord.RichEmbed()
-        .setColor(embedColor);
-        if (embedsayMessage)
-       embed .setDescription(embedsayMessage)
-        message.channel.send({embed});
-        message.delete().catch(O_o => {});
     } else if (['about'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
   
@@ -879,17 +862,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
         } else {
             message.author.send(`${output}`, {split:"\n", code:"json"});
             }
-    } else if (['prune'].includes(command) && message.member.hasPermission('MANAGE_MESSAGES')) {
-	    actMOD = actMOD + 1;actALL = actALL +1;
-        const deleteCount = parseInt(args[0], 10);
-    
-    if(!deleteCount || deleteCount < 2 || deleteCount > 100)
-      return message.reply("Введите любое число не больше 99 и не меньше 2.");
-    
-    const fetched = await message.channel.fetchMessages({count: deleteCount});
-    message.channel.bulkDelete(fetched)
-      .catch(error => message.reply(`Не могу удалить сообщения так как: ${error}`));
-  } if (['xban'].includes(command) && message.author.id === "361951318929309707") {
+  } else if (['xban'].includes(command) && message.author.id === "361951318929309707") {
         actOWN = actOWN + 1;actALL = actALL +1;
 if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**У вас не xватает прав чтобы забанить человека.**");
 
@@ -1029,6 +1002,7 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
     } else if(['si', 'serverinfo'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         message.channel.guild.fetchInvites().then(invites => invi === invites.size);
+	    let large = message.channel.guild.large
         if (message.channel.guild.large == true) {
             large = "Да"
         }
@@ -1066,7 +1040,9 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
                 embed.addField('>Owner<', message.channel.guild.owner, true)
                 embed.addField('Owner ID', message.channel.guild.ownerID, true)
                 embed.addField('>Уровень верификации<', message.channel.guild.verificationLevel, true)
-                embed.addField(`Количество пользователей: ${message.channel.guild.memberCount} пользователей из которых ${b} ботов и ${i} людей \nлюдей со статусом idle: ${idle} \nлюдей со статусом dnd: ${dnd}`)
+                embed.addField('Количество пользователей:', message.channel.guild.memberCount , true)
+	        embed.addField('Количество ботов', b, true)
+		embed.addField('Количество людей', i, true)
                 //embed.addField('>Пользователи в голосовых каналах (всего)', voice)
                 embed.addField('>Количество ролей<', message.channel.guild.roles.size, true)
                 embed.addField('>Количество эмодзи<', message.channel.guild.emojis.size, true)
@@ -1101,7 +1077,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 24 часа с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
-	    if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `fun, moderation, owner, images, reactions, nsfw` \nПригласить бота на сервер x!invite \nПример: `x!help fun`**");
+	    if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `fun, moderation, owner, images, reactions, nsfw` \nПригласить бота на сервер x!invite \nПример: `x!help fun`**");			       
 	    if(args[0] === 'fun') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
@@ -1189,9 +1165,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
             .setThumbnail(avatar)
             .setFooter("Userinfo")
             .setTimestamp(); message.react("✅");
-        message.channel.send({
-            embed
-        });
+        message.channel.send(embed);
     } else if(['say'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         const sayMessage = args.join(" ")
