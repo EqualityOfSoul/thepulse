@@ -530,6 +530,7 @@ return message.channel.send(members.map(member => `\```${member.id}\``` ${member
         if(args[0] === 'join') return message.member.voiceChannel.join(); message.channel.send("осуществлен вход в канал: **"+ message.member.voiceChannel.name + "**");
         if(args[0] === 'leave') return message.member.voiceChannel.leave(); message.channel.send("осуществлен выход из канала: **"+ message.member.voiceChannel.name + "**");
     } else if(['render'].includes(command)) {
+	    actFUN = actFUN + 1;actALL = actALL +1;
 	  let font = args[0];
 	  args.shift();
 	  let text = args.join(" ");
@@ -539,9 +540,9 @@ message.edit("```"+body+"```");
     }).catch(function() {});
 });
     } else if(['fonts'].includes(command)) {
+	    actFUN = actFUN + 1;actALL = actALL +1;
 	    message.channel.send({embed: new Discord.RichEmbed()
-            .setDescription("все шрифты можно просмотреть [тут](http://rainb0w.herokuapp.com/fonts) \nСпасибо <@321268938728144906> за api для команды.")
-            .setColor("#00ff00");
+            .setDescription("все шрифты можно просмотреть [тут](http://rainb0w.herokuapp.com/fonts) \nСпасибо <@321268938728144906> за api для команды.");
 				  });
     } else if(['ascii'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
