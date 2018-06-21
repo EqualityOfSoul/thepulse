@@ -223,7 +223,28 @@ client.on('message', async (message) => {
     em.setDescription(`Роль ${rolename} успешно добавлена к пользователю ${member.displayName}.`)
   }
 };
-	    if(['tts'].includes(command)) {
+	    if(['removerole'].includes(command)) {
+		    actMOD = actMOD + 1;actALL = actALL +1;
+  if(!message.member.hasPermission('MANAGE_ROLES')) return message.reply("Вы не являетесь модератором.");
+  let role = message.mentions.roles.first();
+  if (!role) return message.channel.send(`Выберите роль.`);
+  let member = message.mentions.members.first();
+  if (!member) return message.channel.send("Выберите пользователя.");
+  let roleid = role.id;
+  let rolename = role.name;
+  
+  if (!message.guild.roles.get(roleid)) return message.channel.send(`Роль не найдена..`);
+  member.addRole(role.id);
+  let em = new Discord.RichEmbed()
+  .setTitle("Removerole")
+  .setDescription(`Роль ${rolename} успешно снята с пользователя ${member.user.username}.`)
+  .setTimestamp()
+  message.channel.send({embed: em})
+  if (member.displayName) {
+    em.setDescription(`Роль ${rolename} успешно снята с пользователя ${member.displayName}.`)
+  }
+};
+	if(['tts'].includes(command)) {
 		    actMOD = actMOD + 1;actALL = actALL +1;
 	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("Вы не являетесь модератором.");
 	    const ttsmessage = args.join(" ")
@@ -862,7 +883,21 @@ client.guilds.forEach((guild) => {users += client.users.size});
         } else {
             message.author.send(`${output}`, {split:"\n", code:"json"});
             }
-  } else if (['xban'].includes(command) && message.author.id === "361951318929309707") {
+  } else if(['mute'].includes(command)) {
+	  if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
+	  let muted = message.mentions.members.first();
+	  const mutedRole = message.member.guild.roles.find('name', "muted");
+	  if(muted.rolesHas(mutedRole)) return message.reply("пользователь уже замучен");
+          muted.addRole(mutedRole)
+	  message.reply(`я успешно замутил пользователя ${muted.username}, для размута пропишите x!unmute`)
+	  } else if(['unmute'].includes(command)) {
+	  if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
+	  let muted = message.mentions.members.first();
+          let mutedRole = message.member.guild.roles.find('name', "muted");
+          if(!muted.rolesHas(mutedRole)) return message.reply("у данного пользователя нету мута");
+          muted.removeRole(mutedRole)
+	  message.reply(`я успешно размутил пользователя ${muted.username}.`)
+	  } else if (['xban'].includes(command) && message.author.id === "361951318929309707") {
         actOWN = actOWN + 1;actALL = actALL +1;
 if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**У вас не xватает прав чтобы забанить человека.**");
 
@@ -1089,7 +1124,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 	    if(args[0] === 'moderation') {
 	    const modEmbed = new Discord.RichEmbed()
 	       .setTitle("Категория Moderation")
-	       .addField("Mod", "**x!ban** [user] -бан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
+	       .addField("Mod", "**x!ban** [user] -бан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
                .setColor("#ff0000");
 	       return message.channel.send(modEmbed);
 		    }
