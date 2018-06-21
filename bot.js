@@ -1131,7 +1131,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
 	    if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `fun, moderation, owner, images, reactions, nsfw` \nПригласить бота на сервер x!invite \nПример: `x!help fun`**");			       
-	    if(args[0] === 'fun') {
+	    if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
 		    .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!rs [ид канала] [сообщение]** отослать сообщение из 1 чата в другой. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест команда эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
@@ -1139,14 +1139,14 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 		    .setColor("#00ff0");
                 return message.channel.send(funEmbed);
 		    }
-	    if(args[0] === 'moderation') {
+	    if(args[0] === 'moderation' || args[0] === '2') {
 	    const modEmbed = new Discord.RichEmbed()
 	       .setTitle("Категория Moderation")
 	       .addField("Mod", "**x!ban** [user] -бан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
                .setColor("#ff0000");
 	       return message.channel.send(modEmbed);
 		    }
-	    if(args[0] === 'owner') {
+	    if(args[0] === 'owner' || args[0] === '3') {
             const ownEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория Bot owner")
 	    .addField("Bot own", "**x!eval** [code] - эмуляция js кода. \n**x!presence** __[type] [status]__ - смена статуса. \n**x!us** - приватное сообщение от лица бота.")
@@ -1154,21 +1154,21 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
             return message.channel.send(ownEmbed);
 		if(!message.author.id === '361951318929309707') return message.reply("Данная категория доступна только создателю(ям) бота.");
 		    }
-	    if(args[0] === 'images') {
+	    if(args[0] === 'images' || args[0] === '4'){
             const imgEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория Images")
 	    .setColor("#00ff00")
 	    .addField("Images", "**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.");
             return message.channel.send(imgEmbed);
 		   }
-	    if(args[0] === 'reactions') {
+	    if(args[0] === 'reactions' || args[0] === '5') {
             const rctEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория Reactions")
 	    .addField("Reactions", "**x!suicide** - суицид. \n**x!cry** - плакать. \n**x!wasted** [user] - уебать. \n**x!kiss** [user] - поцелуй. \n**x!pat** [user] - погладить. \n**x!nom** [user] - дать поесть. \n**x!slap** [user] - ударить. \n**x!hug** [user] - обнять. \n**x!cuddle** [user] - прижаться. \n**x!tickle** [user] - пощекотать. \n**x!poke** [user] - тыкнуть.")
             .setColor("#00ff00");
             return message.channel.send(rctEmbed);
 		    }
-	    if(args[0] === 'nsfw') {
+	    if(args[0] === 'nsfw' || args[0] === '6') {
             const nsfwEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория NSFW")
 	    .addField("NSFW", "**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
