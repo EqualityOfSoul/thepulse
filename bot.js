@@ -886,15 +886,19 @@ client.guilds.forEach((guild) => {users += client.users.size});
   } else if(['mute'].includes(command)) {
 	  if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
 	  let muted = message.mentions.members.first();
+	  if(!muted) return message.reply("укажите кого замутить");
 	  const mutedRole = message.member.guild.roles.find('name', "muted");
-	  if(muted.rolesHas(mutedRole)) return message.reply("пользователь уже замучен");
+	  if(!mutedRole) return message.reply("пожалуйста создайте роль `muted`");
+	  if(muted.roles.has(mutedRole)) return message.reply("пользователь уже замучен");
           muted.addRole(mutedRole)
 	  message.reply(`я успешно замутил пользователя ${muted.username}, для размута пропишите x!unmute`)
 	  } else if(['unmute'].includes(command)) {
 	  if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
 	  let muted = message.mentions.members.first();
+          if(!muted) return message.reply("укажите кого замутить");
           let mutedRole = message.member.guild.roles.find('name', "muted");
-          if(!muted.rolesHas(mutedRole)) return message.reply("у данного пользователя нету мута");
+          if(!mutedRole) message.reply("пожалуйста создайте роль `muted`");
+          if(!muted.roles.has(mutedRole)) return message.reply("у данного пользователя нету мута");
           muted.removeRole(mutedRole)
 	  message.reply(`я успешно размутил пользователя ${muted.username}.`)
 	  } else if (['xban'].includes(command) && message.author.id === "361951318929309707") {
