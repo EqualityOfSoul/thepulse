@@ -58,7 +58,6 @@ async function color () {
 }
 
 client.on("guildCreate", guild => {
-  let invite = guild.channels.first().createInvite().then(inv => inv = `https://discord.gg/${inv.code}`)
   const logsServerJoin = client.channels.get('454637063527071756');
   const embed = new Discord.RichEmbed()
   .setTitle(guild.name)
@@ -66,11 +65,9 @@ client.on("guildCreate", guild => {
   .setColor("00ff00")
   .addField("Количество людей:", guild.memberCount)
   .addField("Количество ролей:", guild.roles.size)
-  .addField("инвайт:", inv)
-
   .addField("ID:", guild.id)
    logsServerJoin.send({embed});
-    logsServerJoin.send("``` ```");
+   logsServerJoin.send("``` ```");
 });    
 client.on("guildDelete", guild => {
   const logsServerLeave = client.channels.get('454637063527071756');
