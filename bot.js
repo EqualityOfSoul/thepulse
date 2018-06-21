@@ -266,9 +266,9 @@ client.on('message', async (message) => {
     const text = args.join(" ");
     const result = require("mathjs").eval(text);
     if (text === "help") { // eeeee
-      message.edit("__**команды калькулятора**__\n```js\n1+1 //2\n2^2 //4\nsqrt(25) //5\n5см до дюйма //Довольно чертовски близко к 2 дюймам\n1in до см //2.4cm (сокращаются работы)\nsin(45) //0.8509035245341184 (Default is radians)\nsin(45 deg) //0.7071067811865475 (степени могут быть указаны)\n9 / 3 + 2i //3 + 2i\nlog(3) //1.0986122886681098\n```");
+      message.channel.send("__**команды калькулятора**__\n```js\n1+1 //2\n2^2 //4\nsqrt(25) //5\n5см до дюйма //Довольно чертовски близко к 2 дюймам\n1in до см //2.4cm (сокращаются работы)\nsin(45) //0.8509035245341184 (Default is radians)\nsin(45 deg) //0.7071067811865475 (степени могут быть указаны)\n9 / 3 + 2i //3 + 2i\nlog(3) //1.0986122886681098\n```");
     } else if (args.length) {5
-      message.edit(new RichEmbed()
+      message.channel.send(new RichEmbed()
         .setTitle("Calculate")
         .setColor(3447003)
         .addField(":inbox_tray: **задали:**", `\`\`\`xl\n${text}\n\`\`\``)
@@ -277,7 +277,7 @@ client.on('message', async (message) => {
     }
     console.log(`[${date}] Success!`);
   } catch (err) {
-    const m = await message.edit("немогу скалькулировать это :(");
+    const m = await message.channel.send("немогу скалькулировать это :(");
     m.delete(2000);
     console.log(`[${date}] фейл, ошибка:\n${err}`);
   }
