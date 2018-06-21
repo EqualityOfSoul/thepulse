@@ -530,10 +530,10 @@ return message.channel.send(members.map(member => `\```${member.id}\``` ${member
         if(args[0] === 'join') return message.member.voiceChannel.join(); message.channel.send("осуществлен вход в канал: **"+ message.member.voiceChannel.name + "**");
         if(args[0] === 'leave') return message.member.voiceChannel.leave(); message.channel.send("осуществлен выход из канала: **"+ message.member.voiceChannel.name + "**");
     } else if(['render'].includes(command)) {
-	  let font = 'banner';
+	  let font = args[0];
 	  args.shift();
 	  let text = args.join(" ");
-	    request('http://rainb0w.herokuapp.com/render?text='+args.join(" ")+'!&font='+font, function (error, response, body) {
+	    request('http://rainb0w.herokuapp.com/render?text='+text+'!&font='+font, function (error, response, body) {
             message.channel.send('<a:loading:435849475865575424> Обрабатываю запрос...').then(function(message) {
 message.edit("```"+body+"```");
     }).catch(function() {});
