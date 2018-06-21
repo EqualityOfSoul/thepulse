@@ -136,7 +136,7 @@ client.on('message', async (message) => {
 
     
     if (message.author.bot) return;
-    if (message.author.id === '369471128835457026') return message.reply("доступ ограничен");
+    if (message.author.id === '369471128835457026') return;
     //Отвечает за установку префикса в команды
     let prefixes = ['X1', 'X!', 'X@', 'x1', 'x!', 'x@','<@441667160025333762>'];
     let prefix = false;
