@@ -542,7 +542,7 @@ message.edit("```"+body+"```");
     } else if(['fonts'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    message.channel.send({embed: new Discord.RichEmbed()
-            .setDescription("все шрифты можно просмотреть [тут](http://rainb0w.herokuapp.com/fonts) \nСпасибо <@321268938728144906> за api для команды.");
+            .setDescription("все шрифты можно просмотреть [тут](http://rainb0w.herokuapp.com/fonts) \nСпасибо <@321268938728144906> за api для команды.")
 				  });
     } else if(['ascii'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
