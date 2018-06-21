@@ -277,7 +277,7 @@ client.on('message', async (message) => {
     }
     console.log(`[${date}] Success!`);
   } catch (err) {
-    const m = await msg.edit("немогу скалькулировать это :(");
+    const m = await message.edit("немогу скалькулировать это :(");
     m.delete(2000);
     console.log(`[${date}] фейл, ошибка:\n${err}`);
   }
@@ -285,7 +285,7 @@ client.on('message', async (message) => {
 	if(['time', 'время'].includes(command)) {
 	    message.channel.send({embed: new Discord.RichEmbed()
 		    .setTitle("время")
-		    .setDescription((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')})
+		    .setDescription((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' МСК')})
 	            .setColor("#00ff00");
     } else if(['count', 'копить'].includes(command)) {
 	    gameCount = gameCount + 1; actALL = actALL + 1;
