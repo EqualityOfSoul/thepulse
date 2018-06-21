@@ -136,7 +136,7 @@ client.on('message', async (message) => {
 
     
     if (message.author.bot) return;
-    if (message.author.id === '321268938728144906') return message.chanel.send("доступ ограничен");
+  //  if (message.author.id === '321268938728144906') return message.chanel.send("доступ ограничен");
     //Отвечает за установку префикса в команды
     let prefixes = ['X1', 'X!', 'X@', 'x1', 'x!', 'x@','<@441667160025333762>'];
     let prefix = false;
@@ -538,6 +538,11 @@ return message.channel.send(members.map(member => `\```${member.id}\``` ${member
 message.edit("```"+body+"```");
     }).catch(function() {});
 });
+    } else if(['fonts'].includes(command)) {
+	    message.channel.send({embed: new Discord.RichEmbed()
+            .setDescription("все шрифты можно просмотреть [тут](http://rainb0w.herokuapp.com/fonts) \nСпасибо <@321268938728144906> за api для команды.")
+            .setColor("#00ff00");
+				  });
     } else if(['ascii'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         request('http://artii.herokuapp.com/make?text='+args.join(' '), function (error, response, body) {
@@ -1128,7 +1133,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
 		    .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!rs [ид канала] [сообщение]** отослать сообщение из 1 чата в другой. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест команда эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
-                    .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, время учитывается в миллисекундах (1000ms = 1 секунда) \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1")
+                    .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text] - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, время учитывается в миллисекундах (1000ms = 1 секунда) \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1")
 		    .setColor("#00ff0");
                 return message.channel.send(funEmbed);
 		    }
