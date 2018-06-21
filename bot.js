@@ -280,7 +280,9 @@ client.on('message', async (message) => {
     const m = await msg.edit("немогу скалькулировать это :(");
     m.delete(2000);
     console.log(`[${date}] фейл, ошибка:\n${err}`);
-  } else if(['time', 'время'].includes(command)) {
+  }
+};
+	if(['time', 'время'].includes(command)) {
 	    message.channel.send({embed: new Discord.RichEmbed()
 		    .setTitle("время")
 		    .setDescription((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')})
