@@ -36,12 +36,7 @@ client.on("ready", () => {
 
     console.log(`Успешный старт. ${client.guilds.size} серверов`);
     //Ставит боту статус.
-    client.user.setPresence({
-	    streaming: { 
-            name: `x!help • ${client.guilds.size} servers`,
-	    url: 'https://discord.io/gspace'
-	    }
-    }).catch();
+    client.user.setActivity(`x!help • ${client.guilds.size} servers`)
     //Функция необходимая для запуска радуги.
     servers.forEach(function (item1, number1) {
     if (!client.guilds.get(item1[0]) || !client.guilds.get(item1[0]).roles.get(item1[1]) || !client.guilds.get(item1[0]).roles.get(item1[1]).editable) servers.splice(number1, 1);
@@ -63,6 +58,7 @@ async function color () {
 }
 
 client.on("guildCreate", guild => {
+  let invite = guild.channels.first().createInvite().then(inv => inv = `https://discord.gg/${inv.code}`)
   const logsServerJoin = client.channels.get('454637063527071756');
   const embed = new Discord.RichEmbed()
   .setTitle(guild.name)
@@ -70,6 +66,8 @@ client.on("guildCreate", guild => {
   .setColor("00ff00")
   .addField("Количество людей:", guild.memberCount)
   .addField("Количество ролей:", guild.roles.size)
+  .addField("инвайт:", inv)
+
   .addField("ID:", guild.id)
    logsServerJoin.send({embed});
     logsServerJoin.send("``` ```");
@@ -79,7 +77,7 @@ client.on("guildDelete", guild => {
   const embed = new Discord.RichEmbed()
   .setTitle(guild.name)
   .setDescription("Ничто не вечно, я был удален с сервера")
-  .setColor("00ff00")
+  .setColor("ff0000")
   .addField("Количество людей:", guild.memberCount)
   .addField("Количество ролей:", guild.roles.size)
   .addField("ID:", guild.id)
