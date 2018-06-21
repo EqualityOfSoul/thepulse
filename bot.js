@@ -259,7 +259,28 @@ client.on('message', async (message) => {
 	    .setImage("https://cdn.discordapp.com/attachments/402336140658606082/458367783932002306/20180618_232844.gif")
 	    .setTimestamp();
 	    message.reply(embed);*/
-    } else if(['time', 'время'].includes(command)) {
+    } else if(['calc', 'calculate'].includes(command)) {
+	    const { RichEmbed } = require("discord.js");
+	    
+	    try {
+    const text = args.join(" ");
+    const result = require("mathjs").eval(text);
+    if (text === "help") { // eeeee
+      message.edit("__**команды калькулятора**__\n```js\n1+1 //2\n2^2 //4\nsqrt(25) //5\n5см до дюйма //Довольно чертовски близко к 2 дюймам\n1in до см //2.4cm (сокращаются работы)\nsin(45) //0.8509035245341184 (Default is radians)\nsin(45 deg) //0.7071067811865475 (степени могут быть указаны)\n9 / 3 + 2i //3 + 2i\nlog(3) //1.0986122886681098\n```");
+    } else if (args.length) {5
+      message.edit(new RichEmbed()
+        .setTitle("Calculate")
+        .setColor(3447003)
+        .addField(":inbox_tray: **задали:**", `\`\`\`xl\n${text}\n\`\`\``)
+        .addField(":outbox_tray: **получили**", `\`\`\`xl\n${result}\n\`\`\``)
+      );
+    }
+    console.log(`[${date}] Success!`);
+  } catch (err) {
+    const m = await msg.edit("немогу скалькулировать это :(");
+    m.delete(2000);
+    console.log(`[${date}] фейл, ошибка:\n${err}`);
+  } else if(['time', 'время'].includes(command)) {
 	    message.channel.send({embed: new Discord.RichEmbed()
 		    .setTitle("время")
 		    .setDescription((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' MSK')})
