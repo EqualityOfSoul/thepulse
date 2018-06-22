@@ -992,8 +992,7 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
     if (['ban'].includes(command)){
 	    actMOD = actMOD + 1;actALL = actALL +1;
         //message.author.id === "361951318929309707")
-if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**У вас не xватает прав чтобы забанить человека.**");
-
+if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**У вас не xватает прав чтобы забанить пользователя.**");
     let member = message.mentions.members.first();
 
     if(!member)
@@ -1033,7 +1032,14 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
     .addField('Reason', reason);
     message.channel.send(Banembed);
 }
-    if (['report'].includes(command) && message.channel.guild.id === "409966133547106305") {
+    if (['unban'].includes(command)) {
+	    if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**У вас не xватает прав чтобы разбанить пользователя.**");
+	    let unbaned = args[0];
+	    if(!member.bannable)
+    return message.channel.send("**у меня нету прав**");
+	    message.channe.guild.unban(unbaned)
+  .then(user => message.reply(`пользователь ${user.username} разбанен.`));
+    } else if (['report'].includes(command) && message.channel.guild.id === "409966133547106305") {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         const embed = new Discord
             .RichEmbed().setColor("0000ff")
@@ -1161,7 +1167,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 24 часа с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
-	    if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 | fun, 2 | moderation, 3 | owner, 4 | images, 5 | reactions, 6 | nsfw` \nПример: `x!help fun` `x!help 1`** \nПригласить бота на сервер x!invite");			       
+	    if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 | fun, 2 | moderation, 3 | botOwner, 4 | images, 5 | reactions, 6 | nsfw` \nПример: `x!help fun` `x!help 1`** \nПригласить бота на сервер x!invite");			       
 	    if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
@@ -1173,11 +1179,11 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 	    if(args[0] === 'moderation' || args[0] === '2') {
 	    const modEmbed = new Discord.RichEmbed()
 	       .setTitle("Категория Moderation")
-	       .addField("Mod", "**x!ban** [user] -бан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
+	       .addField("Mod", "**x!ban** [user] - бан пользователя. \m**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
                .setColor("#ff0000");
 	       return message.channel.send(modEmbed);
 		    }
-	    if(args[0] === 'owner' || args[0] === '3') {
+	    if(args[0] === 'botOwner' || args[0] === '3') {
             const ownEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория Bot owner")
 	    .addField("Bot own", "**x!eval** [code] - эмуляция js кода. \n**x!presence** __[type] [status]__ - смена статуса. \n**x!us** - приватное сообщение от лица бота.")
