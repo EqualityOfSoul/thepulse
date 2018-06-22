@@ -773,6 +773,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
             //Ставит реакцию (Несогласен).
         }).catch(function() {});
     } else if(['prunemembers'].includes(command)) {
+	    f (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
 	    if(!args[0]) {
 		    message.reply("укажите количество дней, `7` или `30`");
 	    }
