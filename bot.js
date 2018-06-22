@@ -773,17 +773,17 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
             //Ставит реакцию (Несогласен).
         }).catch(function() {});
     } else if(['prunemembers'].includes(command)) {
-	    f (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
+	    if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
 	    if(!args[0]) {
 		    message.reply("укажите количество дней, `7` или `30`");
 	    }
 	    if(args[0] === '7') {
 		    message.channel.guild.pruneMembers(7, true)
-  .then(pruned => message.reply(`сервер очистил ${pruned} неактивных людей которые не были активны более 7 дней.`))
+  .then(pruned => message.reply(`сервер очистил ${pruned} неактивных людей которые не были активны более 7 дней и не имели никаких ролей.`))
 	    }
 	    if(args[0] === '30') {
 		    message.channel.guild.pruneMembers(30, true)
-  .then(pruned => message.reply(`сервер очистил ${pruned} неактивных людей которые не были активны более 30 дней.`))
+  .then(pruned => message.reply(`сервер очистил ${pruned} неактивных людей которые не были активны более 30 дней и не имели никаких ролей.`))
 	    }
     } else if (['logo'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
