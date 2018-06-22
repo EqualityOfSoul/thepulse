@@ -1179,7 +1179,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 	    if(args[0] === 'moderation' || args[0] === '2') {
 	    const modEmbed = new Discord.RichEmbed()
 	       .setTitle("Категория Moderation")
-	       .addField("Mod", "**x!ban** [user] - бан пользователя. \m**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
+	       .addField("Mod", "**x!ban** [user] - бан пользователя. \n**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
                .setColor("#ff0000");
 	       return message.channel.send(modEmbed);
 		    }
