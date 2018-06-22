@@ -775,7 +775,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     } else if(['prunemembers'].includes(command)) {
 	    if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
 	    if(!args[0]) {
-		    message.reply("укажите количество дней, `7` или `30`");
+		    message.reply("укажите количество дней, `7` или `30` \n**ВНИМАНИЕ: Бот очистит количество участников которые не имеют ролей и не появлялись на серве более Х дней!**");
 	    }
 	    if(args[0] === '7') {
 		    message.channel.guild.pruneMembers(7)
