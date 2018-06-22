@@ -778,11 +778,11 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 		    message.reply("укажите количество дней, `7` или `30`");
 	    }
 	    if(args[0] === '7') {
-		    message.channel.guild.pruneMembers(7, true)
+		    message.channel.guild.pruneMembers(7)
   .then(pruned => message.reply(`сервер очистил ${pruned} неактивных людей которые не были активны более 7 дней и не имели никаких ролей.`))
 	    }
 	    if(args[0] === '30') {
-		    message.channel.guild.pruneMembers(30, true)
+		    message.channel.guild.pruneMembers(30)
   .then(pruned => message.reply(`сервер очистил ${pruned} неактивных людей которые не были активны более 30 дней и не имели никаких ролей.`))
 	    }
     } else if (['logo'].includes(command)) {
