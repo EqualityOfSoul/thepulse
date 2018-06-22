@@ -775,15 +775,14 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     } else if(['prunemembers'].includes(command)) {
 	    if(!args[0]) {
 		    message.reply("укажите количество дней, `7` или `30`");
+	    }
 	    if(args[0] === '7') {
 		    message.channel.guild.pruneMembers(7, true)
   .then(pruned => message.reply(`сервер очистил ${pruned} неактивных людей которые не были активны более 7 дней.`))
-  .catch(console.error);
 	    }
 	    if(args[0] === '30') {
 		    message.channel.guild.pruneMembers(30, true)
   .then(pruned => message.reply(`сервер очистил ${pruned} неактивных людей которые не были активны более 30 дней.`))
-  .catch(console.error);
 	    }
     } else if (['logo'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
