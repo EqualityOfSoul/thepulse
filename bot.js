@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const request = require("request");
 //Библеотека discord.js
 const { inspect } = require("util");
-//фор евал
+//фор евал kjk
 const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
