@@ -132,7 +132,7 @@ client.on('message', async (message) => {
     if (message.author.bot) return;
     if (message.author.id === '369471128835457026') return;
     if (message.channel.guild.id === '440067230034558976') {
-	    if (!message.author.has.roles('458578424831803422') return message.reply("У вас нет роли ⭐️HypeSquad");
+	    if (!message.member.has.roles === '458578424831803422') return message.channel.send('у вас нет необходимой роли.');
     }
     //Отвечает за установку префикса в команды
     let prefixes = ['X1', 'X!', 'X@', 'x1', 'x!', 'x@','<@441667160025333762>'];
