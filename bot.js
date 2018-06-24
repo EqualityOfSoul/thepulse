@@ -94,7 +94,6 @@ client.on('message', async (message) => {
         if (['361951318929309707'].includes(message.author.id)) return client.channels.get('454011475493912586').send('Сообщение от '+message.author+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```');
         client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```')
     }
-	
 
 
 	
@@ -129,9 +128,12 @@ client.on('message', async (message) => {
     }
 }
 
-    
+
     if (message.author.bot) return;
     if (message.author.id === '369471128835457026') return;
+    if (message.channel.guild.id === '440067230034558976') {
+	    if (!message.author.has.roles('458578424831803422') return message.reply("У вас нет роли ⭐️HypeSquad");
+    }
     //Отвечает за установку префикса в команды
     let prefixes = ['X1', 'X!', 'X@', 'x1', 'x!', 'x@','<@441667160025333762>'];
     let prefix = false;
