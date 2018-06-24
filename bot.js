@@ -103,18 +103,6 @@ client.on('message', async (message) => {
     }
     
 
-   if (message.content.startsWith("xeval говно")) {
-        //сам говно.
-        message.channel.send(`${message.author.username}, свыш пидор, а бота получше меня сможешь написать?`);
-    }
-    if (message.content.startsWith("бот говно")) {
-        //он первый начал
-        message.reply("ты это мне?");
-    }
-    if (message.content.startsWith("говно бот")) {
-        //пугаем пидора ответом.
-        message.reply("ты это мне?");
-    }
           
     function clear_count (channel, count, count_all = 0) {
     if (count > 100) {
@@ -131,9 +119,6 @@ client.on('message', async (message) => {
 
     if (message.author.bot) return;
     if (message.author.id === '369471128835457026') return;
-    if (message.channel.guild.id === '440067230034558976') {
-	    if (!message.member.has.roles === '458578424831803422') return message.channel.send('у вас нет необходимой роли.');
-    }
     //Отвечает за установку префикса в команды
     let prefixes = ['X1', 'X!', 'X@', 'x1', 'x!', 'x@','<@441667160025333762>'];
     let prefix = false;
