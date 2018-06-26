@@ -232,15 +232,15 @@ client.on('message', async (message) => {
 	    const ttsmessage = args.join(" ")
 	    message.channel.send(ttsmessage, {tts: true});
 	    message.delete(); 
-   /* } else if(['support'].includes(command)) {
+   } else if(['support'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
+	    console.log('support')
 	    const embed = new Discord.RichEmbed()
 	    .setTitle("support")
 	    .setColor("#00ff0")
 	    .setDescription("**[Перейти на сервер можно нажав на данный текст](https://discord.io/gspace)**")
-	    .setImage("https://cdn.discordapp.com/attachments/402336140658606082/458367783932002306/20180618_232844.gif")
-	    .setTimestamp();
-	    message.reply(embed);*/
+	    .setImage("https://cdn.discordapp.com/attachments/402336140658606082/458367783932002306/20180618_232844.gif");
+	    message.reply(embed);
     } else if(['softban'].includes(command)) {
   let member = message.mentions.members.first();
   let reason = args.join(' ');
@@ -1159,17 +1159,17 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 	    if(args[0] === 'moderation' || args[0] === '2') {
 	    const modEmbed = new Discord.RichEmbed()
 	       .setTitle("Категория Moderation")
-	       .addField("Mod", "**x!ban** [user] - бан пользователя. \n**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!rs** [channel id] [message] - удаленая отправка сообщений. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
+	       .addField("Mod", "**x!softban** [users] - бан нескольких пользователей за раз \n**x!ban** [user] - бан пользователя. \n**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!rs** [channel id] [message] - удаленая отправка сообщений. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
                .setColor("#ff0000");
 	       return message.channel.send(modEmbed);
 		    }
 	    if(args[0] === 'botOwner' || args[0] === '3') {
+	    if(!message.author.id === '361951318929309707') return message.reply("Данная категория доступна только создателю бота.");
             const ownEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория Bot owner")
 	    .addField("Bot own", "**x!eval** [code] - эмуляция js кода. \n**x!presence** __[type] [status]__ - смена статуса. \n**x!us** - приватное сообщение от лица бота.")
             .setColor("#ff00ff");
             return message.channel.send(ownEmbed);
-		if(!message.author.id === '361951318929309707') return message.reply("Данная категория доступна только создателю(ям) бота.");
 		    }
 	    if(args[0] === 'images' || args[0] === '4'){
             const imgEmbed = new Discord.RichEmbed()
