@@ -244,6 +244,7 @@ client.on('message', async (message) => {
     } else if(['softban'].includes(command)) {
   let member = message.mentions.members.first();
   let reason = args.join(' ');
+  if (!member) return message.reply("Упомяните пользователей для софтбана.")
   if (member.displayName) {
     member.ban(reason)
     message.channel.send(`Готово, я забанил ${member.displayName}!`)
@@ -253,7 +254,7 @@ client.on('message', async (message) => {
     message.channel.send(`готово, я забанил ${member.username}!`)
     message.guild.unban(member.id)
   }
-	if(['time', 'время'].includes(command)) {
+    } else if(['time', 'время'].includes(command)) {
 	    message.channel.send({embed: new Discord.RichEmbed()
 		    .setTitle("время")
 		    .setDescription((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' МСК')})
