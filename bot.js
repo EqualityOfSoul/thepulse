@@ -241,29 +241,18 @@ client.on('message', async (message) => {
 	    .setImage("https://cdn.discordapp.com/attachments/402336140658606082/458367783932002306/20180618_232844.gif")
 	    .setTimestamp();
 	    message.reply(embed);*/
-    } else if(['calc', 'calculate'].includes(command)) {
-	    const { RichEmbed } = require("discord.js");
-	    
-	    try {
-    const text = args.join(" ");
-    const result = require("mathjs").eval(text);
-    if (text === "help") { // eeeee
-      message.channel.send("__**команды калькулятора**__\n```js\n1+1 //2\n2^2 //4\nsqrt(25) //5\n5см до дюйма //Довольно чертовски близко к 2 дюймам\n1in до см //2.4cm (сокращаются работы)\nsin(45) //0.8509035245341184 (Default is radians)\nsin(45 deg) //0.7071067811865475 (степени могут быть указаны)\n9 / 3 + 2i //3 + 2i\nlog(3) //1.0986122886681098\n```");
-    } else if (args.length) {5
-      message.channel.send(new RichEmbed()
-        .setTitle("Calculate")
-        .setColor(3447003)
-        .addField(":inbox_tray: **задали:**", `\`\`\`xl\n${text}\n\`\`\``)
-        .addField(":outbox_tray: **получили**", `\`\`\`xl\n${result}\n\`\`\``)
-      );
-    }
-    console.log(`[${date}] Success!`);
-  } catch (err) {
-    const m = await message.channel.send("немогу скалькулировать это :(");
-    m.delete(2000);
-    console.log(`[${date}] фейл, ошибка:\n${err}`);
+    } else if(['softban'].includes(command)) {
+  let member = message.mentions.members.first();
+  let reason = args.join(' ');
+  if (member.displayName) {
+    member.ban(reason)
+    message.channel.send(`Готово, я забанил ${member.displayName}!`)
+    message.guild.unban(member.id)
+  } else {
+    member.ban(reason)
+    message.channel.send(`готово, я забанил ${member.username}!`)
+    message.guild.unban(member.id)
   }
-};
 	if(['time', 'время'].includes(command)) {
 	    message.channel.send({embed: new Discord.RichEmbed()
 		    .setTitle("время")
