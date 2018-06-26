@@ -232,7 +232,7 @@ client.on('message', async (message) => {
 	    const ttsmessage = args.join(" ")
 	    message.channel.send(ttsmessage, {tts: true});
 	    message.delete(); 
-   } else if(['support'].includes(command)) {
+   } /*else if(['support'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    console.log('support')
 	    const embed = new Discord.RichEmbed()
@@ -241,7 +241,7 @@ client.on('message', async (message) => {
 	    .setDescription("**[Перейти на сервер можно нажав на данный текст](https://discord.io/gspace)**")
 	    .setImage("https://cdn.discordapp.com/attachments/402336140658606082/458367783932002306/20180618_232844.gif");
 	    message.reply(embed);
-    } else if(['softban'].includes(command)) {
+    }*/ else if(['softban'].includes(command)) {
   let member = message.mentions.members.first();
   let reason = args.join(' ');
   if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**У вас не xватает прав чтобы забанить пользователей.**");
