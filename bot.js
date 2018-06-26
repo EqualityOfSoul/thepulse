@@ -244,7 +244,9 @@ client.on('message', async (message) => {
     } else if(['softban'].includes(command)) {
   let member = message.mentions.members.first();
   let reason = args.join(' ');
-  if (!member) return message.reply("Упомяните пользователей для софтбана.")
+  if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**У вас не xватает прав чтобы забанить пользователей.**");
+  if (!member) return message.reply("Упомяните пользователей для софтбана.");
+  if(!member.bannable) return message.channel.send("** Я не могу забанить этого пользователя. ** У пользователя может быть больше прав, чем у меня, или у меня нет прав.");
   if (member.displayName) {
     member.ban(reason)
     message.channel.send(`Готово, я забанил ${member.displayName}!`)
@@ -970,6 +972,7 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
 	    actMOD = actMOD + 1;actALL = actALL +1;
         //message.author.id === "361951318929309707")
 if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**У вас не xватает прав чтобы забанить пользователя.**");
+
     let member = message.mentions.members.first();
 
     if(!member)
