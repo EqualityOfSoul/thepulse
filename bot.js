@@ -1,24 +1,18 @@
 const Discord = require("discord.js");
 const request = require("request");
-//Библеотека discord.js
+const puppy = require('random-puppy');
 const { inspect } = require("util");
-//фор евал kjk
 const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
-var serversPlay = {}
 const codeContext =  {};
 const os = require('os');
 const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
 const querystring = require('querystring');
-vm.createContext(codeContext);
-//Клиент бота
 const client = new Discord.Client();
-//префикс
 const prefix = "x!";
 const creators = ['361951318929309707'];
-//массив эмодзи
 const emojis = {nya:'435849475865575424'}
 let actFUN = 0;  // actFUN = actFUN + 1;actALL = actALL +1;
 let actMOD = 0;  // actMOD = actMOD + 1;actALL = actALL +1;
@@ -28,6 +22,8 @@ let actOWN = 0; //  actOWN = actOWN + 1;actALL = actALL +1;
 let actIMG = 0; //  actIMG = actIMG + 1;actALL = actALL +1;
 let actALL = 0; //  actALL = actALL +1;actALL = actALL +1;
 let gameCount = 0;
+let serversPlay = {}
+vm.createContext(codeContext);
 //массив цветов
 const colors = ['ff2828','ff3d28','ff4b28','ff5a28','ff6828','ff7628','ff8c28','ffa128','ffac28','ffb728','ffc228','ffd028','ffd728','ffe228','fff028','fffb28','edff28','deff28','d0ff28','c2ff28','b3ff28','9aff28','8cff28','7dff28','6fff28','5aff28','3dff28','28ff2b','28ff41','28ff56','28ff6c','28ff81','28ff93','28ffa9','28ffba','28ffc9','28ffde','28fff4','28ffff','28f0ff','28deff','28deff','28d3ff','28c5ff','28baff','28b0ff','28a5ff','289eff','2893ff','2885ff','2876ff','2864ff','2856ff','284bff','2841ff','2836ff','2828ff','3228ff','4428ff','5328ff','6828ff','7628ff','7e28ff','8828ff','9328ff','a128ff','b028ff','be28ff','c928ff','d328ff','db28ff','e528ff','f028ff','ff28ff','ff28f7','ff28e5','ff28de','ff28d0','ff28c9','ff28ba','ff28b3','ff28a5','ff289a','ff288c','ff2881','ff287a','ff2873','ff2868','ff2861','ff2856','ff284f','ff2848','ff2844','ff282b'];
 
@@ -1750,7 +1746,25 @@ message.channel.send('RAS');
                 } catch (e) {console.log(e)}
             });
         });
-    }
+    } else if(['ass'].includes(command)) {
+	    let keywords = [
+    "ass",
+    "butt",
+    "asshole",
+    "pussy",
+    "butthole"
+  ]
+  
+  var result = keywords[Math.floor(Math.random()*keywords.length)]
+  
+  puppy(result).then(url => {
+    let embed = new discord.RichEmbed()
+    .setTitle("Рандомная картинка ass")
+    .setImage(url)
+    .setTimestamp()
+    .setFooter(`Requested by ${message.author.username}`);
+    message.channel.send({embed: embed})
+  });
 });
 
 client.login(process.env.BOT_TOKEN).catch(console.error);
