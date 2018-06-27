@@ -1745,28 +1745,8 @@ message.channel.send('RAS');
                 } catch (e) {console.log(e)}
             });
         });
-    } else if(['ass'].includes(command)) {
-	    const puppy = require('random-puppy')
-	    let keywords = [
-    "ass",
-    "butt",
-    "asshole",
-    "pussy",
-    "butthole"
-  ]
-  
-  var result = keywords[Math.floor(Math.random()*keywords.length)]
-  
-  puppy(result).then(url => {
-    let embed = new discord.RichEmbed()
-    .setTitle("Рандомная картинка ass")
-    .setImage(url)
-    .setTimestamp()
-    .setFooter(`Requested by ${message.author.username}`);
-    message.channel.send({embed: embed});
-  });
-    }
+    } 
 });
 
 client.login(process.env.BOT_TOKEN).catch(console.error);
-//process.env.BOT_TOKEN = 'NO';
+process.env.BOT_TOKEN = 'NO';
