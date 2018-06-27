@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const request = require("request");
-const puppy = require('random-puppy');
 const { inspect } = require("util");
 const config = require('./config.json');
 const vm = require("vm");
@@ -1747,6 +1746,7 @@ message.channel.send('RAS');
             });
         });
     } else if(['ass'].includes(command)) {
+	    const puppy = require('random-puppy')
 	    let keywords = [
     "ass",
     "butt",
