@@ -1249,7 +1249,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
         const userse = new_args.shift();
         const UsersayMessage = new_args.join(" ");
         console.log(userse);
-               message.guild.members.get(userse).send(UsersayMessage);message.delete();ch.send(`${message.author.username} отослал сообщение для ${userse}: \```${UsersayMessage}```\ `)
+               message.guild.members.get(userse).send(UsersayMessage);message.delete();ch.send(`${message.author.username} отослал сообщение для ${userse}: ${UsersayMessage}`)
     } else if (['rs'].includes(command) && message.member.hasPermission('MANAGE_MESSAGES')) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         if (message.channel.id === undefined) {
