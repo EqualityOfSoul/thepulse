@@ -1239,7 +1239,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
                   }
         message.delete().catch(O_o => {});
         message.channel.send(sayMessage);
-    } else if (['us'].includes(command) && message.author.id === "432918435660431371" || message.author.id === "361951318929309707" || message.author.id === "242091351951409152") {
+    } else if (['us'].includes(command) && message.author.id === "361951318929309707" || message.author.id === "242091351951409152") {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 	    const ch = '462587976640102400';
                 if (message.guild.members.get === undefined) {
