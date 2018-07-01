@@ -182,7 +182,7 @@ client.on('message', async (message) => {
            .setTitle(`EVAL ✅`)
        
            .setColor("0x4f351")
-           .setDescription(`📥 Input: \n \`\`\`${code}\`\`\` \n 📤 Output: \n  \`\`\`${clean(evaled)}\`\`\``)
+           .setDescription(`📥 Input: \n \`\`\`${code}\`\`\` \n 📤 Output: \n  \`\`\`${(evaled)}\`\`\``)
        
          message.channel.send({embed});
        } catch (err) {
@@ -190,7 +190,7 @@ client.on('message', async (message) => {
          .setTitle(`EVAL ❌`)
   
          .setColor("0xff0202")
-         .setDescription(`📥 Input: \n \`\`\`${code}\`\`\` \n 📤 Output: \n  \`\`\`${clean(err)}\`\`\``)
+         .setDescription(`📥 Input: \n \`\`\`${code}\`\`\` \n 📤 Output: \n  \`\`\`${(err)}\`\`\``)
     
          message.channel.send({embed});
        }
