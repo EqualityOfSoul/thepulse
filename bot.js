@@ -167,7 +167,7 @@ client.on('message', async (message) => {
                 .replace(/`/g, "`" + String.fromCharCode(8203))
                 .replace(/@/g, "@" + String.fromCharCode(8203));
         }
-    } else if(['eval2'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) { {
+    } else if(['eval2'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152"))  {
 	    const code = message.content.split(" ").slice(1).join(" ");
         try {
          let evaled = eval(code);
@@ -193,6 +193,7 @@ client.on('message', async (message) => {
          .setDescription(`📥 Input: \n \`\`\`${code}\`\`\` \n 📤 Output: \n  \`\`\`${clean(err)}\`\`\``)
     
          message.channel.send({embed});
+       }
     }/*else if(['restart'].includes(command)) {
 	    function restart(channel) {
     channel.send("Начинаю перезагрузку...")
