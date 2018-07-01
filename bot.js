@@ -193,7 +193,6 @@ client.on('message', async (message) => {
          .setDescription(`📥 Input: \n \`\`\`${code}\`\`\` \n 📤 Output: \n  \`\`\`${clean(err)}\`\`\``)
     
          message.channel.send({embed});
-       }
     }/*else if(['restart'].includes(command)) {
 	    function restart(channel) {
     channel.send("Начинаю перезагрузку...")
