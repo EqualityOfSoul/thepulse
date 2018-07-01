@@ -881,7 +881,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
         embed.addField('Сервер', process.env.DYNO, true);
         embed.addField('Порт', process.env.PORT, true);*/
         embed.addField('Количество серверов', client.guilds.size)
-        embed.addField('Количество пользователей', client.users.size)
+        embed.addField('Количество онлайн пользователей', client.users.size)
         embed.addField('Количество каналов', client.channels.size)
         embed.addField('Модуль FUN использован', `${actFUN} раз.`)
         embed.addField('Модуль MOD использован', `${actMOD} раз.`)
@@ -908,7 +908,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
 	  if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
 	  let muted = message.mentions.members.first();
 	  if(!muted) return message.reply("укажите кого замутить");
-	  const mutedRole = message.member.guild.roles.find('name', "muted");
+	  const mutedRole = message.member.guild.roles.find('name', "muted") || message.member.guild.roles.find('name', "Muted");
 	  if(!mutedRole) return message.reply("пожалуйста создайте роль `muted`");
           muted.addRole(mutedRole)
 	  message.reply(`я успешно замутил пользователя ${muted}, для размута пропишите x!unmute`)
@@ -916,7 +916,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
 	  if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
 	  let muted = message.mentions.members.first();
           if(!muted) return message.reply("укажите кого замутить");
-          let mutedRole = message.member.guild.roles.find('name', "muted");
+          const mutedRole = message.member.guild.roles.find('name', "muted") || message.member.guild.roles.find('name', "Muted");
           if(!mutedRole) message.reply("пожалуйста создайте роль `muted`");
           muted.removeRole(mutedRole)
 	  message.reply(`я успешно размутил пользователя ${muted}.`)
