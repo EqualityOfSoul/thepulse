@@ -921,6 +921,19 @@ client.guilds.forEach((guild) => {users += client.users.size});
         message.channel.send(embed);
         message.delete();
 
+    } else if (['admin'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "242091351951409152")) {
+	    if(args[0] === 'shutdown') {
+		    message.channel.send("отключение...")
+		    process.exit();
+	    }
+	    if(args[0] === 'ban') {
+		    let member = message.mentions.members.first();
+		    member.ban();
+	    }
+	    if(args[0] === 'kick') {
+		    let member = message.mentions.members.first();
+		    member.kick();
+	    }
     } else if (['servers'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         let guilds = [];
