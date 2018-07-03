@@ -923,11 +923,10 @@ client.guilds.forEach((guild) => {users += client.users.size});
 
     } else if (['admin'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "242091351951409152")) {
 	    if(args[0] === 'shutdown') {
-		    message.channel.send("отключение...")
+		    message.channel.send("выключаюсь")
 		    setTimeout(() => {
 			    process.exit();
-  }, 5000);
-}
+  }, 5000)
 	    }
 	    if(args[0] === 'ban') {
 		    let member = message.mentions.members.first();
