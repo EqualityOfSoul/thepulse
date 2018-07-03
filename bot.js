@@ -926,7 +926,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
 		    message.channel.send("отключение...")
 		    setTimeout(() => {
 			    process.exit();
-  }, 5000)
+  }, 5000);
 }
 	    }
 	    if(args[0] === 'ban') {
