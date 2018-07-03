@@ -553,7 +553,7 @@ return message.channel.send(members.map(member => `\```${member.id}\``` ${member
 	  let font = args[0];
 	  args.shift();
 	  let text = args.join(" ");
-	    request('http://rainb0w.herokuapp.com/render?text='+text+'!&font='+font, function (error, response, body) {
+	    request('https://dmascii.now.sh/render?text='+text+'!&font='+font, function (error, response, body) {
             message.channel.send('<a:loading:435849475865575424> Обрабатываю запрос...').then(function(message) {
 message.edit("```"+body+"```");
     }).catch(function() {});
