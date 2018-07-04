@@ -1058,7 +1058,6 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
   .then(user => message.reply(`пользователь ${user.username} разбанен.`));
     } else if(['prune', 'clear'].includes(command)) {
 	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("Вы не являетесь модератором.");
-	    if(!client.user.hasPermission('MANAGE_MESSAGES')) return message.reply("У меня нет прав.");
         const user = message.mentions.users.first();
         const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
             if (!amount) return message.reply('укажите пользователя и количество сообщений, либо укажите количество сообщений не больше 99');
