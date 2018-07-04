@@ -1056,6 +1056,21 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
     return message.channel.send("**у меня нету прав**");
 	    message.channe.guild.unban(unbaned)
   .then(user => message.reply(`пользователь ${user.username} разбанен.`));
+    } else if(['prune', 'clear'].includes(command)) {
+	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("Вы не являетесь модератором.");
+        const user = message.mentions.users.first();
+        const amount = !!parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2])
+            if (!amount) return message.reply('укажите пользователя и количество сообщений, либо укажите количество сообщений не больше 99');
+            if (!amount && !user) return message.reply('укажите пользователя и количество сообщений, либо укажите количество сообщений не больше 99');
+                message.channel.fetchMessages({
+                limit: amount,
+                }).then((messages) => {
+                if (user) {
+            const filterBy = user ? user.id : Client.user.id;
+                messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
+        }
+            message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
+    });
     } else if (['report'].includes(command) && message.channel.guild.id === "409966133547106305") {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         const embed = new Discord
@@ -1196,7 +1211,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 	    if(args[0] === 'moderation' || args[0] === '2') {
 	    const modEmbed = new Discord.RichEmbed()
 	       .setTitle("Категория Moderation")
-	       .addField("Mod", "**x!softban** [users] - бан нескольких пользователей за раз \n**x!ban** [user] - бан пользователя. \n**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!rs** [channel id] [message] - удаленая отправка сообщений. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
+	       .addField("Mod", "**x!prune** <user> [ammout] - очистка сообений от пользователя либо чата. **x!softban** [users] - бан нескольких пользователей за раз \n**x!ban** [user] - бан пользователя. \n**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!rs** [channel id] [message] - удаленая отправка сообщений. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!tts** [text] - tts Сообщение.")
                .setColor("#ff0000");
 	       return message.channel.send(modEmbed);
 		    }
