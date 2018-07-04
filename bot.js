@@ -1069,6 +1069,12 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
             const filterBy = user ? user.id : Client.user.id;
                 messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
         }
+	    if(user) { 
+		    message.channel.send(`Было удалено ${amount} сообщений от пользователя ${user}. \nЗапрошено пользователем **${message.author}**`);
+	    }
+	    if(!user) { 
+		    message.channel.send(`Было удалено ${amount} сообщений. \nЗапрошено пользователем **${message.author}**`)
+	    }
             message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
     });
     } else if (['report'].includes(command) && message.channel.guild.id === "409966133547106305") {
