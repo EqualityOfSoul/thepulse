@@ -921,7 +921,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
         message.channel.send(embed);
         message.delete();
 
-    } else if (['admin'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "242091351951409152")) {
+    } else if (['admin'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057")) {
 	    if(!args[0] || args[0] === 'help') {
 		    message.channel.send("**`Данная команда позволяет обходить все права пользователя.`** \n**`Команды:`** \n**shutdown** - `выключить бота (использовать 2 раза)` \n**ban** [user] - `обход прав на бан.` \n**kick** [user] - `обход прав на кик.` \n**mute** [user] - `обход прав на мут.` \n**unmute** [user] - `обход прав на анмут.`")
 	    }
