@@ -1301,24 +1301,19 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
         const embed = new Discord.RichEmbed()
             .setColor("ff0000")
             .setAuthor(message.author.tag, message.author.avatarURl)
-            .addField("ID пользователя:", message.author.id, false)
-            .addField("Дискриминатор:", message.author.discriminator, false)
-            .addField("Полный никнейм:", message.author.tag, false)
-            .addField("Последнее сообщение:", message.author.lastMessage, false)
-            .addField("ID Последнего сообщения:", message.author.lastMessageID, false)
-            .addField("Создан:", (createdDate.getDate() < 10 ? '0' : '') + createdDate.getDate() + "." + (createdDate.getMonth() < 10 ? '0' : '') + createdMonth + "." + createdDate.getFullYear() + " " + (createdDate.getHours() < 10 ? '0' : '') + createdDate.getHours() + ":" + (createdDate.getMinutes() < 10 ? '0' : '') + createdDate.getMinutes() + ":" + (createdDate.getSeconds() < 10 ? '0' : '') + createdDate.getSeconds(), false)
-            .addField("Аккаунт верифицирован?", message.author.verified, false)
-            .addField("Присоеднился к серверу:", (joinedDate.getDate() < 10 ? '0' : '') + joinedDate.getDate() + "." + (joinedDate.getMonth() < 10 ? '0' : '') + joinedMonth + "." + joinedDate.getFullYear() + " " + (joinedDate.getHours() < 10 ? '0' : '') + joinedDate.getHours() + ":" + (joinedDate.getMinutes() < 10 ? '0' : '') + joinedDate.getMinutes() + ":" + (joinedDate.getSeconds() < 10 ? '0' : '') + joinedDate.getSeconds(), false)
+            .addField("ID пользователя:", message.author.id, true)
+            .addField("Дискриминатор:", message.author.discriminator, true)
+            .addField("Полный никнейм:", message.author.tag, true)
+            .addField("Создан:", (createdDate.getDate() < 10 ? '0' : '') + createdDate.getDate() + "." + (createdDate.getMonth() < 10 ? '0' : '') + createdMonth + "." + createdDate.getFullYear() + " " + (createdDate.getHours() < 10 ? '0' : '') + createdDate.getHours() + ":" + (createdDate.getMinutes() < 10 ? '0' : '') + createdDate.getMinutes() + ":" + (createdDate.getSeconds() < 10 ? '0' : '') + createdDate.getSeconds(), true)
+            .addField("Присоеднился к серверу:", (joinedDate.getDate() < 10 ? '0' : '') + joinedDate.getDate() + "." + (joinedDate.getMonth() < 10 ? '0' : '') + joinedMonth + "." + joinedDate.getFullYear() + " " + (joinedDate.getHours() < 10 ? '0' : '') + joinedDate.getHours() + ":" + (joinedDate.getMinutes() < 10 ? '0' : '') + joinedDate.getMinutes() + ":" + (joinedDate.getSeconds() < 10 ? '0' : '') + joinedDate.getSeconds(), true)
             .setThumbnail(avatar)
             .setFooter("Userinfo")
             .setTimestamp(); message.react("✅");
         message.channel.send(embed);
     } else if(['say'].includes(command)) {
+	    if (message.channel.guild.id === 389335832693309441) return message.reply("отключено для данного сервера");
 	    actFUN = actFUN + 1;actALL = actALL +1;
         const sayMessage = args.join(" ")
-              if (message.channel.guild.id === 389335832693309441) {
-                  sayMessage = "Отключено для данного сервера"
-                  }
         message.delete().catch(O_o => {});
         message.channel.send(sayMessage);
     } else if (['us'].includes(command) && message.author.id === "361951318929309707" || message.author.id === "242091351951409152") {
