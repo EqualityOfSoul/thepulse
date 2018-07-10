@@ -858,6 +858,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
                 .setColor('RANDOM')
             //отправляет
             message.channel.send({embed: Author});
+      }
     } else if (['afk'].includes(command)) {
 	 message.member.setNickname(`[AFK]${message.author.nickname}`)
 	    actFUN = actFUN + 1;actALL = actALL +1;
