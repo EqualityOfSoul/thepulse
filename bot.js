@@ -696,10 +696,10 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         var bondEmbed = new Discord.RichEmbed()
 
         .setColor("#f5a3fa")
-        .addField("люди", `${message.author} ♥ ${args[0]}`)
-        .addField("Очки соместимости", `${bondLevel}%`)
-        .addField("Любовь..", bondLevelResults)
-        .addField("Ответ", ship);
+        .addField("MATCHMAKING", `${message.author} ♥ ${args[0]}`)
+        .addField("Points", `${bondLevel}%`)
+        .addField("любовь..", bondLevelResults)
+        .addField("ответ", ship);
 
 
         return message.channel.send(bondEmbed)
@@ -709,8 +709,8 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         var bondEmbed5 = new Discord.RichEmbed()
 
         .setColor("#f5a3fa")
-        .addField("люди", `${args[0]} ♥ ${args[1]}`)
-        .addField("Очки соместимости", `100%`)
+        .addField("MATCHMAKING", `${args[0]} ♥ ${args[1]}`)
+        .addField("Points", `100%`)
         .addField("Любовь..", `♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥`)
         .addField("Ответ", `Идеальная пара <3_<3 :ok_hand:`);
 
@@ -722,8 +722,8 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         var bondEmbed2 = new Discord.RichEmbed()
 
         .setColor("#f5a3fa")
-        .addField("люди", `${args[0]} ♥ ${args[1]}`)
-        .addField("Очки соместимости", `${bondLevel}%`)
+        .addField("MATCHMAKING", `${args[0]} ♥ ${args[1]}`)
+        .addField("Points", `${bondLevel}%`)
         .addField("Любовь..", bondLevelResults)
         .addField("Ответ", ship);
 
@@ -737,8 +737,8 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         var bondEmbed3 = new Discord.RichEmbed()
 
         .setColor("#f5a3fa")
-        .addField("люди", `${args[0]} и ${args[1]} ♥ ${args[2]}`)
-        .addField("Очки соместимости", `${bondLevel}%`)
+        .addField("MATCHMAKING", `${args[0]} и ${args[1]} ♥ ${args[2]}`)
+        .addField("Points", `${bondLevel}%`)
         .addField("Любовь..", bondLevelResults)
         .addField("Ответ", ship);
 
