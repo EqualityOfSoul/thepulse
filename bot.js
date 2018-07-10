@@ -97,7 +97,6 @@ client.on('message', async (message) => {
         message.channel.stopTyping();
     }
     
-if (message.author.id === '337573905722114051') return message.channel.send('Пошел нахуй, пидор :wink:')
           
     function clear_count (channel, count, count_all = 0) {
     if (count > 100) {
@@ -131,6 +130,7 @@ if (message.author.id === '337573905722114051') return message.channel.send('П�
 	return target.replace(new RegExp(search, 'g'), replacement);
 	};
 	
+if (message.author.id === '337573905722114051') return message.channel.send('Пошел нахуй, пидор :wink:')
     //Эмулирует произвольный код из аккаунта.
     if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
