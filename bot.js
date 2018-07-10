@@ -278,40 +278,6 @@ client.on('message', async (message) => {
     message.channel.send(`готово, я забанил ${member.username}!`)
     message.guild.unban(member.id)
   }
-    } else if(['urban'].includes(command)) {
-	  let result = new Promise((resolve,reject) => {
-          if (args[0] !== 'random') {
-          resolve(
-            urban(args[0])
-            .then(res => {
-              return res;
-            }));
-        }
-        else {
-          resolve(
-            urban.random()
-            .then(res => {
-              return res;
-            }));
-        }
-      });
-      result.then(r => {
-        if (r.definition.length > 1024) {r.definition = "Слишком длино, я решил убрать данный пункт."}
-        if (r.example.length > 1024) {r.example = "Пример слишком длин, я убрал его."}
-        let searchResults = new Discord.RichEmbed()
-          .setTitle('Urban Dictionary')
-          .addField("Word", r.word)
-          .addField("Definition", r.definition)
-          .addField("Example", r.example)
-          .setThumbnail("http://www.userlogos.org/files/logos/Ixodides/ud.png")
-          .setColor("#FF0000")
-          .setURL(r.urbanURL)
-          .addField("👍: ", r.thumbsUp, true)
-          .addField("👎: ", r.thumbsDown, true)
-          .setFooter('Posted by ' + r.author);
-          message.channel.send({embed: searchResults});
-      });
-      message.delete();
     } else if(['time', 'время'].includes(command)) {
 	    message.channel.send({embed: new Discord.RichEmbed()
 		    .setTitle("время")
