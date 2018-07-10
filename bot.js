@@ -659,7 +659,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         var bondLevelResults = '♥♥♥♥♥♥♥🖤🖤🖤'
     } else
     if (bondLevel >= 60 && bondLevel < 70) {
-        var ship = 'не все потерено.'
+        var ship = 'не все потеряно.'
         var bondLevelResults = '♥♥♥♥♥♥🖤🖤🖤🖤'
     } else
     if (bondLevel >= 50 && bondLevel < 60) {
@@ -675,7 +675,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         var bondLevelResults = `♥♥♥🖤🖤🖤🖤🖤🖤🖤`
     } else
     if (bondLevel >= 25 && bondLevel < 30) {
-        var ship = 'я не бyдy коментировать'
+        var ship = 'я не бyдy комментировать'
         var bondLevelResults = `♥♥🖤🖤🖤🖤🖤🖤🖤🖤`
     } else
     if (bondLevel >= 20 && bondLevel < 25) {
@@ -687,7 +687,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         var bondLevelResults = `​♥🖤🖤🖤🖤🖤🖤🖤🖤🖤`
     } else
     if (bondLevel >= 0 && bondLevel < 10) {
-        var ship = 'Не возможно...'
+        var ship = 'Невозможно...'
         var bondLevelResults = `🖤🖤🖤🖤🖤🖤🖤🖤🖤🖤`
     }
 
