@@ -626,7 +626,6 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         //Вызывает эмодзи из массива после чего отправляет его.
                 const emoj = client.emojis.get(emojis.nya); message.channel.send(`${emoj}`); message.delete();
     } else if (['ship'].includes(command)) {
-if (message.author.id === '337573905722114051') return message.channel.send('Пошел нахуй, пидор :wink:')
 	    actFUN = actFUN + 1;actALL = actALL +1;
         if(!args[0]) return message.channel.send("♥ **Упомяните пользователя или пользователей, которые вы хотите связать.** `x!ship <user> <user>`")
 
