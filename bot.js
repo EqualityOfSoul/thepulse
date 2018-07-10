@@ -84,10 +84,6 @@ client.on('message', async (message) => {
         //Отвечает за то чтобы бот начал писать в вызваном чате.
         message.channel.startTyping();
     }
-client.on('message', async (message) => {
-//При заданом сообщение выполняет действие.
-    if (message.content.startsWith("x!") && message.channel.guild.id === '417266233562365952') return message.reply("нид");
-    })
     if (message.channel.type === 'dm') {
         if ([`${client.user.id}`].includes(message.author.id)) return;
         if (['361951318929309707'].includes(message.author.id)) return client.channels.get('454011475493912586').send('Сообщение от '+message.author+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```');
