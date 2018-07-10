@@ -834,17 +834,8 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 	  actFUN = actFUN + 1;actALL = actALL +1;
         //задает 1 слово как пользователя
         let member = message.mentions.members.first();
-      if (!member) {
-          member === message.author.id
-          }
-        //если пользователь не найден или вписано не правильно выдает ошибку
-        let embederr = (`${message.author}, пользователя нет на данном сервере.`);
-        //если пользователя нет выполняет действие
-        if (!member)
-            //вызывает текст ошибки
-            return message.channel.send({embederr});
-        //новый рич ембед
-            const embed = new Discord.RichEmbed()
+	   //новый рич ембед
+            const memberAvatar = new Discord.RichEmbed()
             //создает заголовок
                 .setTitle(`Аватар пользователя ${member.user.tag}`)
             //создает изображение
@@ -852,11 +843,23 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
             //нижний текст
                 .setFooter("Avatar")
             //задает цвет
-                .setColor("#0000ff")
+                .setColor('RANDOM')
             //отправляет
-            message.channel.send({embed});
+            message.channel.send({embed: memberAvatar});
+      if (!member) {
+	      const Author = new Discord.RichEmbed()
+            //создает заголовок
+                .setTitle(`Вот ваш аватар.`)
+            //создает изображение
+                .setImage(message.author.avatarURL)
+            //нижний текст
+                .setFooter("Avatar")
+            //задает цвет
+                .setColor('RANDOM')
+            //отправляет
+            message.channel.send({embed: Author});
     } else if (['afk'].includes(command)) {
-	 message.member.setNickname(`[AFK]${message.author.username}`)
+	 message.member.setNickname(`[AFK]${message.author.nickname}`)
 	    actFUN = actFUN + 1;actALL = actALL +1;
         message.delete();
         const afkMessage = args.join(" ");
@@ -864,7 +867,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         .setTitle(`${message.author.username}, ненадолго отошел`)
         .setDescription(afkMessage.replace(/`/g, "\\`"))
         .setThumbnail('https://images-ext-1.discordapp.net/external/zOQcnhsC7Ud8tPF-pJQpt51YyrvvP-xwH5c9v02p4Ys/https/thumbs.gfycat.com/SinfulCompetentBeaver-max-1mb.gif?width=80&height=80')
-        .setColor('0000ff')
+        .setColor('RANDOM')
         message.channel.send({embed}).then(function(message) {
             //Функция переходит на сообщение бота.
             message.react('💤')
@@ -873,7 +876,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 	    actFUN = actFUN + 1;actALL = actALL +1;
         let summoned = message.mentions.members.first();
         if (!summoned) return;
-        if (summoned.id === '421030089732653057') return message.channel.send('соси хуй :3');
+        if (summoned.id === '421030089732653057') return message.channel.send('бога упоминать низя.');
         args.shift();
         const SummonMessage = args.join(" ");
         message.delete();
