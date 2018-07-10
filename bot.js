@@ -856,9 +856,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
             //отправляет
             message.channel.send({embed});
     } else if (['afk'].includes(command)) {
-	    try {
-		    message.member.setNickname(`[AFK]${message.author.username}`)
-	    } else {
+	 message.member.setNickname(`[AFK]${message.author.username}`)
 	    actFUN = actFUN + 1;actALL = actALL +1;
         message.delete();
         const afkMessage = args.join(" ");
@@ -871,7 +869,6 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
             //Функция переходит на сообщение бота.
             message.react('💤')
         }).catch(function() {});
-	    }
     } else if (['summon'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         let summoned = message.mentions.members.first();
