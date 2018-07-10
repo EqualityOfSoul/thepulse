@@ -97,7 +97,7 @@ client.on('message', async (message) => {
         message.channel.stopTyping();
     }
     
-
+if (message.author.id === '337573905722114051') return message.channel.send('Пошел нахуй, пидор :wink:')
           
     function clear_count (channel, count, count_all = 0) {
     if (count > 100) {
