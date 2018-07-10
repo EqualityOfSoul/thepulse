@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const request = require("request");
-const urban = require('relevant-urban');
 const { inspect } = require("util");
 const config = require('./config.json');
 const vm = require("vm");
