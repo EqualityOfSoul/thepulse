@@ -578,7 +578,6 @@ message.edit("```"+body+"```");
 
     } else if(['google'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
-	    let emoj = client.emojis.get(emoji.google);
 	    let searh = args.join(" ")
 	    searh = searh.replaceAll('порно', 'котята')
 	    searh = searh.replaceAll('порнуха', 'котята')
@@ -586,7 +585,7 @@ message.edit("```"+body+"```");
 	    searh = searh.replaceAll('ебля', 'котята')
 	    if(message.channel.guild.id === '417266233562365952') return message.reply("отключено для данного сервера");
 let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
-  message.channel.send(`${emoj} Ищу в google ${searh}...`)
+  message.channel.send(`<a:google:466553119745114122> Ищу в google ${searh}...`)
   return snekfetch.get(searchUrl).then((result) => {
 
     let $ = cheerio.load(result.text);
