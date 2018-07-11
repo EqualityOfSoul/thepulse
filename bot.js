@@ -12,7 +12,7 @@ const querystring = require('querystring');
 const client = new Discord.Client();
 const prefix = "x!";
 const creators = ['361951318929309707'];
-const emojis = {nya:'435849475865575424'}
+const emojis = {nya:'435849475865575424'},{google:'466553119745114122'};
 let actFUN = 0;  // actFUN = actFUN + 1;actALL = actALL +1;
 let actMOD = 0;  // actMOD = actMOD + 1;actALL = actALL +1;
 let actRCT = 0;  // actRCT = actRCT + 1;actALL = actALL +1;
