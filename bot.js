@@ -62,8 +62,8 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	.addField("Имя до обновления", old_channel.name)
 	.addField("Имя после обновления", cNewName, true)
 	.addField("Описание до обн.", old_channel.topic)
-	.addField("Описание полсе обн.", cNewTopic, true)
-	chan.send(channelEmbed)
+	.addField("Описание полсе обн.", cNewTopic, true);
+	chan.send(channelEmbed);
 });
 client.on("messageUpdate", (old_message, new_message) => {
 	const chan = old_message.guild.channels.find('name', "logs");
