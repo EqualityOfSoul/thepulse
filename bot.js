@@ -53,8 +53,8 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	}
 	let cOldTopic = old_channel.topic;
 	let cNewTopic = new_channel.topic;
-	if (old_channel.topic === 'null') {
-		cOldTopic === 'Описание не указано'
+	if(!cOldTopic) {
+		cOldTopic = 'не указано'
 	}
 	if (old_channel.topic === new_channel.topic) {
 		cNewTopic = 'без изменений.'
@@ -64,10 +64,39 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	.setColor("#ffff00")
 	.addField("Имя до обновления", old_channel.name, true)
 	.addField("Имя после обновления", cNewName, true)
-	.addField("Описание до обнвления", old_channel.topic, false)
-	.addField("Описание полсе обновления", cNewTopic, true);
+	.addField("Описание до обновления", old_channel.topic, false)
+	.addField("Описание полсе обновления", cNewTopic, false);
 	chan.send(channelEmbed);
 });
+client.on("channelDelete", channel => {
+	let topic = channel.topic;
+	if (!topic) {
+		topic = 'не указан'
+	}
+	const chan = channel.guild.channels.find('name', "logs");
+	if (!chan) return;
+	const embedDelChan = new Discord.RichEmbed()
+	.setTitle("Channel deleted")
+	.setColor("#ff0000")
+	.setField("Имя канала", channel.name)
+	.setField("Описание канала", topic);
+	chan.send(embedDelChan);
+});
+client.on("channelCreate", channel => {
+	let topic = channel.topic;
+	if (!topic) {
+		topic = 'не указан'
+	}
+	const chan = channel.guild.channels.find('name', "logs");
+	if (!chan) return;
+	const embedDelChan = new Discord.RichEmbed()
+	.setTitle("Channel created")
+	.setColor("#00ff00")
+	.setField("Имя канала", channel.name)
+	.setField("Описание канала", topic);
+	chan.send(embedDelChan);
+});
+	
 client.on("messageUpdate", (old_message, new_message) => {
 	const chan = old_message.guild.channels.find('name', "logs");
 	if (!chan) return;
