@@ -196,6 +196,8 @@ client.on('message', async (message) => {
     
          message.channel.send({embed});
        }
+    } else if(['owner'].includes(command)) {
+	    message.channel.send(`owner >>> ${message.channel.guild.owner}`)
     }/*else if(['restart'].includes(command)) {
 	    function restart(channel) {
     channel.send("Начинаю перезагрузку...")
