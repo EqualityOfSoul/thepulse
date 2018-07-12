@@ -45,6 +45,8 @@ client.on("ready", () => {
 });
 
 client.on("messageUpdate", (old_message, new_message) => {
+	const chan = old_message.guild.channels.find('name', "logs");
+	if (!chan) return;
     if (old_message.author.bot) return;
 	if (old_message.channel.name === undefined) return;
 	if (old_message.content === new_message.content && old_message.attachments === new_message.attachments && old_message.embeds === new_message.embeds) return;
