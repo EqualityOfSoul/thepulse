@@ -52,6 +52,7 @@ client.on("messageUpdate", (old_message, new_message) => {
 	if (old_message.content === new_message.content && old_message.attachments === new_message.attachments && old_message.embeds === new_message.embeds) return;
 	const embedEdited = new Discord.RichEmbed()
 	.setTitle("Message edited")
+	.setColor("#ffff00")
 	.addField("Сообщение пользователя:", `${old_message.author} (${old_message.author.id})`)
 	.addField("В канале:", `${old_message.channel} (${old_message.channel.id})`)
 	.addField("До:", old_message.content)
@@ -65,6 +66,7 @@ client.on("messageDelete", (old_message) => {
 	if (old_message.channel.name === undefined) return;
 	const embedDeleted = new Discord.RichEmbed()
 	.setTitle("Message deleted")
+	.setColor("#ff0000")
 	.addField("Сообщение пользователя:", `${old_message.author} (${old_message.author.id})`)
 	.addField("В канале:", `${old_message.channel} (${old_message.channel.id})`)
 	.addField("Сообщение:", old_message.content)
