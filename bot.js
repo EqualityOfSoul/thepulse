@@ -43,14 +43,6 @@ client.on("ready", () => {
     });
     color();
 });
-client.on("userUpdate", (old_user, new_user) => {
-	const chan = old_user.guild.channels.find('name', "logs");
-	if (!chan) return console.log('22');
-	const embed = new Discord.RichEmbed()
-	.setDescription(`${old_user.username} => ${new_user.username}`);
-	chan.send(embed);
-        
-});
 
 client.on("messageUpdate", (old_message, new_message) => {
 	const chan = old_message.guild.channels.find('name', "logs");
@@ -84,7 +76,7 @@ client.on("messageDelete", (old_message) => {
 });
 client.on("guildMemberAdd", member => {
 	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
-	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
+	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel || member.guild.channels.find('name', "bot-hell");
 	if (!chan) return;
 	const welcomeEmbed = new Discord.RichEmbed()
 	.setTitle("Welcome")
