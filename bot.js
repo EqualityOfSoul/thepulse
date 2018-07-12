@@ -57,7 +57,7 @@ client.on("messageUpdate", (old_message, new_message) => {
 	.addField("В канале:", `${old_message.channel} (${old_message.channel.id})`)
 	.addField("До:", old_message.content)
 	.addField("После:", new_message.content)
-	.setFooter("ID сообщения", old_message.id);
+	.setFooter(old_message.author.avatarURL, `Message id: ${old_message.id}`);
 	chan.send(embedEdited);
 });
 client.on("messageDelete", (old_message) => {
@@ -71,7 +71,7 @@ client.on("messageDelete", (old_message) => {
 	.addField("Сообщение пользователя:", `${old_message.author} (${old_message.author.id})`)
 	.addField("В канале:", `${old_message.channel} (${old_message.channel.id})`)
 	.addField("Сообщение:", old_message.content)
-	.setFooter("ID сообщения", old_message.id);
+	.setFooter(old_message.author.avatarURL, `Message id: ${old_message.id}`);
 	chan.send(embedDeleted);
 });
 client.on("guildMemberAdd", member => {
@@ -128,6 +128,7 @@ client.on("guildDelete", guild => {
   .addField("Количество людей:", guild.memberCount)
   .addField("Количество ролей:", guild.roles.size)
   .addField("ID:", guild.id)
+ 
  	
   logsServerLeave.send({embed});
   logsServerLeave.send("``` ```");
