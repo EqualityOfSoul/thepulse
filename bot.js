@@ -53,6 +53,9 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	}
 	let cOldTopic = old_channel.topic;
 	let cNewTopic = new_channel.topic;
+	if (old_channel.topic === 'null') {
+		cOldTopic === 'Описание не указано'
+	}
 	if (old_channel.topic === new_channel.topic) {
 		cNewTopic = 'без изменений.'
 	}
@@ -61,7 +64,7 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	.setColor("#ffff00")
 	.addField("Имя до обновления", old_channel.name, true)
 	.addField("Имя после обновления", cNewName, true)
-	.addField("Описание до обнвления", old_channel.topic, true)
+	.addField("Описание до обнвления", old_channel.topic, false)
 	.addField("Описание полсе обновления", cNewTopic, true);
 	chan.send(channelEmbed);
 });
