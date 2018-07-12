@@ -72,6 +72,26 @@ client.on("messageDelete", (old_message) => {
 	.addField("Сообщение:", old_message.content)
 	chan.send(embedDeleted);
 });
+client.on("guildMemberAdd", member => {
+	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
+	if (!chan) return;
+	const welcomeEmbed = new Discord.RichEmbed()
+	.setTitle("Welcome")
+	.setColor("#00ff00")
+	.addField("Новый участник:", `${member.name} | ${member.username} | ${member.id}`)
+	.addField(`Количество участников теперь:`, member.guild.memberCount);
+	chan.send(welcomeEmbed);
+});
+client.on("guildMemberRemove", member => {
+	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
+	if (!chan) return;
+	const goodbyeEmbed = new Discord.RichEmbed()
+	.setTitle("Good bye")
+	.setColor("#ff0000")
+	.addField("Участник ушел:", `${member.name} | ${member.username} | ${member.id}`)
+	.addField(`Количество участников теперь:`, member.guild.memberCount);
+	chan.send(goodbyeEmbed);
+});
 const servers = config.servers;
 
 async function color () {
