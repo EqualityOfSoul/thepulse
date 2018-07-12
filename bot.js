@@ -47,7 +47,6 @@ client.on("ready", () => {
 client.on("messageUpdate", (old_message, new_message) => {
     if (old_message.author.bot) return;
 	if (old_message.channel.name === undefined) return;
-	if (log_channels.includes(old_message.channel.id)) return;
 	if (old_message.content === new_message.content && old_message.attachments === new_message.attachments && old_message.embeds === new_message.embeds) return;
 	let nick = old_message.author.username;
 	if (old_message.member.nickname != null) nick = old_message.member.nickname;
