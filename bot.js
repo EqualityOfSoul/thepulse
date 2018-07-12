@@ -59,9 +59,9 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	const channelEmbed = new Discord.RichEmbed()
 	.setTitle("Channel update")
 	.setColor("#ffff00")
-	.addField("Имя до обновления", old_channel.name)
+	.addField("Имя до обновления", old_channel.name, true)
 	.addField("Имя после обновления", cNewName, true)
-	.addField("Описание до обн.", old_channel.topic)
+	.addField("Описание до обн.", old_channel.topic, true)
 	.addField("Описание полсе обн.", cNewTopic, true);
 	chan.send(channelEmbed);
 });
