@@ -131,6 +131,8 @@ client.on("guildDelete", guild => {
 
 client.on('message', async (message) => {
 //При заданом сообщение выполняет действие.
+	
+	if (message.channel.id === '461764710308642817' && message.author.id === '337573905722114051') return message.channel.send('тут тебе пользоваться мной низя >:(');
     if (message.content.startsWith("бот пиши")) {
         //Отвечает за то чтобы бот начал писать в вызваном чате.
         message.channel.startTyping();
