@@ -75,23 +75,28 @@ client.on("messageDelete", (old_message) => {
 	chan.send(embedDeleted);
 });
 client.on("guildMemberAdd", member => {
+	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	if (!chan) return;
 	const welcomeEmbed = new Discord.RichEmbed()
 	.setTitle("Welcome")
 	.setColor("#00ff00")
-	.addField("Новый участник:", `${member} | ${member.id}`)
-	.addField(`Количество участников теперь:`, member.guild.memberCount)
+	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\nЗарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
+	/*.addField("Новый участник:", `${member} | ${member.id}`)
+	.addField(`Количество участников теперь:`, member.guild.memberCount)*/
 	.setThumbnail(member.user.avatarURL);
 	chan.send(welcomeEmbed);
 });
 client.on("guildMemberRemove", member => {
+	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
+        let days_s = Math.ceil(Math.abs(new Date().getTime() - member.joinedAt.getTime()) / (1000 * 3600 * 24));
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	if (!chan) return;
 	const goodbyeEmbed = new Discord.RichEmbed()
 	.setTitle("Good bye")
 	.setColor("#ff0000")
-	.addField("Участник ушел:", `${member} | ${member.id}`)
+	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\Зарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\nЗашел на сервер: ${member.joinedAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days_s}** дней пробыл на сервере.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
+	//.addField("Участник ушел:", `${member} | ${member.id}`)
 	.setThumbnail(member.user.avatarURL);
 	chan.send(goodbyeEmbed);
 });
