@@ -43,6 +43,14 @@ client.on("ready", () => {
     });
     color();
 });
+client.on("memberUpdate", (old_member, new_member) => {
+	const chan = old_member.guild.channels.find('name', "logs");
+	if (!chan) return;
+	const embed = new Discord.RichEmbed()
+	.setDescription(`${old_member.username} => ${new_member.username}`);
+	chan.send(embed);
+        
+});
 
 client.on("messageUpdate", (old_message, new_message) => {
 	const chan = old_message.guild.channels.find('name', "logs");
