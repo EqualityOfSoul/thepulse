@@ -68,7 +68,7 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	.addField("Описание полсе обновления", cNewTopic, false);
 	chan.send(channelEmbed);
 });
-client.on("channelDelete", channel => {
+client.on("CHANNEL_DELETE", channel => {
 	let topic = channel.topic;
 	if (!topic) {
 		topic = 'не указан'
@@ -82,7 +82,7 @@ client.on("channelDelete", channel => {
 	.setField("Описание канала", topic);
 	chan.send(embedDelChan);
 });
-client.on("channelCreate", channel => {
+client.on("CHANNEL_CREATE", channel => {
 	let topic = channel.topic;
 	if (!topic) {
 		topic = 'не указан'
