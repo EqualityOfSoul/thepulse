@@ -914,7 +914,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
             message.channel.send({embed: Author});
       }
     } else if (['afk'].includes(command)) {
-	 message.member.setNickname(`[AFK]${message.author.nickname}`)
+	 message.member.setNickname(`[AFK]${message.author.username}`)
 	    actFUN = actFUN + 1;actALL = actALL +1;
         message.delete();
         const afkMessage = args.join(" ");
