@@ -50,7 +50,7 @@ client.on("messageUpdate", (old_message, new_message) => {
 	if (old_message.content === new_message.content && old_message.attachments === new_message.attachments && old_message.embeds === new_message.embeds) return;
 	let nick = old_message.author.username;
 	if (old_message.member.nickname != null) nick = old_message.member.nickname;
-	const rand = getRandomInt(0, 234234243);
+	const rand = 'RANDOM';
 	let old_params = {};
 	let new_params = {};
 	if (old_message.embeds[0]) {
