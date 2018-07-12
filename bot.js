@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-const clientt = require('nekos.life');
-const neko = new clientt();
+//const clientt = require('nekos.life');
+//const neko = new clientt();
 const request = require("request");
 const { inspect } = require("util");
 const config = require('./config.json');
@@ -1740,10 +1740,10 @@ message.channel.send('RAS');
                         .setColor('#ffff00');
                     msg.edit(`${user1}`, {embed});
         });
-    } else if(['chat'].includes(command)) {
+    } /*else if(['chat'].includes(command)) {
 	    await neko.getSFWHug();
 	    message.channel.send(url);
-    } else if(['cat'].includes(command)) {
+    }*/ else if(['cat'].includes(command)) {
         actIMG = actIMG + 1;actALL = actALL +1;
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/meow', function (error, response, body) {
