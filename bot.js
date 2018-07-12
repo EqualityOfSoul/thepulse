@@ -61,8 +61,8 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	.setColor("#ffff00")
 	.addField("Имя до обновления", old_channel.name, true)
 	.addField("Имя после обновления", cNewName, true)
-	.addField("Описание до обн.", old_channel.topic, true)
-	.addField("Описание полсе обн.", cNewTopic, true);
+	.addField("Описание до обнвления", old_channel.topic, true)
+	.addField("Описание полсе обновления", cNewTopic, true);
 	chan.send(channelEmbed);
 });
 client.on("messageUpdate", (old_message, new_message) => {
