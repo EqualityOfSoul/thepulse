@@ -44,6 +44,67 @@ client.on("ready", () => {
     color();
 });
 
+client.on("messageUpdate", (old_message, new_message) => {
+    if (old_message.author.bot) return;
+	if (old_message.channel.name === undefined) return;
+	if (log_channels.includes(old_message.channel.id)) return;
+	if (old_message.content === new_message.content && old_message.attachments === new_message.attachments && old_message.embeds === new_message.embeds) return;
+	let nick = old_message.author.username;
+	if (old_message.member.nickname != null) nick = old_message.member.nickname;
+	const rand = getRandomInt(0, 234234243);
+	let old_params = {};
+	let new_params = {};
+	if (old_message.embeds[0]) {
+		const old_embed = new Discord.RichEmbed();
+		old_embed.setColor(old_message.embeds[0].color);
+		if (old_message.embeds[0].title)
+			old_embed.setTitle(old_message.embeds[0].title);
+		if (old_message.embeds[0].author)
+			old_embed.setAuthor(old_message.embeds[0].author);
+		if (old_message.embeds[0].description)
+			old_embed.setDescription(old_message.embeds[0].description);
+		if (old_message.embeds[0].url)
+			old_embed.setURL(old_message.embeds[0].url);
+		if (old_message.embeds[0].image)
+			old_embed.setImage(old_message.embeds[0].image.url);
+		if (old_message.embeds[0].thumbnail)
+			old_embed.setThumbnail(old_message.embeds[0].thumbnail.url);
+        /** @namespace old_message.embeds[0].footer.iconURL */
+        if (old_message.embeds[0].footer)
+			old_embed.setFooter(old_message.embeds[0].footer.text, old_message.embeds[0].footer.iconURL);
+		if (old_message.embeds[0].author)
+			old_embed.setAuthor(old_message.embeds[0].author.name, old_message.embeds[0].author.iconURL, old_message.embeds[0].author.url);
+		for (let i=0;i!==old_message.embeds[0].fields.length;i++) {
+			old_embed.addField(old_message.embeds[0].fields[i].name, old_message.embeds[0].fields[i].value, old_message.embeds[0].fields[i].inline);
+		}
+		old_params = {embed: old_embed}
+	}
+	if (new_message.embeds[0]) {
+		const new_embed = new Discord.RichEmbed();
+		new_embed.setColor(new_message.embeds[0].color);
+		if (new_message.embeds[0].title)
+			new_embed.setTitle(new_message.embeds[0].title);
+		if (new_message.embeds[0].author)
+			new_embed.setAuthor(new_message.embeds[0].author);
+		if (new_message.embeds[0].description)
+			new_embed.setDescription(new_message.embeds[0].description);
+		if (new_message.embeds[0].url)
+			new_embed.setURL(new_message.embeds[0].url);
+		if (new_message.embeds[0].image)
+			new_embed.setImage(new_message.embeds[0].image.url);
+		if (new_message.embeds[0].thumbnail)
+			new_embed.setThumbnail(new_message.embeds[0].thumbnail.url);
+        if (new_message.embeds[0].footer)
+			new_embed.setFooter(new_message.embeds[0].footer.text, new_message.embeds[0].footer.iconURL);
+		if (new_message.embeds[0].author)
+			new_embed.setAuthor(new_message.embeds[0].author.name, new_message.embeds[0].author.iconURL, new_message.embeds[0].author.url);
+		for (let i=0;i!==new_message.embeds[0].fields.length;i++) {
+			new_embed.addField(new_message.embeds[0].fields[i].name, new_message.embeds[0].fields[i].value, new_message.embeds[0].fields[i].inline);
+		}
+		new_params = {embed: new_embed}
+	}
+	old_message.guild.channels.find('name', "logs").send(`\`${nick} изменил сообщение:\``);old_message.guild.channels.find('name', "logs").send(`\`${rand}\` ***Было:***\n${old_message.content}`, old_params);old_message.guild.channels.find('name', "logs").send(`\`${rand}\` ***Стало:***\n${new_message.content}`, new_params);
+});
 
 const servers = config.servers;
 
