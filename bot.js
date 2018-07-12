@@ -56,7 +56,8 @@ client.on("messageUpdate", (old_message, new_message) => {
 	.addField("Сообщение пользователя:", `${old_message.author} (${old_message.author.id})`)
 	.addField("В канале:", `${old_message.channel} (${old_message.channel.id})`)
 	.addField("До:", old_message.content)
-	.addField("После:", new_message.content);
+	.addField("После:", new_message.content)
+	.setFooter("ID сообщения", old_message.id);
 	chan.send(embedEdited);
 });
 client.on("messageDelete", (old_message) => {
@@ -70,6 +71,7 @@ client.on("messageDelete", (old_message) => {
 	.addField("Сообщение пользователя:", `${old_message.author} (${old_message.author.id})`)
 	.addField("В канале:", `${old_message.channel} (${old_message.channel.id})`)
 	.addField("Сообщение:", old_message.content)
+	.setFooter("ID сообщения", old_message.id)
 	chan.send(embedDeleted);
 });
 client.on("guildMemberAdd", member => {
@@ -79,7 +81,8 @@ client.on("guildMemberAdd", member => {
 	.setTitle("Welcome")
 	.setColor("#00ff00")
 	.addField("Новый участник:", `${member} | ${member.id}`)
-	.addField(`Количество участников теперь:`, member.guild.memberCount);
+	.addField(`Количество участников теперь:`, member.guild.memberCount)
+	.setThumbnail(member.avatarURL);
 	chan.send(welcomeEmbed);
 });
 client.on("guildMemberRemove", member => {
@@ -89,6 +92,7 @@ client.on("guildMemberRemove", member => {
 	.setTitle("Good bye")
 	.setColor("#ff0000")
 	.addField("Участник ушел:", `${member} | ${member.id}`)
+	.setThumbnail(member.avatarURL);
 	chan.send(goodbyeEmbed);
 });
 const servers = config.servers;
