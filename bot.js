@@ -95,7 +95,7 @@ client.on("guildMemberRemove", member => {
 	const goodbyeEmbed = new Discord.RichEmbed()
 	.setTitle("Good bye")
 	.setColor("#ff0000")
-	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\Зарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\nЗашел на сервер: ${member.joinedAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days_s}** дней пробыл на сервере.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
+	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\nЗарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\nЗашел на сервер: ${member.joinedAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days_s}** дней пробыл на сервере.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
 	//.addField("Участник ушел:", `${member} | ${member.id}`)
 	.setThumbnail(member.user.avatarURL);
 	chan.send(goodbyeEmbed);
