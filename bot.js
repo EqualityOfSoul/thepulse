@@ -182,8 +182,7 @@ client.on('message', async (message) => {
 	return target.replace(new RegExp(search, 'g'), replacement);
 	};
 	
-	if (message.channel.id === '461764710308642817' && message.author.id === '337573905722114051') return message.channel.send('тут тебе пользоваться мной низя >:(');
-    //Эмулирует произвольный код из аккаунта.
+	    //Эмулирует произвольный код из аккаунта.
     if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 
