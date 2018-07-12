@@ -58,7 +58,18 @@ client.on("messageUpdate", (old_message, new_message) => {
 	.addField("После:", new_message.content);
 	chan.send(embedEdited);
 });
-
+client.on("messageDelete", (old_message) => {
+	const chan = old_message.guild.channels.find('name', "logs");
+	if (!chan) return;
+    if (old_message.author.bot) return;
+	if (old_message.channel.name === undefined) return;
+	const embedDeleted = new Discord.RichEmbed()
+	.setTitle("Message deleted")
+	.addField("Сообщение пользователя:", `${old_message.author} (${old_message.author.id})`)
+	.addField("В канале:", `${old_message.channel} (${old_message.channel.id})`)
+	.addField("Сообщение:", old_message.content)
+	chan.send(embedDeleted);
+});
 const servers = config.servers;
 
 async function color () {
