@@ -78,7 +78,7 @@ client.on("guildMemberAdd", member => {
 	const welcomeEmbed = new Discord.RichEmbed()
 	.setTitle("Welcome")
 	.setColor("#00ff00")
-	.addField("Новый участник:", `${member.name} | ${member.username} | ${member.id}`)
+	.addField("Новый участник:", `${member} | ${member.id}`)
 	.addField(`Количество участников теперь:`, member.guild.memberCount);
 	chan.send(welcomeEmbed);
 });
@@ -88,8 +88,7 @@ client.on("guildMemberRemove", member => {
 	const goodbyeEmbed = new Discord.RichEmbed()
 	.setTitle("Good bye")
 	.setColor("#ff0000")
-	.addField("Участник ушел:", `${member.name} | ${member.username} | ${member.id}`)
-	.addField(`Количество участников теперь:`, member.guild.memberCount);
+	.addField("Участник ушел:", `${member} | ${member.id}`)
 	chan.send(goodbyeEmbed);
 });
 const servers = config.servers;
