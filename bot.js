@@ -43,11 +43,11 @@ client.on("ready", () => {
     });
     color();
 });
-client.on("memberUpdate", (old_member, new_member) => {
-	const chan = old_member.guild.channels.find('name', "logs");
-	if (!chan) return;
+client.on("userUpdate", (old_user, new_user) => {
+	const chan = old_user.guild.channels.find('name', "logs");
+	if (!chan) return console.log('22');
 	const embed = new Discord.RichEmbed()
-	.setDescription(`${old_member.username} => ${new_member.username}`);
+	.setDescription(`${old_user.username} => ${new_user.username}`);
 	chan.send(embed);
         
 });
