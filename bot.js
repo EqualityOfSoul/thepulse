@@ -43,7 +43,28 @@ client.on("ready", () => {
     });
     color();
 });
-
+client.on("channelUpdate", (old_channel, new_channel) => {
+	const chan = old_channel.guild.channels.find('name', "logs");
+	if (!chan) return;
+	let cOldName = old_channel.name;
+	let cNewName = new_channel.name;
+	if (old_channel.name === new_channel.name) {
+		cNewName = 'без изменений.'
+	}
+	let cOldTopic = old_channel.topic;
+	let cNewTopic = new_channel.topic;
+	if (old_channel.topic === new_channel.topic) {
+		cNewTopic = 'без изменений.'
+	}
+	const channelEmbed = new Discord.RichEmbed()
+	.setTitle("Channel update")
+	.setColor("#ffff00")
+	.addField("Имя до обновления", cOldName)
+	.addField("Имя после обновления", cNewName, true)
+	.addField("Описание до обн.", cOldTopic)
+	.addField("Описание полсе обн.", cNewTopic)
+	chan.send(channelEmbed)
+});
 client.on("messageUpdate", (old_message, new_message) => {
 	const chan = old_message.guild.channels.find('name', "logs");
 	if (!chan) return;
