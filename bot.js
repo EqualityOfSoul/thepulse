@@ -12,7 +12,7 @@ const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
 const querystring = require('querystring');
 const client = new Discord.Client();
-//const prefix = "<@441667160025333762>";
+const prefix = "<@441667160025333762>";
 const creators = ['361951318929309707'];
 const emojis = {
 	nya:'435849475865575424',
@@ -206,7 +206,6 @@ client.on("guildDelete", guild => {
 });
 
 client.on('message', async (message) => {
-	const prefix = "<@441667160025333762>";
 //При заданом сообщение выполняет действие.
 	
     if (message.content.startsWith("бот пиши")) {
@@ -223,7 +222,7 @@ client.on('message', async (message) => {
         //Отвечает за то чтобы бот перестал писать в вызваном чате.
         message.channel.stopTyping();
     }
-    if (message.content.startsWith === prefix) {
+    if (message.content.startsWith === "<@441667160025333762>") {
     const textMsg = args.join(" ");
     message.channel.startTyping()
             request('https://nekos.life/api/v2/chat?&text='+textMsg, function (error, response, body) {
