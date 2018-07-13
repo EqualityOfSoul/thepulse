@@ -12,7 +12,7 @@ const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
 const querystring = require('querystring');
 const client = new Discord.Client();
-const prefix = "x!";
+const prefix = "<@441667160025333762>";
 const creators = ['361951318929309707'];
 const emojis = {
 	nya:'435849475865575424',
@@ -218,13 +218,19 @@ client.on('message', async (message) => {
         client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+'|' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```')
     }
 
-
-	
     if (message.content.startsWith("бот не пиши")) {
         //Отвечает за то чтобы бот перестал писать в вызваном чате.
         message.channel.stopTyping();
     }
-    
+    if (message.content.startsWith(prefix)) {
+    const textMsg = args.join(" ");
+    message.channel.startTyping()
+            request('https://nekos.life/api/v2/chat?&text='+textMsg, function (error, response, body) {
+                    let arr = JSON.parse(body);
+                        message.channel.send(arr['response'])
+            });
+message.channel.stopTyping();
+    }
           
     function clear_count (channel, count, count_all = 0) {
     if (count > 100) {
