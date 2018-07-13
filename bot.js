@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const ytdl = require("ytdl-core");
 //const clientt = require('nekos.life');
 //const neko = new clientt();
 const request = require("request");
