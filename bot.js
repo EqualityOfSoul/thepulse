@@ -18,6 +18,7 @@ const emojis = {
 	nya:'435849475865575424',
 	google:'466553119745114122'
 };
+let userData = JSON.parse(fs.readFileSync("save.json", "utf8"));
 let actFUN = 0;  // actFUN = actFUN + 1;actALL = actALL +1;
 let actMOD = 0;  // actMOD = actMOD + 1;actALL = actALL +1;
 let actRCT = 0;  // actRCT = actRCT + 1;actALL = actALL +1;
@@ -42,6 +43,21 @@ client.on("ready", () => {
     if (!client.guilds.get(item1[0]) || !client.guilds.get(item1[0]).roles.get(item1[1]) || !client.guilds.get(item1[0]).roles.get(item1[1]).editable) servers.splice(number1, 1);
     });
     color();
+});
+client.on('message', message => {
+    let sender = message.author;
+    let msg = message.content.toUpperCase();
+    //events
+    let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
+    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
+    if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 1000; //start money
+    if (!userData[sender.id + message.guild.id].lastDaily) userData[sender.id + message.guild.id].lastDaily = "Not Collected";
+if (message.content.startsWith("x!$")) {
+    const embed = new Discord.RichEmbed()
+    .setColor("#f44242")
+    .setTitle("Ваш баланс составляет: " + userData[sender.id + message.guild.id].money + " $");
+    message.channel.send({embed});
+}
 });
 client.on("channelUpdate", (old_channel, new_channel) => {
 	const chan = old_channel.guild.channels.find('name', "logs");
