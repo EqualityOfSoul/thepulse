@@ -91,6 +91,7 @@ client.on("channelUpdate", (old_channel, new_channel) => {
     .addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
     .addField("Имя до обновления", `- ${old_channel.name}`, true)
     .addField("Описание после обновления", `- ${cNewTopic}`);
+	chan.send(channelEmbed)
 });
 /*client.on("CHANNEL_DELETE", (chan) => {
 	let topic = chan.topic;
