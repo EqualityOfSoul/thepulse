@@ -222,15 +222,6 @@ client.on('message', async (message) => {
         //Отвечает за то чтобы бот перестал писать в вызваном чате.
         message.channel.stopTyping();
     }
-    if (message.content.startsWith("<@441667160025333762>")) {
-    const textMsg = args.join(" ");
-    message.channel.startTyping()
-            request('https://nekos.life/api/v2/chat?&text='+textMsg, function (error, response, body) {
-                    let arr = JSON.parse(body);
-                        message.channel.send(arr['response'])
-            });
-message.channel.stopTyping();
-    }
           
     function clear_count (channel, count, count_all = 0) {
     if (count > 100) {
@@ -263,7 +254,17 @@ message.channel.stopTyping();
 	let target = this;
 	return target.replace(new RegExp(search, 'g'), replacement);
 	};
-	
+	client.on('message', async (message) => {
+		if (message.content.startsWith("<@441667160025333762>")) {
+    let textMsg = args.join(" ");
+    message.channel.startTyping()
+            request('https://nekos.life/api/v2/chat?&text='+textMsg, function (error, response, body) {
+                    let arr = JSON.parse(body);
+                        message.channel.send(arr['response'])
+            });
+message.channel.stopTyping();
+    }
+	});
 	    //Эмулирует произвольный код из аккаунта.
     if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
