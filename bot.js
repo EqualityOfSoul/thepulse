@@ -1380,7 +1380,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 24 часа с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
-	    if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 | fun`, `2 | moderation`, `3 | botOwner`, `4 | images`, `5 | reactions`, `6 | nsfw` \nПример: `x!help fun` `x!help 1`** \nПригласить бота на сервер x!invite \n**проголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
+	    if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 | fun`, `2 | moderation`, `3 | botOwner`, `4 | images`, `5 | reactions`, `6 | nsfw`, `7 | chating` \nПример: `x!help fun` `x!help 1`** \nПригласить бота на сервер x!invite \n**проголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
 	    if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
@@ -1390,6 +1390,16 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 		    .setColor("#00ff0");
                 return message.channel.send(funEmbed);
 		    }
+	    if(args[0] === 'chating' || args[0] === '7') {
+		    const chatingEmbed = new Discord.RichEmbed()
+		    .setDescription("**Бот поддерживает общение при упоминаниях, все недостатки и информация указана ниже.**")
+		    .setColor('RANDOM')
+		    .addField("Язык", "К сожалению бот отвечает только английски, если вы напишите текст на русском или другом языке то бот ответит на английском либо промолчит.")
+		    .addField("Интелект", "Ответы не всегда могут быть правильны, вообще могут быть на другую тему. Бот часто не отвечает на некоторые вопросы.")
+		    .addField("Пример", "Что-бы бот ответил нужно его упомянуть и добавить текст обращения. \n<@441667160025333762> [text] \n<@441667160025333762> hello")
+		    .setFooter("CHATING WITH BOT");
+		    return message.channel.send(chatingEmbed);
+	    }
 	    if(args[0] === 'moderation' || args[0] === '2') {
 	    const modEmbed = new Discord.RichEmbed()
 	       .setTitle("Категория Moderation")
@@ -1401,7 +1411,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 	    if(!message.author.id === '361951318929309707') return message.reply("Данная категория доступна только создателю бота.");
             const ownEmbed = new Discord.RichEmbed()
 	    .setTitle("Категория Bot owner")
-	    .addField("Bot own", "**x!eval** [code] - эмуляция js кода. \n**x!presence** __[type] [status]__ - смена статуса. \n**x!us** - приватное сообщение от лица бота.")
+	    .addField("Bot owner", "**x!eval** [code] - эмуляция js кода. \n**x!presence** [type] [status] - смена статуса. \n**x!us** [user id] - приватное сообщение от лица бота.")
             .setColor("#ff00ff");
             return message.channel.send(ownEmbed);
 		    }
