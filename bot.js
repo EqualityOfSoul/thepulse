@@ -68,7 +68,7 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	.addField("Описание полсе обновления", cNewTopic, false);
 	chan.send(channelEmbed);
 });
-client.on("CHANNEL_DELETE", (chan) => {
+/*client.on("CHANNEL_DELETE", (chan) => {
 	let topic = chan.topic;
 	if (!topic) {
 		topic = 'не указан'
@@ -96,7 +96,7 @@ client.on("CHANNEL_CREATE", chan => {
 	.setField("Описание канала", topic);
 	chann.send(embedDelChan);
 });
-	
+	*/
 client.on("messageUpdate", (old_message, new_message) => {
 	const chan = old_message.guild.channels.find('name', "logs");
 	if (!chan) return;
