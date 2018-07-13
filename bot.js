@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const ytdl = require("ytdl-core");
 //const clientt = require('nekos.life');
 //const neko = new clientt();
 const request = require("request");
@@ -15,6 +14,7 @@ const querystring = require('querystring');
 const client = new Discord.Client();
 const prefix = "x!";
 const creators = ['361951318929309707'];
+const ytdl = require("ytdl-core");
 const emojis = {
 	nya:'435849475865575424',
 	google:'466553119745114122'
@@ -324,6 +324,7 @@ client.on('message', async (message) => {
   restart(message.channel)
 } */
 	if(['voicetest'].includes(command)) {
+		const ytdl = require("ytdl-core");
 const streamOptions = { seek: 0, volume: 1 };
 const broadcast = client.createVoiceBroadcast();
 
