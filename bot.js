@@ -18,7 +18,7 @@ const emojis = {
 	nya:'435849475865575424',
 	google:'466553119745114122'
 };
-let userData = JSON.parse(fs.readFileSync("save.json", "utf8"));
+//let userData = JSON.parse(fs.readFileSync("save.json", "utf8"));
 let actFUN = 0;  // actFUN = actFUN + 1;actALL = actALL +1;
 let actMOD = 0;  // actMOD = actMOD + 1;actALL = actALL +1;
 let actRCT = 0;  // actRCT = actRCT + 1;actALL = actALL +1;
@@ -44,7 +44,7 @@ client.on("ready", () => {
     });
     color();
 });
-client.on('message', message => {
+/*client.on('message', message => {
     let sender = message.author;
     let msg = message.content.toUpperCase();
     //events
@@ -58,7 +58,7 @@ if (message.content.startsWith("x!$")) {
     .setTitle("Ваш баланс составляет: " + userData[sender.id + message.guild.id].money + " $");
     message.channel.send({embed});
 }
-});
+});*/
 client.on("channelUpdate", (old_channel, new_channel) => {
 	const chan = old_channel.guild.channels.find('name', "logs");
 	if (!chan) return;
