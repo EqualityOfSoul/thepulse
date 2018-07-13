@@ -78,10 +78,10 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	const channelEmbed = new Discord.RichEmbed()
 	.setTitle("Channel update")
 	.setColor("#ffff00")
-	.addField("Имя до обновления", old_channel.name, true)
-	.addField("Имя после обновления", cNewName, true)
-	.addField("Описание до обновления", old_channel.topic, false)
-	.addField("Описание полсе обновления", cNewTopic, false);
+	.addField("Имя до обновления", `- ${old_channel.name}`, true)
+	.addField("Имя после обновления", `- ${cNewName}`, true)
+	.addField("Описание до обновления", `- ${old_channel.topic}`, false)
+	.addField("Описание полсе обновления", `- ${cNewTopic}`, false);
 	chan.send(channelEmbed);
 });
 /*client.on("CHANNEL_DELETE", (chan) => {
