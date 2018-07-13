@@ -86,7 +86,7 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	.addField("Позиция до обновления", `- ${cOldPosition}`, true)
 	.addField("Имя после обновления", `- ${cNewName}`, true)
 	.addField("Позиция после обновления", `- ${cNewPosition}`, true)
-	.addField("Описание до обновления", `- ${old_channel.Topic}`, true)
+	.addField("Описание до обновления", `- ${cOldTopic}`, true)
 	.addField("Имя до обновления", `- ${old_channel.name}`, true)
 	.addField("Описание после обновления", `- ${cNewTopic}`);
 	chan.send(channelEmbed);
