@@ -85,10 +85,10 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	.setColor("#ffff00")
 	.addField("Позиция до обновления", `- ${cOldPosition}`, true)
 	.addField("Имя после обновления", `- ${cNewName}`, true)
-	.addField("Описание до обновления", `- ${old_channel.topic}`)
-	.addField("Описание полсе обновления", `- ${cNewTopic}`, true)
+	.addField("Позиция после обновления", `- ${cNewPosition}`, true)
+	.addField("Описание до обновления", `- ${old_channel.Topic}`, true)
 	.addField("Имя до обновления", `- ${old_channel.name}`, true)
-	.addField("Позиция после обновления", `- ${cNewPosition}`, true);
+	.addField("Описание после обновления", `- ${cNewTopic}`);
 	chan.send(channelEmbed);
 });
 /*client.on("CHANNEL_DELETE", (chan) => {
