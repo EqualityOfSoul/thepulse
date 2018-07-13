@@ -151,8 +151,6 @@ client.on("guildMemberAdd", member => {
 	.setTitle("Welcome")
 	.setColor("#00ff00")
 	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\nЗарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
-	/*.addField("Новый участник:", `${member} | ${member.id}`)
-	.addField(`Количество участников теперь:`, member.guild.memberCount)*/
 	.setThumbnail(member.user.avatarURL);
 	chan.send(welcomeEmbed);
 });
@@ -165,7 +163,6 @@ client.on("guildMemberRemove", member => {
 	.setTitle("Good bye")
 	.setColor("#ff0000")
 	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\nЗарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\nЗашел на сервер: ${member.joinedAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days_s}** дней пробыл на сервере.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
-	//.addField("Участник ушел:", `${member} | ${member.id}`)
 	.setThumbnail(member.user.avatarURL);
 	chan.send(goodbyeEmbed);
 });
