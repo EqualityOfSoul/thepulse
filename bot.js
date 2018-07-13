@@ -323,6 +323,18 @@ client.on('message', async (message) => {
   
   restart(message.channel)
 } */
+	if(['voicetest'].includes(command)) {
+const streamOptions = { seek: 0, volume: 1 };
+const broadcast = client.createVoiceBroadcast();
+
+voiceChannel.join()
+  .then(connection => {
+    const stream = ytdl('https://www.youtube.com/watch?v=PaBwPRa__ic&t', { filter : 'audioonly' });
+    broadcast.playStream(stream);
+    const dispatcher = connection.playBroadcast(broadcast);
+  })
+  .catch(console.error);
+	} 
 	if(['addrole'].includes(command)) {
 		actMOD = actMOD + 1;actALL = actALL +1;
   if(!message.member.hasPermission('MANAGE_ROLES')) return message.reply("Вы не являетесь модератором.");
