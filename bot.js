@@ -62,10 +62,15 @@ if (message.content.startsWith("x!$")) {
 client.on("channelUpdate", (old_channel, new_channel) => {
 	const chan = old_channel.guild.channels.find('name', "logs");
 	if (!chan) return;
+	let cOldPosition = old_channel.position;
+	let cNewPosition = new_channel.position;
 	let cOldName = old_channel.name;
 	let cNewName = new_channel.name;
 	if (old_channel.name === new_channel.name) {
 		cNewName = 'без изменений.'
+	}
+	if (old_channel.position === new_channel.position) {
+		cNewPosition = 'без изменений.'
 	}
 	let cOldTopic = old_channel.topic;
 	let cNewTopic = new_channel.topic;
@@ -80,8 +85,10 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	.setColor("#ffff00")
 	.addField("Имя до обновления", `- ${old_channel.name}`, true)
 	.addField("Имя после обновления", `- ${cNewName}`, true)
-	.addField("Описание до обновления", `- ${old_channel.topic}`, false)
-	.addField("Описание полсе обновления", `- ${cNewTopic}`, false);
+	.addField("Описание до обновления", `- ${old_channel.topic}`, true)
+	.addField("Описание полсе обновления", `- ${cNewTopic}`, true)
+	.addField("Позиция до обновления", `- ${cOldPosition}`, true)
+	.addField("Позиция после обновления", `- ${cNewPosition}`, true);
 	chan.send(channelEmbed);
 });
 /*client.on("CHANNEL_DELETE", (chan) => {
