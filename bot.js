@@ -206,6 +206,8 @@ client.on("guildDelete", guild => {
 });
 
 client.on('message', async (message) => {
+	const prefix2 = "<@441667160025333762>";
+
 //При заданом сообщение выполняет действие.
 	
     if (message.content.startsWith("бот пиши")) {
@@ -218,6 +220,16 @@ client.on('message', async (message) => {
         client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+'|' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```')
     }
 
+	if (message.content.startsWith(prefix2)) {
+    const args2 = message.content.slice(prefix2.length).trim().split(/ +/g);
+    const textMsg = args2.join(" ");
+    message.channel.startTyping()
+            request('https://nekos.life/api/v2/chat?&text='+textMsg, function (error, response, body) {
+                    let arr = JSON.parse(body);
+                        message.channel.send(arr['response'])
+            });
+message.channel.stopTyping();
+	}
     if (message.content.startsWith("бот не пиши")) {
         //Отвечает за то чтобы бот перестал писать в вызваном чате.
         message.channel.stopTyping();
@@ -254,17 +266,7 @@ client.on('message', async (message) => {
 	let target = this;
 	return target.replace(new RegExp(search, 'g'), replacement);
 	};
-	client.on('message', async (message) => {
-		if (message.content.startsWith("<@441667160025333762>")) {
-    let textMsg = args.join(" ");
-    message.channel.startTyping()
-            request('https://nekos.life/api/v2/chat?&text='+textMsg, function (error, response, body) {
-                    let arr = JSON.parse(body);
-                        message.channel.send(arr['response'])
-            });
-message.channel.stopTyping();
-    }
-	});
+
 	    //Эмулирует произвольный код из аккаунта.
     if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
