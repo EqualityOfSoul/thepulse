@@ -222,7 +222,7 @@ client.on('message', async (message) => {
         //Отвечает за то чтобы бот перестал писать в вызваном чате.
         message.channel.stopTyping();
     }
-    if (message.content.startsWith === "<@441667160025333762>") {
+    if (message.content.startsWith("<@441667160025333762>")) {
     const textMsg = args.join(" ");
     message.channel.startTyping()
             request('https://nekos.life/api/v2/chat?&text='+textMsg, function (error, response, body) {
