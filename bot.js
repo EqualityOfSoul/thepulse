@@ -14,7 +14,6 @@ const querystring = require('querystring');
 const client = new Discord.Client();
 const prefix = "x!";
 const creators = ['361951318929309707'];
-const ytdl = require("ytdl-core");
 const emojis = {
 	nya:'435849475865575424',
 	google:'466553119745114122'
