@@ -85,7 +85,7 @@ client.on("channelUpdate", (old_channel, new_channel) => {
 	.setColor("#ffff00")
 	.addField("Имя до обновления", `- ${old_channel.name}`, true)
 	.addField("Имя после обновления", `- ${cNewName}`, true)
-	.addField("Описание до обновления", `- ${old_channel.topic}`, true)
+	.addField("Описание до обновления", `- ${old_channel.topic}`)
 	.addField("Описание полсе обновления", `- ${cNewTopic}`, true)
 	.addField("Позиция до обновления", `- ${cOldPosition}`, true)
 	.addField("Позиция после обновления", `- ${cNewPosition}`, true);
