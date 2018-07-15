@@ -10,18 +10,13 @@ exports.commands = [
 	"volume"
 ]
 
-let options = false;
+let options = true;
 	let PREFIX = (options && options.prefix) || 'x!';
 	let GLOBAL_QUEUE = (options && options.global) || false;
 	let MAX_QUEUE_SIZE = (options && options.maxQueueSize) || 150;
 	// Create an object of queues.
 	let queues = {};
 
-	/*
-	 * Gets a queue.
-	 *
-	 * @param server The server id.
-	 */
 	function getQueue(server) {
 		// Check if global queues are enabled.
 		if (GLOBAL_QUEUE) server = '_'; // Change to global queue.
@@ -31,12 +26,7 @@ let options = false;
 		return queues[server];
 	}
 
-	/*
-	 * Play command.
-	 *
-	 * @param msg Original message.
-	 * @param suffix Command suffix.
-	 */
+
 exports.play = {
 	usage: "[Поисковый запрос или ссылка на видео]",
 	description: "Проигрывает звук в голосовом чате",
@@ -87,33 +77,23 @@ exports.play = {
 	}
 }
 
-	/*
-	 * Skip command.
-	 *
-	 * @param msg Original message.
-	 * @param suffix Command suffix.
-	 */
+
 exports.skip = {
 	description: "Пропустить песню",
 	process:function(client, msg, suffix) {
-		// Get the voice connection.
 		const voiceConnection = client.voiceConnections.get(msg.guild.id);
 		if (voiceConnection === null) return msg.channel.sendMessage( wrap('Музыка сейчас не играет.'));
 
-		// Get the queue.
 		const queue = getQueue(msg.guild.id);
 
-		// Get the number to skip.
-		let toSkip = 1; // Default 1.
+		let toSkip = 1; 
 		if (!isNaN(suffix) && parseInt(suffix) > 0) {
 			toSkip = parseInt(suffix);
 		}
 		toSkip = Math.min(toSkip, queue.length);
 
-		// Skip.
 		queue.splice(0, toSkip - 1);
 
-		// Resume and stop playing.
 		if (voiceConnection.player.dispatcher) voiceConnection.player.dispatcher.resume();
 		if(queue.length>2){
 			voiceConnection.player.dispatcher.end();
@@ -126,64 +106,43 @@ exports.skip = {
 	}
 }
 
-	/*
-	 * Queue command.
-	 *
-	 * @param msg Original message.
-	 * @param suffix Command suffix.
-	 */
 exports.queue = {
 	description: "Выводит список песен",
 	process: function(client, msg, suffix) {
-		// Get the queue.
 		const queue = getQueue(msg.guild.id);
 
-		// Get the queue text.
 		const text = queue.map((video, index) => (
 			(index + 1) + ': ' + video.title
 		)).join('\n');
 
-		// Get the status of the queue.
 		let queueStatus = 'Остановлен';
 		const voiceConnection = client.voiceConnections.get(msg.guild.id);
 		if (voiceConnection !== null && voiceConnection != undefined) {
 			queueStatus = voiceConnection.paused ? 'Остановлен' : 'Играет';
 		}
 
-		// Send the queue and status.
 		msg.channel.sendMessage( wrap('Список песен (' + queueStatus + '):\n' + text));
 	}
 }
 
-	/*
-	 * Dequeue command.
-	 *
-	 * @param msg Original message.
-	 * @param suffix Command suffix.
-	 */
+
 exports.dequeue = {
 	description: "Убиарет песню из списка по номеру.",
 	process: function(client, msg, suffix) {
-		// Define a usage string to print out on errors
 		const usageString = 'Использовать команду так: !dequeue <номер>. Используйте список песен чтобы выбрать интересующую вас.';
 		
-		// Get the queue.
 		const queue = getQueue(msg.guild.id);
 
-		// Make sure the suffix exists.
 		if (!suffix)
 			return msg.channel.sendMessage( wrap('Нужно ввести номер песни.  ' + usageString));
 
-		// Get the arguments
 		var split = suffix.split(/(\s+)/);
 
-		// Make sure there's only 1 index 
 		if (split.length > 1)
 			return msg.channel.sendMessage( wrap('Нужно ввести только номер песни.  ' + usageString));
 		
-		// Remove the index
 		var index = parseInt(split[0]);
-		var songRemoved = ''; // To be filled out below
+		var songRemoved = ''; 
 		if (!isNaN(index)) {
 			index = index - 1;
 			
@@ -191,13 +150,11 @@ exports.dequeue = {
 				songRemoved = queue[index].title;
 				
 				if (index == 0) {
-					// If it was the first one, skip it
 					const voiceConnection = client.voiceConnections.get(msg.guild.id);
 					if (voiceConnection.player.dispatcher) 
 						voiceConnection.player.dispatcher.resume();
 					voiceConnection.player.dispatcher.end();
 				} else {
-					// Otherwise, just remove it from the queue
 					queue.splice(index, 1);
 				}				
 			} else {
@@ -207,63 +164,40 @@ exports.dequeue = {
 			return msg.channel.sendMessage( wrap('Проверьте, правильно лы вы написали номер песни.  ' + usageString));
 		}
 		
-		// Send the queue and status.
 		msg.channel.sendMessage( wrap('Убрана песня \'' + songRemoved + '\' из очереди.'));
 	}
 }
 
-	/*
-	 * Pause command.
-	 *
-	 * @param msg Original message.
-	 * @param suffix Command suffix.
-	 */
+
 exports.pause = {
 	description: "Остановить проигрывание",
 	process: function(client, msg, suffix) {
-		// Get the voice connection.
 		const voiceConnection = client.voiceConnections.get(msg.guild.id);
 		if (voiceConnection == null) return msg.channel.sendMessage( wrap('Список проигрывания пуст.'));
 
-		// Pause.
 		msg.channel.sendMessage( wrap('Пауза'));
 		if (voiceConnection.player.dispatcher) voiceConnection.player.dispatcher.pause();
 	}
 }
 
-	/*
-	 * Resume command.
-	 *
-	 * @param msg Original message.
-	 * @param suffix Command suffix.
-	 */
+
 exports.resume = {
 	description: "Продолжить проигрывание",
 	process: function(client, msg, suffix) {
-		// Get the voice connection.
 		const voiceConnection = client.voiceConnections.get(msg.guild.id);
 		if (voiceConnection == null) return msg.channel.sendMessage( wrap('Список проигрывания пуст.'));
 
-		// Resume.
 		msg.channel.sendMessage( wrap('Проигрывается.'));
 		if (voiceConnection.player.dispatcher) voiceConnection.player.dispatcher.resume();
 	}
 }
 
-/*
- * Set Volume command.
- *
- * @param msg Original message.
- * @param suffix Command suffix.
- */
 exports.volume = {
 	usage: "[volume|volume%|volume dB]",
 	description: "Устанавливает громкость музыки в численном значении, в процентах, в децибелах",
 	process: function(client, msg, suffix) {
-		// Get the voice connection.
 		const voiceConnection = client.voiceConnections.get(msg.guild.id);
 		if (voiceConnection == null) return msg.channel.sendMessage( wrap('Список проигрывания пуст.'));
-		// Set the volume
 		if (voiceConnection.player.dispatcher) {
 			if(suffix == ""){
 				var displayVolume = Math.pow(voiceConnection.player.dispatcher.volume,0.6020600085251697) * 100.0;
@@ -286,18 +220,11 @@ exports.volume = {
 	}
 }
 
-	/*
-	 * Execute the queue.
-	 *
-	 * @param msg Original message.
-	 * @param queue The queue.
-	 */
+
 function executeQueue(client, msg, queue) {
-		// If the queue is empty, finish.
 		if (queue.length === 0) {
 			msg.channel.sendMessage( wrap('Список проигрывания пуст, покидаю чат...'));
 
-			// Leave the voice channel.
 			const voiceConnection = client.voiceConnections.get(msg.guild.id);
 			if (voiceConnection != null) {
 				voiceConnection.player.dispatcher.end();
@@ -307,10 +234,8 @@ function executeQueue(client, msg, queue) {
 		}
 
 		new Promise((resolve, reject) => {
-			// Join the voice channel if not already in one.
 			const voiceConnection = client.voiceConnections.get(msg.guild.id);
 			if (voiceConnection == null) {
-				// Check if the user is in a voice channel.
 				var voiceChannel = getAuthorVoiceChannel(msg);
 				if (voiceChannel != null) {
 					voiceChannel.join().then(connection => {
@@ -325,30 +250,22 @@ function executeQueue(client, msg, queue) {
 				resolve(voiceConnection);
 			}
 		}).then(connection => {
-			// Get the first item in the queue.
 			const video = queue[0];
 
-			// Play the video.
 			msg.channel.sendMessage( wrap('Сейчас играет: ' + video.title)).then((cur) => {
 				const dispatcher = connection.playStream(Request(video.url));
 				//dispatcher.then(intent => {
 					dispatcher.on('debug',(i)=>console.log("debug: " + i));
-					// Catch errors in the connection.
 					dispatcher.on('error', (err) => {
 						msg.channel.sendMessage("fail: " + err);
-						// Skip to the next song.
 						queue.shift();
 						executeQueue(client, msg, queue);
 					});
 
-					// Catch the end event.
 					dispatcher.on('end', () => {
-						// Wait a second.
 						setTimeout(() => {
-							// Remove the song from the queue.
 							queue.shift();
 
-							// Play the next song in the queue.
 							executeQueue(client, msg, queue);
 						}, 1000);
 					});
@@ -363,13 +280,6 @@ function getAuthorVoiceChannel(msg) {
 	else return voiceChannelArray[0];
 }
 
-/*
- * Wrap text in a code block and escape grave characters.,
- *
- * @param text The input text.
- *
- * @return The wrapped text.
- */
 function wrap(text) {
 	return '```\n' + text.replace(/`/g, '`' + String.fromCharCode(8203)) + '\n```';
 }
