@@ -72,6 +72,8 @@ if (message.content.startsWith("x!$")) {
 	chan.send(welcomeEmbed);
 });*/
 client.on("guildMemberAdd", member => {
+	const Jimp = require('jimp');
+	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	let q = member.user.tag;
         let r = member.guild.name;
         let img = member.user.displayAvatarURL({ format: "png"});
