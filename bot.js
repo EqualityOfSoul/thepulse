@@ -375,25 +375,18 @@ voiceChannel.join()
   }
 };
 	if(['reverse'].includes(command)) {
-		const stri = args.join(" ");
-      message.channel.send(stri.split("").reverse().join(""));
-	}
-	if(['tts'].includes(command)) {
+		const text = args.join(" ");
+      message.channel.send(text.split("").reverse().join(""));
+	} else if(['space', 'spaces'].includes(command)) {
+		const text = args.join(" ")
+      message.channel.send(text.split("").join(" "));
+	} else if(['tts'].includes(command)) {
 		    actMOD = actMOD + 1;actALL = actALL +1;
 	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("Вы не являетесь модератором.");
 	    const ttsmessage = args.join(" ")
 	    message.channel.send(ttsmessage, {tts: true});
 	    message.delete(); 
-   } /*else if(['support'].includes(command)) {
-	    actFUN = actFUN + 1;actALL = actALL +1;
-	    console.log('support')
-	    const embed = new Discord.RichEmbed()
-	    .setTitle("support")
-	    .setColor("#00ff0")
-	    .setDescription("**[Перейти на сервер можно нажав на данный текст](https://discord.io/gspace)**")
-	    .setImage("https://cdn.discordapp.com/attachments/402336140658606082/458367783932002306/20180618_232844.gif");
-	    message.reply(embed);
-    }*/ else if(['softban'].includes(command)) {
+   } else if(['softban'].includes(command)) {
   let member = message.mentions.members.first();
   let reason = args.join(' ');
   if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**У вас не xватает прав чтобы забанить пользователей.**");
@@ -1370,7 +1363,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
 		    .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
-                    .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text]** - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, время учитывается в миллисекундах (1000ms = 1 секунда) \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1 \n**x!reverse** [text] - реверс текста")
+                    .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text]** - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, время учитывается в миллисекундах (1000ms = 1 секунда) \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1 \n**x!reverse** [text] - реверс текста. \n**x!space** [text] - пробельный текст.")
 		    .addField("Logs", "По умолчанию логи редактированых | удаленых сообщений идут в канал `logs` \nПриветсвия идут тудаже + в системный канал приветсвий. \nНаправление невозможно изменить, если данного канала(ов) нет то бот не будет логгировать измененые | удаленые сообщения.")
 		    .setColor("#00ff0");
                 return message.channel.send(funEmbed);
