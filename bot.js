@@ -59,102 +59,7 @@ if (message.content.startsWith("x!$")) {
     message.channel.send({embed});
 }
 });*/
-client.on("channelUpdate", (old_channel, new_channel) => {
-	if (old_channel.channel.type === 'dm') return;
-	const chan = old_channel.guild.channels.find('name', "logs");
-	if (!chan) return;
-	let cOldPosition = old_channel.position;
-	let cNewPosition = new_channel.position;
-	let cOldName = old_channel.name;
-	let cNewName = new_channel.name;
-	if (old_channel.name === new_channel.name) {
-		cNewName = 'без изменений.'
-	}
-	if (old_channel.position === new_channel.position) {
-		cNewPosition = 'без изменений.'
-	}
-	let cOldTopic = old_channel.topic;
-	let cNewTopic = new_channel.topic;
-	if(!cOldTopic) {
-		cOldTopic = 'не указано'
-	}
-	if (old_channel.topic === new_channel.topic) {
-		cNewTopic = 'без изменений.'
-	}
-	const channelEmbed = new Discord.RichEmbed()
-    .setTitle("Channel update")
-    .setColor("#ffff00")
-    .addField("Позиция до обновления", `- ${cOldPosition}`, true)
-    .addField("Позиция после обновления", `- ${cNewPosition}`, true)
-    .addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
-    .addField("Имя до обновления", `- ${old_channel.name}`, true)
-    .addField("Имя после обновления", `- ${cNewName}`, true)
-    .addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
-    .addField("Описание до обновления", `- ${cOldTopic}`, true)
-    .addField("Описание после обновления", `- ${cNewTopic}`, true);
-	chan.send(channelEmbed)
-});
-/*client.on("CHANNEL_DELETE", (chan) => {
-	let topic = chan.topic;
-	if (!topic) {
-		topic = 'не указан'
-	}
-	const chann = chan.guild.channels.find('name', "logs");
-	if (!chann) return;
-	const embedDelChan = new Discord.RichEmbed()
-	.setTitle("Channel deleted")
-	.setColor("#ff0000")
-	.setField("Имя канала", chan.name)
-	.setField("Описание канала", topic);
-	chann.send(embedDelChan);
-});
-client.on("CHANNEL_CREATE", chan => {
-	let topic = chan.topic;
-	if (!topic) {
-		topic = 'не указан'
-	}
-	const chann = chan.guild.channels.find('name', "logs");
-	if (!chann) return;
-	const embedDelChan = new Discord.RichEmbed()
-	.setTitle("Channel created")
-	.setColor("#00ff00")
-	.setField("Имя канала", chan.name)
-	.setField("Описание канала", topic);
-	chann.send(embedDelChan);
-});
-	*/
-client.on("messageUpdate", (old_message, new_message) => {
-	if (old_message.channel.type === 'dm') return;
-	const chan = old_message.guild.channels.find('name', "logs");
-	if (!chan) return;
-    if (old_message.author.bot) return;
-	if (old_message.channel.name === undefined) return;
-	if (old_message.content === new_message.content && old_message.attachments === new_message.attachments && old_message.embeds === new_message.embeds) return;
-	const embedEdited = new Discord.RichEmbed()
-	.setTitle("Message edited")
-	.setColor("#ffff00")
-	.addField("Сообщение пользователя:", `- ${old_message.author} (${old_message.author.id})`)
-	.addField("В канале:", `- ${old_message.channel} (${old_message.channel.id})`)
-	.addField("До:", `- ${old_message.content}`)
-	.addField("После:", `- ${new_message.content}`)
-	.setFooter(`Message id: ${old_message.id}`);
-	chan.send(embedEdited);
-});
-client.on("messageDelete", (old_message) => {
-	if (old_message.channel.type === 'dm') return;
-	const chan = old_message.guild.channels.find('name', "logs");
-	if (!chan) return;
-    if (old_message.author.bot) return;
-	if (old_message.channel.name === undefined) return;
-	const embedDeleted = new Discord.RichEmbed()
-	.setTitle("Message deleted")
-	.setColor("#ff0000")
-	.addField("Сообщение пользователя:", `- ${old_message.author} (${old_message.author.id})`)
-	.addField("В канале:", `- ${old_message.channel} (${old_message.channel.id})`)
-	.addField("Сообщение:", `- ${old_message.content}`)
-	.setFooter(`Message id: ${old_message.id}`);
-	chan.send(embedDeleted);
-});
+
 client.on("guildMemberAdd", member => {
 	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel || member.guild.channels.find('name', "bot-hell");
@@ -231,6 +136,99 @@ client.on('message', async (message) => {
         if (['361951318929309707'].includes(message.author.id)) return client.channels.get('454011475493912586').send('Сообщение от '+message.author+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```');
         client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+'|' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```')
     }
+    client.on("channelUpdate", (old_channel, new_channel) => {
+	const chan = old_channel.guild.channels.find('name', "logs");
+	if (!chan) return;
+	let cOldPosition = old_channel.position;
+	let cNewPosition = new_channel.position;
+	let cOldName = old_channel.name;
+	let cNewName = new_channel.name;
+	if (old_channel.name === new_channel.name) {
+		cNewName = 'без изменений.'
+	}
+	if (old_channel.position === new_channel.position) {
+		cNewPosition = 'без изменений.'
+	}
+	let cOldTopic = old_channel.topic;
+	let cNewTopic = new_channel.topic;
+	if(!cOldTopic) {
+		cOldTopic = 'не указано'
+	}
+	if (old_channel.topic === new_channel.topic) {
+		cNewTopic = 'без изменений.'
+	}
+	const channelEmbed = new Discord.RichEmbed()
+    .setTitle("Channel update")
+    .setColor("#ffff00")
+    .addField("Позиция до обновления", `- ${cOldPosition}`, true)
+    .addField("Позиция после обновления", `- ${cNewPosition}`, true)
+    .addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
+    .addField("Имя до обновления", `- ${old_channel.name}`, true)
+    .addField("Имя после обновления", `- ${cNewName}`, true)
+    .addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
+    .addField("Описание до обновления", `- ${cOldTopic}`, true)
+    .addField("Описание после обновления", `- ${cNewTopic}`, true);
+	chan.send(channelEmbed)
+});
+/*client.on("CHANNEL_DELETE", (chan) => {
+	let topic = chan.topic;
+	if (!topic) {
+		topic = 'не указан'
+	}
+	const chann = chan.guild.channels.find('name', "logs");
+	if (!chann) return;
+	const embedDelChan = new Discord.RichEmbed()
+	.setTitle("Channel deleted")
+	.setColor("#ff0000")
+	.setField("Имя канала", chan.name)
+	.setField("Описание канала", topic);
+	chann.send(embedDelChan);
+});
+client.on("CHANNEL_CREATE", chan => {
+	let topic = chan.topic;
+	if (!topic) {
+		topic = 'не указан'
+	}
+	const chann = chan.guild.channels.find('name', "logs");
+	if (!chann) return;
+	const embedDelChan = new Discord.RichEmbed()
+	.setTitle("Channel created")
+	.setColor("#00ff00")
+	.setField("Имя канала", chan.name)
+	.setField("Описание канала", topic);
+	chann.send(embedDelChan);
+});
+	*/
+client.on("messageUpdate", (old_message, new_message) => {
+	const chan = old_message.guild.channels.find('name', "logs");
+	if (!chan) return;
+    if (old_message.author.bot) return;
+	if (old_message.channel.name === undefined) return;
+	if (old_message.content === new_message.content && old_message.attachments === new_message.attachments && old_message.embeds === new_message.embeds) return;
+	const embedEdited = new Discord.RichEmbed()
+	.setTitle("Message edited")
+	.setColor("#ffff00")
+	.addField("Сообщение пользователя:", `- ${old_message.author} (${old_message.author.id})`)
+	.addField("В канале:", `- ${old_message.channel} (${old_message.channel.id})`)
+	.addField("До:", `- ${old_message.content}`)
+	.addField("После:", `- ${new_message.content}`)
+	.setFooter(`Message id: ${old_message.id}`);
+	chan.send(embedEdited);
+});
+client.on("messageDelete", (old_message) => {
+	const chan = old_message.guild.channels.find('name', "logs");
+	if (!chan) return;
+    if (old_message.author.bot) return;
+	if (old_message.channel.name === undefined) return;
+	const embedDeleted = new Discord.RichEmbed()
+	.setTitle("Message deleted")
+	.setColor("#ff0000")
+	.addField("Сообщение пользователя:", `- ${old_message.author} (${old_message.author.id})`)
+	.addField("В канале:", `- ${old_message.channel} (${old_message.channel.id})`)
+	.addField("Сообщение:", `- ${old_message.content}`)
+	.setFooter(`Message id: ${old_message.id}`);
+	chan.send(embedDeleted);
+});
 
 	if (message.content.startsWith(prefix2)) {
     const args2 = message.content.slice(prefix2.length).trim().split(/ +/g);
