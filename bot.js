@@ -94,8 +94,15 @@ async function color () {
         });
     });
 }
-client.on("messageUpdate", (message, old_message, new_message) => {
-	if(message.channel.type === 'dm') return;
+client.on('message', async (message) => {
+	if (message.channel.type === 'dm') {
+        if ([`${client.user.id}`].includes(message.author.id)) return;
+        if (['361951318929309707'].includes(message.author.id)) return client.channels.get('454011475493912586').send('Сообщение от '+message.author+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```');
+        client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+'|' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```')
+    }
+});
+client.on("messageUpdate", (old_message, new_message) => {
+	//if(message.channel.type === 'dm') return;
 	const chan = old_message.guild.channels.find('name', "logs");
 	if (!chan) return;
     if (old_message.author.bot) return;
@@ -111,8 +118,8 @@ client.on("messageUpdate", (message, old_message, new_message) => {
 	.setFooter(`Message id: ${old_message.id}`);
 	chan.send(embedEdited);
 });
-client.on("messageDelete", (message, old_message) => {
-	if(message.channel.type === 'dm') return;
+client.on("messageDelete", (old_message) => {
+	//if(message.channel.type === 'dm') return;
 	const chan = old_message.guild.channels.find('name', "logs");
 	if (!chan) return;
     if (old_message.author.bot) return;
@@ -162,11 +169,7 @@ client.on('message', async (message) => {
         //Отвечает за то чтобы бот начал писать в вызваном чате.
         message.channel.startTyping();
     }
-    if (message.channel.type === 'dm') {
-        if ([`${client.user.id}`].includes(message.author.id)) return;
-        if (['361951318929309707'].includes(message.author.id)) return client.channels.get('454011475493912586').send('Сообщение от '+message.author+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```');
-        client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+'|' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```')
-    }
+    //tyt
 
 	if (message.content.startsWith(prefix2)) {
     const args2 = message.content.slice(prefix2.length).trim().split(/ +/g);
