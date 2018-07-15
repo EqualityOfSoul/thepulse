@@ -317,6 +317,7 @@ voiceChannel.join()
   if (!member) return message.channel.send("Выберите пользователя.");
   let roleid = role.id;
   let rolename = role.name;
+  if(member.highestRole.position >= message.member.highestRole.position) return message.reply("Вы не можете этого сделать, роль которую вы хотите выдать на равне с вами или выше вас.");
   
   if (!message.guild.roles.get(roleid)) return message.channel.send(`Роль не найдена..`);
   member.addRole(role.id);
@@ -338,6 +339,7 @@ voiceChannel.join()
   if (!member) return message.channel.send("Выберите пользователя.");
   let roleid = role.id;
   let rolename = role.name;
+  if(member.highestRole.position >= message.member.highestRole.position) return message.reply("Вы не можете этого сделать, роль которую вы хотите забрать на равне с вами или выше вас.");
   
   if (!message.guild.roles.get(roleid)) return message.channel.send(`Роль не найдена..`);
   member.addRole(role.id);
@@ -370,6 +372,7 @@ voiceChannel.join()
   let reason = args.join(' ');
   if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**У вас не xватает прав чтобы забанить пользователей.**");
   if (!member) return message.reply("Упомяните пользователей для софтбана.");
+  if(member.highestRole.position >= message.member.highestRole.position) return message.reply("Вы не можете этого сделать, пользователь которого вы хотите забанить на равне с вами или выше вас.");
   if(!member.bannable) return message.channel.send("** Я не могу забанить этого пользователя. ** У пользователя может быть больше прав, чем у меня, или у меня нет прав.");
   if (member.displayName) {
     member.ban(reason)
@@ -900,6 +903,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 	    actMOD = actMOD + 1;actALL = actALL +1;
 	    if(message.member.hasPermission('KICK_MEMBERS')) return message.reply("Вы не являетесь модератором");
             const user = message.mentions.users.first();
+	    if(member.highestRole.position >= message.member.highestRole.position) return message.reply("Вы не можете этого сделать, пользователь которого вы хотите кикнуть на равне с вами или выше вас.");
     if (user) {
       const member = message.guild.member(user);
       if (member) {
