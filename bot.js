@@ -133,10 +133,10 @@ client.on("messageUpdate", (old_message, new_message) => {
 	const embedEdited = new Discord.RichEmbed()
 	.setTitle("Message edited")
 	.setColor("#ffff00")
-	.addField("Сообщение пользователя:", `${old_message.author} (${old_message.author.id})`)
-	.addField("В канале:", `${old_message.channel} (${old_message.channel.id})`)
-	.addField("До:", old_message.content)
-	.addField("После:", new_message.content)
+	.addField("Сообщение пользователя:", `- ${old_message.author} (${old_message.author.id})`)
+	.addField("В канале:", `- ${old_message.channel} (${old_message.channel.id})`)
+	.addField("До:", `- ${old_message.content}`)
+	.addField("После:", `- ${new_message.content}`)
 	.setFooter(`Message id: ${old_message.id}`);
 	chan.send(embedEdited);
 });
@@ -149,9 +149,9 @@ client.on("messageDelete", (old_message) => {
 	const embedDeleted = new Discord.RichEmbed()
 	.setTitle("Message deleted")
 	.setColor("#ff0000")
-	.addField("Сообщение пользователя:", `${old_message.author} (${old_message.author.id})`)
-	.addField("В канале:", `${old_message.channel} (${old_message.channel.id})`)
-	.addField("Сообщение:", old_message.content)
+	.addField("Сообщение пользователя:", `- ${old_message.author} (${old_message.author.id})`)
+	.addField("В канале:", `- ${old_message.channel} (${old_message.channel.id})`)
+	.addField("Сообщение:", `- ${old_message.content}`)
 	.setFooter(`Message id: ${old_message.id}`);
 	chan.send(embedDeleted);
 });
