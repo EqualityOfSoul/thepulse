@@ -679,9 +679,13 @@ message.edit("```"+body+"```");
 	    //ALLERT DOLBAEB ALLERT//
 	    //ALLERT DOLBAEB ALLERT//
 
-    } else if(['google'].includes(command)) {
+    } else if(['google'].includes(command) && (message.author.id === "361951318929309707")) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let searh = args.join(" ")
+	    searh = searh.replaceAll('porn', 'котята')
+	    searh = searh.replaceAll('nudes', 'котята')
+	    searh = searh.replaceAll('sex', 'котята')
+	    searh = searh.replaceAll('gaysex', 'котята')
 	    searh = searh.replaceAll('порно', 'котята')
 	    searh = searh.replaceAll('порнуха', 'котята')
 	    searh = searh.replaceAll('секс', 'котята')
