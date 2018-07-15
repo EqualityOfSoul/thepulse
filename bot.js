@@ -60,6 +60,7 @@ if (message.content.startsWith("x!$")) {
 }
 });*/
 client.on("channelUpdate", (old_channel, new_channel) => {
+	if (old_channel.channel.type === 'dm') return;
 	const chan = old_channel.guild.channels.find('name', "logs");
 	if (!chan) return;
 	let cOldPosition = old_channel.position;
@@ -123,6 +124,7 @@ client.on("CHANNEL_CREATE", chan => {
 });
 	*/
 client.on("messageUpdate", (old_message, new_message) => {
+	if (old_message.channel.type === 'dm') return;
 	const chan = old_message.guild.channels.find('name', "logs");
 	if (!chan) return;
     if (old_message.author.bot) return;
@@ -139,6 +141,7 @@ client.on("messageUpdate", (old_message, new_message) => {
 	chan.send(embedEdited);
 });
 client.on("messageDelete", (old_message) => {
+	if (old_message.channel.type === 'dm') return;
 	const chan = old_message.guild.channels.find('name', "logs");
 	if (!chan) return;
     if (old_message.author.bot) return;
