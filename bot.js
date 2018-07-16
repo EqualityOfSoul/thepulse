@@ -1895,7 +1895,14 @@ message.channel.send('RAS');
         });
     } else if(['anal'].includes(command)) {
 	    actNSFW = actNSFW + 1;actALL = actALL +1;
-        if (!message.channel.nsfw) return message.reply("На данной команде стоит метка **`NSFW`**");
+        if (!message.channel.nsfw) {
+		const NSFWembed = new Discord.RichEmbed()
+		.setTitle("NSFW")
+		.setColor("#ff0000")
+		.setDescription("NSFW недоступен в даном канале, перейдите в подходящий канал или поменяйте настройки данного.")
+		.setImage("https://images-ext-2.discordapp.net/external/hiWbEzhiEXfFaza5khoxg3mR3OWeugZwWo8vGxK8LzA/https/i.imgur.com/oe4iK5i.gif");
+		return message.reply(NSFWembed);
+	}
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/anal', function (error, response, body) {
                 try {
@@ -1911,7 +1918,14 @@ message.channel.send('RAS');
         });
     } else if(['hentai'].includes(command)) {
 	    actNSFW = actNSFW + 1;actALL = actALL +1;
-        if (!message.channel.nsfw) return message.reply("На данной команде стоит метка **`NSFW`**");
+        if (!message.channel.nsfw) {
+		const NSFWembed = new Discord.RichEmbed()
+		.setTitle("NSFW")
+		.setColor("#ff0000")
+		.setDescription("NSFW недоступен в даном канале, перейдите в подходящий канал или поменяйте настройки данного.")
+		.setImage("https://images-ext-2.discordapp.net/external/hiWbEzhiEXfFaza5khoxg3mR3OWeugZwWo8vGxK8LzA/https/i.imgur.com/oe4iK5i.gif");
+		return message.reply(NSFWembed);
+	}
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/hentai', function (error, response, body) {
                 try {
@@ -1927,7 +1941,14 @@ message.channel.send('RAS');
         });
     } else if(['boobs'].includes(command)) {
 	    actNSFW = actNSFW + 1;actALL = actALL +1;
-        if (!message.channel.nsfw) return message.reply("На данной команде стоит метка **`NSFW`**");
+        if (!message.channel.nsfw) {
+		const NSFWembed = new Discord.RichEmbed()
+		.setTitle("NSFW")
+		.setColor("#ff0000")
+		.setDescription("NSFW недоступен в даном канале, перейдите в подходящий канал или поменяйте настройки данного.")
+		.setImage("https://images-ext-2.discordapp.net/external/hiWbEzhiEXfFaza5khoxg3mR3OWeugZwWo8vGxK8LzA/https/i.imgur.com/oe4iK5i.gif");
+		return message.reply(NSFWembed);
+	}
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/boobs', function (error, response, body) {
                 try {
@@ -1943,7 +1964,14 @@ message.channel.send('RAS');
         });
     } else if(['pussy'].includes(command)) {
 	    actNSFW = actNSFW + 1;actALL = actALL +1;
-        if (!message.channel.nsfw) return message.reply("На данной команде стоит метка **`NSFW`**");
+        if (!message.channel.nsfw) {
+		const NSFWembed = new Discord.RichEmbed()
+		.setTitle("NSFW")
+		.setColor("#ff0000")
+		.setDescription("NSFW недоступен в даном канале, перейдите в подходящий канал или поменяйте настройки данного.")
+		.setImage("https://images-ext-2.discordapp.net/external/hiWbEzhiEXfFaza5khoxg3mR3OWeugZwWo8vGxK8LzA/https/i.imgur.com/oe4iK5i.gif");
+		return message.reply(NSFWembed);
+	}
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/pussy', function (error, response, body) {
                 try {
@@ -1959,7 +1987,14 @@ message.channel.send('RAS');
         });
     } else if(['nneko', 'nNeko'].includes(command)) {
 	    actNSFW = actNSFW + 1;actALL = actALL +1;
-        if (!message.channel.nsfw) return message.reply("На данной команде стоит метка **`NSFW`**");
+	    if (!message.channel.nsfw) {
+		const NSFWembed = new Discord.RichEmbed()
+		.setTitle("NSFW")
+		.setColor("#ff0000")
+		.setDescription("NSFW недоступен в даном канале, перейдите в подходящий канал или поменяйте настройки данного.")
+		.setImage("https://images-ext-2.discordapp.net/external/hiWbEzhiEXfFaza5khoxg3mR3OWeugZwWo8vGxK8LzA/https/i.imgur.com/oe4iK5i.gif");
+		return message.reply(NSFWembed);
+	}
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/nsfw_neko_gif', function (error, response, body) {
                 try {
