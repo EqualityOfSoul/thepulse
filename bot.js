@@ -306,9 +306,9 @@ message.channel.stopTyping();
        }
     } else if(['profile'].includes(command)) {
 	    let bal = 1000; //старт, кек
-	    let money = bal[message.author.id];
+	    let money = [message.author]bal;
 	    const profilEm = new Discord.RichEmbed()
-	    .setTitle(`профиль ${message.author}`)
+	    .setTitle(`профиль ${message.author.username}`)
 	    .setColor(message.member.highestRole.color)
 	    .addField("Balance",  money)
 	    .setFooter("BETA COMMAND TEST");
