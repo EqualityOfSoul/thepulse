@@ -19,6 +19,7 @@ const emojis = {
 	google:'466553119745114122'
 };
 //let userData = JSON.parse(fs.readFileSync("save.json", "utf8"));
+let money = 0;
 let actFUN = 0;  // actFUN = actFUN + 1;actALL = actALL +1;
 let actMOD = 0;  // actMOD = actMOD + 1;actALL = actALL +1;
 let actRCT = 0;  // actRCT = actRCT + 1;actALL = actALL +1;
@@ -309,14 +310,17 @@ message.channel.stopTyping();
         /*let balance = []; 
         client.guilds.forEach(guild => guild.members.forEach(member => {balance[member.id] = 1000}));
         let money = balance[message.author.id]*/
-	    let bal[message.author.id] = 1000; //старт, кек
-	    //let money = balance;
+	    ; //старт, кек
+	    //let money = 0;
 	    const profilEm = new Discord.RichEmbed()
 	    .setTitle(`профиль ${message.author.username}`)
 	    .setColor(message.member.highestRole.color)
-	    .addField("Stats", `Balance: ${bal}`)
+	    .addField("Stats", `Balance: ${money}$`)
 	    .setFooter("BETA COMMAND TEST");
 	    message.channel.send(profilEm);
+    } else if (['work'].includes(command)) {
+	    message.channel.send(`ваш баланс пополнен на 100$`)
+	    money = money + 100;
     } else if(['owner'].includes(command)) {
 	    message.channel.send(`owner >>> ${message.channel.guild.owner}`)
     }/*else if(['restart'].includes(command)) {
