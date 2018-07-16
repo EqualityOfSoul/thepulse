@@ -241,9 +241,8 @@ message.channel.stopTyping();
 	};
 
 	const NSFWembed = new Discord.RichEmbed()
-		.setTitle("NSFW")
 		.setColor("#ff0000")
-		.setDescription("NSFW недоступен в даном канале, перейдите в подходящий канал или поменяйте настройки данного.")
+		.setDescription("NSFW недоступен в данном канале, перейдите в подходящий канал или поменяйте настройки данного.")
 		.setImage("https://images-ext-2.discordapp.net/external/hiWbEzhiEXfFaza5khoxg3mR3OWeugZwWo8vGxK8LzA/https/i.imgur.com/oe4iK5i.gif");
 	    //Эмулирует произвольный код из аккаунта.
     if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
