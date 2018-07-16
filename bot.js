@@ -306,14 +306,15 @@ message.channel.stopTyping();
        }
     } 
 	if(['profile'].includes(command)) {
-        let balance = []; 
-        client.guilds.forEach(guild => guild.members.forEach(member => {balance[member.id] = 1000})); 
-	    //let bal = 1000; //старт, кек
+        /*let balance = []; 
+        client.guilds.forEach(guild => guild.members.forEach(member => {balance[member.id] = 1000}));
+        let money = balance[message.author.id]*/
+	    let bal[message.author.id] = 1000; //старт, кек
 	    //let money = balance;
 	    const profilEm = new Discord.RichEmbed()
 	    .setTitle(`профиль ${message.author.username}`)
 	    .setColor(message.member.highestRole.color)
-	    .addField("Stats", `Balance: ${balance}`)
+	    .addField("Stats", `Balance: ${bal}`)
 	    .setFooter("BETA COMMAND TEST");
 	    message.channel.send(profilEm);
     } else if(['owner'].includes(command)) {
