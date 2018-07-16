@@ -304,6 +304,15 @@ message.channel.stopTyping();
     
          message.channel.send({embed});
        }
+    } else if(['profile'].includes(command)) {
+	    let bal = 1000; //старт, кек
+	    let money = bal[message.author.id];
+	    const profilEm = new Discord.RichEmbed()
+	    .setTitle(`профиль ${message.author}`)
+	    .setColor(message.member.highestRole.color)
+	    .addField("Balance",  money)
+	    .setFooter("BETA COMMAND TEST");
+	    message.channel.send(profilEm);
     } else if(['owner'].includes(command)) {
 	    message.channel.send(`owner >>> ${message.channel.guild.owner}`)
     }/*else if(['restart'].includes(command)) {
