@@ -1104,30 +1104,16 @@ client.guilds.forEach((guild) => {users += client.users.size});
 	  let muted = message.mentions.members.first();
 	  if(!muted) return message.reply("укажите кого замутить");
 	  const mutedRole = message.member.guild.roles.find('name', "muted") || message.member.guild.roles.find('name', "Muted");
-	  if(!mutedRole){ //create role
-        try{
-            mutedRole = await message.guild.createRole({
-                name: "muted",
-                color: "#777777",
-                permissions: []
-            })
-            message.guild.channels.forEach(async (channel, id) => {
-                await channel.overwritePermissions(mutedRole, {
-                    SEND_MESSAGES: false,
-                    ADD_REACTIONS: false
-                });
-            });
-        }catch(e){
-            console.log(e.stack);
-        }
-    }
+	  if(!mutedRole) message.reply("пожалуйста создайте роль `muted`");
+	  if(muted.has.roles(mutedRole)) return message.reply("Пользователь уже замучен.")
           muted.addRole(mutedRole)
 	  message.reply(`я успешно замутил пользователя ${muted}, для размута пропишите x!unmute`)
 	  } else if(['unmute'].includes(command)) {
 	  if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
 	  let muted = message.mentions.members.first();
-          if(!muted) return message.reply("укажите кого замутить");
+          if(!muted) return message.reply("укажите кого размутить");
           const mutedRole = message.member.guild.roles.find('name', "muted") || message.member.guild.roles.find('name', "Muted");
+          if(!muted.has.roles(mutedRole)) return message.reply("Пользователь не имеет мута.")
           if(!mutedRole) message.reply("пожалуйста создайте роль `muted`");
           muted.removeRole(mutedRole)
 	  message.reply(`я успешно размутил пользователя ${muted}.`)
