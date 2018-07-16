@@ -685,7 +685,7 @@ message.edit("```"+body+"```");
     } else if(['fonts'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    message.channel.send({embed: new Discord.RichEmbed()
-            .setDescription("**все шрифты можно просмотреть [тут](http://rainb0w.herokuapp.com/fonts) \nСпасибо <@321268938728144906>.**")
+            .setDescription("**все шрифты можно просмотреть [тут](https://dmascii.now.sh/fonts) \nСпасибо <@321268938728144906>.**")
             .setColor("#00ff00")
 				  });
     } else if(['ascii'].includes(command)) {
