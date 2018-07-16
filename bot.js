@@ -26,8 +26,8 @@ let actNSFW = 0; // actNSFW = actNSFW + 1;actALL = actALL +1;
 let actOWN = 0; //  actOWN = actOWN + 1;actALL = actALL +1;
 let actIMG = 0; //  actIMG = actIMG + 1;actALL = actALL +1;
 let actALL = 0; //  actALL = actALL +1;actALL = actALL +1;
-let bal = [];
-client.guilds.forEach(guild => guild.members.forEach(member => {bal[member.id] = 1000}));
+let balance = []; 
+client.guilds.forEach(guild => guild.members.forEach(member => {balance[member.id] = 1000}));
 let gameCount = 0;
 let serversPlay = {}
 vm.createContext(codeContext);
@@ -308,11 +308,11 @@ message.channel.stopTyping();
        }
     } else if(['profile'].includes(command)) {
 	    //let bal = 1000; //старт, кек
-	    let money = bal;
+	    //let money = balance;
 	    const profilEm = new Discord.RichEmbed()
 	    .setTitle(`профиль ${message.author.username}`)
 	    .setColor(message.member.highestRole.color)
-	    .addField("Stats", `Balance: ${money}`)
+	    .addField("Stats", `Balance: ${balance}`)
 	    .setFooter("BETA COMMAND TEST");
 	    message.channel.send(profilEm);
     } else if(['owner'].includes(command)) {
