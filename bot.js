@@ -305,7 +305,8 @@ message.channel.stopTyping();
          message.channel.send({embed});
        }
     } else if(['profile'].includes(command)) {
-	    let bal = 1000; //старт, кек
+	    let bal = []
+	    //let bal = 1000; //старт, кек
 	    let money = bal;
 	    const profilEm = new Discord.RichEmbed()
 	    .setTitle(`профиль ${message.author.username}`)
