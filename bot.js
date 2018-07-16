@@ -312,7 +312,7 @@ message.channel.stopTyping();
 	    const profilEm = new Discord.RichEmbed()
 	    .setTitle(`профиль ${message.author.username}`)
 	    .setColor(message.member.highestRole.color)
-	    .addField("Balance",  money)
+	    .addField("Stats", `Balance: ${money}`)
 	    .setFooter("BETA COMMAND TEST");
 	    message.channel.send(profilEm);
     } else if(['owner'].includes(command)) {
