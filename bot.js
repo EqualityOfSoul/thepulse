@@ -240,10 +240,7 @@ message.channel.stopTyping();
 	return target.replace(new RegExp(search, 'g'), replacement);
 	};
 
-	const NSFWembed = new Discord.RichEmbed()
-		.setColor("#ff0000")
-		.setDescription("NSFW недоступен в данном канале, перейдите в подходящий канал или поменяйте настройки данного.")
-		.setImage("https://images-ext-2.discordapp.net/external/hiWbEzhiEXfFaza5khoxg3mR3OWeugZwWo8vGxK8LzA/https/i.imgur.com/oe4iK5i.gif");
+	const NSFWembed = 'В данном канале категория NSFW не работает, измените настройки или перейдите в подходящий канал. \n**https://images-ext-2.discordapp.net/external/hiWbEzhiEXfFaza5khoxg3mR3OWeugZwWo8vGxK8LzA/https/i.imgur.com/oe4iK5i.gif**';
 	    //Эмулирует произвольный код из аккаунта.
     if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
