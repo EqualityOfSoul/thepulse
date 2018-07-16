@@ -26,8 +26,6 @@ let actNSFW = 0; // actNSFW = actNSFW + 1;actALL = actALL +1;
 let actOWN = 0; //  actOWN = actOWN + 1;actALL = actALL +1;
 let actIMG = 0; //  actIMG = actIMG + 1;actALL = actALL +1;
 let actALL = 0; //  actALL = actALL +1;actALL = actALL +1;
-let balance = []; 
-client.guilds.forEach(guild => guild.members.forEach(member => {balance[member.id] = 1000}));
 let gameCount = 0;
 let serversPlay = {}
 vm.createContext(codeContext);
@@ -306,7 +304,10 @@ message.channel.stopTyping();
     
          message.channel.send({embed});
        }
-    } else if(['profile'].includes(command)) {
+    } 
+    let balance = []; 
+    client.guilds.forEach(guild => guild.members.forEach(member => {balance[member.id] = 1000})); 
+	if(['profile'].includes(command)) {
 	    //let bal = 1000; //старт, кек
 	    //let money = balance;
 	    const profilEm = new Discord.RichEmbed()
