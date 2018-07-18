@@ -501,10 +501,7 @@ message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1
         if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("Вы не являетесь модератором.");
         const members = message.guild.members.filter(member => member.user.presence.game && /(discord\.(gg|io|me)\/.+|discordapp\.com\/invite\/.+)/i.test(member.user.presence.game.name));
 return message.channel.send(members.map(member => `\```${member.id}\``` ${member.displayName}`).join("\n") || "людей используйщих presence как приглашение нету.");
-	} else if(['genInvite'].includes(command)) {
-		let guildid = args.join(' ');
-  client.guilds.get(guildid).channels.first().createInvite().then(inv => message.author.send(`https://discord.gg/${inv.code}`))
-  } else if(['play'].includes(command)) {
+	} else if(['play'].includes(command)) {
 	  const YTDL = require('ytdl-core');
 	  if (!args[0]) {
     message.channel.send("Укажи имя или ссылку!");
@@ -1056,9 +1053,9 @@ client.guilds.forEach((guild) => {users += client.users.size});
             .setThumbnail(client.user.avatarURL);
         embed.addField('Пинг', client.ping, true);
 	embed.addField("UpTime", `${Math.round(client.uptime / (1000 * 60 * 60 * 24))} дня(дней), ${Math.round(client.uptime / (1000 * 60 * 60))} часа(ов), ${Math.round(client.uptime / (1000 * 60)) % 60} минут, ${Math.round(client.uptime / 1000) % 60} секунд`)
-        /*embed.addField('ОЗУ', process.env.WEB_MEMORY + 'мб / ' + process.env.MEMORY_AVAILABLE + 'мб', true);
-        embed.addField('Сервер', process.env.DYNO, true);
-        embed.addField('Порт', process.env.PORT, true);*/
+        embed.addField('ОЗУ', process.env.WEB_MEMORY + 'мб / ' + process.env.MEMORY_AVAILABLE + 'мб', true);
+        //embed.addField('Сервер', process.env.DYNO, true);
+        //embed.addField('Порт', process.env.PORT, true);*
         embed.addField('Количество серверов', client.guilds.size)
         embed.addField('Количество онлайн пользователей', client.users.size)
         embed.addField('Количество каналов', client.channels.size)
@@ -1262,7 +1259,7 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
         message.channel.send(`**Репорт пользователя ${message.author} принят.**`);
         message.delete();
 	  
-    } else if (['cinvite', 'createinvite', 'guild'].includes(command) && message.author.id === "361951318929309707")) {
+    } else if (['cinvite', 'createinvite', 'guild'].includes(command) && message.author.id === "361951318929309707") {
 	    const guildID = args[0];
             let guild = client.guilds.get(guildID);
             let channels = guild.channels.filter(channel => channel.type === 'text' && channel.permissionsFor(guild.members.get(client.user.id)).has('SEND_MESSAGES'));
