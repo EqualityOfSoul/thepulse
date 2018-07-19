@@ -471,7 +471,7 @@ message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1
   let embed = new Discord.RichEmbed()
   .setTitle(invite.guild.name)
   .addField("Количество людей", invite.memberCount)
-  .addField("Использован", `${invite.uses.size} раз`)
+  .addField("Использован", `${invite.uses.leght} раз`)
   .addField("Инвайтер", inviter)
   .addField("Канал приглашения", chan)
   .setFooter(`id: ${invite.guild.id}`)
