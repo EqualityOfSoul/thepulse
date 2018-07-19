@@ -349,7 +349,7 @@ voiceChannel.join()
   .catch(console.error);
 	} 
 	if(['etest'].includes(command)) {
-		let bot await message.channel.send("test?");
+		let bot = await message.channel.send("test?");
 		await bot.react("⬛")
                 await bot.react("⛔")
 		await bot.react("⚡")
