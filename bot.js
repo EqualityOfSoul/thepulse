@@ -459,7 +459,6 @@ message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1
   let invite = await client.fetchInvite(invi);
   if(!invite) return message.reply("Пожалуйста укажите приглашение");
   let igi = invite.guild.id;
-  if('error', "Unknown Invite") return message.channel.send("Данное приглашение является недействительным или истекло.");
   let chan = invite.channel.name;
   if(!chan) {
 	  chan = 'неизвестно, приглашение персональное.'
