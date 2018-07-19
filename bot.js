@@ -1122,7 +1122,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
 	  let muted = message.mentions.members.first();
 	  if(!muted) return message.reply("укажите кого замутить");
 	  const mutedRole = message.member.guild.roles.find('name', "muted") || message.member.guild.roles.find('name', "Muted");
-	  if(!mutedRole) message.reply("пожалуйста создайте роль `muted`");
+	  if(!mutedRole) return message.reply("пожалуйста создайте роль `muted`");
           muted.addRole(mutedRole)
 	  message.reply(`я успешно замутил пользователя ${muted}, для размута пропишите x!unmute`)
 	  } else if(['unmute'].includes(command)) {
@@ -1130,7 +1130,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
 	  let muted = message.mentions.members.first();
           if(!muted) return message.reply("укажите кого размутить");
           const mutedRole = message.member.guild.roles.find('name', "muted") || message.member.guild.roles.find('name', "Muted");
-          if(!mutedRole) message.reply("пожалуйста создайте роль `muted`");
+          if(!mutedRole) return message.reply("пожалуйста создайте роль `muted`");
           muted.removeRole(mutedRole)
 	  message.reply(`я успешно размутил пользователя ${muted}.`)
 	  } else if (['xban'].includes(command) && message.author.id === "361951318929309707") {
