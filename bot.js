@@ -348,6 +348,27 @@ voiceChannel.join()
   })
   .catch(console.error);
 	} 
+	if(['etest'].includes(command)) {
+		let bot await message.channel.send("test?");
+		await bot.react("⬛")
+                await bot.react("⛔")
+		await bot.react("⚡")
+		const coll = bot.createReactionCollector((reaction, user) => user.id === message.author.id);
+		coll.on('collect', async(reaction) => 
+   {
+    if (reaction.emoji.name === "⬛") {
+   bot.edit("тест успешен 1");
+    }
+   if (reaction.emoji.name === "⛔") {
+   bot.edit("тест успешен 2");
+   }
+   if (reaction.emoji.name === "⚡") {
+    message.delete()
+    bot.delete()
+    }
+    await reaction.remove(message.author.id);
+);
+		}
 	if(['addrole'].includes(command)) {
 		actMOD = actMOD + 1;actALL = actALL +1;
   if(!message.member.hasPermission('MANAGE_ROLES')) return message.reply("Вы не являетесь модератором.");
