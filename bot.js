@@ -455,22 +455,28 @@ setInterval(function () {
 message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1)) + 1);
     } else if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
-	    let invi = args.join(" ")
-  let invite = await client.fetchInvite(invi)
+	    let invi = args.join(" ");
+  let invite = await client.fetchInvite(invi);
   if(!invite) return message.reply("Пожалуйста укажите приглашение");
-  let igi = invite.guild.id
+  let igi = invite.guild.id;
   if(!igi) return message.channel.send("Данное приглашение является недействительным или истекло.");
-  let chan = invite.channe
+  let chan = invite.channel;
   if(!chan) {
 	  chan = 'неизвестно'
 	  }
+  let inviter = invite.inviter;
+  if(!inviter) {
+	  inviter = 'Приглашение персональное.'
+  }
   let embed = new Discord.RichEmbed()
   .setTitle(invite.guild.name)
   .addField("Количество людей", invite.memberCount)
-  .addField("Инвайтер", invite.inviter)
-  .addField("Канал приглашения", invite.channel)
+  .addField("Использован", `${invite.uses} раз`)
+  .addField("Инвайтер", inviter)
+  .addField("Канал приглашения", chan)
+  .setFooter(`id: ${invite.guild.id}`)
   .setColor("36393E")
-  .setThumbnail(`https://cdn.discordapp.com/icons/${invite.guild.id}/${invite.guild.icon}.png`)
+  .setThumbnail(`https://cdn.discordapp.com/icons/${invite.guild.id}/${invite.guild.icon}.png`);
 
   message.channel.send(embed);
   
@@ -481,7 +487,6 @@ message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1
   if(!vremya) return message.reply("Пожалуйста укажите время. \n**`x!timer [time]`**")
   if(vremya < 10000) return message.reply("Ваше число слишком мало");
   if(vremya > 31536000000) return message.reply("Ваше число превышает лимит.");
-  if(vremya === 'undefined') return message.reply("Пожалуйста укажите время. \n**`x!timer [time]`**")
   let embed = new Discord.RichEmbed()
   .setTitle("Timer")
 
@@ -511,9 +516,9 @@ return message.channel.send(members.map(member => `\```${member.id}\``` ${member
     message.channel.send("Тебя нет в войсе")
     return;
   }
-  if (!serversPlay[message.guild.id]) serversPlay[message.guild.id] = {
+   /*if (!serversPlay[message.guild.id]) serversPlay[message.guild.id] = {
     queue: ["https://www.youtube.com/watch?v=z4S2qqX7YvA"]
-  }
+  }*/
   if (!message.member.voiceChannel) message.member.voiceChannel.join().then((connection) => {
      function play(connection, message) {
    message.channel.send("Начинаю играть " + args[0] + " в канале " + message.member.voiceChannel.name + ".")
@@ -685,8 +690,8 @@ return message.channel.send(members.map(member => `\```${member.id}\``` ${member
         message.channel.send(new_text);
     } else if(['voice'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
-        if(args[0] === 'join') return message.member.voiceChannel.join(); message.channel.send("осуществлен вход в канал: **"+ message.member.voiceChannel.name + "**");
-        if(args[0] === 'leave') return message.member.voiceChannel.leave(); message.channel.send("осуществлен выход из канала: **"+ message.member.voiceChannel.name + "**");
+        if(args[0] === 'join') return message.member.voiceChannel.join() message.channel.send("осуществлен вход в канал: **"+ message.member.voiceChannel.name + "**");
+        if(args[0] === 'leave') return message.member.voiceChannel.leave() message.channel.send("осуществлен выход из канала: **"+ message.member.voiceChannel.name + "**");
     } else if(['render'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	  let font = args[0];
@@ -1328,10 +1333,9 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
         let b = 0;
   message.guild.members.forEach(member => {
       if(member.user.bot) b = b + 1;
-      });
-/*        
-message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) => {voice += channel.members.size});
-*/
+      });       
+let voice = 0;
+	    message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) => {voice += channel.members.size});
                 const embed = new Discord.RichEmbed()
                 embed.setAuthor(message.author.tag, message.author.avatarURl)
                 embed.setTitle('Информация об сервере', message.channel.guild.name)
@@ -1344,7 +1348,7 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
                 embed.addField('Количество пользователей', message.channel.guild.memberCount , true)
 	        embed.addField('Количество ботов', b, true)
 		embed.addField('Количество людей', i, true)
-                //embed.addField('>Пользователи в голосовых каналах (всего)', voice)
+                embed.addField('Пользователи в голосовых каналах (всего)', voice)
                 embed.addField('Количество ролей', message.channel.guild.roles.size, true)
                 embed.addField('Количество эмодзи', message.channel.guild.emojis.size, true)
                 embed.addField('Количество каналов', message.channel.guild.channels.size, true)
@@ -1519,17 +1523,8 @@ message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) =
         const emoj = client.emojis.get(emojis.nya);
         message.channel.send("ping?").then((msg) => {
 setTimeout(function () {
-msg.edit(`Pong! Задержка ${message.createdTimestamp - message.createdTimestamp}ms. API задержка ${Math.round(client.ping)}ms`);
+msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimestamp}ms. API задержка ${Math.round(client.ping)}ms`);
 }, 1);
-})
-        console.log("pong!");
-    } else if(['test'].includes (command)) {
-	    actFUN = actFUN + 1;actALL = actALL +1;
-        message.channel.send('PEDO').then((msg) => {
-setTimeout(function () {
-msg.delete();
-message.channel.send('RAS');
-}, 2000);
 })
     } else if(['presence'].includes(command) && message.author.id === "361951318929309707") {
 	    actOWN = actOWN + 1;actALL = actALL +1;
