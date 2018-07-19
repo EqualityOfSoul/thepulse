@@ -690,8 +690,8 @@ return message.channel.send(members.map(member => `\```${member.id}\``` ${member
         message.channel.send(new_text);
     } else if(['voice'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
-        if(args[0] === 'join') return message.member.voiceChannel.join() message.channel.send("осуществлен вход в канал: **"+ message.member.voiceChannel.name + "**");
-        if(args[0] === 'leave') return message.member.voiceChannel.leave() message.channel.send("осуществлен выход из канала: **"+ message.member.voiceChannel.name + "**");
+        if(args[0] === 'join') return message.member.voiceChannel.join(); message.channel.send("осуществлен вход в канал: **"+ message.member.voiceChannel.name + "**");
+        if(args[0] === 'leave') return message.member.voiceChannel.leave(); message.channel.send("осуществлен выход из канала: **"+ message.member.voiceChannel.name + "**");
     } else if(['render'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	  let font = args[0];
