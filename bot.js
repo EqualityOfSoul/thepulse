@@ -459,7 +459,7 @@ message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1
   let invite = await client.fetchInvite(invi);
   if(!invite) return message.reply("Пожалуйста укажите приглашение");
   let igi = invite.guild.id;
-  if(!igi) return message.channel.send("Данное приглашение является недействительным или истекло.");
+  if('error', "Unknown Invite") return message.channel.send("Данное приглашение является недействительным или истекло.");
   let chan = invite.channel.name;
   if(!chan) {
 	  chan = 'неизвестно, приглашение персональное.'
@@ -473,7 +473,7 @@ message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1
   .addField("Количество людей", invite.memberCount)
   .addField("Инвайтер", inviter)
   .addField("Канал приглашения", chan)
-  .setFooter(`id: ${invite.guild.id}`)
+  .setFooter(`id: ${igi}`)
   .setColor("36393E")
   .setThumbnail(`https://cdn.discordapp.com/icons/${invite.guild.id}/${invite.guild.icon}.png`);
 
