@@ -461,8 +461,8 @@ message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1
   let igi = invite.guild.id;
   if(!igi) return message.channel.send("Данное приглашение является недействительным или истекло.");
   let chan = invite.channel;
-  if(!chan) {
-	  chan = 'неизвестно'
+  if(chan === '[object Object]') {
+	  chan = 'неизвестно, приглашение персональное.'
 	  }
   let inviter = invite.inviter;
   if(!inviter) {
