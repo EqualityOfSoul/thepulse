@@ -1400,8 +1400,8 @@ let voice = 0;
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 24 часа с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
-	    if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 | fun`, `2 | moderation`, `3 | botOwner`, `4 | images`, `5 | reactions`, `6 | nsfw`, `7 | chating` \nПример: `x!help fun` `x!help 1`** \nПригласить бота на сервер x!invite \n**проголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
-	    if(args[0] === 'fun' || args[0] === '1') {
+	    let bot = await message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw`, `7 - chating` \n**Пригласить бота на сервер x!invite** \n**проголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
+	    /*if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
 		    .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
@@ -1455,7 +1455,82 @@ let voice = 0;
 	    .addField("NSFW", "**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
             .setColor("#ff00ff");
             return message.channel.send(nsfwEmbed);
-		    }
+		    }*/
+	    const funEmbed = new Discord.RichEmbed()
+		    .setTitle("Категория Fun")
+		    .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
+                    .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text]** - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, время учитывается в миллисекундах (1000ms = 1 секунда) \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1 \n**x!reverse** [text] - реверс текста. \n**x!space** [text] - пробельный текст.")
+		    .addField("Logs", "По умолчанию логи редактированых | удаленых сообщений идут в канал `logs` \nПриветсвия идут тудаже + в системный канал приветсвий. \nНаправление невозможно изменить, если данного канала(ов) нет то бот не будет логгировать измененые | удаленые сообщения.")
+		    .setColor("#00ff0");
+	    
+	    
+	    const modEmbed = new Discord.RichEmbed()
+	       .setTitle("Категория Moderation")
+	       .addField("Mod", "**x!prune** <user> [ammout] - очистка сообений от пользователя либо чата. \n **x!softban** [users] - бан нескольких пользователей за раз. (времено отключено) \n**x!ban** [user] - бан пользователя. \n**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!rs** [channel id] [message] - удаленая отправка сообщений. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!tts** [text] - tts Сообщение.")
+               .setColor("#ff0000");
+		    
+	    
+	    
+            const ownEmbed = new Discord.RichEmbed()
+	    .setTitle("Категория Bot owner")
+	    .addField("Bot owner", "**x!eval** [code] - эмуляция js кода. \n**x!presence** [type] [status] - смена статуса. \n**x!us** [user id] - приватное сообщение от лица бота.")
+            .setColor("#ff00ff");
+
+		    
+		    
+            const imgEmbed = new Discord.RichEmbed()
+	    .setTitle("Категория Images")
+	    .setColor("#00ff00")
+	    .addField("Images", "**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.");
+
+		    
+		    
+            const rctEmbed = new Discord.RichEmbed()
+	    .setTitle("Категория Reactions")
+	    .addField("Reactions", "**x!suicide** - суицид. \n**x!cry** - плакать. \n**x!wasted** [user] - уебать. \n**x!kiss** [user] - поцелуй. \n**x!pat** [user] - погладить. \n**x!nom** [user] - дать поесть. \n**x!slap** [user] - ударить. \n**x!hug** [user] - обнять. \n**x!cuddle** [user] - прижаться. \n**x!tickle** [user] - пощекотать. \n**x!poke** [user] - тыкнуть.")
+            .setColor("#00ff00");
+          
+	    
+            const nsfwEmbed = new Discord.RichEmbed()
+	    .setTitle("Категория NSFW")
+	    .addField("NSFW", "**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
+            .setColor("#ff00ff");
+	    
+		    
+		    
+	        await bot.react("1⃣")
+                await bot.react("2⃣")
+	        await bot.react("3⃣")
+                await bot.react("4⃣")
+	        await bot.react("5⃣")
+                await bot.react("6⃣")
+		await bot.react("⚡")
+		const coll = bot.createReactionCollector((reaction, user) => user.id === message.author.id);
+		coll.on('collect', async(reaction) => {
+    if (reaction.emoji.name === "1⃣") {
+   bot.edit(funEmbed);
+    }
+   if (reaction.emoji.name === "2⃣") {
+   bot.edit(modEmbed);
+   }
+   if (reaction.emoji.name === "3⃣") {
+   bot.edit(ownEmbed);
+   }
+   if (reaction.emoji.name === "4⃣") {
+   bot.edit(imgEmbed);
+   }
+   if (reaction.emoji.name === "5⃣") {
+   bot.edit(rctEmbed);
+   }
+   if (reaction.emoji.name === "6⃣") {
+   bot.edit(NSFWembed);
+   }
+   if (reaction.emoji.name === "⚡") {
+    message.delete()
+    bot.delete()
+    }
+    await reaction.remove(message.author.id);
+		});
     } else if (['helpembed'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         message.channel.send("```{description: текст описания} \n{title: текст заголовка} \n{field: имя | value: текст} \n{timestamp}(временая метка) \n{footer: нижний текст} \n{color: #цвет} \n{image: url} \n{thumbnail url}```")
