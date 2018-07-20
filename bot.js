@@ -1474,6 +1474,7 @@ let voice = 0;
 		    .addField("Logs", "По умолчанию логи редактированых | удаленых сообщений идут в канал `logs` \nПриветсвия идут тудаже + в системный канал приветсвий. \nНаправление невозможно изменить, если данного канала(ов) нет то бот не будет логгировать измененые | удаленые сообщения.")
 		    .setColor("#00ff0");
    bot.edit(embed);
+	    await reaction.remove(client.user.id);
     }
    if (reaction.emoji.name === "2⃣") {
 	    const embed = new Discord.RichEmbed()
@@ -1481,6 +1482,7 @@ let voice = 0;
 	       .addField("Mod", "**x!prune** <user> [ammout] - очистка сообений от пользователя либо чата. \n **x!softban** [users] - бан нескольких пользователей за раз. (времено отключено) \n**x!ban** [user] - бан пользователя. \n**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!rs** [channel id] [message] - удаленая отправка сообщений. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!tts** [text] - tts Сообщение.")
                .setColor("#ff0000");
    bot.edit(embed);
+	   await reaction.remove(client.user.id);
    }
    if (reaction.emoji.name === "3⃣") {
 	   const embed = new Discord.RichEmbed()
@@ -1489,6 +1491,7 @@ let voice = 0;
             .setColor("#ff00ff");
             return message.channel.send(ownEmbed);
    bot.edit(embed);
+	   await reaction.remove(client.user.id);
    }
    if (reaction.emoji.name === "4⃣") {
 	   const embed = new Discord.RichEmbed()
@@ -1496,6 +1499,7 @@ let voice = 0;
 	    .setColor("#00ff00")
 	    .addField("Images", "**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.");
    bot.edit(embed);
+	   await reaction.remove(client.user.id);
    }
    if (reaction.emoji.name === "5⃣") {
 	   const embed = new Discord.RichEmbed()
@@ -1503,6 +1507,7 @@ let voice = 0;
 	    .addField("Reactions", "**x!suicide** - суицид. \n**x!cry** - плакать. \n**x!wasted** [user] - уебать. \n**x!kiss** [user] - поцелуй. \n**x!pat** [user] - погладить. \n**x!nom** [user] - дать поесть. \n**x!slap** [user] - ударить. \n**x!hug** [user] - обнять. \n**x!cuddle** [user] - прижаться. \n**x!tickle** [user] - пощекотать. \n**x!poke** [user] - тыкнуть.")
             .setColor("#00ff00");
    bot.edit(embed);
+	   await reaction.remove(client.user.id);
    }
    if (reaction.emoji.name === "6⃣") {
 	    const embed = new Discord.RichEmbed()
@@ -1510,6 +1515,7 @@ let voice = 0;
 	    .addField("NSFW", "**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
             .setColor("#ff00ff");
    bot.edit(embed);
+	   await reaction.remove(client.user.id);
    }
    if (reaction.emoji.name === "⚡") {
     message.delete()
