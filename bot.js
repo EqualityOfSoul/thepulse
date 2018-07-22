@@ -2028,7 +2028,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                         .setImage(urls[Math.floor(Math.random() * urls.length)])
                         .setColor('#ffff00');
                     msg.edit(`${user1}`, {embed});
-        });*/
+        });
     } /*else if(['chat'].includes(command)) {
 	    await neko.getSFWHug();
 	    message.channel.send(url);
