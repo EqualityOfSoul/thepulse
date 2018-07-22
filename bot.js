@@ -591,7 +591,7 @@ return message.channel.send(members.map(member => `\```${member.id}\``` ${member
   }
    if (!serversPlay[message.guild.id]) serversPlay[message.guild.id] = {
     queue: ["https://www.youtube.com/watch?v=z4S2qqX7YvA"]
-  }*/
+  }
   if (!message.member.voiceChannel) message.member.voiceChannel.join().then((connection) => {
      function play(connection, message) {
    message.channel.send("Начинаю играть " + args[0] + " в канале " + message.member.voiceChannel.name + ".")
