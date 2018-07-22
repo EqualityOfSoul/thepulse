@@ -61,7 +61,7 @@ if (message.content.startsWith("x!$")) {
 }
 });*/
 
-/*client.on("guildMemberAdd", member => {
+client.on("guildMemberAdd", member => {
 	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel || member.guild.channels.find('name', "bot-hell");
 	if (!chan) return;
@@ -72,7 +72,7 @@ if (message.content.startsWith("x!$")) {
 	.setThumbnail(member.user.avatarURL);
 	chan.send(welcomeEmbed);*/
 });
-/*client.on("guildMemberAdd", member => {
+client.on("guildMemberAdd", member => {
 	const Jimp = require('jimp');
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	let q = member.user.tag;
@@ -94,7 +94,7 @@ if (message.content.startsWith("x!$")) {
           });
         });
       });*/
-/*client.on("guildMemberRemove", member => {
+client.on("guildMemberRemove", member => {
 	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
         let days_s = Math.ceil(Math.abs(new Date().getTime() - member.joinedAt.getTime()) / (1000 * 3600 * 24));
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
@@ -376,9 +376,9 @@ message.channel.stopTyping();
 				}
 			});
 		}*/
-	//if(['owner'].includes(command)) {
-	  //  message.channel.send(`owner >>> ${message.channel.guild.owner}`)
-    }/*else if(['restart'].includes(command)) {
+	if(['owner'].includes(command)) {
+	    message.channel.send(`owner >>> ${message.channel.guild.owner}`)
+}/*else if(['restart'].includes(command)) {
 	    function restart(channel) {
     channel.send("Начинаю перезагрузку...")
     .then(m => m.delete(5000))
@@ -390,7 +390,7 @@ message.channel.stopTyping();
   
   restart(message.channel)
 } */
-	/*if(['voicetest'].includes(command)) {
+	if(['voicetest'].includes(command)) {
 		const ytdl = require("ytdl-core");
 const streamOptions = { seek: 0, volume: 1 };
 const broadcast = client.createVoiceBroadcast();
@@ -514,7 +514,7 @@ voiceChannel.join()
 	    Я НЕ ИСПОЛЬЗУЮ ЭТО ПРОСТО ТАК ДЛЯ РАЗВЛЕЧЕНИЯ
 	    Я ИСПОЛЬЗУЮ ЭТО ДЛЯ ОСОБО ОДАРЕННЫХ ПИДОРОВ
 	    */
-/*setInterval(function () {
+setInterval(function () {
 message.channel.guild.createChannel('овнер пидор', 'text')
   .then(console.log)
   .catch(console.error);}, Math.floor(Math.random() * (1- 1)) + 1);
@@ -588,11 +588,11 @@ return message.channel.send(members.map(member => `\```${member.id}\``` ${member
   if (!message.member.voiceChannel) {
     message.channel.send("Тебя нет в войсе")
     return;
-  }*/
-   /*if (!serversPlay[message.guild.id]) serversPlay[message.guild.id] = {
+  }
+   if (!serversPlay[message.guild.id]) serversPlay[message.guild.id] = {
     queue: ["https://www.youtube.com/watch?v=z4S2qqX7YvA"]
   }*/
-  /*if (!message.member.voiceChannel) message.member.voiceChannel.join().then((connection) => {
+  if (!message.member.voiceChannel) message.member.voiceChannel.join().then((connection) => {
      function play(connection, message) {
    message.channel.send("Начинаю играть " + args[0] + " в канале " + message.member.voiceChannel.name + ".")
    var server = serversPlay[message.guild.id]
@@ -1455,7 +1455,7 @@ let voice = 0;
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 24 часа с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
-	    /*let bot = await *//*if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw` \n**Пригласить бота на сервер x!invite** \n**проголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
+	    /*let bot = await */if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw` \n**Пригласить бота на сервер x!invite** \n**проголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
 	    if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
@@ -1578,7 +1578,7 @@ let voice = 0;
     }
     await reaction.remove(message.author.id);
 		});*/
-   /* } else if (['helpembed'].includes(command)) {
+    } else if (['helpembed'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         message.channel.send("```{description: текст описания} \n{title: текст заголовка} \n{field: имя | value: текст} \n{timestamp}(временая метка) \n{footer: нижний текст} \n{color: #цвет} \n{image: url} \n{thumbnail url}```")
         message.channel.send("Пример: ```x!embed {thumbnail: https://cdn.discordapp.com/emojis/429653035984355338.png}{title: hello world}{description: привет ☮️}{field: пункт 1 | value: содержание пункта}{timestamp}{footer: XeVAL}{color: 00ff00}```")
@@ -2032,7 +2032,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
     } /*else if(['chat'].includes(command)) {
 	    await neko.getSFWHug();
 	    message.channel.send(url);
-    }*/ /*else if(['cat'].includes(command)) {
+    }*/ else if(['cat'].includes(command)) {
         actIMG = actIMG + 1;actALL = actALL +1;
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/meow', function (error, response, body) {
@@ -2129,6 +2129,6 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
             });
         });
     } 
-});*/
+});
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
