@@ -1184,7 +1184,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
 	    }
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
 	    actFUN = actFUN + 1;actALL = actALL +1;
-	    let user = message.mentions.first();
+	    const user = message.mentions.users.first();
 	    if(!user) {
 		    let guilds = [];
 	message.reply('Я отправил вам список серверов и немного информации про них.')
