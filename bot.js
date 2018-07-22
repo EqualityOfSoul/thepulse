@@ -1184,9 +1184,10 @@ client.guilds.forEach((guild) => {users += client.users.size});
 	    }
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
 	    actFUN = actFUN + 1;actALL = actALL +1;
+	    let guilds = [];
 	    const user = message.mentions.users.first();
 	    if(!user) {
-		    let guilds = [];
+		    
 	message.reply('Я отправил вам список серверов и немного информации про них.');
         
         client.guilds.forEach(function (guild) {guilds.push(guild.name.replace(/`/g, "`" + String.fromCharCode(8203)) + ' OWNER: ' + guild.owner.user.tag.replace(/`/g, "`" + String.fromCharCode(8203)) + ' ID: ' + guild.id  + ' MEMBERS: ' + guild.memberCount)});
@@ -1196,8 +1197,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
         } else {
             message.author.send(`${output}`, {split:"\n", code:"json"});
             }
-	    };
-        let guilds = [];
+	    }
 	message.reply(`Сервера и их данные отправлены пользователю ${user}`);
         client.guilds.forEach(function (guild) {guilds.push(guild.name.replace(/`/g, "`" + String.fromCharCode(8203)) + ' OWNER: ' + guild.owner.user.tag.replace(/`/g, "`" + String.fromCharCode(8203)) + ' ID: ' + guild.id + ' MEMBERS: ' + guild.memberCount)});
         let output = guilds.join('\n\n');
