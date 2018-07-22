@@ -1438,7 +1438,7 @@ let voice = 0;
                 embed.setTimestamp(); message.react("✅");
             message.channel.send({embed});
     } else if(['h', 'help'].includes(command)) {
-	    actFUN = actFUN + 1;actALL = actALL +1;*/
+	    actFUN = actFUN + 1;actALL = actALL +1;
         /*const embed = new Discord.RichEmbed()
             .setAuthor(message.author, message.author.avatarURL)
             .setTitle('Команды бота.')
