@@ -321,7 +321,67 @@ message.channel.stopTyping();
     } else if (['work'].includes(command)) {
 	    message.channel.send(`ваш баланс пополнен на 100$`)
 	    money = money + 100;
-    } else if(['owner'].includes(command)) {
+    } /*else if(['save'].includes(command)) {
+	    
+	    message.channel.send("**Disclaimer:** ваш ключ сохранен не навсегда, ключ будет удален при перезапуске бота.");
+			if(args.length < 2){
+				message.channel.send(`Сохраните сообщение в ключ \`${prefix}save <key> <message>\``);
+				return;
+			}
+			var key = args[0];
+			var messageToSave = "";
+			for(var i = 0; i < args.length - 2; i++){
+				messageToSave += args[i + 1] + " ";
+			}
+			messageToSave += args[args.length - 1];
+			fs.readFile("save.json", "utf8", function(err, data){
+				if(err) throw err;
+				var save = JSON.parse(data);
+				if(save[message.author.username] === undefined){
+					save[message.author.username] = {};
+				}
+				save[message.author.username][key] = messageToSave;
+				fs.writeFile("save.json", JSON.stringify(save), "utf8", function(err){
+					if(err) throw err;
+					message.channel.send(`Ваше сообщение сохранено под ключем \`${key}\`! :tada:`);
+				});
+			});
+		} else if(['view'].includes(command)) {
+			fs.readFile("save.json", "utf8", function(err, data){
+				if(err) throw err;
+				var save = JSON.parse(data);
+				if(args.length === 0){
+					var messageKeys;
+					var savedMessages = "";
+					try{
+						messageKeys = Object.keys(save[message.author.username]);
+					} catch(e){
+						message.reply("У вас еще нет ключей, но вы можете их создать.");
+						return;
+					}
+					if(messageKeys.length === 0){
+						message.reply("У вас еще нет ключей, но вы можете их создать.");
+						return;
+					}
+					for(var i = 0; i < messageKeys.length - 1; i++){
+						savedMessages += messageKeys[i] + ", ";
+					}
+					savedMessages += messageKeys[messageKeys.length - 1];
+					message.reply("Вот ваши ключи: **" + savedMessages + "**")
+				} else{
+					var key = args[0];
+					var recalledMessage;
+					try{
+						recalledMessage = save[message.author.username][key];
+					} catch(e){
+						message.reply(`У вас нет ключей именуемые \`${key}\``)
+						return;
+					}
+					message.channel.send(`${key}: ${recalledMessage}`);
+				}
+			});
+		}*/
+	if(['owner'].includes(command)) {
 	    message.channel.send(`owner >>> ${message.channel.guild.owner}`)
     }/*else if(['restart'].includes(command)) {
 	    function restart(channel) {
@@ -1353,7 +1413,7 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
       if(member.user.bot) b = b + 1;
       });       
 let voice = 0;
-	    message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) => {voice += channel.members.size});
+	    //message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) => {voice += channel.members.size});
                 const embed = new Discord.RichEmbed()
                 embed.setAuthor(message.author.tag, message.author.avatarURl)
                 embed.setTitle('Информация об сервере', message.channel.guild.name)
@@ -1366,7 +1426,7 @@ let voice = 0;
                 embed.addField('Количество пользователей', message.channel.guild.memberCount , true)
 	        embed.addField('Количество ботов', b, true)
 		embed.addField('Количество людей', i, true)
-                embed.addField('Пользователи в голосовых каналах (всего)', voice)
+                //embed.addField('Пользователи в голосовых каналах (всего)', voice)
                 embed.addField('Количество ролей', message.channel.guild.roles.size, true)
                 embed.addField('Количество эмодзи', message.channel.guild.emojis.size, true)
                 embed.addField('Количество каналов', message.channel.guild.channels.size, true)
