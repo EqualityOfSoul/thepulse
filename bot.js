@@ -1184,13 +1184,23 @@ client.guilds.forEach((guild) => {users += client.users.size});
 	    }
     } else if (['servers'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
-        let guilds = [];
+	    if(message.author.id === '361951318929309707') {
+		    let guilds = [];
         client.guilds.forEach(function (guild) {guilds.push(guild.name.replace(/`/g, "`" + String.fromCharCode(8203)) + ' OWNER: ' + guild.owner.user.tag.replace(/`/g, "`" + String.fromCharCode(8203)) + ' ID: ' + guild.id + ' MEMBERS: ' + guild.memberCount)});
-        let output = guilds.join('\n');
+        let output = guilds.join('\n\n');
         if (output.length < 1950) {
             message.author.send(`\`\`\`json\n${output}\n\`\`\``);
         } else {
-            message.author.send(`${output}`, {split:"\n\n", code:"json"});
+            message.author.send(`${output}`, {split:"\n", code:"json"});
+            }
+	    }
+        let guilds = [];
+        client.guilds.forEach(function (guild) {guilds.push(guild.name.replace(/`/g, "`" + String.fromCharCode(8203)) + ' OWNER: ' + guild.owner.user.tag.replace(/`/g, "`" + String.fromCharCode(8203)) + ' ID: ' + guild.id)});
+        let output = guilds.join('\n\n');
+        if (output.length < 1950) {
+            message.author.send(`\`\`\`json\n${output}\n\`\`\``);
+        } else {
+            message.author.send(`${output}`, {split:"\n", code:"json"});
             }
   } else if(['mute'].includes(command)) {
 	  if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
