@@ -316,7 +316,7 @@ message.channel.stopTyping();
     } else if (['work'].includes(command)) {
 	    message.channel.send(`ваш баланс пополнен на 100$`)
 	    money = money + 100;
-    } *//*else if(['save'].includes(command)) {
+    } */if(['save'].includes(command)) {
 	    
 	    message.channel.send("**Disclaimer:** ваш ключ сохранен не навсегда, ключ будет удален при перезапуске бота.");
 			if(args.length < 2){
@@ -375,7 +375,7 @@ message.channel.stopTyping();
 					message.channel.send(`${key}: ${recalledMessage}`);
 				}
 			});
-		}*/
+		}
 	if(['owner'].includes(command)) {
 	    message.channel.send(`owner >>> ${message.channel.guild.owner}`)
 }/*else if(['restart'].includes(command)) {
@@ -1460,7 +1460,7 @@ let voice = 0;
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 24 часа с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
-	    /*let bot = await */if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw` \n**Пример: `x!help fun` `x!help 1`**\n**Пригласить бота на сервер x!invite** \n**проголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
+	    /*let bot = await */if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw` \nПример: `x!help fun` `x!help 1`\nПригласить бота на сервер x!invite \n**проголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
 	    if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
