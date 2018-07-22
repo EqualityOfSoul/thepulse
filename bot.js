@@ -306,12 +306,7 @@ message.channel.stopTyping();
          message.channel.send({embed});
        }
     } 
-	if(['profile'].includes(command)) {
-        /*let balance = []; 
-        client.guilds.forEach(guild => guild.members.forEach(member => {balance[member.id] = 1000}));
-        let money = balance[message.author.id]*/
-	    ; //старт, кек
-	    //let money = 0;
+	/*if(['profile'].includes(command)) {
 	    const profilEm = new Discord.RichEmbed()
 	    .setTitle(`профиль ${message.author.username}`)
 	    .setColor(message.member.highestRole.color)
@@ -321,7 +316,7 @@ message.channel.stopTyping();
     } else if (['work'].includes(command)) {
 	    message.channel.send(`ваш баланс пополнен на 100$`)
 	    money = money + 100;
-    } /*else if(['save'].includes(command)) {
+    } *//*else if(['save'].includes(command)) {
 	    
 	    message.channel.send("**Disclaimer:** ваш ключ сохранен не навсегда, ключ будет удален при перезапуске бота.");
 			if(args.length < 2){
