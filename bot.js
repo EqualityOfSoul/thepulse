@@ -72,7 +72,7 @@ client.on("guildMemberAdd", member => {
 	.setThumbnail(member.user.avatarURL);
 	chan.send(welcomeEmbed);
 });
-client.on("guildMemberAdd", member => {
+/*client.on("guildMemberAdd", member => {
 	const Jimp = require('jimp');
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	let q = member.user.tag;
@@ -93,7 +93,7 @@ client.on("guildMemberAdd", member => {
             });
           });
         });
-      });
+      });*/
 client.on("guildMemberRemove", member => {
 	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
         let days_s = Math.ceil(Math.abs(new Date().getTime() - member.joinedAt.getTime()) / (1000 * 3600 * 24));
@@ -1185,12 +1185,12 @@ client.guilds.forEach((guild) => {users += client.users.size});
     } else if (['servers'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         let guilds = [];
-        client.guilds.forEach(function (guild) {guilds.push(guild.name.replace(/`/g, "`" + String.fromCharCode(8203)) + ' OWNER: ' + guild.owner.user.tag.replace(/`/g, "`" + String.fromCharCode(8203)) + ' ID: ' + guild.id)});
+        client.guilds.forEach(function (guild) {guilds.push(guild.name.replace(/`/g, "`" + String.fromCharCode(8203)) + ' OWNER: ' + guild.owner.user.tag.replace(/`/g, "`" + String.fromCharCode(8203)) + ' ID: ' + guild.id + ' MEMBERS: ' + guild.memberCount)});
         let output = guilds.join('\n');
         if (output.length < 1950) {
             message.author.send(`\`\`\`json\n${output}\n\`\`\``);
         } else {
-            message.author.send(`${output}`, {split:"\n", code:"json"});
+            message.author.send(`${output}`, {split:"\n\n", code:"json"});
             }
   } else if(['mute'].includes(command)) {
 	  if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
