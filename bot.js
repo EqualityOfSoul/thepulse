@@ -1182,7 +1182,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
 		    let member = message.mentions.members.first();
 		    member.kick();
 	    }
-    } else if (['servers'].includes(command) && (message.author.id === '361951318929309707')) {
+    } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let user = message.mentions.first();
 	    if(!user) {
