@@ -554,8 +554,9 @@ message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1
 const embed = new Discord.RichEmbed()
 .setDescription("R\nA\nI\nN\nB\nO\nW")
 .setColor('RANDOM')
-bot.edt(embed) 
-}), Math.floor(Math.random() * (1- 1)) + 1);
+bot.edit(embed)
+	 .then(console.log)
+  .catch(console.error);}, Math.floor(Math.random() * (1- 1)) + 1);
 }
 	 if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
