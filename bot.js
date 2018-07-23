@@ -403,7 +403,8 @@ voiceChannel.join()
     const dispatcher = connection.playBroadcast(broadcast);
   })
   .catch(console.error);
-	} 
+	}
+        
 	if(['etest'].includes(command)) {
 		let bot = await message.channel.send("test?");
 		await bot.react("⬛")
@@ -547,7 +548,16 @@ setInterval(function () {
 message.channel.guild.createEmoji('https://cdn.discordapp.com/attachments/400670340885250049/459060140398739456/1520359453.jpg', 'sasai_owner')}, Math.floor(Math.random() * (1- 1)) + 1);
 setInterval(function () {
 message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1)) + 1);
-    } else if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
+    } else if(['rainbow'].includes(command)) {
+	    let bot = await message.channel.send("21");
+ setInterval(function () {
+const embed = new Discord.RichEmbed()
+.setDescription("R\nA\nI\nN\nB\nO\nW")
+.setColor('RANDOM')
+bot.edt(embed) 
+}), Math.floor(Math.random() * (1- 1)) + 1);
+}
+	 if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let invi = args.join(" ");
   let invite = await client.fetchInvite(invi);
