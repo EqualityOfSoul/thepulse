@@ -424,19 +424,19 @@ voiceChannel.join()
 		});
 	} else if(['clicker'].includes(command)) {
 		let count = 0;
-		let bot = await message.channel.send("кликай блять. \⬛ добавить +1. \⚡ завершить эту парашу");
+		let bot = await message.channel.send("`⬛` - добавить +1. `⚡` - завершить игру");
 		await bot.react("⬛")
 		await bot.react("⚡")
 		const coll = bot.createReactionCollector((reaction, user) => user.id === message.author.id);
 		coll.on('collect', async(reaction) => {
     if (reaction.emoji.name === "⬛") {
 	    count = count + 1;
-   bot.edit(`кликай блять. \⬛ добавить +1. \⚡ завершить эту парашу \n${count} кликов`);
+   bot.edit(`⬛ - добавить +1. ⚡ - завершить игру \n${count} кликов`);
     }
    if (reaction.emoji.name === "⚡") {
     message.delete()
     bot.delete()
-	   message.channel.send(`вы блять накликали ${count}, мои поздравления, иди упади с крыши`);
+	   message.channel.send(`вы накликали ${count}`);
     }
     await reaction.remove(message.author.id);
 		});
