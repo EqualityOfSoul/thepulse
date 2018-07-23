@@ -1478,8 +1478,8 @@ let voice = 0;
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 24 часа с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
-	    /*let bot = await */if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw` \nПример: `x!help fun` `x!help 1`\nПригласить бота на сервер x!invite \n**проголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
-	    if(args[0] === 'fun' || args[0] === '1') {
+	    let bot = await /*if(!args[0]) return*/ message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw` \nПример: `x!help fun` `x!help 1`\nПригласить бота на сервер x!invite \n**проголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
+	    /*if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
 		    .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
@@ -1533,7 +1533,7 @@ let voice = 0;
 	    .addField("NSFW", "**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
             .setColor("#ff00ff");
             return message.channel.send(nsfwEmbed);
-		    }/*
+		    }*/
 
 	        await bot.react("1⃣")
                 await bot.react("2⃣")
@@ -1600,7 +1600,7 @@ let voice = 0;
     bot.delete()
     }
     await reaction.remove(message.author.id);
-		});*/
+		});
     } else if (['helpembed'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         message.channel.send("```{description: текст описания} \n{title: текст заголовка} \n{field: имя | value: текст} \n{timestamp}(временая метка) \n{footer: нижний текст} \n{color: #цвет} \n{image: url} \n{thumbnail url}```")
