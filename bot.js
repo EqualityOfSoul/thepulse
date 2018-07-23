@@ -28,6 +28,7 @@ let actOWN = 0; //  actOWN = actOWN + 1;actALL = actALL +1;
 let actIMG = 0; //  actIMG = actIMG + 1;actALL = actALL +1;
 let actALL = 0; //  actALL = actALL +1;actALL = actALL +1;
 let gameCount = 0;
+const talkedRecently = new Set();
 let serversPlay = {}
 vm.createContext(codeContext);
 //массив цветов
@@ -1461,6 +1462,9 @@ let voice = 0;
                 embed.setTimestamp(); message.react("✅");
             message.channel.send({embed});
     } else if(['h', 'help'].includes(command)) {
+	    if (talkedRecently.has(message.author.id)) {
+            message.reply("Pls CoolDown");
+    } else {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         /*const embed = new Discord.RichEmbed()
             .setAuthor(message.author, message.author.avatarURL)
@@ -1478,7 +1482,7 @@ let voice = 0;
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 24 часа с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
-	    let bot = await /*if(!args[0]) return*/ message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw` \nПример: `x!help fun` `x!help 1`\nПригласить бота на сервер x!invite \n**проголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
+	    let bot = await /*if(!args[0]) return*/ message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw` \nПригласить бота на сервер x!invite \nпроголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
 	    /*if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
@@ -1601,6 +1605,12 @@ let voice = 0;
     }
    // await reaction.remove(message.author.id);
 		});
+	    talkedRecently.add(message.author.id);
+        setTimeout(() => {
+          
+          talkedRecently.delete(message.author.id);
+        }, 10000);
+    }
     } else if (['helpembed'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         message.channel.send("```{description: текст описания} \n{title: текст заголовка} \n{field: имя | value: текст} \n{timestamp}(временая метка) \n{footer: нижний текст} \n{color: #цвет} \n{image: url} \n{thumbnail url}```")
