@@ -427,6 +427,7 @@ voiceChannel.join()
 		let bot = await message.channel.send("кликай блять. \⬛ добавить +1. \⚡ завершить эту парашу");
 		await bot.react("⬛")
 		await bot.react("⚡")
+		const coll = bot.createReactionCollector((reaction, user) => user.id === message.author.id);
 		coll.on('collect', async(reaction) => {
     if (reaction.emoji.name === "⬛") {
 	    count = count + 1;
