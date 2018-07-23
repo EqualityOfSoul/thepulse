@@ -422,6 +422,23 @@ voiceChannel.join()
     }
     await reaction.remove(message.author.id);
 		});
+	} else if(['clicker'].includes(command)) {
+		let count = 0;
+		let bot = await message.channel.send("кликай блять. \⬛ добавить +1. \⚡ завершить эту парашу");
+		await bot.react("⬛")
+		await bot.react("⚡")
+		coll.on('collect', async(reaction) => {
+    if (reaction.emoji.name === "⬛") {
+	    count = count + 1;
+   bot.edit(`кликай блять. \⬛ добавить +1. \⚡ завершить эту парашу \n${count} кликов`);
+    }
+   if (reaction.emoji.name === "⚡") {
+    message.delete()
+    bot.delete()
+	   message.channel.send(`вы блять накликали ${count}, мои поздравления, иди упади с крыши`);
+    }
+    await reaction.remove(message.author.id);
+		});
 	}
 	if(['addrole'].includes(command)) {
 		actMOD = actMOD + 1;actALL = actALL +1;
