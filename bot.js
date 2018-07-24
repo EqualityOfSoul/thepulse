@@ -585,7 +585,7 @@ bot.edit(embed);}, Math.floor(Math.random() * (1- 1)) + 1);
     }
         if(['timer'].includes(command)) {
 		actFUN = actFUN + 1;actALL = actALL +1;
-        const vremya = args.join(" ");
+        const vremya = args.join(" ") * 1000;
   if(!vremya) return message.reply("Пожалуйста укажите время. \n**`x!timer [time]`**")
   if(vremya < 10000) return message.reply("Ваше число слишком мало");
   if(vremya > 31536000000) return message.reply("Ваше число превышает лимит.");
