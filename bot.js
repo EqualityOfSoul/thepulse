@@ -46,7 +46,7 @@ client.on("ready", () => {
     });
     color();
 });
-client.on('message', message => {
+/*client.on('message', message => {
     let sender = message.author;
     let msg = message.content.toUpperCase();
     //events
@@ -61,7 +61,7 @@ if (message.content.startsWith("x!$")) {
     message.channel.send({embed});
 }
 });
-
+*/
 client.on("guildMemberAdd", member => {
 	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel || member.guild.channels.find('name', "bot-hell");
