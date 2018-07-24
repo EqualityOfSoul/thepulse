@@ -589,7 +589,7 @@ bot.edit(embed);}, Math.floor(Math.random() * (1- 1)) + 1);
 	const m = args[1] * 60000;
 	const h = args[2] * 3600000;
 	const vremya = s+m+h;
-  if(!vremya) return message.reply("Пожалуйста укажите время. \n**`x!timer [time]` \nHelp: 1 слово учитывается как секунды, 2 слово как минуты, 3 слово как часы. \nExample: `x!timer 10 43 1**")
+  if(!vremya) return message.reply("Пожалуйста укажите время. \n**`x!timer [time]` \nHelp: 1 слово учитывается как секунды, 2 слово как минуты, 3 слово как часы. \nExample: `x!timer 10 43 1`**")
   if(vremya < 10000) return message.reply("Ваше число слишком мало");
   if(vremya > 31536000000) return message.reply("Ваше число превышает лимит.");
   let embed = new Discord.RichEmbed()
