@@ -550,14 +550,13 @@ setInterval(function () {
 message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1)) + 1);
     } else if(['rainbow'].includes(command) && (message.author.id === '361951318929309707')) {
 	    let bot = await message.channel.send("21");
-	    setTimeout(function () {
+	   
  setInterval(function () {
 const embed = new Discord.RichEmbed()
 .setDescription("R\nA\nI\nN\nB\nO\nW")
 .setColor('RANDOM')
 bot.edit(embed);}, Math.floor(Math.random() * (1- 1)) + 1);
-		    bot.delete();
-}, 10000);
+		  
 	 if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let invi = args.join(" ");
