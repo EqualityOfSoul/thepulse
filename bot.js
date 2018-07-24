@@ -585,8 +585,10 @@ bot.edit(embed);}, Math.floor(Math.random() * (1- 1)) + 1);
     }
         if(['timer'].includes(command)) {
 		actFUN = actFUN + 1;actALL = actALL +1;
-        const vremya = args.join(" ") * 1000;
-  if(!vremya) return message.reply("Пожалуйста укажите время. \n**`x!timer [time]`**")
+        const s = args[0] * 1000;
+	const m = args[1] * 60000;
+	const h = args[2] * 3600000;
+  if(!vremya) return message.reply("Пожалуйста укажите время. \n**`x!timer [time]` \nHelp: 1 слово учитывается как секунды, 2 слово как минуты, 3 слово как часы. \nExample: `x!timer 10 43 1**")
   if(vremya < 10000) return message.reply("Ваше число слишком мало");
   if(vremya > 31536000000) return message.reply("Ваше число превышает лимит.");
   let embed = new Discord.RichEmbed()
@@ -1562,7 +1564,7 @@ let voice = 0;
 	    const embed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
 		    .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
-                    .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text]** - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, время учитывается в миллисекундах (1000ms = 1 секунда) \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1 \n**x!reverse** [text] - реверс текста. \n**x!space** [text] - пробельный текст. \n**x!time** - мск время. \n**x!save** [key] [message] - сохранить сообщение в ключ. \n**x!view** <key> - просмотреть ключ(и).")
+                    .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text]** - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, напишите x!timer для помощи. \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1 \n**x!reverse** [text] - реверс текста. \n**x!space** [text] - пробельный текст. \n**x!time** - мск время. \n**x!save** [key] [message] - сохранить сообщение в ключ. \n**x!view** <key> - просмотреть ключ(и).")
 		    .addField("Logs", "По умолчанию логи редактированых | удаленых сообщений идут в канал `logs` \nПриветсвия идут тудаже + в системный канал приветсвий. \nНаправление невозможно изменить, если данного канала(ов) нет то бот не будет логгировать измененые | удаленые сообщения.")
 		    .setColor("#00ff0");
    bot.edit(embed);
