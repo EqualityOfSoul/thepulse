@@ -515,6 +515,13 @@ voiceChannel.join()
     message.channel.send(`готово, я забанил ${member.username}!`)
     message.guild.unban(member.id)
   }
+    } else if(['owoify'].includes(command)) {
+	    const textMsg = args.join(" ");
+	    if (!textMsg) return message.reply("введите текст на английском.");
+	    request('https://nekos.life/api/v2/owoify?&text='+textMsg, function (error, response, body) {
+                    let arr = JSON.parse(body);
+                        message.channel.send(arr['owo'])
+	    });
     } else if(['time', 'время'].includes(command)) {
 	    message.channel.send({embed: new Discord.RichEmbed()
 		    .setTitle("время")
@@ -1565,7 +1572,7 @@ let voice = 0;
 	    const embed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
 		    .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
-                    .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text]** - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, напишите x!timer для помощи. \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1 \n**x!reverse** [text] - реверс текста. \n**x!space** [text] - пробельный текст. \n**x!time** - мск время. \n**x!save** [key] [message] - сохранить сообщение в ключ. \n**x!view** <key> - просмотреть ключ(и).")
+                    .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text]** - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, напишите x!timer для помощи. \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1 \n**x!reverse** [text] - реверс текста. \n**x!space** [text] - пробельный текст. \n**x!time** - мск время. \n**x!save** [key] [message] - сохранить сообщение в ключ. \n**x!view** <key> - просмотреть ключ(и). \n**x!owoify** [текст на английском]")
 		    .addField("Logs", "По умолчанию логи редактированых | удаленых сообщений идут в канал `logs` \nПриветсвия идут тудаже + в системный канал приветсвий. \nНаправление невозможно изменить, если данного канала(ов) нет то бот не будет логгировать измененые | удаленые сообщения.")
 		    .setColor("#00ff0");
    bot.edit(embed);
@@ -1584,7 +1591,7 @@ let voice = 0;
 	    .setTitle("Категория Bot owner")
 	    .addField("Bot owner", "**x!eval** [code] - эмуляция js кода. \n**x!presence** [type] [status] - смена статуса. \n**x!us** [user id] - приватное сообщение от лица бота.")
             .setColor("#ff00ff");
-            return message.channel.send(ownEmbed);
+            return message.channel.send(embed);
    bot.edit(embed);
 	   //await reaction.remove(client.user.id);
    }
@@ -1592,7 +1599,7 @@ let voice = 0;
 	   const embed = new Discord.RichEmbed()
 	    .setTitle("Категория Images")
 	    .setColor("#00ff00")
-	    .addField("Images", "**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.");
+	    .addField("Images", "**x!foxGirl** - рандомное fox girl изображение. \n**x!ero** - рандомное ero изображение \n**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.");
    bot.edit(embed);
 	 //  await reaction.remove(client.user.id);
    }
@@ -1890,7 +1897,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                     let embed = new Discord.RichEmbed()
                         .setDescription(`${user} пощекотал(а) ${user1}`)
                         .setImage(arr['url'])
-                        .setColor('#ffff00')
+                        .setColor('RANDOM')
 			.setFooter("powered by nekos.life");
                     msg.edit(`${user1}`, {embed});
                 } catch (e) {console.log(e)}
@@ -1913,7 +1920,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                         .setTitle(':3')
                         .setDescription(`${user} прижался(ась) к ${user1}`)
                         .setImage(arr['url'])
-                        .setColor('#00ffff')
+                        .setColor('RANDOM')
 			.setFooter("powered by nekos.life");
                     msg.edit(`${user1}`, {embed});
                 } catch (e) {console.log(e)}
@@ -1936,7 +1943,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                         .setTitle(':3')
                         .setDescription(`${user} погладил(а) по голове ${user1}`)
                         .setImage(arr['url'])
-                        .setColor('#ffff00')
+                        .setColor('RANDOM')
 			.setFooter("powered by nekos.life");
                     msg.edit(`${user1}`, {embed});
                 } catch (e) {console.log(e)}
@@ -1959,7 +1966,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                         .setTitle(':3')
                         .setDescription(`${user} обнял(а) ${user1}`)
                         .setImage(arr['url'])
-                        .setColor('#ffff00')
+                        .setColor('RANDOM')
 		    .setFooter("powered by nekos.life");
                     msg.edit(`${user1}`, {embed});
                 } catch (e) {console.log(e)}
@@ -1982,9 +1989,23 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                         .setTitle(':3')
                         .setDescription(`${user} тыкнул(а) в ${user1}`)
                         .setImage(arr['url'])
-                        .setColor('#ffff00')
+                        .setColor('RANDOM')
 		        .setFooter("powered by nekos.life")
                     msg.edit(`${user1}`, {embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['ero'].includes(command)) {
+	    actIMG = actIMG + 1;actALL = actALL +1;
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/ero', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+		        .setFooter("powered by nekos.life");
+                    msg.edit({embed});
                 } catch (e) {console.log(e)}
             });
         });
@@ -1995,9 +2016,22 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                 try {
                     let arr = JSON.parse(body);
                     let embed = new Discord.RichEmbed()
-                        .setTitle("Рандомная картинка Neko")
                         .setImage(arr['url'])
-                        .setColor('#0000ff')
+                        .setColor('RANDOM')
+		        .setFooter("powered by nekos.life");
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if (['foxGirl', 'foxgirl'].includes(command)) {
+	     actIMG = actIMG + 1;actALL = actALL +1;
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/fox_girl', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
 		        .setFooter("powered by nekos.life");
                     msg.edit({embed});
                 } catch (e) {console.log(e)}
@@ -2010,9 +2044,8 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                 try {
                     let arr = JSON.parse(body);
                     let embed = new Discord.RichEmbed()
-                        .setTitle("Рандомная картинка Waifu")
                         .setImage(arr['url'])
-                        .setColor('#0000ff')
+                        .setColor('RANDOM')
 		        .setFooter("powered by nekos.life");
                     msg.edit({embed});
                 } catch (e) {console.log(e)}
@@ -2034,7 +2067,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                     let embed = new Discord.RichEmbed()
                         .setDescription(`${user} дал(а) покушать ${user1}`)
                         .setImage(arr['url'])
-                        .setColor('#ffff00')
+                        .setColor('RANDOM')
 		        .setFooter("powered by nekos.life");
                     msg.edit(`${user1}`, {embed});
                 } catch (e) {console.log(e)}
@@ -2046,7 +2079,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                     let embed = new Discord.RichEmbed()
                         .setDescription(`${message.author.username} совершил(а) суицид..`)
                         .setImage(urls[Math.floor(Math.random() * urls.length)])
-                        .setColor('#ff0000');
+                        .setColor('RANDOM');
                     msg.edit({embed});
         });
     } else if(['cry', 'плакать'].includes(command)) {
@@ -2055,7 +2088,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                     let embed = new Discord.RichEmbed()
                         .setDescription(`${message.author.username} заплакал(а)`)
                         .setImage(urls[Math.floor(Math.random() * urls.length)])
-                        .setColor('#ffff00');
+                        .setColor('RANDOM');
                     msg.edit({embed});
         });
     } else if(['wasted', 'уебать'].includes(command)) {
@@ -2072,7 +2105,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                     let embed = new Discord.RichEmbed()
                         .setDescription(`${user1} got WASTED by ${user}`)
                         .setImage(urls[Math.floor(Math.random() * urls.length)])
-                        .setColor('#ffff00');
+                        .setColor('RANDOM');
                     msg.edit(`${user1}`, {embed});
         });
     } /*else if(['chat'].includes(command)) {
@@ -2085,9 +2118,8 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                 try {
                     let arr = JSON.parse(body);
                     let embed = new Discord.RichEmbed()
-                        .setTitle("Рандомная картинка cat")
                         .setImage(arr['url'])
-                        .setColor('#0000ff')
+                        .setColor('RANDOM')
 		        .setFooter("powered by nekos.life");
 		
                     msg.edit({embed});
@@ -2102,9 +2134,8 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                 try {
                     let arr = JSON.parse(body);
                     let embed = new Discord.RichEmbed()
-                        .setTitle("Рандомная картинка anal")
                         .setImage(arr['url'])
-                        .setColor('#0000ff')
+                        .setColor('RANDOM')
                         .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
                     msg.edit({embed});
                 } catch (e) {console.log(e)}
@@ -2118,9 +2149,8 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                 try {
                     let arr = JSON.parse(body);
                     let embed = new Discord.RichEmbed()
-                        .setTitle("Рандомная картинка hentai")
                         .setImage(arr['url'])
-                        .setColor('#0000ff')
+                        .setColor('RANDOM')
                         .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
                     msg.edit({embed});
                 } catch (e) {console.log(e)}
@@ -2134,9 +2164,8 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                 try {
                     let arr = JSON.parse(body);
                     let embed = new Discord.RichEmbed()
-                        .setTitle("Рандомная картинка boobs")
                         .setImage(arr['url'])
-                        .setColor('#0000ff')
+                        .setColor('RANDOM')
                         .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
                     msg.edit({embed});
                 } catch (e) {console.log(e)}
@@ -2150,9 +2179,8 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                 try {
                     let arr = JSON.parse(body);
                     let embed = new Discord.RichEmbed()
-                        .setTitle("Рандомная картинка pussy")
                         .setImage(arr['url'])
-                        .setColor('#0000ff')
+                        .setColor('RANDOM')
                         .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
                     msg.edit({embed});
                 } catch (e) {console.log(e)}
@@ -2166,9 +2194,8 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                 try {
                     let arr = JSON.parse(body);
                     let embed = new Discord.RichEmbed()
-                        .setTitle("Рандомная картинка nsfw neko")
                         .setImage(arr['url'])
-                        .setColor('#0000ff')
+                        .setColor('RANDOM')
                         .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
                     msg.edit({embed});
                 } catch (e) {console.log(e)}
