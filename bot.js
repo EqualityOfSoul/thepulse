@@ -1591,7 +1591,6 @@ let voice = 0;
 	    .setTitle("Категория Bot owner")
 	    .addField("Bot owner", "**x!eval** [code] - эмуляция js кода. \n**x!presence** [type] [status] - смена статуса. \n**x!us** [user id] - приватное сообщение от лица бота.")
             .setColor("#ff00ff");
-            return message.channel.send(embed);
    bot.edit(embed);
 	   //await reaction.remove(client.user.id);
    }
