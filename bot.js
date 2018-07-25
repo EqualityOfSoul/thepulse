@@ -1599,7 +1599,7 @@ let voice = 0;
 	   const embed = new Discord.RichEmbed()
 	    .setTitle("Категория Images")
 	    .setColor("#00ff00")
-	    .addField("Images", "**x!foxGirl** - рандомное fox girl изображение. \n**x!ero** - рандомное ero изображение \n**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.");
+	    .addField("Images", "**x!foxGirl** - рандомное fox girl изображение. \n**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.");
    bot.edit(embed);
 	 //  await reaction.remove(client.user.id);
    }
@@ -1614,7 +1614,7 @@ let voice = 0;
    if (reaction.emoji.name === "6⃣") {
 	    const embed = new Discord.RichEmbed()
 	    .setTitle("Категория NSFW")
-	    .addField("NSFW", "**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
+	    .addField("NSFW", "**X!ero** \n**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
             .setColor("#ff00ff");
    bot.edit(embed);
 	  // await reaction.remove(client.user.id);
@@ -1996,7 +1996,8 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
             });
         });
     } else if(['ero'].includes(command)) {
-	    actIMG = actIMG + 1;actALL = actALL +1;
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+	    if (!message.channel.nsfw) return message.reply(NSFWembed);
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/ero', function (error, response, body) {
                 try {
