@@ -427,11 +427,11 @@ voiceChannel.join()
   const hours = parseInt(totalSeconds / 3600) % 24;
   const minutes = parseInt(totalSeconds / 60) % 60;
   const seconds = Math.floor(totalSeconds % 60);
-  message += days >= 1 ? `${days}d ` : '';
-  message += hours < 10 ? `0${hours}:` : `${hours}:`;
-  message += minutes < 10 ? `0${minutes}:` : `${minutes}:`;
-  message += seconds < 10 ? `0${seconds}` : `${seconds}`;
-  message.channel.send(up);
+  up += days >= 1 ? `${days}d ` : '';
+  up += hours < 10 ? `0${hours}:` : `${hours}:`;
+  up += minutes < 10 ? `0${minutes}:` : `${minutes}:`;
+  up += seconds < 10 ? `0${seconds}` : `${seconds}`;
+  message.reply(up);
 	} else if(['clicker'].includes(command)) {
 		let count = 0;
 		let bot = await message.channel.send("`⬛` - добавить +1. `⚡` - завершить игру");
