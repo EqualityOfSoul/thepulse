@@ -142,6 +142,41 @@ client.on("messageUpdate", (old_message, new_message) => {
 	.setFooter(`Message id: ${old_message.id}`);
 	chan.send(embedEdited);
 });
+client.on("channelUpdate", (old_channel, new_channel) => {
+	if (old_channel.channel.type === 'dm') return;
+	const chan = old_channel.guild.channels.find('name', "logs");
+	if (!chan) return;
+	let cOldPosition = old_channel.position;
+	let cNewPosition = new_channel.position;
+	let cOldName = old_channel.name;
+	let cNewName = new_channel.name;
+	if (old_channel.name === new_channel.name) {
+		cNewName = 'без изменений.'
+	}
+	if (old_channel.position === new_channel.position) {
+		cNewPosition = 'без изменений.'
+	}
+	let cOldTopic = old_channel.topic;
+	let cNewTopic = new_channel.topic;
+	if(!cOldTopic) {
+		cOldTopic = 'не указано'
+	}
+	if (old_channel.topic === new_channel.topic) {
+		cNewTopic = 'без изменений.'
+	}
+	const channelEmbed = new Discord.RichEmbed()
+    .setTitle("Channel update")
+    .setColor("#ffff00")
+    .addField("Позиция до обновления", `- ${cOldPosition}`, true)
+    .addField("Позиция после обновления", `- ${cNewPosition}`, false)
+ //   .addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
+    .addField("Имя до обновления", `- ${old_channel.name}`, true)
+    .addField("Имя после обновления", `- ${cNewName}`, false)
+ //   .addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
+    .addField("Описание до обновления", `- ${cOldTopic}`, true)
+    .addField("Описание после обновления", `- ${cNewTopic}`, false);
+	chan.send(channelEmbed)
+});
 client.on("messageDelete", (old_message) => {
 	//if(message.channel.type === 'dm') return;
 	const chan = old_message.guild.channels.find('name', "logs");
