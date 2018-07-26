@@ -1403,11 +1403,10 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
     } else if (['createEmoji'].includes(command)) {
 	    actMOD = actMOD + 1;actALL = actALL +1;
 	    if(!message.member.hasPermission("MANAGE_EMOJIS")) return message.reply("у вас нету нужных прав");
-	    const url = (args[0]);
-	
-	    const name = (args[1]);
-	    if(!url) return message.reply("нужна ссылка на картинку")
-	    if(!url) return message.reply("нужно название");
+	    const url = args[0];
+	    const name = args[1];
+	    if(!url) return message.reply("нужна ссылка на картинку");
+	    if(!name) return message.reply("нужно название");
 	    message.channel.guild.createEmoji(url, name)
 	    message.reply(`эмодзи :${name}: успешно создано.`)
     } else if (['vote'].includes(command) && message.channel.guild.id === "422775194281705493") {
