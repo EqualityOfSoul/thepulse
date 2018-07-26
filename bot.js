@@ -1180,6 +1180,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
         embed.addField('Модуль NSFW использован', `${actNSFW} раз.`)
         embed.addField('Использовано команд за этот запуск', `${actALL} раз.`)
         embed.addField('Со-Авторы', '<@421030089732653057>')
+	embed.setImage('https://discordbots.org/api/widget/441667160025333762.png');
         message.channel.send(embed);
         message.delete();
 
@@ -1232,6 +1233,11 @@ client.guilds.forEach((guild) => {users += client.users.size});
         } else {
             user.send(`${output}`, {split:"\n", code:"json"});
             }
+  } else if(['widget'].includes(command)) {
+	  message.channel.send({embed: new Discord.RichEmbed()
+				.setColor('RANDOM')
+				.setImage("https://discordbots.org/api/widget/441667160025333762.png")
+			       });
   } else if(['mute'].includes(command)) {
 	  if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("вы не являетесь модератором, необходимы права `KICK_MEMBERS`");
 	  let muted = message.mentions.members.first();
