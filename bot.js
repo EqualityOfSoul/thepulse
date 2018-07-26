@@ -167,13 +167,13 @@ client.on("channelUpdate", (old_channel, new_channel) => {
     .setTitle("Channel update")
     .setColor("#ffff00")
     .addField("Позиция до обновления", `- ${cOldPosition}`, true)
-    .addField("Позиция после обновления", `- ${cNewPosition}`, false)
- //   .addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
+    .addField("Позиция после обновления", `- ${cNewPosition}`, true)
+    .addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
     .addField("Имя до обновления", `- ${old_channel.name}`, true)
-    .addField("Имя после обновления", `- ${cNewName}`, false)
- //   .addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
+    .addField("Имя после обновления", `- ${cNewName}`, true)
+    .addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
     .addField("Описание до обновления", `- ${cOldTopic}`, true)
-    .addField("Описание после обновления", `- ${cNewTopic}`, false);
+    .addField("Описание после обновления", `- ${cNewTopic}`, true);
 	chan.send(channelEmbed)
 });
 client.on("messageDelete", (old_message) => {
