@@ -420,6 +420,18 @@ voiceChannel.join()
     }
     await reaction.remove(message.author.id);
 		});
+	} else if (['uptime'].includes(command)) {
+		let message = 'Uptime: ';
+  const totalSeconds = process.uptime();
+  const days = Math.floor((totalSeconds % 31536000) / 86400);
+  const hours = parseInt(totalSeconds / 3600) % 24;
+  const minutes = parseInt(totalSeconds / 60) % 60;
+  const seconds = Math.floor(totalSeconds % 60);
+  message += days >= 1 ? `${days}d ` : '';
+  message += hours < 10 ? `0${hours}:` : `${hours}:`;
+  message += minutes < 10 ? `0${minutes}:` : `${minutes}:`;
+  message += seconds < 10 ? `0${seconds}` : `${seconds}`;
+  message.reply(message);
 	} else if(['clicker'].includes(command)) {
 		let count = 0;
 		let bot = await message.channel.send("`⬛` - добавить +1. `⚡` - завершить игру");
