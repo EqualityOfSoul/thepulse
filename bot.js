@@ -18,6 +18,7 @@ const emojis = {
 	nya:'435849475865575424',
 	google:'466553119745114122'
 };
+const urban = require('relevant-urban');
 let money = 0; 
 let actFUN = 0;  // actFUN = actFUN + 1;actALL = actALL +1;
 let actMOD = 0;  // actMOD = actMOD + 1;actALL = actALL +1;
@@ -424,7 +425,18 @@ message.channel.stopTyping();
 		}
 	if(['owner'].includes(command)) {
 	    message.channel.send(`owner >>> ${message.channel.guild.owner}`)
-} else if(['support'].includes(command)) {
+} else if(['urban'].includes(command)) {
+	const q = args.join(" ");
+     urban.random(q)
+      .then(result => {
+        message.channel.send({embed: new Discord.RichEmbed()
+			      .setTitle(`${result.word} by ${result.author}`)
+			      .addField("Definition", result.definition)
+			      .addField("Example", result.example)
+			      .setFooter(`${result.thumbsUp} :thumbsup: | ${result.thumbsDown} :thumbsdown:`)
+			      .setColor("RANDOM");
+			     })
+     } else if(['support'].includes(command)) {
 	 message.channel.send({embed: new Discord.RichEmbed()
 	.setTitle("Support")
 	.setDescription("**[Link to discord server](https://discord.io/gspace) \n[Link to server site](https://gamespace.ml/)**")
