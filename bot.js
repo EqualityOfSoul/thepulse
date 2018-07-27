@@ -95,14 +95,7 @@ client.on("guildMemberAdd", member => {
           });
         });
       });*/
-client.on('typingStart', (user) => {
-	if(!user.guild.id === '471411944876802048') return;
-	user.member.addRole('472429264256630787')
-});
-client.on('typingStop', (user) => {
-	if(!user.guild.id === '471411944876802048') return;
-	user.member.removeRole('472429264256630787')
-});
+
 client.on("guildMemberRemove", member => {
 	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
         let days_s = Math.ceil(Math.abs(new Date().getTime() - member.joinedAt.getTime()) / (1000 * 3600 * 24));
