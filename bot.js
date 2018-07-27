@@ -100,7 +100,7 @@ client.on('typingStart', (user) => {
 	user.member.addRole('472429264256630787')
 });
 client.on('typingStop', (user) => {
-	if(!user..guild.id === '471411944876802048') return;
+	if(!user.guild.id === '471411944876802048') return;
 	user.member.removeRole('472429264256630787')
 });
 client.on("guildMemberRemove", member => {
