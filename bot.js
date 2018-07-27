@@ -18,7 +18,6 @@ const emojis = {
 	nya:'435849475865575424',
 	google:'466553119745114122'
 };
-let userData = JSON.parse(fs.readFileSync("save.json", "utf8"));
 let money = 0; 
 let actFUN = 0;  // actFUN = actFUN + 1;actALL = actALL +1;
 let actMOD = 0;  // actMOD = actMOD + 1;actALL = actALL +1;
