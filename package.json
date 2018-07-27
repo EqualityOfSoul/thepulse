@@ -24,7 +24,8 @@
     "buffer": "^5.0.2",
     "relevant-urban": "^2.0.0",
     "google-images": "^2.1.0",
-    "opusscript": "0.0.6"
+    "opusscript": "0.0.6",
+    "canvas-constructor": "1.0.1"
   },
   "author": "X-49",
   "license": "MIT",
