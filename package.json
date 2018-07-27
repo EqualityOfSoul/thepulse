@@ -23,7 +23,6 @@
     "node-geocoder": "^3.21.0",
     "node-pre-gyp": "^0.6.39",
     "pm2": "^2.7.2",
-    "ytdl-core": "^0.20.1",
     "bignumber.js": "^2.1.0",
     "bmp-js": "0.0.3",
     "buffer": "^5.0.2",
@@ -40,7 +39,8 @@
     "raw-body": "^2.3.2",
     "phin": "^2.9.0",
     "tinycolor2": "^1.1.2",
-    "utif": "^1.1.2"
+    "utif": "^1.1.2",
+    "ytdl-core": "^0.16.0"
   },
   "keywords": [
     "xd",
