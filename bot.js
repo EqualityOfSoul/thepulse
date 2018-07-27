@@ -1248,7 +1248,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 		    us = message.author
 	    }
 	    message.channel.send({embed: new Discord.RichEmbed()
-				  .setTitle(us)
+				  .setTitle(us.username)
 				  .setImage('https://robohash.org/'+encodeURI(`<@${us.id}>`)+'?set=set4')
 				  .setColor('RANDOM')
 				  .setFooter(`requested by ${message.author.username}`)
