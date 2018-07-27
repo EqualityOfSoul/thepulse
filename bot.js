@@ -451,7 +451,7 @@ message.channel.stopTyping();
 const streamOptions = { seek: 0, volume: 1 };
 const broadcast = client.createVoiceBroadcast();
 
-voiceChannel.join()
+message.member.voiceChannel.join()
   .then(connection => {
     const stream = ytdl('https://www.youtube.com/watch?v=PaBwPRa__ic&t', { filter : 'audioonly' });
     broadcast.playStream(stream);
