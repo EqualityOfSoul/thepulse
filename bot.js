@@ -434,8 +434,9 @@ message.channel.stopTyping();
 			      .addField("Definition", result.definition)
 			      .addField("Example", result.example)
 			      .setFooter(`${result.thumbsUp} :thumbsup: | ${result.thumbsDown} :thumbsdown:`)
-			      .setColor("RANDOM");
+			      .setColor("RANDOM")
 			     })
+     })
      } else if(['support'].includes(command)) {
 	 message.channel.send({embed: new Discord.RichEmbed()
 	.setTitle("Support")
