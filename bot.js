@@ -257,6 +257,8 @@ message.channel.stopTyping();
     }
 }
 
+	let blacklist = config.blacklist;
+	if([message.author.id].includes(blacklist)) return;
 
     if (message.author.bot) return;
   //  if (message.author.id === '369471128835457026') return;
