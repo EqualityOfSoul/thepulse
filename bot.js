@@ -111,7 +111,7 @@ function profile() {
 	let user = message.author;
 	message.channel.send({embed: new Discord.RichEmbed()
 		.setTitle(`profile of ${message.author.username}`)
-		.addField(`money: ${money})
+		.addField(`money: ${money}`)
 		.setColor('RANDOM');
 	
 	})
