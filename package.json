@@ -23,7 +23,8 @@
     "jimp": "^0.2.28",
     "buffer": "^5.0.2",
     "relevant-urban": "^2.0.0",
-    "google-images": "^2.1.0"
+    "google-images": "^2.1.0",
+    "opusscript": "0.0.6"
   },
   "author": "X-49",
   "license": "MIT",
