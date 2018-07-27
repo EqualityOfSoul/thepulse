@@ -1245,6 +1245,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     } else if(['texthash'].includes(command)) {
 	    
 	    const text = args.join(" ");
+	    if(!text) return message.reply("Добавьте текст");
 	    message.channel.send({embed: new Discord.RichEmbed()
 				  .setDescription(text)
 				  .setImage('https://robohash.org/'+encodeURI(text)+'?set=set4')
