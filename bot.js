@@ -6,6 +6,7 @@ const { inspect } = require("util");
 const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
+const translate = require('google-translate-api');
 const canvas = require('canvas');
 const codeContext =  {};
 const opusscript = require('opusscript');
@@ -482,6 +483,17 @@ message.member.voiceChannel.join()
     }
     await reaction.remove(message.author.id);
 		});
+	} else if(['translate'].includes(command)) {
+		if(!args[0]) return message.reply("выберите язык");
+		if(!args[1]) return message.reply("добавьте текст");
+		translate(`${args.join(" ").replace(args[0], "")}`, {to: args[0]}).then(res => {
+        message.channel.send(res.text)
+        }).catch(err => {
+            message.channel.send(`Неожидано, но ошибка\n` + 
+                             "```\n" +
+                            `${err}\n` +
+                            "```")
+        });
 	} else if(['quote'].includes(command)) {
 		message.channel.fetchMessage(args.join(' '))
     .then(message => {
