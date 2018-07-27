@@ -6,6 +6,7 @@ const { inspect } = require("util");
 const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
+var convas = require('convas');
 const codeContext =  {};
 const opusscript = require('opusscript');
 const os = require('os');
