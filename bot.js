@@ -7,7 +7,7 @@ const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
 const codeContext =  {};
-var opus = require('opusscript');
+const opusscript = require('opusscript');
 const os = require('os');
 const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
@@ -448,6 +448,7 @@ message.channel.stopTyping();
 	});
 }
 	if(['voicetest'].includes(command)) {
+		const opusscript = require("opusscript");
 		const ytdl = require("ytdl-core");
 const streamOptions = { seek: 0, volume: 1 };
 const broadcast = client.createVoiceBroadcast();
