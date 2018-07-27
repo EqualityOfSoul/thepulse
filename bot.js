@@ -489,7 +489,7 @@ message.member.voiceChannel.join()
 		translate(`${args.join(" ").replace(args[0], "")}`, {to: args[0]}).then(res => {
         message.channel.send(res.text)
         }).catch(err => {
-            message.channel.send(`Неожидано, но ошибка\n` + 
+            message.channel.send(`Неожидано, но ошибка\nЕсли ошибка в языке то используйте данный метод: \n**en** = английский. **english** = английский. **engl** ≠ английский. \n**ru** = русский. **russian** = руский. **rus** ≠ русский. ` + 
                              "```\n" +
                             `${err}\n` +
                             "```")
