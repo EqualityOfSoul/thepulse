@@ -1243,6 +1243,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 		    }
     message.channel.send(`Пользователь ${member.user} получил предупреждение по причине: **` + WarnMessage + "**");
     } else if(['texthash'].includes(command)) {
+	    actFUN = actFUN + 1;actALL = actALL +1;
 	    
 	    const text = args.join(" ");
 	    if(!text) return message.reply("Добавьте текст");
@@ -1253,6 +1254,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 				  .setFooter(`requested by ${message.author.username}`)
 				 })
     } else if (['cathash'].includes(command)) {
+	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let us = message.mentions.members.first();
 	    if(!us) {
 		    us = message.author
