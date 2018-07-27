@@ -1181,6 +1181,8 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
             message.channel.send({embed: Author});
       }
     } else if (['afk'].includes(command)) {
+	    if(afkStatus == false) {
+		    afkStatus = true;
 	 message.member.setNickname(`[AFK]${message.author.username}`)
 	    actFUN = actFUN + 1;actALL = actALL +1;
         message.delete();
@@ -1194,6 +1196,12 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
             //Функция переходит на сообщение бота.
             message.react('💤')
         }).catch(function() {});
+	    }
+	    if(afkStatus == true) {
+		    afkStatus = false;
+		    message.reply("я убрал ваш статус AFK")
+		    message.member.setNickname(message.author.username);
+	    }
     } else if (['summon'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         let summoned = message.mentions.members.first();
