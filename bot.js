@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 //const clientt = require('nekos.life');
 //const neko = new clientt();
 const request = require("request");
-const { Canvas } = require('canvas-constructor');
 const { inspect } = require("util");
 const config = require('./config.json');
 const vm = require("vm");
