@@ -72,7 +72,7 @@ client.on("guildMemberAdd", member => {
 	.setThumbnail(member.user.avatarURL);
 	chan.send(welcomeEmbed);
 });
-client.on("guildMemberAdd", member => {
+/*client.on("guildMemberAdd", member => {
 	const Jimp = require('jimp');
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	let q = member.user.tag;
@@ -93,7 +93,7 @@ client.on("guildMemberAdd", member => {
             });
           });
         });
-      });
+      });*/
 client.on("guildMemberRemove", member => {
 	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
         let days_s = Math.ceil(Math.abs(new Date().getTime() - member.joinedAt.getTime()) / (1000 * 3600 * 24));
