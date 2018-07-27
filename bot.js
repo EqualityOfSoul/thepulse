@@ -1243,9 +1243,11 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 		    }
     message.channel.send(`Пользователь ${member.user} получил предупреждение по причине: **` + WarnMessage + "**");
     } else if(['texthash'].includes(command)) {
+	    
+	    const text = args.join(" ");
 	    message.channel.send({embed: new Discord.RichEmbed()
-				  .setDescription(args.join(" "))
-				  .setImage('https://robohash.org/'+encodeURI((args.join(" "))+'?set=set4')
+				  .setDescription(text)
+				  .setImage('https://robohash.org/'+encodeURI(text)+'?set=set4')
 				  .setColor('RANDOM')
 				  .setFooter(`requested by ${message.author.username}`)
 				 })
