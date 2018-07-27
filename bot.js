@@ -7,6 +7,7 @@ const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
 const codeContext =  {};
+var opus = require('opusscript');
 const os = require('os');
 const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
