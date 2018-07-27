@@ -77,7 +77,7 @@ client.on("guildMemberAdd", member => {
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	let q = member.user.tag;
         let r = member.guild.name;
-        let img = member.user.AvatarURL({ format: "png"});
+        let img = member.user.avatarURL({ format: "png"});
         Jimp.read(img).then(function(image) {
           Jimp.read("https://i.imgur.com/8YEW9b1.png").then(function(image2) {
             Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(function(font) {
