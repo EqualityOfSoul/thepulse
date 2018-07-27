@@ -25,7 +25,9 @@
     "relevant-urban": "^2.0.0",
     "google-images": "^2.1.0",
     "opusscript": "0.0.6",
-    "canvas-constructor": "1.0.1"
+    "canvas-constructor": "1.0.1",
+    "canvas": "1.6.11",
+    "node-canvas": "1.6.11"
   },
   "author": "X-49",
   "license": "MIT",
