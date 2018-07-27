@@ -107,7 +107,15 @@ client.on("guildMemberRemove", member => {
 	chan.send(goodbyeEmbed);
 });
 const servers = config.servers;
-
+function profile() {
+	let user = message.author;
+	message.channel.send({embed: new Discord.RichEmbed()
+		.setTitle(`profile of ${message.author.username}`)
+		.addField(`money: ${money})
+		.setColor('RANDOM');
+	
+	})
+}
 async function color () {
     await servers.forEach(async function (item1, number1) {
         if (client.guilds.get(item1[0]) && client.guilds.get(item1[0]).roles.get(item1[1]).editable)
