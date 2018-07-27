@@ -433,7 +433,7 @@ message.channel.stopTyping();
 			      .setTitle(`${result.word} by ${result.author}`)
 			      .addField("Definition", result.definition)
 			      .addField("Example", result.example)
-			      .setFooter(`${result.thumbsUp} :thumbsup: | ${result.thumbsDown} :thumbsdown:`)
+			      .setFooter(`${result.thumbsUp} 👍 | ${result.thumbsDown} 👎`)
 			      .setColor("RANDOM")
 			     })
      })
