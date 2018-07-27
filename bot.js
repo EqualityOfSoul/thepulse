@@ -1197,8 +1197,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
             //Функция переходит на сообщение бота.
             message.react('💤')
         }).catch(function() {});
-	    }
-	    if(afkStatus === true) {
+	    } else if(afkStatus === true) {
 		    afkStatus = false;
 		    message.reply("я убрал ваш статус AFK")
 		    message.member.setNickname(message.author.username);
