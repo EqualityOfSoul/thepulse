@@ -1779,7 +1779,7 @@ let voice = 0;
    if (reaction.emoji.name === "7⃣") {
 	   const embed = new Discord.RichEmbed()
 	   .setTitle("Категория Filters")
-	   .addField("Filters", "**x!invert** [user] \n**x!magik** [user] \n**x!flip** [user] \n**x!gay** [user] \n**x!blur [score] [user] \n**x!banner [text]")
+	   .addField("Filters", "**x!invert** [user] \n**x!magik** [user] \n**x!flip** [user] \n**x!gay** [user] \n**x!blur [score] [user] \n**x!banner** [text]")
 	   .setColor("RANDOM");
 	   bot.edit(embed);
    }
@@ -2405,10 +2405,10 @@ message.channel.sendFile(buffer, 'name.jpg');
           });
         });
       });
-    } else if(['blur', 'пятно'].include(command)) {
+    } else if(['blur', 'пятно'].includes(command)) {
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
-	    let score = args[0];
+	    let score = args[0] || args[1];
 	    if(!score) return message.reply("Укажите силу эфекта. \nExample: `x!blur 4 @user ");
 	    jimp.read(img).then(function(image) {
         image.blur(score);
