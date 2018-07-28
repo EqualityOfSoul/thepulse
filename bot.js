@@ -2373,9 +2373,6 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
             });
         });
     } else if(['invert', 'inverse'].includes(command)) {
-	    if (talkedRecently.has(message.author.id)) {
-            message.reply("Pls cooldown! 1.5s");
-    } else {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    message.channel.startTyping()
 	    let img = message.mentions.users.first();
@@ -2387,15 +2384,9 @@ image.getBuffer(jimp.AUTO, (err, buffer) => {
 message.channel.sendFile(buffer, 'name.jpg');
 })
 });
-	    talkedRecently.add(message.author.id);
-        setTimeout(() => {
-          
-          talkedRecently.delete(message.author.id);
-        }, 1500);
+
 	} else if(['magik', 'магия'].includes(command)) {
-		if (talkedRecently.has(message.author.id)) {
-            message.reply("Pls cooldown! 1.5s");
-    } else {
+
 		actFUN = actFUN + 1; actALL = actALL + 1;
 		message.channel.startTyping()
 		let img = message.mentions.users.first();
@@ -2406,15 +2397,9 @@ message.channel.sendFile(buffer, 'name.jpg');
           message.channel.send({files: [{ name: 'magik.png', attachment: buffer }] });
         });
       });
-	    talkedRecently.add(message.author.id);
-        setTimeout(() => {
-          
-          talkedRecently.delete(message.author.id);
-        }, 1500);
+
 	} else if(['flip', 'флип'].includes(command)) {
-		if (talkedRecently.has(message.author.id)) {
-            message.reply("Pls cooldown! 1.5s");
-    } else {
+
 		actFUN = actFUN + 1; actALL = actALL + 1;
 		message.channel.startTyping()
 	    let img = message.mentions.users.first();
@@ -2426,15 +2411,9 @@ message.channel.sendFile(buffer, 'name.jpg');
           message.channel.send({files: [{ name: 'flip.png', attachment: buffer }] });
         });
       });
-	    talkedRecently.add(message.author.id);
-        setTimeout(() => {
-          
-          talkedRecently.delete(message.author.id);
-        }, 1500);
+
     } else if(['gay', 'гей'].includes(command)) {
-	    if (talkedRecently.has(message.author.id)) {
-            message.reply("Pls cooldown! 1.5s");
-    } else {
+
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    message.channel.startTyping()
 	    let img = message.mentions.users.first();
@@ -2450,15 +2429,9 @@ message.channel.sendFile(buffer, 'name.jpg');
           });
         });
       });
-	    talkedRecently.add(message.author.id);
-        setTimeout(() => {
-          
-          talkedRecently.delete(message.author.id);
-        }, 1500);
+
     } else if(['blur', 'пятно'].includes(command)) {
-	    if (talkedRecently.has(message.author.id)) {
-            message.reply("Pls cooldown! 1.5s");
-    } else {
+
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    message.channel.startTyping()
 	    let img = message.mentions.users.first();
@@ -2470,30 +2443,17 @@ message.channel.sendFile(buffer, 'name.jpg');
           message.channel.send({files: [{ name: 'blur.png', attachment: buffer }] });
         });
       });
-	    talkedRecently.add(message.author.id);
-        setTimeout(() => {
-          
-          talkedRecently.delete(message.author.id);
-        }, 1500);
+	    
     } else if(['banner'].includes(command)) {
-	    if (talkedRecently.has(message.author.id)) {
-            message.reply("Pls cooldown! 1.5s");
-    } else {
+	    
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    const text = args.join(" ");
 	    const embed = new Discord.RichEmbed()
 	    .setColor("RANDOM")
 	    .setImage(`https://dummyimage.com/2000x500/33363c/ffffff&text=${encodeURIComponent(text)}`);
 	    message.channel.send(embed)
-	    talkedRecently.add(message.author.id);
-        setTimeout(() => {
-          
-          talkedRecently.delete(message.author.id);
-        }, 1500);
+
     } else if(['sepia'].includes(command)) {
-	     if (talkedRecently.has(message.author.id)) {
-            message.reply("Pls cooldown! 1.5s");
-    } else {
 	     actFUN = actFUN + 1; actALL = actALL + 1;
 	    message.channel.startTyping()
 	    let img = message.mentions.users.first();
@@ -2505,12 +2465,7 @@ message.channel.sendFile(buffer, 'name.jpg');
           message.channel.send({files: [{ name: 'sepia.png', attachment: buffer }] });
         });
       });
-	    talkedRecently.add(message.author.id);
-        setTimeout(() => {
-          
-          talkedRecently.delete(message.author.id);
-        }, 1500);
-    }
+	  
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
