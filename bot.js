@@ -2465,7 +2465,7 @@ message.channel.sendFile(buffer, 'name.jpg');
           message.channel.send({files: [{ name: 'sepia.png', attachment: buffer }] });
         });
       });
-	  
+    }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
