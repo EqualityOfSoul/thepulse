@@ -437,7 +437,7 @@ message.channel.stopTyping();
 		.setColor("RANDOM")
 		.setFooter("osu module > error");
 		if(!mode) return message.channel.send(modeErr);
-		if(!user) return message.reply("Укажите пользователя);
+		if(!user) return message.reply("Укажите пользователя");
 		if(mode === 'osu') {
 			link = `http://lemmmy.pw/osusig/sig.php?colour=pink&uname=${user}&pp=2&countryrank&flagshadow&darktriangles&opaqueavatar&onlineindicator=undefined&xpbar`
 		}
