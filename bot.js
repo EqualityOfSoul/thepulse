@@ -2277,21 +2277,8 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
 	    await neko.getSFWHug();
 	    message.channel.send(url);
 	   
-    }*/ else if(['nyan'].includes(command)) {
-	    actIMG = actIMG + 1;actALL = actALL +1;
-        message.channel.send('Загрузка...').then(msg => {
-            request('https://rra.ram.moe/i/r?type=nyan', function (error, response, body) {
-                try {
-                    let arr = JSON.parse(body);
-			if(arr['nsfw'] === true) return message.reply("Данное изображение содержит NSFW контент, попробуйте еще раз.");
-                    let embed = new Discord.RichEmbed()
-                        .setImage(`https://cdn.ram.moe/${arr['path']}`)
-                        .setColor('RANDOM')		
-                    msg.edit({embed});
-                } catch (e) {console.log(e)}
-            });
-        });
-    } else if(['cat'].includes(command)) {
+    }*/ 
+     else if(['cat'].includes(command)) {
         actIMG = actIMG + 1;actALL = actALL +1;
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/meow', function (error, response, body) {
@@ -2382,6 +2369,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
             });
         });
     } else if(['invert', 'inverse'].includes(command)) {
+	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
 jimp.read(img.avatarURL).then(function(image){
@@ -2391,6 +2379,7 @@ message.channel.sendFile(buffer, 'name.jpg');
 })
 });
 	} else if(['magik', 'магия'].includes(command)) {
+		actFUN = actFUN + 1; actALL = actALL + 1;
 		let img = message.mentions.users.first();
 		if(!img) return message.reply("Упомяните нужного пользователя");
         jimp.read(`https://discord.services/api/magik?url=${img.avatarURL}`).then(function(image) {
@@ -2399,6 +2388,7 @@ message.channel.sendFile(buffer, 'name.jpg');
         });
       });
 	} else if(['flip', 'флип'].includes(command)) {
+		actFUN = actFUN + 1; actALL = actALL + 1;
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
       jimp.read(img.avatarURL).then(function(image) {
@@ -2408,6 +2398,7 @@ message.channel.sendFile(buffer, 'name.jpg');
         });
       });
     } else if(['gay', 'гей'].includes(command)) {
+	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
       jimp.read(img.avatarURL).then(function(image) {
@@ -2421,6 +2412,7 @@ message.channel.sendFile(buffer, 'name.jpg');
         });
       });
     } else if(['blur', 'пятно'].includes(command)) {
+	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let score = args[0] || args[1];
 	    if(!score) return message.reply("Укажите силу эфекта. \n**Example: `x!blur 4 @user`.");
 	    let img = message.mentions.users.first();
@@ -2432,6 +2424,7 @@ message.channel.sendFile(buffer, 'name.jpg');
         });
       });
     } else if(['banner'].includes(command)) {
+	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    const text = args.join(" ");
 	    const embed = new Discord.RichEmbed()
 	    .setColor("RANDOM")
