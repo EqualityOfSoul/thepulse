@@ -1644,8 +1644,8 @@ let voice = 0;
     } else {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         const embed = new Discord.RichEmbed()
-            .setAuthor(message.author, message.author.avatarURL)
-            .setTitle('Команды бота.')
+            .setAuthor(message.author.username, message.author.avatarURL)
+            .setTitle('< > не обязательный параграф, [ ] обязательный параграф.')
             .setColor("#42f4aa")
             .setThumbnail('https://cdn.pixabay.com/photo/2016/06/15/15/02/info-1459077_960_720.png')
             .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
