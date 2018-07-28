@@ -428,7 +428,7 @@ message.channel.stopTyping();
 			});
 		} else if(['invert', 'inverse'].includes(command)) {
 		const jimp = require("jimp");
-		let avatar = message.mentions.members.first().avatarURL;
+		let avatar = message.mentions.members.first.avatarURL;
 		if(!avatar) {
 			avatar = message.author.avatarURL
 		}
