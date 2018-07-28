@@ -43,6 +43,18 @@ clientOptions: {
 	stats: true,
   debug: true,
   guildsPerShard: "20",
+  name: "xeval bot",
+  webhooks: {
+    shard: {
+      id: "472849859574104074",
+      token: "5RVF6EsHzvy9acRM330Hu9fLJWDjAcAnuYZqGUCuFqBrA2oRu9dcVlLqh8gfhzHwemH6"
+    },
+     cluster: {
+      id: "0Taa7RBh1EeVvJDdo-jxJrvZqd0w1ycpndGeWj7TQdy0oUk_QK7CAjt-rEkVBQfYPnqp",
+      token: "472850422563078154"
+    }
+  },
+  clientOptions: {
       messageLimit: 150,
       defaultImageFormat: "png"
   }
