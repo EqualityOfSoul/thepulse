@@ -2384,7 +2384,7 @@ image.getBuffer(jimp.AUTO, (err, buffer) => {
 message.channel.sendFile(buffer, 'name.jpg');
 })
 });
-
+message.channel.stopTyping()
 	} else if(['magik', 'магия'].includes(command)) {
 
 		actFUN = actFUN + 1; actALL = actALL + 1;
@@ -2397,7 +2397,7 @@ message.channel.sendFile(buffer, 'name.jpg');
           message.channel.send({files: [{ name: 'magik.png', attachment: buffer }] });
         });
       });
-
+message.channel.stopTyping()
 	} else if(['flip', 'флип'].includes(command)) {
 
 		actFUN = actFUN + 1; actALL = actALL + 1;
@@ -2411,7 +2411,7 @@ message.channel.sendFile(buffer, 'name.jpg');
           message.channel.send({files: [{ name: 'flip.png', attachment: buffer }] });
         });
       });
-
+message.channel.stopTyping()
     } else if(['gay', 'гей'].includes(command)) {
 
 	    actFUN = actFUN + 1; actALL = actALL + 1;
@@ -2429,7 +2429,7 @@ message.channel.sendFile(buffer, 'name.jpg');
           });
         });
       });
-
+message.channel.stopTyping()
     } else if(['blur', 'пятно'].includes(command)) {
 
 	    actFUN = actFUN + 1; actALL = actALL + 1;
@@ -2439,11 +2439,10 @@ message.channel.sendFile(buffer, 'name.jpg');
 	    jimp.read(img.avatarURL).then(function(image) {
         image.blur(5);
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-		message.channel.stopTyping()
           message.channel.send({files: [{ name: 'blur.png', attachment: buffer }] });
         });
       });
-	    
+	    message.channel.stopTyping()
     } else if(['banner'].includes(command)) {
 	    
 	    actFUN = actFUN + 1; actALL = actALL + 1;
@@ -2461,10 +2460,10 @@ message.channel.sendFile(buffer, 'name.jpg');
 	    jimp.read(img.avatarURL).then(function(image) {
         image.sepia();
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-		message.channel.stopTyping()
           message.channel.send({files: [{ name: 'sepia.png', attachment: buffer }] });
         });
       });
+	    message.channel.stopTyping()
     }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
