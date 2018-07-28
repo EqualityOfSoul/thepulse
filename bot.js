@@ -6,6 +6,7 @@ const { inspect } = require("util");
 const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
+const jimp = require("jimp");
 const translate = require('google-translate-api');
 const canvas = require('canvas');
 const codeContext =  {};
@@ -1658,7 +1659,7 @@ let voice = 0;
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 24 часа с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
             .setFooter(message.channel.guild.name)
             .setTimestamp();*/
-	    let bot = await /*if(!args[0]) return */message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw` \nПригласить бота на сервер x!invite \nпроголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
+	    let bot = await /*if(!args[0]) return */message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw`, `7 - filters` \nПригласить бота на сервер x!invite \nпроголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
 	    /*if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
@@ -1721,6 +1722,7 @@ let voice = 0;
                 await bot.react("4⃣")
 	        await bot.react("5⃣")
                 await bot.react("6⃣")
+	        await bot.react("7⃣")
 		await bot.react("⚡")
 		const coll = bot.createReactionCollector((reaction, user) => user.id === message.author.id);
 		coll.on('collect', async(reaction) => {
@@ -1773,6 +1775,13 @@ let voice = 0;
             .setColor("#ff00ff");
    bot.edit(embed);
 	  // await reaction.remove(client.user.id);
+   }
+   if (reaction.emoji.name === "7⃣") {
+	   const embed = new Discord.RichEmbed()
+	   .setTitle("Категория Filters")
+	   .addField("Filters", "**x!invert** [user] \n**x!magik** [user] \n**x!flip** [user] \n**x!gay** [user] \n**x!blur [score] [user]")
+	   .setColor("RANDOM");
+	   bot.edit(embed);
    }
    if (reaction.emoji.name === "⚡") {
     message.delete()
@@ -2358,23 +2367,55 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
             });
         });
     } else if(['invert', 'inverse'].includes(command)) {
-	    var jimp = require("jimp");
 	    let img = message.mentions.users.first();
+	    if(!img) return message.reply("Упомяните нужного пользователя");
 jimp.read(img.avatarURL).then(function(image){
 image.invert()
 image.getBuffer(jimp.AUTO, (err, buffer) => {
 message.channel.sendFile(buffer, 'name.jpg');
 })
 });
-	} else if(['magic'].includes(command)) {
-		var jimp = require("jimp");
+	} else if(['magik', 'магия'].includes(command)) {
 		let img = message.mentions.users.first();
+		if(!img) return message.reply("Упомяните нужного пользователя");
         jimp.read(`https://discord.services/api/magik?url=${img.avatarURL}`).then(function(image) {
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
           message.channel.send({files: [{ name: 'magik.png', attachment: buffer }] });
         });
       });
-	}
+	} else if(['flip', 'флип'].includes(command)) {
+	    let img = message.mentions.users.first();
+	    if(!img) return message.reply("Упомяните нужного пользователя");
+      jimp.read(img).then(function(image) {
+        image.flip(true, false);
+        image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+          message.channel.send({files: [{ name: 'flip.png', attachment: buffer }] });
+        });
+      });
+    } else if(['gay', 'гей'].includes(command)) {
+	    let img = message.mentions.users.first();
+	    if(!img) return message.reply("Упомяните нужного пользователя");
+      jimp.read(img).then(function(image) {
+        jimp.read("https://cdn.glitch.com/8c009d94-1f7e-464c-82c2-bccaf15cb6cd%2Fgay.png?1520010590279").then(function(image2) {
+          image.resize(768, 768);
+          image2.fade(0.6);
+          image.composite(image2, 0, 0);
+          image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+            message.channel.send({files: [{ name: 'gay.png', attachment: buffer }] });
+          });
+        });
+      });
+    } else if(['blur', 'пятно'].include(command)) {
+	    let img = message.mentions.users.first();
+	    if(!img) return message.reply("Упомяните нужного пользователя");
+	    let score = args[0];
+	    if(!score) return message.reply("Укажите силу эфекта. \nExample: `x!blur 4 @user ");
+	    jimp.read(img).then(function(image) {
+        image.blur(score);
+        image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+          message.channel.send({files: [{ name: 'blur.png', attachment: buffer }] });
+        });
+      });
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
