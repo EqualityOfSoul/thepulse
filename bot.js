@@ -426,8 +426,7 @@ message.channel.stopTyping();
 					message.channel.send(`${key}: ${recalledMessage}`);
 				}
 			});
-		}
-	if(['invert'].icnludes(command)) {
+		} else if(['invert', 'inverse'].includes(command)) {
 		const jimp = require("jimp");
 		let avatar = message.mentions.members.first().avatarURL;
 		if(!avatar) {
