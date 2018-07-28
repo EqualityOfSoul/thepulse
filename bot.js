@@ -1779,7 +1779,7 @@ let voice = 0;
    if (reaction.emoji.name === "7⃣") {
 	   const embed = new Discord.RichEmbed()
 	   .setTitle("Категория Filters")
-	   .addField("Filters", "**x!invert** [user] \n**x!magik** [user] \n**x!flip** [user] \n**x!gay** [user] \n**x!blur [score] [user]")
+	   .addField("Filters", "**x!invert** [user] \n**x!magik** [user] \n**x!flip** [user] \n**x!gay** [user] \n**x!blur [score] [user] \n**x!banner [text]")
 	   .setColor("RANDOM");
 	   bot.edit(embed);
    }
@@ -2416,6 +2416,13 @@ message.channel.sendFile(buffer, 'name.jpg');
           message.channel.send({files: [{ name: 'blur.png', attachment: buffer }] });
         });
       });
+    } else if(['banner'].includes(command)) {
+	    const text = args.join(" ");
+	    const embed = new Discord.RichEmbed()
+	    .setColor("RANDOM")
+	    .setImage(`https://dummyimage.com/2000x500/33363c/ffffff&text=${encodeURIComponent(text)}`);
+	    message.channel.send(embed);
+    }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
