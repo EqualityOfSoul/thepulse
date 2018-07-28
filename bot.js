@@ -455,7 +455,7 @@ message.channel.stopTyping();
 				      .setColor('RANDOM')
 				      .setDescription(`Виджет пользователя ${user}`)
 				      .setImage(link)
-				      .setFooter("osu module");
+				      .setFooter("osu module")
 				     })
 	}
 	if(['owner'].includes(command)) {
