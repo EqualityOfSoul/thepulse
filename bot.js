@@ -427,6 +427,19 @@ message.channel.stopTyping();
 				}
 			});
 		}
+	if(['invert'].icnludes(command)) {
+		const jimp = require("jimp");
+		let avatar = message.mentions.members.first().avatarURL;
+		if(!avatar) {
+			avatar = message.author.avatarURL
+		}
+jimp.read(avatar).then(function(image){
+image.invert()
+image.getBuffer(jimp.AUTO, (err, buffer) => {
+message.channel.sendFile(buffer, 'name.jpg');
+})
+});
+	}
 	if(['osu'].includes(command)) {
 		let mode = args[0];
 		args.shift()
