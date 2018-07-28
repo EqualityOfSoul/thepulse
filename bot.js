@@ -40,6 +40,9 @@ const colors = ['ff2828','ff3d28','ff4b28','ff5a28','ff6828','ff7628','ff8c28','
 const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
 clientOptions: {
+	stats: true,
+  debug: true,
+  guildsPerShard: "20",
       messageLimit: 150,
       defaultImageFormat: "png"
   }
