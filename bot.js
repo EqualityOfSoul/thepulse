@@ -1643,23 +1643,28 @@ let voice = 0;
             message.reply("Pls CoolDown");
     } else {
 	    actFUN = actFUN + 1;actALL = actALL +1;
-        /*const embed = new Discord.RichEmbed()
+        const embed = new Discord.RichEmbed()
             .setAuthor(message.author, message.author.avatarURL)
             .setTitle('Команды бота.')
             .setColor("#42f4aa")
             .setThumbnail('https://cdn.pixabay.com/photo/2016/06/15/15/02/info-1459077_960_720.png')
-            .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!rs [ид канала] [сообщение]** отослать сообщение из 1 чата в другой. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест команда эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
-            .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, время учитывается в миллисекундах (1000ms = 1 секунда) \n**x!save** [key] [text] - сохранить ключ. \n**x!view** <key> - просмотреть список ключей или просмотреть ключ. \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1 \n**x!support** - ссылка на сервер где можно задать вопрос (а может и нет)")
-            .addField("Mod", "**x!ban** [user] -бан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!prune** - удалить последние 50 сообщений. \n**x!tts** [text] - tts Сообщение.")
-            .addField("Bot own", "**x!eval** [code] - эмуляция js кода. \n**x!presence** __[type] [status]__ - смена статуса. \n**x!us** - приватное сообщение от лица бота.")
-            .addField("Reactions", "**x!kiss** [user] - поцелуй. \n**x!pat** [user] - погладить. \n**x!nom** [user] - дать поесть. \n**x!slap** [user] - ударить. \n**x!hug** [user] - обнять. \n**x!cuddle** [user] - прижаться. \n**x!tickle** [user] - пощекотать. \n**x!poke** [user] - тыкнуть.")
-            .addField("Images", "**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.")
-            .addField("NSFW", "**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
+            .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!roles** узнать роли сервера. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!nya** тест эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
+            .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text]** - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, напишите x!timer для помощи. \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!count** - добавить +1 \n**x!reverse** [text] - реверс текста. \n**x!space** [text] - пробельный текст. \n**x!time** - мск время. \n**x!save** [key] [message] - сохранить сообщение в ключ. \n**x!view** <key> - просмотреть ключ(и). \n**x!owoify** [текст на английском] \n**x!support** - support server (нет) \n**x!urban** [word] - выдаст информацию на запрос. \n**x!quote** [message id] - просмотреть содержание сообщения (только с данного сервера) \n**x!cathash** <user> - просмотр пользователя через robothash. \n**x!texthash** [text] - перевод любого текста в кота (очень редко в роботов)")
+            .addField("Mod", "**x!prune** <user> [ammout] - очистка сообений от пользователя либо чата. \n **x!softban** [users] - бан нескольких пользователей за раз. (времено отключено) \n**x!ban** [user] - бан пользователя. \n**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!rs** [channel id] [message] - удаленая отправка сообщений. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!tts** [text] - tts Сообщение.")
+            .addField("Bot owner", "**x!eval** [code] - эмуляция js кода. \n**x!presence** [type] [status] - смена статуса. \n**x!us** [user id] - приватное сообщение от лица бота.")
+            .addField("Reactions", "**x!suicide** - суицид. \n**x!cry** - плакать. \n**x!wasted** [user] - уебать. \n**x!kiss** [user] - поцелуй. \n**x!pat** [user] - погладить. \n**x!nom** [user] - дать поесть. \n**x!slap** [user] - ударить. \n**x!hug** [user] - обнять. \n**x!cuddle** [user] - прижаться. \n**x!tickle** [user] - пощекотать. \n**x!poke** [user] - тыкнуть.")
+            .addField("Images", "**x!nyan** - описание не указано. \n**x!foxGirl** - рандомное fox girl изображение. \n**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.")
+            .addField("NSFW", "**X!ero** \n**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
+	    .addField("Filters", "**x!invert** [user] \n**x!magik** [user] \n**x!flip** [user] \n**x!gay** [user] \n**x!blur [score] [user] \n**x!banner** [text]")
             .addField("utility (временно недоступно)", "**x!pin** [channel id] [message id] - закрепить сообщение ботом. \n**x!unpin** [channel id] [message id] - открепить сообщение ботом.")
-            .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 24 часа с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
-            .setFooter(message.channel.guild.name)
-            .setTimestamp();*/
-	    let bot = await /*if(!args[0]) return */message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw`, `7 - filters` \nПригласить бота на сервер x!invite \nпроголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
+            .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 12 часов с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
+            .setFooter("help module")
+            .setTimestamp();
+	    message.author.send(embed);
+    } else {
+	    message.channel.send("Я пытался отослать вам личное сообщение, но кажись ваши личные сообщения заблокированы.")
+	   }
+	    /*let bot = await if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw`, `7 - filters` \nПригласить бота на сервер x!invite \nпроголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
 	    /*if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
 		    .setTitle("Категория Fun")
@@ -1714,7 +1719,7 @@ let voice = 0;
 	    .addField("NSFW", "**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
             .setColor("#ff00ff");
             return message.channel.send(nsfwEmbed);
-		    }*/
+		    }
 
 	        await bot.react("1⃣")
                 await bot.react("2⃣")
@@ -1788,7 +1793,7 @@ let voice = 0;
     bot.delete()
     }
    // await reaction.remove(message.author.id);
-		});
+		});*/
 	    talkedRecently.add(message.author.id);
         setTimeout(() => {
           
