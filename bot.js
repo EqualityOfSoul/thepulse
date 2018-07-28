@@ -2277,7 +2277,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
 	    await neko.getSFWHug();
 	    message.channel.send(url);
 	   
-    }*/ else if(['nyan'].include(command)) {
+    }*/ else if(['nyan'].includes(command)) {
 	    actIMG = actIMG + 1;actALL = actALL +1;
         message.channel.send('Загрузка...').then(msg => {
             request('https://rra.ram.moe/i/r?type=nyan', function (error, response, body) {
