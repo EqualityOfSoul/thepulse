@@ -2358,19 +2358,19 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
             });
         });
     } else if(['invert', 'inverse'].includes(command)) {
-	    const jimp = require("jimp");
-	    let img = message.mentions.users.first.avatarURL;
-jimp.read(img).then(function(image){
+	    var jimp = require("jimp");
+	    let img = message.mentions.users.first();
+jimp.read(img.avatarURL).then(function(image){
 image.invert()
 image.getBuffer(jimp.AUTO, (err, buffer) => {
 message.channel.sendFile(buffer, 'name.jpg');
 })
 });
 	} else if(['magic'].includes(command)) {
-		const jimp = require("jimp");
-		let img = message.mentions.users.first.avatarURL;
-      Jimp.read(`https://discord.services/api/magik?url=${img}`).then(function(image) {
-        image.getBuffer(Jimp.MIME_PNG, (error, buffer) => {
+		var jimp = require("jimp");
+		let img = message.mentions.users.first();
+        jimp.read(`https://discord.services/api/magik?url=${img.avatarURL}`).then(function(image) {
+        image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
           message.channel.send({files: [{ name: 'magik.png', attachment: buffer }] });
         });
       });
