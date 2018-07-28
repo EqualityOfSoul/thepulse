@@ -2373,36 +2373,70 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
             });
         });
     } else if(['invert', 'inverse'].includes(command)) {
+	    if (talkedRecently.has(message.author.id)) {
+            message.reply("Pls cooldown! 1.5s");
+    } else {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
+	    message.channel.startTyping()
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
 jimp.read(img.avatarURL).then(function(image){
 image.invert()
 image.getBuffer(jimp.AUTO, (err, buffer) => {
+	message.channel.stopTyping()
 message.channel.sendFile(buffer, 'name.jpg');
 })
 });
+	    talkedRecently.add(message.author.id);
+        setTimeout(() => {
+          
+          talkedRecently.delete(message.author.id);
+        }, 1500);
 	} else if(['magik', 'магия'].includes(command)) {
+		if (talkedRecently.has(message.author.id)) {
+            message.reply("Pls cooldown! 1.5s");
+    } else {
 		actFUN = actFUN + 1; actALL = actALL + 1;
+		message.channel.startTyping()
 		let img = message.mentions.users.first();
 		if(!img) return message.reply("Упомяните нужного пользователя");
         jimp.read(`https://discord.services/api/magik?url=${img.avatarURL}`).then(function(image) {
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+		message.channel.stopTyping()
           message.channel.send({files: [{ name: 'magik.png', attachment: buffer }] });
         });
       });
+	    talkedRecently.add(message.author.id);
+        setTimeout(() => {
+          
+          talkedRecently.delete(message.author.id);
+        }, 1500);
 	} else if(['flip', 'флип'].includes(command)) {
+		if (talkedRecently.has(message.author.id)) {
+            message.reply("Pls cooldown! 1.5s");
+    } else {
 		actFUN = actFUN + 1; actALL = actALL + 1;
+		message.channel.startTyping()
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
       jimp.read(img.avatarURL).then(function(image) {
         image.flip(true, false);
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+		message.channel.stopTyping()
           message.channel.send({files: [{ name: 'flip.png', attachment: buffer }] });
         });
       });
+	    talkedRecently.add(message.author.id);
+        setTimeout(() => {
+          
+          talkedRecently.delete(message.author.id);
+        }, 1500);
     } else if(['gay', 'гей'].includes(command)) {
+	    if (talkedRecently.has(message.author.id)) {
+            message.reply("Pls cooldown! 1.5s");
+    } else {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
+	    message.channel.startTyping()
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
       jimp.read(img.avatarURL).then(function(image) {
@@ -2411,37 +2445,71 @@ message.channel.sendFile(buffer, 'name.jpg');
           image2.fade(0.6);
           image.composite(image2, 0, 0);
           image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+		  message.channel.stopTyping()
             message.channel.send({files: [{ name: 'gay.png', attachment: buffer }] });
           });
         });
       });
+	    talkedRecently.add(message.author.id);
+        setTimeout(() => {
+          
+          talkedRecently.delete(message.author.id);
+        }, 1500);
     } else if(['blur', 'пятно'].includes(command)) {
+	    if (talkedRecently.has(message.author.id)) {
+            message.reply("Pls cooldown! 1.5s");
+    } else {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
+	    message.channel.startTyping()
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
 	    jimp.read(img.avatarURL).then(function(image) {
         image.blur(5);
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+		message.channel.stopTyping()
           message.channel.send({files: [{ name: 'blur.png', attachment: buffer }] });
         });
       });
+	    talkedRecently.add(message.author.id);
+        setTimeout(() => {
+          
+          talkedRecently.delete(message.author.id);
+        }, 1500);
     } else if(['banner'].includes(command)) {
+	    if (talkedRecently.has(message.author.id)) {
+            message.reply("Pls cooldown! 1.5s");
+    } else {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    const text = args.join(" ");
 	    const embed = new Discord.RichEmbed()
 	    .setColor("RANDOM")
 	    .setImage(`https://dummyimage.com/2000x500/33363c/ffffff&text=${encodeURIComponent(text)}`);
-	    message.channel.send(embed);
+	    message.channel.send(embed)
+	    talkedRecently.add(message.author.id);
+        setTimeout(() => {
+          
+          talkedRecently.delete(message.author.id);
+        }, 1500);
     } else if(['sepia'].includes(command)) {
+	     if (talkedRecently.has(message.author.id)) {
+            message.reply("Pls cooldown! 1.5s");
+    } else {
 	     actFUN = actFUN + 1; actALL = actALL + 1;
+	    message.channel.startTyping()
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
 	    jimp.read(img.avatarURL).then(function(image) {
         image.sepia();
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+		message.channel.stopTyping()
           message.channel.send({files: [{ name: 'sepia.png', attachment: buffer }] });
         });
       });
+	    talkedRecently.add(message.author.id);
+        setTimeout(() => {
+          
+          talkedRecently.delete(message.author.id);
+        }, 1500);
     }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
