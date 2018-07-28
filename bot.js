@@ -2359,11 +2359,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
             });
         });
     } else if(['invert', 'inverse'].includes(command)) {
-	    let img = user ? user.avatarURL : url ? url : message.author.avatarURL;
-		//let img = message.mentions.members.first.avatarURL;
-		if(!img) {
-			img = message.author.avatarURL
-		}
+	    let img = message.mentions.users.first.avatarURL;
 jimp.read(img).then(function(image){
 image.invert()
 image.getBuffer(jimp.AUTO, (err, buffer) => {
@@ -2371,7 +2367,7 @@ message.channel.sendFile(buffer, 'name.jpg');
 })
 });
 	} else if(['magic'].includes(command)) {
-		let img = user ? user.avatarURL : url ? url : message.author.avatarURL;
+		let img = message.mentions.users.first.avatarURL;
       Jimp.read(`https://discord.services/api/magik?url=${img}`).then(function(image) {
         image.getBuffer(Jimp.MIME_PNG, (error, buffer) => {
           message.channel.send({files: [{ name: 'magik.png', attachment: buffer }] });
