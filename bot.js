@@ -429,7 +429,8 @@ message.channel.stopTyping();
 		}
 	if(['osu'].includes(command)) {
 		let mode = args[0];
-		let user = args[1];
+		args.shift()
+		let user = args.join(" ");
 		let link = ' ';
 		let modeErr = new Discord.RichEmbed()
 		.setTitle("Error")
@@ -453,7 +454,6 @@ message.channel.stopTyping();
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setTitle(user)
 				      .setColor('RANDOM')
-				      .setDescription(`Виджет пользователя ${user}`)
 				      .setImage(link)
 				      .setFooter("osu module")
 				     })
