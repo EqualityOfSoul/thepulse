@@ -5,6 +5,7 @@ const request = require("request");
 const { inspect } = require("util");
 const config = require('./config.json');
 const vm = require("vm");
+const jimp = require("jimp");
 const fs = require("fs");
 const translate = require('google-translate-api');
 const canvas = require('canvas');
@@ -426,19 +427,7 @@ message.channel.stopTyping();
 					message.channel.send(`${key}: ${recalledMessage}`);
 				}
 			});
-		} else if(['invert', 'inverse'].includes(command)) {
-		const jimp = require("jimp");
-		let avatar = message.mentions.members.first.avatarURL;
-		if(!avatar) {
-			avatar = message.author.avatarURL
-		}
-jimp.read(avatar).then(function(image){
-image.invert()
-image.getBuffer(jimp.AUTO, (err, buffer) => {
-message.channel.sendFile(buffer, 'name.jpg');
-})
-});
-	}
+		} 
 	if(['osu'].includes(command)) {
 		let mode = args[0];
 		args.shift()
@@ -2369,7 +2358,26 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                 } catch (e) {console.log(e)}
             });
         });
-    } 
+    } else if(['invert', 'inverse'].includes(command)) {
+	    let img = user ? user.avatarURL : url ? url : message.author.avatarURL;
+		//let img = message.mentions.members.first.avatarURL;
+		if(!img) {
+			img = message.author.avatarURL
+		}
+jimp.read(img).then(function(image){
+image.invert()
+image.getBuffer(jimp.AUTO, (err, buffer) => {
+message.channel.sendFile(buffer, 'name.jpg');
+})
+});
+	} else if(['magic'].includes(command)) {
+		let img = user ? user.avatarURL : url ? url : message.author.avatarURL;
+      Jimp.read(`https://discord.services/api/magik?url=${img}`).then(function(image) {
+        image.getBuffer(Jimp.MIME_PNG, (error, buffer) => {
+          message.channel.send({files: [{ name: 'magik.png', attachment: buffer }] });
+        });
+      });
+	}
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
