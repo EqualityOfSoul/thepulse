@@ -58,6 +58,7 @@ clientOptions: {
       messageLimit: 150,
       defaultImageFormat: "png"
   }
+}
 });
 sharder.on("stats", stats => {
   console.log(stats);
