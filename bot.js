@@ -1756,7 +1756,7 @@ let voice = 0;
 	   const embed = new Discord.RichEmbed()
 	    .setTitle("Категория Images")
 	    .setColor("#00ff00")
-	    .addField("Images", "**x!foxGirl** - рандомное fox girl изображение. \n**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.");
+	    .addField("Images", "**x!nyan** - описание не указано. \n**x!foxGirl** - рандомное fox girl изображение. \n**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.");
    bot.edit(embed);
 	 //  await reaction.remove(client.user.id);
    }
@@ -2276,7 +2276,22 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
     } /*else if(['chat'].includes(command)) {
 	    await neko.getSFWHug();
 	    message.channel.send(url);
-    }*/ else if(['cat'].includes(command)) {
+	   
+    }*/ else if(['nyan'].include(command)) {
+	    actIMG = actIMG + 1;actALL = actALL +1;
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://rra.ram.moe/i/r?type=nyan', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+			if(arr['nsfw'] === true) return message.reply("Данное изображение содержит NSFW контент, попробуйте еще раз.");
+                    let embed = new Discord.RichEmbed()
+                        .setImage(`https://cdn.ram.moe/${arr['path']}`)
+                        .setColor('RANDOM')		
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['cat'].includes(command)) {
         actIMG = actIMG + 1;actALL = actALL +1;
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/meow', function (error, response, body) {
@@ -2386,7 +2401,7 @@ message.channel.sendFile(buffer, 'name.jpg');
 	} else if(['flip', 'флип'].includes(command)) {
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
-      jimp.read(img).then(function(image) {
+      jimp.read(img.avatarURL).then(function(image) {
         image.flip(true, false);
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
           message.channel.send({files: [{ name: 'flip.png', attachment: buffer }] });
@@ -2395,8 +2410,8 @@ message.channel.sendFile(buffer, 'name.jpg');
     } else if(['gay', 'гей'].includes(command)) {
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
-      jimp.read(img).then(function(image) {
-        jimp.read("https://cdn.glitch.com/8c009d94-1f7e-464c-82c2-bccaf15cb6cd%2Fgay.png?1520010590279").then(function(image2) {
+      jimp.read(img.avatarURL).then(function(image) {
+        jimp.read("https://cdn.glitch.com/8c009d94-1f7e-464c-82c2-bccaf15cb6cd%2Fgay.png").then(function(image2) {
           image.resize(768, 768);
           image2.fade(0.6);
           image.composite(image2, 0, 0);
@@ -2406,11 +2421,11 @@ message.channel.sendFile(buffer, 'name.jpg');
         });
       });
     } else if(['blur', 'пятно'].includes(command)) {
+	    let score = args[0] || args[1];
+	    if(!score) return message.reply("Укажите силу эфекта. \n**Example: `x!blur 4 @user`.");
 	    let img = message.mentions.users.first();
 	    if(!img) return message.reply("Упомяните нужного пользователя");
-	    let score = args[0] || args[1];
-	    if(!score) return message.reply("Укажите силу эфекта. \nExample: `x!blur 4 @user ");
-	    jimp.read(img).then(function(image) {
+	    jimp.read(img.avatarURL).then(function(image) {
         image.blur(score);
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
           message.channel.send({files: [{ name: 'blur.png', attachment: buffer }] });
