@@ -432,7 +432,7 @@ message.channel.stopTyping();
 		let user = args[1];
 		let link = ' ';
 		let modeErr = new Discord.RichEmbed()
-		.setTitlte("Error")
+		.setTitle("Error")
 		.setDescription("Не указан режим. \n**Режимы: `osu`, `taiko`, `ctb`, `mania`.**")
 		.setColor("RANDOM")
 		.setFooter("osu module > error");
