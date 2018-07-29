@@ -2702,6 +2702,22 @@ message.channel.send({embed});
         .setFooter(`Requested by ${message.author.username}`);
         message.channel.send({embed: embed});
         });
+    } else if(['discrim'].includes(command)) {
+	    x!eval const embed = new Discord.RichEmbed()
+const embed = new Discord.MessageEmbed()
+        .setColor(0xffffff)
+    if (isNaN(args[0]) || args[0] > 9999 || args[0] < 1) {
+        embed.setFooter('Введите корректный дискриминатор');
+        return message.channel.send(embed);
+    }
+   let resp = '';
+   client.users.map(function(user) {
+       if (user.discriminator == args[0]) return resp += `${user.username}\n`;
+       else return;
+   })
+    embed.setTitle(`Discrim: ${args[0]}`)
+        .setDescription(resp);
+    message.channel.send(embed)
     }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
