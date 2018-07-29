@@ -12,6 +12,7 @@ const translate = require('google-translate-api');
 const canvas = require('canvas');
 const codeContext =  {};
 const opusscript = require('opusscript');
+const weather = require("weather-js");
 const os = require('os');
 const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
@@ -2670,6 +2671,29 @@ message.channel.send({embed});
 						}
     }
   })
+    } else if(['weather', 'погода'].includes(command)) {
+	     weather.find({search: args.join(" "), degreeType: 'F'}, function(err, result) {
+        if (err) message.channel.send(err);
+    if (result.length === 0) {
+        message.channel.send("**Пожалуйста укажите корректную локацию.**")
+        return;
+    }
+    var current = result[0].current;
+    var location = result[0].location;
+    const embed = new Discord.RichEmbed()
+        .setDescription(`**${current.skytext}**`)
+        .setAuthor(`Weather for ${current.observationpoint}`)
+        .setThumbnail(current.imageUrl)
+        .setColor("RANDOM")
+        .addField('Timezone',`UTC${location.timezone}`, true)
+        .addField('Degree Type',location.degreetype, true)
+        .addField('Температура',`${current.temperature} Degrees`, true)
+        .addField('Feels Like', `${current.feelslike} Degrees`, true)
+        .addField('Ветер',current.winddisplay, true)
+        .addField('Влажность', `${current.humidity}%`, true)
+        .setFooter(`Requested by ${message.author.username}`);
+        message.channel.send({embed: embed});
+        });
     }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
