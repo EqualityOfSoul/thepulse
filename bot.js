@@ -2704,8 +2704,8 @@ message.channel.send({embed});
         message.channel.send({embed: embed});
         });
     } else if(['discrim'].includes(command)) {
-	    const embed = new Discord.RichEmbed();
-        .setColor(0xffffff)
+	    const embed = new Discord.RichEmbed()
+        .setColor("#0xffffff")
     if (isNaN(args[0]) || args[0] > 9999 || args[0] < 1) {
         embed.setFooter('Введите корректный дискриминатор');
         return message.channel.send(embed);
