@@ -2510,7 +2510,7 @@ message.channel.stopTyping()
       });
 	    message.channel.stopTyping()
     } else if (['roleinfo'].includes(command)) {
-	    this.perms = {
+	  /*  let perms = {
 			ADMINISTRATOR: 'Administrator',
 			VIEW_AUDIT_LOG: 'View Audit Log',
 			MANAGE_GUILD: 'Manage Server',
@@ -2539,7 +2539,7 @@ message.channel.stopTyping()
 			DEAFEN_MEMBERS: 'Deafen Members',
 			MOVE_MEMBERS: 'Move Members',
 			USE_VAD: 'Use Voice Activity'
-		};
+		};*/
 	    let role = message.mentions.roles.first();
 	  let members = 0,
         normalMembers = 0,
@@ -2552,7 +2552,7 @@ message.channel.stopTyping()
         normalMembers += 1
       }
     });
-	    const allPermissions = Object.entries(role.permissions.serialize()).filter(allowed => allowed[1]).map(([perm]) => this.perms[perm]).join(', ');
+	    //const allPermissions = Object.entries(role.permissions.serialize()).filter(allowed => allowed[1]).map(([perm]) => this.perms[perm]).join(', ');
 		const roleInfo = new Discord.RichEmbed()
 			.setColor(role.hexColor || '#FFF')
 			.addField('Название', role.name, true)
@@ -2561,8 +2561,8 @@ message.channel.stopTyping()
 			.addField('Дата создания', moment(role.createdAt).format('MMMM Do YYYY'), true)
 			.addField('Выделяется?', role.hoist ? 'да' : 'нет', true)
 			.addField('Упоминаемая?', role.mentionable ? 'да' : 'нет', true)
-			.addField('Носители', `${members} (${normalMembers} юзеров | ${botMembers} ботов)`, true)
-			.addField('Права', allPermissions);
+			.addField('Носители', `${members} (${normalMembers} юзеров | ${botMembers} ботов)`, true);
+			//.addField('Права', allPermissions);
 		 message.sendEmbed(roleInfo);
     }
 });
