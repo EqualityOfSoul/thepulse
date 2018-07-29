@@ -2708,11 +2708,14 @@ message.channel.send({embed});
         .setColor("#0xffffff")
     if (isNaN(args[0]) || args[0] > 9999 || args[0] < 1) {
         embed.setFooter('Введите корректный дискриминатор');
-        return message.channel.send(embed);
+        return message.channel.send(embed)
+	    .catch(error => {
+		message.channel.send(`Error: ${error}`)
+	})
     }
    let resp = '';
    client.users.map(function(user) {
-       if (user.discriminator == args[0]) return resp += `${user.username}\n`;
+       if (user.discriminator == args[0]) return resp += `${user.tag}\n`;
        else return;
    })
     embed.setTitle(`Discrim: ${args[0]}`)
