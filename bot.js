@@ -2734,6 +2734,32 @@ message.channel.send({embed});
 	    }).catch(err => {
 		    message.reply(`Error: ${err}`)
 	    })
+    } else if(['wasted'].includes(command)) {
+	    var Image = canvas.Image
+            var wastedoverlay = new Image;
+            var av = new Image;
+	    request("https://cdn.discordapp.com/attachments/440018643691241491/443778250674798612/wated.png", function(err, resp, data) {
+  wastedoverlay.src = data
+})
+	    const mention = message.mentions.users.first();
+	    if (mention) {
+request(mention.avatarURL, function(err, resp, data) {      
+av.src = data; 
+}) 
+} else {
+request(message.author.avatarURL, function(err, resp, data) {      
+av.src = data; 
+})
+}       
+   
+let canvasimg = new Canvas(512, 512)
+let av = new Image;
+let ctx = canvasimg.getContext('2d');
+setTimeout(() => {
+ctx.drawImage(av, 0, 0, 512, 512);  
+ctx.drawImage(wastedoverlay, 0, 0, 512, 512); 
+message.channel.send({ file: { attachment: canvasimg.toBuffer(), name: "wasted.png" }})
+}, 1000)
     }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
