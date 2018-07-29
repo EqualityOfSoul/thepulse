@@ -6,6 +6,7 @@ const { inspect } = require("util");
 const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
+const moment = require("moment");
 const jimp = require("jimp");
 const translate = require('google-translate-api');
 const canvas = require('canvas');
@@ -1667,7 +1668,7 @@ let voice = 0;
                 embed.addField('Количество пользователей', message.channel.guild.memberCount , true)
 	        embed.addField('Количество ботов', b, true)
 		embed.addField('Количество людей', i, true)
-                embed.addField('Пользователи в голосовых каналах (всего)', voice)
+                embed.addField('Пользователи в голосовых каналах (всего)', voice, true)
                 embed.addField('Количество ролей', message.channel.guild.roles.size, true)
                 embed.addField('Количество эмодзи', message.channel.guild.emojis.size, true)
                 embed.addField('Количество каналов', message.channel.guild.channels.size, true)
@@ -1680,6 +1681,7 @@ let voice = 0;
                 embed.addField('AFK канал', message.channel.guild.afkChannel !== null ? message.channel.guild.afkChannel : 'Нету.', true)
                 embed.addField('ID AFK канала', message.channel.guild.afkChannelID !== null ? message.channel.guild.afkChannelID : 'Нету.', true)
                 embed.addField('Регион', message.channel.guild.region, true)
+	        embed.addField('Эмодзи', message.guild.emojis.map(e => `${e.toString()}`).join(" "), true)
                 embed.setFooter(`requested by ${message.author.username}`)
                 embed.setTimestamp(); message.react("✅");
             message.channel.send({embed});
