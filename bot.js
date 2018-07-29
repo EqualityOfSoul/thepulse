@@ -1694,6 +1694,7 @@ let voice = 0;
             message.channel.send({embed});
     } else if(['emojis'].includes(command)) {
 	    message.channel.send(message.guild.emojis.map(e => `${e.toString()}`).join(" "))
+	    .catch(error => message.channel.send(`Error: ${error}`)
     } else if(['h', 'help'].includes(command)) {
 	    if (talkedRecently.has(message.author.id)) {
             message.reply("Pls CoolDown");
