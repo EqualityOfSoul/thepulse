@@ -2752,13 +2752,43 @@ av.src = data;
 })
 }       
    
-let canvasimg = new Canvas(512, 512)
+let canvasimg = new canvas(512, 512)
 let ava = new Image;
 let ctx = canvasimg.getContext('2d');
 setTimeout(() => {
 ctx.drawImage(ava, 0, 0, 512, 512);  
 ctx.drawImage(wastedoverlay, 0, 0, 512, 512); 
 message.channel.send({ file: { attachment: canvasimg.toBuffer(), name: "wasted.png" }})
+}, 1000)
+    } else if(['loading'].includes(command)) {
+	    const Request = require('pixl-request'),
+        request = new Request(),
+        gay = params.slice(0).join(' '),
+        Canvas = require('canvas'),
+        Image = Canvas.Image,
+        weaponized = new Image,
+        bg = new Image
+  
+  request.get("https://media.discordapp.net/attachments/444964200486273025/445984758988800010/discord.gif", function(err, resp, data) {
+  weaponized.src = data
+})
+  request.get("https://cdn.discordapp.com/attachments/428430955976458260/445990060500713472/lol.png", (err, resp, data) => {
+          bg.src = data    
+              })
+  message.delete()
+  
+  var canvas = new Canvas(440, 440)
+var ctx = canvas.getContext('2d');
+ctx.font = 'italic 27px Verdana';
+setTimeout(() => {  
+ctx.drawImage(bg, 0, 0, 440, 440)  
+ctx.drawImage(weaponized, 132, 107, 176, 166)
+ctx.fillStyle = '#FFFFFF'
+ctx.textAlign = "center"
+ctx.fillText(gay.match(/.{1,38}/g).join("\n").toUpperCase(), 215, 288);  
+ctx.font = 'normal 13px Verdana'
+ctx.fillText("REQUESTED BY @" + message.author.username.toUpperCase(), 212, 325)
+message.channel.send({ file: { attachment: canvas.toBuffer(), name: "loading.gif" }})
 }, 1000)
     }
 });
