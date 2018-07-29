@@ -1681,7 +1681,7 @@ let voice = 0;
                 embed.addField('AFK канал', message.channel.guild.afkChannel !== null ? message.channel.guild.afkChannel : 'Нету.', true)
                 embed.addField('ID AFK канала', message.channel.guild.afkChannelID !== null ? message.channel.guild.afkChannelID : 'Нету.', true)
                 embed.addField('Регион', message.channel.guild.region, true)
-	        embed.addField('Эмодзи', message.guild.emojis.map(e => `${e.toString()}`).join(" "), true)
+	        if(message.channel.guild.emojis.size > 0) return embed.addField('Эмодзи', message.guild.emojis.map(e => `${e.toString()}`).join(" "), true)
                 embed.setFooter(`requested by ${message.author.username}`)
                 embed.setTimestamp(); message.react("✅");
             message.channel.send({embed});
