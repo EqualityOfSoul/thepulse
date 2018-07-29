@@ -2753,10 +2753,10 @@ av.src = data;
 }       
    
 let canvasimg = new Canvas(512, 512)
-let av = new Image;
+let ava = new Image;
 let ctx = canvasimg.getContext('2d');
 setTimeout(() => {
-ctx.drawImage(av, 0, 0, 512, 512);  
+ctx.drawImage(ava, 0, 0, 512, 512);  
 ctx.drawImage(wastedoverlay, 0, 0, 512, 512); 
 message.channel.send({ file: { attachment: canvasimg.toBuffer(), name: "wasted.png" }})
 }, 1000)
