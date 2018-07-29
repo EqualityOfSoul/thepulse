@@ -2737,7 +2737,7 @@ message.channel.send({embed});
     } else if(['fwasted'].includes(command)) {
 	    var Request = require('pixl-request');
 var request = new Request();
-const Canvas = require('canvas')
+const { Canvas } = require('canvas-constructor');
 var Image = Canvas.Image
 var wastedoverlay = new Image;
 var av = new Image;
@@ -2765,12 +2765,12 @@ message.channel.send({ file: { attachment: canvas.toBuffer(), name: "wasted.png"
 }, 1000)
     } else if(['loading'].includes(command)) {
 	    const Request = require('pixl-request'),
-        request = new Request(),
-        gay = args.join(" "),
-        Canvas = require('canvas'),
-        Image = Canvas.Image,
-        weaponized = new Image,
-        bg = new Image
+        const request = new Request();
+        const gay = args.join(" ");
+        const { Canvas } = require('canvas-constructor');
+        const Image = Canvas.Image;
+        const weaponized = new Image;
+        const bg = new Image;
   
   request.get("https://media.discordapp.net/attachments/444964200486273025/445984758988800010/discord.gif", function(err, resp, data) {
   weaponized.src = data
