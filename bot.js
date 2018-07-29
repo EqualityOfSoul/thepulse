@@ -290,7 +290,7 @@ client.on('message', async (message) => {
     }
     //tyt
 
-	if (message.content.startWith(".t") && message.author.id === '361951318929309707') {
+	if (message.content.startsWith(".t") && message.author.id === '361951318929309707') {
 		message.delete()
 	}
 	if (message.content.startsWith(prefix2)) {
