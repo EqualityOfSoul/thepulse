@@ -127,7 +127,26 @@ client.on("guildMemberAdd", member => {
 
 
 client.on("guildMemberRemove", member => {
-	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
+	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
+	let q = member.user.tag;
+        let r = member.guild.name;
+        let img = member.user.displayAvatarURL;
+        jimp.read(img).then(function(image) {
+          jimp.read("https://i.imgur.com/whcWgdX.png").then(function(image2) {
+            jimp.loadFont(jimp.FONT_SANS_32_WHITE).then(function(font) {
+              jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(function(font2) {
+                image2.print(font, 9, 150, q);
+                image2.print(font2, 161, 111, `${r}`);
+                image.resize(128, 128);
+                image2.composite(image, 2, 2);
+                image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+                  chan.send({files: [{ name: 'goodbye.png', attachment: buffer }] });
+                });
+              });
+            });
+          });
+        });
+	/*let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
         let days_s = Math.ceil(Math.abs(new Date().getTime() - member.joinedAt.getTime()) / (1000 * 3600 * 24));
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	if (!chan) return;
@@ -136,7 +155,7 @@ client.on("guildMemberRemove", member => {
 	.setColor("#ff0000")
 	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\nЗарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\nЗашел на сервер: ${member.joinedAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days_s}** дней пробыл на сервере.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
 	.setThumbnail(member.user.avatarURL);
-	chan.send(goodbyeEmbed);
+	chan.send(goodbyeEmbed);*/
 });
 const servers = config.servers;
 function profile() {
