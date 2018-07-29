@@ -1627,7 +1627,6 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
 	    const invi = '0';
     } else if(['si', 'serverinfo'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
-        message.channel.guild.fetchInvites().then(invites => invi === invites.size);
 	    let large = message.channel.guild.large
         if (message.channel.guild.large == true) {
             large = "Да"
@@ -1655,7 +1654,8 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
       if(member.user.bot) b = b + 1;
       });       
 let voice = 0;
-	    message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) => {voice += channel.members.size});
+	        message.channel.guild.fetchInvites().then(invites => invi === invites.size);
+	        message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) => {voice += channel.members.size});
                 const embed = new Discord.RichEmbed()
                 embed.setAuthor(message.author.tag, message.author.avatarURl)
                 embed.setTitle('Информация об сервере', message.channel.guild.name)
@@ -1668,10 +1668,11 @@ let voice = 0;
                 embed.addField('Количество пользователей', message.channel.guild.memberCount , true)
 	        embed.addField('Количество ботов', b, true)
 		embed.addField('Количество людей', i, true)
-                embed.addField('Пользователи в голосовых каналах (всего)', voice, true)
                 embed.addField('Количество ролей', message.channel.guild.roles.size, true)
                 embed.addField('Количество эмодзи', message.channel.guild.emojis.size, true)
                 embed.addField('Количество каналов', message.channel.guild.channels.size, true)
+	        embed.addField('Количество приглашений', invi, true)
+	        embed.addField('Пользователи в голосовых каналах (всего)', voice, true)
                 embed.addField('Сервер большой?', large, true)
                 embed.addField('Системный канал', message.channel.guild.systemChannel !== null ? message.channel.guild.systemChannel : 'Нету.', true)
                 embed.addField('ID Системного канала', message.channel.guild.systemChannelID !== null ? message.channel.guild.systemChannelID : 'Нету.', true)
@@ -1681,7 +1682,7 @@ let voice = 0;
                 embed.addField('AFK канал', message.channel.guild.afkChannel !== null ? message.channel.guild.afkChannel : 'Нету.', true)
                 embed.addField('ID AFK канала', message.channel.guild.afkChannelID !== null ? message.channel.guild.afkChannelID : 'Нету.', true)
                 embed.addField('Регион', message.channel.guild.region, true)
-	        if(message.channel.guild.emojis.size > 0) return embed.addField('Эмодзи', message.guild.emojis.map(e => `${e.toString()}`).join(" "), true)
+	        if(message.channel.guild.emojis.size > 0) { embed.addField('Эмодзи', message.guild.emojis.map(e => `${e.toString()}`).join(" "), true) }
                 embed.setFooter(`requested by ${message.author.username}`)
                 embed.setTimestamp(); message.react("✅");
             message.channel.send({embed});
