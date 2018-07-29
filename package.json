@@ -36,7 +36,8 @@
         "git-last-commit": "^0.3.0",
         "jimp": "0.2.28",
         "eris": "^0.8.5",
-        "eris-sharder": "^1.7.9"
+        "eris-sharder": "^1.7.9",
+        "youtube-dl": "^1.12.2"
     },
   "author": "X-49",
   "license": "MIT",
