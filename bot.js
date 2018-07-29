@@ -2604,7 +2604,7 @@ message.channel.stopTyping()
                 .addField("__здоровье юзера__", `${b1health}HP`, true)
                 .addField("__здоровье оппонента__", `${b2health}HP`, true)
                 .setFooter(`${winner} win🏆`)
-	    emb.setColor("#ffd954");
+	    .setColor("#ffd954");
             message.channel.send({embed:embed});
         }
 
