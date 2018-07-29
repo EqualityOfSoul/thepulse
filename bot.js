@@ -476,7 +476,10 @@ message.channel.stopTyping();
 		} 
 	if(['osu'].includes(command)) {
 		let mode = args[0];
-		let user = args[1] + args[2] || args[1];
+		let user = args[1] + ' ' + args[2];
+		if(!args[2]) {
+			user = args[1]
+		}
 		let link = ' ';
 		let modeErr = new Discord.RichEmbed()
 		.setTitle("Error")
