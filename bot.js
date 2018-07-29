@@ -2734,7 +2734,7 @@ message.channel.send({embed});
 	    }).catch(err => {
 		    message.reply(`Error: ${err}`)
 	    })
-    } else if(['wasted'].includes(command)) {
+    } else if(['fwasted'].includes(command)) {
 	    var Image = canvas.Image
             var wastedoverlay = new Image;
             var av = new Image;
