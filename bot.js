@@ -2565,7 +2565,7 @@ message.channel.stopTyping()
 			.addField('Упоминаемая?', role.mentionable ? 'да' : 'нет', true)
 			.addField('Носители', `${members} (${normalMembers} юзеров | ${botMembers} ботов)`, true);
 			//.addField('Права', allPermissions);
-		 message.sendEmbed(roleInfo);
+		 message.channel.send(roleInfo);
     }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
