@@ -7,6 +7,7 @@ const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
 const moment = require("moment");
+const hastebin = require('hastebin-gen');
 const jimp = require("jimp");
 const translate = require('google-translate-api');
 const canvas = require('canvas');
@@ -2703,8 +2704,7 @@ message.channel.send({embed});
         message.channel.send({embed: embed});
         });
     } else if(['discrim'].includes(command)) {
-	    const embed = new Discord.RichEmbed()
-const embed = new Discord.MessageEmbed()
+	    const embed = new Discord.RichEmbed();
         .setColor(0xffffff)
     if (isNaN(args[0]) || args[0] > 9999 || args[0] < 1) {
         embed.setFooter('Введите корректный дискриминатор');
