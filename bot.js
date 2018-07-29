@@ -2703,7 +2703,7 @@ message.channel.send({embed});
         message.channel.send({embed: embed});
         });
     } else if(['discrim'].includes(command)) {
-	    x!eval const embed = new Discord.RichEmbed()
+	    const embed = new Discord.RichEmbed()
 const embed = new Discord.MessageEmbed()
         .setColor(0xffffff)
     if (isNaN(args[0]) || args[0] > 9999 || args[0] < 1) {
@@ -2718,6 +2718,17 @@ const embed = new Discord.MessageEmbed()
     embed.setTitle(`Discrim: ${args[0]}`)
         .setDescription(resp);
     message.channel.send(embed)
+    } else if(['hastebin'].includes(command)) {
+	    let language = args[0];
+	    if(!language) return message.reply("Укажите язык, например js, py, ruby");
+	    args.sfift();
+	    let bin = args.join(" ");
+	    if(!bin) return message.reply("Добавьте тест / код");
+	    hastebin(bin, language).then(link => {
+		    message.reply(`Готово, вот ваша ссылка: ${link}`)
+	    }).catch(err => {
+		    message.reply(`Error: ${err}`)
+	    })
     }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
