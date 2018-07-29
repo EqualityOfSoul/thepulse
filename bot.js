@@ -2721,7 +2721,7 @@ message.channel.send({embed});
     } else if(['hastebin'].includes(command)) {
 	    let language = args[0];
 	    if(!language) return message.reply("Укажите язык, например js, py, ruby");
-	    args.sfift();
+	    args.shift();
 	    let bin = args.join(" ");
 	    if(!bin) return message.reply("Добавьте тест / код");
 	    hastebin(bin, language).then(link => {
