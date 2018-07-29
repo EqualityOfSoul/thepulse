@@ -2764,13 +2764,13 @@ ctx.drawImage(wastedoverlay, 0, 0, 512, 512);
 message.channel.send({ file: { attachment: canvas.toBuffer(), name: "wasted.png" }})
 }, 1000)
     } else if(['loading'].includes(command)) {
+	    const { Canvas } = require('canvas-constructor');
 	    const Request = require('pixl-request'),
-        const request = new Request();
-        const gay = args.join(" ");
-        const { Canvas } = require('canvas-constructor');
-        const Image = Canvas.Image;
-        const weaponized = new Image;
-        const bg = new Image;
+         request = new Request(),
+         gay = args.join(" "),
+         Image = Canvas.Image,
+         weaponized = new Image,
+         bg = new Image;
   
   request.get("https://media.discordapp.net/attachments/444964200486273025/445984758988800010/discord.gif", function(err, resp, data) {
   weaponized.src = data
