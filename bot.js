@@ -2735,35 +2735,38 @@ message.channel.send({embed});
 		    message.reply(`Error: ${err}`)
 	    })
     } else if(['fwasted'].includes(command)) {
-	    var Image = canvas.Image
-            var wastedoverlay = new Image;
-            var av = new Image;
-	    request("https://cdn.discordapp.com/attachments/440018643691241491/443778250674798612/wated.png", function(err, resp, data) {
+	    var Request = require('pixl-request');
+var request = new Request();
+const Canvas = require('canvas')
+var Image = Canvas.Image
+var wastedoverlay = new Image;
+var av = new Image;
+request.get("https://cdn.discordapp.com/attachments/440018643691241491/443778250674798612/wated.png", function(err, resp, data) {
   wastedoverlay.src = data
 })
-	    const mention = message.mentions.users.first();
-	    if (mention) {
-request(mention.avatarURL, function(err, resp, data) {      
+var mention = message.mentions.users.first(); 
+if (mention) {
+request.get(mention.avatarURL, function(err, resp, data) {      
 av.src = data; 
 }) 
 } else {
-request(message.author.avatarURL, function(err, resp, data) {      
+request.get(message.author.avatarURL, function(err, resp, data) {      
 av.src = data; 
 })
 }       
    
-let canvasimg = new canvas(512, 512)
-let ava = new Image;
-let ctx = canvasimg.getContext('2d');
+var canvas = new Canvas(512, 512)
+var av = new Image;
+var ctx = canvas.getContext('2d');
 setTimeout(() => {
-ctx.drawImage(ava, 0, 0, 512, 512);  
+ctx.drawImage(av, 0, 0, 512, 512);  
 ctx.drawImage(wastedoverlay, 0, 0, 512, 512); 
-message.channel.send({ file: { attachment: canvasimg.toBuffer(), name: "wasted.png" }})
+message.channel.send({ file: { attachment: canvas.toBuffer(), name: "wasted.png" }})
 }, 1000)
     } else if(['loading'].includes(command)) {
 	    const Request = require('pixl-request'),
         request = new Request(),
-        gay = params.slice(0).join(' '),
+        gay = args.join(" "),
         Canvas = require('canvas'),
         Image = Canvas.Image,
         weaponized = new Image,
