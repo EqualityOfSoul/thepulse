@@ -9,6 +9,7 @@ const fs = require("fs");
 const moment = require("moment");
 const hastebin = require('hastebin-gen');
 const jimp = require("jimp");
+const db = require('quick.db');
 const translate = require('google-translate-api');
 const canvas = require('canvas');
 const codeContext =  {};
@@ -1307,7 +1308,43 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
             message.channel.send({embed: Author});
       }
     } else if (['afk'].includes(command)) {
-	 message.member.setNickname(`[AFK]${message.author.username}`)
+	    let status = new db.table('AFKs');
+let authorStatus = await afk.fetch(message.author.id);
+if (authorStatus) {
+  const embed = new Discord.RichEmbed()
+    .setColor("#0xffffff")
+    .setFooter(`${message.author.username} больше не AFK.`)
+  message.channel.send(embed).then(msg => msg.delete({
+    timeout: 7000
+  }))
+  
+  afk.delete(message.author.id);
+
+}
+let mentioned = message.mentions.members.first();
+if (mentioned) {
+  let status = await afk.fetch(mentioned.id);
+  if (status) {
+    const embed = new Discord.RichEmbed()
+      .setColor(0xffffff)
+      .setFooter(status);
+    message.channel.send(embed);
+  }
+}
+
+  const status = new db.table('AFKs');
+  let afk = await status.fetch(message.author.id);
+  const embed = new Discord.MessageEmbed()
+    .setColor("#0xffffff")
+  if (!afk) {
+    embed.setFooter('Теперь вы AFK.');
+    status.set(message.author.id, args.join(' ') || `Простите, ${message.author.username} в AFK.`);
+  } else {
+    embed.setFooter('Вы больше не AFK.');
+    status.delete(message.author.id);
+  }
+  message.channel.send(embed);
+	 /*message.member.setNickname(`[AFK]${message.author.username}`)
 	    actFUN = actFUN + 1;actALL = actALL +1;
         message.delete();
         const afkMessage = args.join(" ");
@@ -1319,7 +1356,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         message.channel.send({embed}).then(function(message) {
             //Функция переходит на сообщение бота.
             message.react('💤')
-        }).catch(function() {});
+        }).catch(function() {});*/
     } else if (['summon'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         let summoned = message.mentions.members.first();
