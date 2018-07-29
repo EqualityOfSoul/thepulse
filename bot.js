@@ -1654,7 +1654,6 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
       if(member.user.bot) b = b + 1;
       });       
 let voice = 0;
-	        message.channel.guild.fetchInvites().then(invites => invi === invites.size);
 	        message.guild.channels.filter(chan => chan.type === 'voice').forEach((channel) => {voice += channel.members.size});
                 const embed = new Discord.RichEmbed()
                 embed.setAuthor(message.author.tag, message.author.avatarURl)
@@ -1671,7 +1670,6 @@ let voice = 0;
                 embed.addField('Количество ролей', message.channel.guild.roles.size, true)
                 embed.addField('Количество эмодзи', message.channel.guild.emojis.size, true)
                 embed.addField('Количество каналов', message.channel.guild.channels.size, true)
-	        embed.addField('Количество приглашений', invi, true)
 	        embed.addField('Пользователи в голосовых каналах (всего)', voice, true)
                 embed.addField('Сервер большой?', large, true)
                 embed.addField('Системный канал', message.channel.guild.systemChannel !== null ? message.channel.guild.systemChannel : 'Нету.', true)
@@ -2543,7 +2541,8 @@ message.channel.stopTyping()
 			MOVE_MEMBERS: 'Move Members',
 			USE_VAD: 'Use Voice Activity'
 		};*/
-	    let role = message.mentions.roles.first();
+	    let role = message.mentions.roles.first() || message.guild.roles.find('name', args.join(" "));
+	    if(!role) return message.reply("упомяните роль или введите точное название роли.");
 	  let members = 0,
         normalMembers = 0,
         botMembers    = 0;
