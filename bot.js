@@ -2595,16 +2595,16 @@ message.channel.stopTyping()
         }
 
         if (b2health > b1health) {
-            let winner = battler.username
-            const embed = new Discord.RichEmbed();
-                emb.setAuthor(`Battle Arena`)
-                emb.setThumbnail('https://cdn1.iconfinder.com/data/icons/unigrid-military/61/002_military_defense_defend_swords_shield-512.png')
-                emb.addField('__юзер__', `${message.author.username}`, true)
-                emb.addField('__оппонент__', `${battler.username}`, true)
-                emb.addField("__здоровье юзера__", `${b1health}HP`, true)
-                emb.addField("__здоровье оппонента__", `${b2health}HP`, true)
-                emb.setFooter(`${winner} win🏆`)
-                emb.setColor("#ffd954");
+            let winner = battler.username;
+            const embed = new Discord.RichEmbed()
+                .setAuthor(`Battle Arena`)
+                .setThumbnail('https://cdn1.iconfinder.com/data/icons/unigrid-military/61/002_military_defense_defend_swords_shield-512.png')
+                .addField('__юзер__', `${message.author.username}`, true)
+                .addField('__оппонент__', `${battler.username}`, true)
+                .addField("__здоровье юзера__", `${b1health}HP`, true)
+                .addField("__здоровье оппонента__", `${b2health}HP`, true)
+                .setFooter(`${winner} win🏆`)
+	    emb.setColor("#ffd954");
             message.channel.send({embed:embed});
         }
 
