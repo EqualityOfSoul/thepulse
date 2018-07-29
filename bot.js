@@ -1323,25 +1323,25 @@ if (authorStatus) {
 }
 let mentioned = message.mentions.members.first();
 if (mentioned) {
-  let status = await afk.fetch(mentioned.id);
-  if (status) {
+  let status2 = await afk.fetch(mentioned.id);
+  if (status2) {
     const embed = new Discord.RichEmbed()
       .setColor(0xffffff)
-      .setFooter(status);
+      .setFooter(status2);
     message.channel.send(embed);
   }
 }
 
-  const status = new db.table('AFKs');
-  let afk = await status.fetch(message.author.id);
+  const status3 = new db.table('AFKs');
+  let afk = await status3.fetch(message.author.id);
   const embed = new Discord.MessageEmbed()
     .setColor("#0xffffff")
   if (!afk) {
     embed.setFooter('Теперь вы AFK.');
-    status.set(message.author.id, args.join(' ') || `Простите, ${message.author.username} в AFK.`);
+    status3.set(message.author.id, args.join(' ') || `Простите, ${message.author.username} в AFK.`);
   } else {
     embed.setFooter('Вы больше не AFK.');
-    status.delete(message.author.id);
+    status3.delete(message.author.id);
   }
   message.channel.send(embed);
 	 /*message.member.setNickname(`[AFK]${message.author.username}`)
