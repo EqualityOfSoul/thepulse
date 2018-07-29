@@ -2575,6 +2575,54 @@ message.channel.stopTyping()
 			.addField('Носители', `${members} (${normalMembers} юзеров | ${botMembers} ботов)`, true);
 			//.addField('Права', allPermissions);
 		 message.channel.send(roleInfo);
+    } else if(['battle', 'duel'].includes(command)) {
+	    let battler = message.mentions.users.first();
+        if (!battler) {
+            return message.reply('Укажите противника')
+        }
+        let b1health = Math.floor((Math.random() * 100));
+        let b2health = Math.floor((Math.random() * 100));
+        if (b1health > b2health) {
+            let winner = message.author.username
+            const emb = new Discord.RichEmbed();
+                emb.setAuthor(`Battle Arena`);
+                emb.setThumbnail('https://cdn1.iconfinder.com/data/icons/unigrid-military/61/002_military_defense_defend_swords_shield-512.png');
+                emb.addField('__юзер__', `${message.author.username}`, inline = true);
+                emb.addField('__оппонент__', `${battler.username}`, inline = true);
+                emb.addField("__здоровье юзера__", `${b1health}HP`, inline = true);
+                emb.addField("__здоровье оппонента__", `${b2health}HP`, inline = true);
+                emb.setFooter(`${winner} win🏆`);
+                emb.setColor("#ffd954");
+            message.channel.send({embed:emb});
+        }
+
+        if (b2health > b1health) {
+            let winner = battler.username
+            const embed = new Discord.MessageEmbed();
+                emb.setAuthor(`Battle Arena`);
+                emb.setThumbnail('https://cdn1.iconfinder.com/data/icons/unigrid-military/61/002_military_defense_defend_swords_shield-512.png');
+                emb.addField('__юзер__', `${message.author.username}`, inline = true);
+                emb.addField('__оппонент__', `${battler.username}`, inline = true);
+                emb.addField("__здоровье юзера__", `${b1health}HP`, inline = true);
+                emb.addField("__здоровье оппонента__", `${b2health}HP`, inline = true);
+                emb.setFooter(`${winner} win🏆`);
+                emb.setColor("#ffd954");
+            message.channel.send({embed:emb});
+        }
+
+        if (b2health === b1health) {
+            let winner = 'draw'
+            const embed = new Discord.MessageEmbed();
+                emb.setAuthor(`Battle Arena`);
+                emb.setThumbnail('https://cdn1.iconfinder.com/data/icons/unigrid-military/61/002_military_defense_defend_swords_shield-512.png');
+                emb.addField('__юзер__', `${message.author.username}`, inline = true);
+                emb.addField('__оппонент__', `${battler.username}`, inline = true);
+                emb.addField("__здоровье юзера__", `${b1health}HP`, inline = true);
+                emb.addField("__здоровье оппонента__", `${b2health}HP`, inline = true);
+                emb.setFooter(`Ничья...`);
+                emb.setColor("#ffd954");
+            message.channel.send({embed:emb});
+        }
     }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
