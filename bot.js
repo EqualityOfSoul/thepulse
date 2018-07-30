@@ -128,7 +128,7 @@ client.on("guildMemberAdd", member => {
             });
           });
         });
-//});
+})
 
 
 client.on("guildMemberRemove", member => {
@@ -160,8 +160,8 @@ client.on("guildMemberRemove", member => {
 	.setColor("#ff0000")
 	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\nЗарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\nЗашел на сервер: ${member.joinedAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days_s}** дней пробыл на сервере.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
 	.setThumbnail(member.user.avatarURL);
-	chan.send(goodbyeEmbed);
-});*/
+	chan.send(goodbyeEmbed);*/
+})
 const servers = config.servers;
 function profile() {
 	let user = message.author;
