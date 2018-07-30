@@ -2801,17 +2801,17 @@ message.channel.send({embed});
           });
         });
 	    }
-    } 
-	} if(['blacklist'].includes(command) && message.author.id ==='361951318929309707') {
+    } else if(['blacklist'].includes(command) && message.author.id ==='361951318929309707') {
 		const ppl = message.mentions.users.first();
 		if(args[0] === 'add') {
 			bl.add(ppl)
 			message.channel.send(`${ppl.username} был добавлен в черный список до конца сесии.`)
 		}
 		if(args[0] === 'remove') {
-			bl.remove(ppl)
+			bl.delete(ppl)
 			message.channel.send(`${ppl.username} был убран из черного списка данной сесии.`)
 		}
+	}
 	}
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
