@@ -108,8 +108,7 @@ client.on("guildMemberAdd", member => {
 	.setColor("#00ff00")
 	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\nЗарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
 	.setThumbnail(member.user.avatarURL);
-	chan.send(welcomeEmbed);*/
-	const kanal = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
+	chan.send(welcomeEmbed);
 	let q = member.user.tag;
         let r = member.guild.name;
         let img = member.user.displayAvatarURL;
