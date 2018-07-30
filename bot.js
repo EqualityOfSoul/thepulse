@@ -49,8 +49,8 @@ music(client, {
 	prefix: 'x!',     
 	global: false,     
 	maxQueueSize: 10,  
-	clearInvoker: true
-//anyoneCanSkip: false,
+	clearInvoker: true,
+anyoneCanSkip: false
 //channel: 'music'   
 });
 /*const Sharder = require('eris-sharder').Master;
@@ -1702,7 +1702,7 @@ let voice = 0;
             .addField("Reactions", "**x!suicide** - суицид. \n**x!cry** - плакать. \n**x!wasted** [user] - уебать. \n**x!kiss** [user] - поцелуй. \n**x!pat** [user] - погладить. \n**x!nom** [user] - дать поесть. \n**x!slap** [user] - ударить. \n**x!hug** [user] - обнять. \n**x!cuddle** [user] - прижаться. \n**x!tickle** [user] - пощекотать. \n**x!poke** [user] - тыкнуть.")
             .addField("Images", "**x!nyan** - описание не указано. \n**x!foxGirl** - рандомное fox girl изображение. \n**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.")
             .addField("NSFW", "**x!ero** \n**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
-	    .addField("Music", "**x!play** [url] - добавить музыку в очередь. \n**x!skip [number]** - пропустить песню. \n**x!queue** - узнать лист музыки. \n**x!pause** - пауза плеера. \n**x!resume** - возрат плеера. \n**x!volume** [1/100] - установить силу звука. \n**x!leave** - выйти из войса и отичистить лист. \n**x!clearqueue** - очистить лист. \n\n\n**Сменить язык на русский нельзя так как это специальный модуль**")
+	    .addField("Music", "**x!play** [url] - добавить музыку в очередь. \n**x!skip [number]** - пропустить песню. \n**x!queue** - узнать лист музыки. \n**x!pause** - пауза плеера. \n**x!resume** - возрат плеера. \n**x!volume** [1/100] - установить силу звука. \n**x!leave** - выйти из войса и отичистить лист. \n**x!clearqueue** - очистить лист. \n\n\n**Сменить язык на русский нельзя так как это специальный модуль**\n\n**Модуль еще не доделал, это значит что будет много багов✓, либо команды будут работать некорректно✓, либо бот будет жить своей жизнью× (советуем прихватить святой воды)")
 	    .addField("Filters", "**x!invert** [user] - инверсия аватара \n**x!magik** [user] - расплющить изображение\n**x!flip** [user] - перевернуть изображение.\n**x!gay** [user] - наложить гей флаг.\n**x!blur** [user] - наложить пятно. \n**x!sepia** [user] - наложить эффект сепии. \n**x!banner** [text] - создать баннер")
             .addField("utility (временно недоступно)", "**x!pin** [channel id] [message id] - закрепить сообщение ботом. \n**x!unpin** [channel id] [message id] - открепить сообщение ботом.")
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 12 часов с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
