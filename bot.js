@@ -38,6 +38,7 @@ let actIMG = 0; //  actIMG = actIMG + 1;actALL = actALL +1;
 let actALL = 0; //  actALL = actALL +1;actALL = actALL +1;
 let gameCount = 0;
 const talkedRecently = new Set();
+const bl = new Set();
 let serversPlay = {}
 vm.createContext(codeContext);
 //массив цветов
@@ -328,7 +329,8 @@ message.channel.stopTyping();
 }
 
 	let blacklist = config.blacklist;
-	if([message.author.id].includes(blacklist)) return;
+	if (bl.has(message.author.id)) return console.log('yay');
+	if(blacklist.has(message.author.id)) return;
 
     if (message.author.bot) return;
   //  if (message.author.id === '369471128835457026') return;
