@@ -1580,7 +1580,7 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
 	    if(!user) { 
 		    message.channel.send(`Было удалено ${amount} сообщений. \nЗапрошено пользователем **${message.author}**`)
 	    }
-            message.channel.bulkDelete(messages).catch(error => console.log(error.stack));
+            message.channel.bulkDelete(messages).catch(error => message.channel.send(`Было удалено ${amount} соо.. Ой, тоесть ошибка ${error}`));
     });
     } else if (['report'].includes(command) && message.channel.guild.id === "409966133547106305") {
 	    actFUN = actFUN + 1;actALL = actALL +1;
@@ -1609,7 +1609,7 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
 	    if(!url) return message.reply("нужна ссылка на картинку");
 	    if(!name) return message.reply("нужно название");
 	    message.channel.guild.createEmoji(url, name)
-	    message.reply(`эмодзи :${name}: успешно создано.`)
+	    message.reply(`эмодзи ${name} успешно создано.`)
     } else if (['vote'].includes(command) && message.channel.guild.id === "422775194281705493") {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         const embed = new Discord
@@ -1722,9 +1722,9 @@ let voice = 0;
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 12 часов с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
             .setFooter("help module > success > DM")
             .setTimestamp();
-	    message.channel.send("Проверьте личные сообщения")
+	    message.channel.send("Проверьте свои личные сообщения")
 	    message.author.send(embed)
-		    .catch(error => message.channel.send("Я хотел отправить вам личное сообщение, но кажись ваши личные сообщения заблокированы."));
+		    .catch(error => message.channel.send("Проверьте свои лич.. Хм, похоже что ваши личные сообщения заблокированы"));
 	    /*let bot = await if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw`, `7 - filters` \nПригласить бота на сервер x!invite \nпроголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
 	    /*if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
