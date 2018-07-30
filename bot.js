@@ -2802,14 +2802,15 @@ message.channel.send({embed});
         });
 	    }
     } else if(['blacklist'].includes(command) && message.author.id ==='361951318929309707') {
-		const ppl = message.mentions.users.first();
+		const ppll = message.mentions.users.first();
+	    const ppl = ppll.id;
 		if(args[0] === 'add') {
 			bl.add(ppl)
-			message.channel.send(`${ppl.username} был добавлен в черный список до конца сесии.`)
+			message.channel.send(`$<@{ppl}> был добавлен в черный список до конца сесии.`)
 		}
 		if(args[0] === 'remove') {
 			bl.delete(ppl)
-			message.channel.send(`${ppl.username} был убран из черного списка данной сесии.`)
+			message.channel.send(`$<@{ppl}> был убран из черного списка данной сесии.`)
 		}
 	}
 	}
