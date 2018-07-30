@@ -2437,8 +2437,8 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
     } else if(['invert', 'inverse'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    message.channel.startTyping()
-	    let img = message.mentions.users.first();
-	    if(!img) return message.reply("Упомяните нужного пользователя");
+	    let img = message.mentions.users.first() || args.join(" ");
+	    if(!img) return message.reply("Упомяните нужного пользователя или добавьте ссылку");
 jimp.read(img.avatarURL).then(function(image){
 image.invert()
 image.getBuffer(jimp.AUTO, (err, buffer) => {
@@ -2451,8 +2451,8 @@ message.channel.stopTyping()
 
 		actFUN = actFUN + 1; actALL = actALL + 1;
 		message.channel.startTyping()
-		let img = message.mentions.users.first();
-		if(!img) return message.reply("Упомяните нужного пользователя");
+		let img = message.mentions.users.first() || args.join(" ");
+		if(!img) return message.reply("Упомяните нужного пользователя или добавьте ссылку");
         jimp.read(`https://discord.services/api/magik?url=${img.avatarURL}`).then(function(image) {
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 		message.channel.stopTyping()
@@ -2464,8 +2464,8 @@ message.channel.stopTyping()
 
 		actFUN = actFUN + 1; actALL = actALL + 1;
 		message.channel.startTyping()
-	    let img = message.mentions.users.first();
-	    if(!img) return message.reply("Упомяните нужного пользователя");
+	    let img = message.mentions.users.first() || args.join(" ");
+	    if(!img) return message.reply("Упомяните нужного пользователя или добавьте ссылку");
       jimp.read(img.avatarURL).then(function(image) {
         image.flip(true, false);
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
@@ -2478,8 +2478,8 @@ message.channel.stopTyping()
 
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    message.channel.startTyping()
-	    let img = message.mentions.users.first();
-	    if(!img) return message.reply("Упомяните нужного пользователя");
+	    let img = message.mentions.users.first() || args.join(" ");
+	    if(!img) return message.reply("Упомяните нужного пользователя или добавьте ссылку");
       jimp.read(img.avatarURL).then(function(image) {
         jimp.read("https://cdn.glitch.com/8c009d94-1f7e-464c-82c2-bccaf15cb6cd%2Fgay.png").then(function(image2) {
           image.resize(768, 768);
@@ -2496,10 +2496,10 @@ message.channel.stopTyping()
 
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    message.channel.startTyping()
-	    let img = message.mentions.users.first();
-	    if(!img) return message.reply("Упомяните нужного пользователя");
+	    let img = message.mentions.users.first() || args.join(" ");
+	    if(!img) return message.reply("Упомяните нужного пользователя или добавьте ссылку");
 	    jimp.read(img.avatarURL).then(function(image) {
-        image.blur(5);
+        image.blur(7);
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
           message.channel.send({files: [{ name: 'blur.png', attachment: buffer }] });
         });
@@ -2517,8 +2517,8 @@ message.channel.stopTyping()
     } else if(['sepia'].includes(command)) {
 	     actFUN = actFUN + 1; actALL = actALL + 1;
 	    message.channel.startTyping()
-	    let img = message.mentions.users.first();
-	    if(!img) return message.reply("Упомяните нужного пользователя");
+	    let img = message.mentions.users.first() || args.join(" ");
+	    if(!img) return message.reply("Упомяните нужного пользователя или добавьте ссылку");
 	    jimp.read(img.avatarURL).then(function(image) {
         image.sepia();
         image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
@@ -2531,7 +2531,7 @@ message.channel.stopTyping()
 	    let role = message.mentions.roles.first() || message.guild.roles.find('name', args.join(" "));
 	    if(!role) return message.reply("упомяните роль или введите точное название роли.");
 
-	  /*  let perms = {
+	    let perms = {
 			ADMINISTRATOR: 'Administrator',
 			VIEW_AUDIT_LOG: 'View Audit Log',
 			MANAGE_GUILD: 'Manage Server',
@@ -2560,7 +2560,7 @@ message.channel.stopTyping()
 			DEAFEN_MEMBERS: 'Deafen Members',
 			MOVE_MEMBERS: 'Move Members',
 			USE_VAD: 'Use Voice Activity'
-		};*/
+		};
 	  let members = 0,
         normalMembers = 0,
         botMembers    = 0;
@@ -2572,7 +2572,7 @@ message.channel.stopTyping()
         normalMembers += 1
       }
     });
-	    //const allPermissions = Object.entries(role.permissions.serialize()).filter(allowed => allowed[1]).map(([perm]) => this.perms[perm]).join(', ');
+	    const allPermissions = Object.entries(role.permissions.serialize()).filter(allowed => allowed[1]).map(([perm]) => this.perms[perm]).join(' ');
 		const roleInfo = new Discord.RichEmbed()
 			.setColor(role.hexColor || '#FFF')
 			.addField('Название', role.name, true)
