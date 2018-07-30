@@ -99,9 +99,9 @@ if (message.content.startsWith("x!$")) {
 }
 });
 */
-//client.on("guildMemberAdd", member => {
-	/*let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
-	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel || member.guild.channels.find('name', "bot-hell");
+client.on("guildMemberAdd", member => {
+	let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
+	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	if (!chan) return;
 	const welcomeEmbed = new Discord.RichEmbed()
 	.setTitle("Welcome")
@@ -109,7 +109,7 @@ if (message.content.startsWith("x!$")) {
 	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\nЗарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
 	.setThumbnail(member.user.avatarURL);
 	chan.send(welcomeEmbed);*/
-	/*const kanal = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
+	const kanal = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	let q = member.user.tag;
         let r = member.guild.name;
         let img = member.user.displayAvatarURL;
@@ -122,16 +122,16 @@ if (message.content.startsWith("x!$")) {
                 image.resize(128, 128);
                 image2.composite(image, 2, 2);
                 image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-                	kanal.send({files: [{ name: 'welcome.png', attachment: buffer }] });
+                	chan.send({files: [{ name: 'welcome.png', attachment: buffer }] });
                 });
               });
             });
           });
         });
-});*/
+});
 
 
-/*client.on("guildMemberRemove", member => {
+client.on("guildMemberRemove", member => {
 	const kanal = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	let q = member.user.tag;
         let r = member.guild.name;
@@ -150,7 +150,7 @@ if (message.content.startsWith("x!$")) {
               });
             });
           });
-        });*/
+        });
 	/*let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
         let days_s = Math.ceil(Math.abs(new Date().getTime() - member.joinedAt.getTime()) / (1000 * 3600 * 24));
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
