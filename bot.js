@@ -2598,13 +2598,7 @@ message.channel.stopTyping()
     invites.forEach(function(invite) {
         possibleInvites.push([invite.inviter.username, invite.uses]);
     })
-    const embed = new Discord.RichEmbed()
-        .setColor("RANDOM")
-        .setTitle('Leaderboard')
-        .setDescription(` \`\`\`${table.table(possibleInvites)}\`\`\` `)
-    .setFooter(`Invites Leaderboard for  ${message.guild.name}`)
-    .setTimestamp();
-	    message.channel.send(embed).catch(error => { 
+	    message.channel.send(` \`\`\`${table.table(possibleInvites)}\`\`\` `).catch(error => { 
 		    return message.reply(`Однако ошибка: ${error}`)
 	    })
     } else if(['battle', 'duel'].includes(command)) {
