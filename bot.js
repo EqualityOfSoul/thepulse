@@ -2755,8 +2755,8 @@ message.channel.send({embed});
 	    })
 	   
     } else if (['test'].includes(command) && message.author.id === '361951318929309707') {
-	    let member = message.mentions.users.first();
 	    if(args[0] = "welcome") {
+		    let member = message.mentions.users.first();
 	    let q = member.tag;
         let r = message.guild.name;
         let img = member.displayAvatarURL;
@@ -2777,6 +2777,7 @@ message.channel.send({embed});
         });
 	    }
 	    if(args[0] === "goodbye") {
+		    let member = message.mentions.users.first();
 	let q = member.tag;
         let r = message.guild.name;
         let img = member.displayAvatarURL;
@@ -2785,7 +2786,7 @@ message.channel.send({embed});
             jimp.loadFont(jimp.FONT_SANS_32_WHITE).then(function(font) {
               jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(function(font2) {
                 image2.print(font, 9, 150, q);
-                image2.print(font2, 161, 111, `${r}`);
+                image2.print(font2, 161, 111, `from ${r}`);
                 image.resize(128, 128);
                 image2.composite(image, 2, 2);
                 image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
