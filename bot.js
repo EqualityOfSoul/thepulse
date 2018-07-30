@@ -330,7 +330,7 @@ message.channel.stopTyping();
 
 	let blacklist = config.blacklist;
 	if (bl.has(message.author.id)) {
-	console.log("kek");
+		
 	} else {
 	//if (bl.has(message.author.id)) return console.log('yay');
 
@@ -2801,8 +2801,19 @@ message.channel.send({embed});
           });
         });
 	    }
-    }
+    } 
+	} if(['blacklist'].includes(command)) {
+		const ppl = message.mentions.users.first();
+		if(args[0] === 'add') {
+			bl.add(ppl)
+			message.channel.send(`${ppl.username} был добавлен в черный список до конца сесии.`)
+		}
+		if(args[0] === 'remove') {
+			bl.remove(ppl)
+			message.channel.send(`${ppl.username} был убран из черного списка данной сесии.`)
+		}
 	}
+		}
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
