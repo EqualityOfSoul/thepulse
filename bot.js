@@ -2758,7 +2758,7 @@ message.channel.send({embed});
 	    let member = message.mentions.users.first();
 	    if(args[0] = "welcome") {
 	    let q = member.tag;
-        let r = member.guild.name;
+        let r = message.guild.name;
         let img = member.displayAvatarURL;
         jimp.read(img).then(function(image) {
           jimp.read("https://i.imgur.com/8YEW9b1.png").then(function(image2) {
@@ -2778,7 +2778,7 @@ message.channel.send({embed});
 	    }
 	    if(args[0] === "goodbye") {
 	let q = member.tag;
-        let r = member.guild.name;
+        let r = message.guild.name;
         let img = member.displayAvatarURL;
         jimp.read(img).then(function(image) {
           jimp.read("https://i.imgur.com/whcWgdX.png").then(function(image2) {
