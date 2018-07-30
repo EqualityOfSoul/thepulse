@@ -2807,7 +2807,7 @@ message.channel.send({embed});
   if (args[0] === "ножницы") message.channel.send(scissors)
   if (args[0] === "н") message.channel.send(scissors)
   /////////////////////////END TYPES/////////////////////////////////////////
-  if (!args[0]) message.channel.send("Опции: ``камень`` `к`, ``бумага`` `б`, ``ножницы`` `н`. *Usage: +rps <option>*")
+  if (!args[0]) message.channel.send("Опции: ``камень`` `к`, ``бумага`` `б`, ``ножницы`` `н`. **Использовать: x!rps <option>*")
   }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
