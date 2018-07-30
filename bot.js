@@ -2754,7 +2754,49 @@ message.channel.send({embed});
 		    message.reply(`Error: ${err}`)
 	    })
 	   
-    } 
+    } else if (['test'].includes(command) && message.author.id === '361951318929309707') {
+	    let member = message.mentions.users.first();
+	    if(args[0] = "welcome") {
+	    let q = member.tag;
+        let r = member.guild.name;
+        let img = member.displayAvatarURL;
+        jimp.read(img).then(function(image) {
+          jimp.read("https://i.imgur.com/8YEW9b1.png").then(function(image2) {
+            jimp.loadFont(jimp.FONT_SANS_32_WHITE).then(function(font) {
+              jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(function(font2) {
+                image2.print(font, 9, 150, q);
+                image2.print(font2, 151, 111, `to ${r}`);
+                image.resize(128, 128);
+                image2.composite(image, 2, 2);
+                image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+                	message.channel.send({files: [{ name: 'welcome.png', attachment: buffer }] });
+                });
+              });
+            });
+          });
+        });
+	    }
+	    if(args[0] === "goodbye") {
+	let q = member.tag;
+        let r = member.guild.name;
+        let img = member.displayAvatarURL;
+        jimp.read(img).then(function(image) {
+          jimp.read("https://i.imgur.com/whcWgdX.png").then(function(image2) {
+            jimp.loadFont(jimp.FONT_SANS_32_WHITE).then(function(font) {
+              jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(function(font2) {
+                image2.print(font, 9, 150, q);
+                image2.print(font2, 161, 111, `${r}`);
+                image.resize(128, 128);
+                image2.composite(image, 2, 2);
+                image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+                	message.channel.send({files: [{ name: 'goodbye.png', attachment: buffer }] });
+                });
+              });
+            });
+          });
+        });
+	    }
+    }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
