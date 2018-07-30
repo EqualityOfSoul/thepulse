@@ -2600,7 +2600,9 @@ message.channel.stopTyping()
         .setColor("RANDOM")
         .addField('Leaderboard', `\`\`\`${table.table(possibleInvites)}\`\`\``)
     .setFooter("Invites Leaderboard");
-	    message.channel.send(embed);
+	    message.channel.send(embed).catch(error => { 
+		    return message.reply(`Однако ошибка: ${error}`)
+	    }
     } else if(['battle', 'duel'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let battler = message.mentions.users.first();
