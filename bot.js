@@ -46,11 +46,12 @@ vm.createContext(codeContext);
 //массив цветов
 const colors = ['ff2828','ff3d28','ff4b28','ff5a28','ff6828','ff7628','ff8c28','ffa128','ffac28','ffb728','ffc228','ffd028','ffd728','ffe228','fff028','fffb28','edff28','deff28','d0ff28','c2ff28','b3ff28','9aff28','8cff28','7dff28','6fff28','5aff28','3dff28','28ff2b','28ff41','28ff56','28ff6c','28ff81','28ff93','28ffa9','28ffba','28ffc9','28ffde','28fff4','28ffff','28f0ff','28deff','28deff','28d3ff','28c5ff','28baff','28b0ff','28a5ff','289eff','2893ff','2885ff','2876ff','2864ff','2856ff','284bff','2841ff','2836ff','2828ff','3228ff','4428ff','5328ff','6828ff','7628ff','7e28ff','8828ff','9328ff','a128ff','b028ff','be28ff','c928ff','d328ff','db28ff','e528ff','f028ff','ff28ff','ff28f7','ff28e5','ff28de','ff28d0','ff28c9','ff28ba','ff28b3','ff28a5','ff289a','ff288c','ff2881','ff287a','ff2873','ff2868','ff2861','ff2856','ff284f','ff2848','ff2844','ff282b'];
 music(client, {
-	prefix: 'x!!',     
-	global: false,     
+	prefix: 'x!',     
+	global: true,     
 	maxQueueSize: 10,  
-	clearInvoker: true, 
-    channel: 'music'   
+	clearInvoker: true,
+	anyoneCanSkip: false,
+        channel: 'music'   
 });
 /*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
@@ -820,38 +821,7 @@ bot.edit(embed);}, Math.floor(Math.random() * (1- 1)) + 1);
         if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply("Вы не являетесь модератором.");
         const members = message.guild.members.filter(member => member.user.presence.game && /(discord\.(gg|io|me)\/.+|discordapp\.com\/invite\/.+)/i.test(member.user.presence.game.name));
 return message.channel.send(members.map(member => `\```${member.id}\``` ${member.displayName}`).join("\n") || "людей используйщих presence как приглашение нету.");
-	} else if(['play'].includes(command)) {
-	  const YTDL = require('ytdl-core');
-	  if (!args[0]) {
-    message.channel.send("Укажи имя или ссылку!");
-    return;
-  }
-  if (!message.member.voiceChannel) {
-    message.channel.send("Тебя нет в войсе")
-    return;
-  }
-   if (!serversPlay[message.guild.id]) serversPlay[message.guild.id] = {
-    queue: ["https://www.youtube.com/watch?v=z4S2qqX7YvA"]
-  }
-  if (!message.member.voiceChannel) message.member.voiceChannel.join().then((connection) => {
-     function play(connection, message) {
-   message.channel.send("Начинаю играть " + args[0] + " в канале " + message.member.voiceChannel.name + ".")
-   var server = serversPlay[message.guild.id]
-   
-   server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}))
-   
-   server.queue.shift()
-   
-   server.dispatcher.on('end', () => {
-      if (server.queue[0]) play(connection, message)
-      else connection.disconnect()
-    })
-  }
-    play(connection, play);
-  })
-   
-  let server = serversPlay[message.guild.id]
-} 
+    }
        if(['emojify'].includes(command)) {
 		actFUN = actFUN + 1;actALL = actALL +1;
         let text = args.join(" ");
@@ -1731,7 +1701,8 @@ let voice = 0;
             .addField("Bot owner", "**x!eval** [code] - эмуляция js кода. \n**x!presence** [type] [status] - смена статуса. \n**x!us** [user id] - приватное сообщение от лица бота.")
             .addField("Reactions", "**x!suicide** - суицид. \n**x!cry** - плакать. \n**x!wasted** [user] - уебать. \n**x!kiss** [user] - поцелуй. \n**x!pat** [user] - погладить. \n**x!nom** [user] - дать поесть. \n**x!slap** [user] - ударить. \n**x!hug** [user] - обнять. \n**x!cuddle** [user] - прижаться. \n**x!tickle** [user] - пощекотать. \n**x!poke** [user] - тыкнуть.")
             .addField("Images", "**x!nyan** - описание не указано. \n**x!foxGirl** - рандомное fox girl изображение. \n**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.")
-            .addField("NSFW", "**x!!ero** \n**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
+            .addField("NSFW", "**x!ero** \n**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
+	    .addField("Music", "**x!play** [url] - добавить музыку в очередь. \n**x!skip [number]** - пропустить песню. \n**x!queue** - узнать лист музыки. \n**x!pause** - пауза плеера. \n**x!resume** - возрат плеера. \n**x!volume** [1/100] - установить силу звука. \n**x!leave** - выйти из войса и отичистить лист. \n**x!clearqueue** - очистить лист. \n\n\n**Сменить язык на русский нельзя так как это специальный модуль**")
 	    .addField("Filters", "**x!invert** [user] - инверсия аватара \n**x!magik** [user] - расплющить изображение\n**x!flip** [user] - перевернуть изображение.\n**x!gay** [user] - наложить гей флаг.\n**x!blur** [user] - наложить пятно. \n**x!sepia** [user] - наложить эффект сепии. \n**x!banner** [text] - создать баннер")
             .addField("utility (временно недоступно)", "**x!pin** [channel id] [message id] - закрепить сообщение ботом. \n**x!unpin** [channel id] [message id] - открепить сообщение ботом.")
             .addField("Голос", "[Если вам нравится данный бот - вы можете проголосовать за него тут](https://discordbots.org/bot/441667160025333762) \nГолосовать за одного и того же бота можно каждые 12 часов с 1 и того же аккаунта. \n\n**Пригласить бота на ваш сервер `x!invite`**")
