@@ -2600,7 +2600,7 @@ message.channel.stopTyping()
     const embed = new Discord.RichEmbed()
         .setColor("RANDOM")
         .setTitle('Leaderboard')
-        .setDiescription(``\`\`\`${table.table(possibleInvites)}\`\`\``)
+        .setDescription(` `\`\`\`${table.table(possibleInvites)}\`\`\` `)
     .setFooter(`Invites Leaderboard for  ${message.guild.name}`)
     .setTimestamp();
 	    message.channel.send(embed).catch(error => { 
