@@ -49,9 +49,9 @@ music(client, {
 	prefix: 'x!',     
 	global: false,     
 	maxQueueSize: 10,  
-	clearInvoker: true,
-	anyoneCanSkip: false,
-        channel: 'music'   
+	clearInvoker: true
+//anyoneCanSkip: false,
+//channel: 'music'   
 });
 /*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
