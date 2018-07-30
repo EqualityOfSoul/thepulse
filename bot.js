@@ -1710,7 +1710,7 @@ let voice = 0;
             .setColor("#42f4aa")
             .setThumbnail('https://cdn.pixabay.com/photo/2016/06/15/15/02/info-1459077_960_720.png')
             .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!nya** тест эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
-            .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text]** - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, напишите x!timer для помощи. \n**x!count** - добавить +1 \n**x!reverse** [text] - реверс текста. \n**x!space** [text] - пробельный текст. \n**x!time** - мск время. \n**x!save** [key] [message] - сохранить сообщение в ключ. \n**x!view** <key> - просмотреть ключ(и). \n**x!owoify** [текст на английском] \n**x!support** - support server (нет) \n**x!urban** [word] - выдаст информацию на запрос. \n**x!cathash** <user> - просмотр пользователя через robothash. \n**x!texthash** [text] - перевод любого текста в кота (очень редко в роботов) \n**x!translate** [language] [text] - переводчик. \n**x!battle** [user] - мини дуэль. \n**x!hastebin** [lang] [code] - быстрое создание hastebin через бота. \n**x!rps** `/` *x!rsp** [камень / бумага / ножницы] - мини-игра камень, ножницы, бумага")
+            .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text]** - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, напишите x!timer для помощи. \n**x!count** - добавить +1 \n**x!reverse** [text] - реверс текста. \n**x!space** [text] - пробельный текст. \n**x!time** - мск время. \n**x!save** [key] [message] - сохранить сообщение в ключ. \n**x!view** <key> - просмотреть ключ(и). \n**x!owoify** [текст на английском] \n**x!support** - support server (нет) \n**x!urban** [word] - выдаст информацию на запрос. \n**x!cathash** <user> - просмотр пользователя через robothash. \n**x!texthash** [text] - перевод любого текста в кота (очень редко в роботов) \n**x!translate** [language] [text] - переводчик. \n**x!battle** [user] - мини дуэль. \n**x!hastebin** [lang] [code] - быстрое создание hastebin через бота. ")
             .addField("Info", "**x!roles** узнать роли сервера. \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!quote** [message id] - просмотреть содержание сообщения (только с данного сервера)  \n**x!roleinfo** [rolename / role] - информация об роли. \n**x!botinfo** [bot] - информация об боте с DBL если он там есть. \n**x!weather** [region] - узнать погоду региона. \n**x!emojis** - узнать эмодзи сервера. \n**x!discrim** [discrim] - просмотреть пользователей в боте имеющий [discrim] дискриминатор. \n**x!invitelb** - таблица лидеров по приглашениям")
 	    .addField("Mod", "**x!prune** <user> [ammout] - очистка сообений от пользователя либо чата. \n **x!softban** [users] - бан нескольких пользователей за раз. (времено отключено) \n**x!ban** [user] - бан пользователя. \n**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!rs** [channel id] [message] - удаленая отправка сообщений. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!tts** [text] - tts Сообщение.")
             .addField("Bot owner", "**x!eval** [code] - эмуляция js кода. \n**x!presence** [type] [status] - смена статуса. \n**x!us** [user id] - приватное сообщение от лица бота.")
@@ -2760,55 +2760,7 @@ message.channel.send({embed});
 		    message.reply(`Error: ${err}`)
 	    })
 	   
-    } else if(['rpc', 'rcp'].includes(command)) {
-    let rock2 = ["бумага! я победил!", "Бумага! ты победил!"]
-    let rock1 = Math.floor(Math.random() * rock2.length);
-  
-    let paper2 = ["Камень! Ты победил!", "Ножницы! Я победил!"]
-    let paper1 = Math.floor(Math.random() * paper2.length);
-  
-    let scissors2 = ["Камень! Я победил!", "Бумага! Ты победил!"]
-    let scissors1 = Math.floor(Math.random() * scissors2.length);
-  
-  let rock = new Discord.RichEmbed()
-  .setAuthor("Камень, ножницы, бумага")
-  .setColor("#6b5858")
-  .addField("Твой выбор", `${args[0]}`)
-  .addField("Мой выбор", rock2[rock1])
-  
-  let paper = new Discord.RichEmbed()
-  .setAuthor("Камень, ножницы, бумага")
-  .setColor("#6b5858")
-  .addField("Твой выбор", `${args[0]}`)
-  .addField("Мой выбор", paper2[paper1])
-  
-  let scissors = new Discord.RichEmbed()
-  .setAuthor("Камень, ножницы, бумага")
-  .setColor("#6b5858")
-  .addField("Твой выбор", `${args[0]}`)
-  .addField("Мой выбор", scissors2[scissors1])
-  
-   /////////////////////////START TYPES/////////////////////////////////////////
-  if (args[0] === "rock") message.channel.send(rock)
-  if (args[0] === "r") message.channel.send(rock)
-	    //language changed//
-  if (args[0] === "камень") message.channel.send(rock)
-  if (args[0] === "к") message.channel.send(rock)
-  /////////////////////////type changed////////////////////////////////////////
-  if (args[0] === "paper") message.channel.send(paper)
-  if (args[0] === "p") message.channel.send(paper)
-	    //language changed//
-  if (args[0] === "бумага") message.channel.send(paper)
-  if (args[0] === "б") message.channel.send(paper)
-  /////////////////////////type changed/////////////////////////////////////////
-  if (args[0] === "scissors") message.channel.send(scissors)
-  if (args[0] === "s") message.channel.send(scissors)
-	    //language changed//
-  if (args[0] === "ножницы") message.channel.send(scissors)
-  if (args[0] === "н") message.channel.send(scissors)
-  /////////////////////////END TYPES/////////////////////////////////////////
-  if (!args[0]) message.channel.send("Опции: ``камень`` `к`, ``бумага`` `б`, ``ножницы`` `н`. **Использовать: x!rps <option>*")
-  }
+    } 
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
