@@ -2755,7 +2755,7 @@ message.channel.send({embed});
 	    })
 	   
     } else if (['test'].includes(command) && message.author.id === '361951318929309707') {
-	    if(args[0] = "welcome") {
+	    if(args[0] === "welcome") {
 		    let member = message.mentions.users.first();
 	    let q = member.tag;
         let r = message.guild.name;
