@@ -101,6 +101,7 @@ if (message.content.startsWith("x!$")) {
 });
 */
 client.on("guildMemberAdd", member => {
+	if(member.guild.id === '264445053596991498') return;
 	/*let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	if (!chan) return;
@@ -133,6 +134,7 @@ client.on("guildMemberAdd", member => {
 
 
 client.on("guildMemberRemove", member => {
+	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
 	let q = member.user.tag;
         let r = member.guild.name;
