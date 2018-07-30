@@ -2528,7 +2528,7 @@ message.channel.stopTyping()
 	    message.channel.stopTyping()
     } else if (['roleinfo'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
-	    let Wrole = message.mentions.roles.first();// || message.guild.roles.find('name', args.join(" "));
+	    let Wrole = message.mentions.roles.first(); || message.guild.roles.find('name', args.join(" "));
 	    if(!Wrole) return message.reply("упомяните роль или введите примерное название роли.");
 	    let roles = [];
             let indexes = [];
