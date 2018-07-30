@@ -42,7 +42,7 @@ let serversPlay = {}
 vm.createContext(codeContext);
 //массив цветов
 const colors = ['ff2828','ff3d28','ff4b28','ff5a28','ff6828','ff7628','ff8c28','ffa128','ffac28','ffb728','ffc228','ffd028','ffd728','ffe228','fff028','fffb28','edff28','deff28','d0ff28','c2ff28','b3ff28','9aff28','8cff28','7dff28','6fff28','5aff28','3dff28','28ff2b','28ff41','28ff56','28ff6c','28ff81','28ff93','28ffa9','28ffba','28ffc9','28ffde','28fff4','28ffff','28f0ff','28deff','28deff','28d3ff','28c5ff','28baff','28b0ff','28a5ff','289eff','2893ff','2885ff','2876ff','2864ff','2856ff','284bff','2841ff','2836ff','2828ff','3228ff','4428ff','5328ff','6828ff','7628ff','7e28ff','8828ff','9328ff','a128ff','b028ff','be28ff','c928ff','d328ff','db28ff','e528ff','f028ff','ff28ff','ff28f7','ff28e5','ff28de','ff28d0','ff28c9','ff28ba','ff28b3','ff28a5','ff289a','ff288c','ff2881','ff287a','ff2873','ff2868','ff2861','ff2856','ff284f','ff2848','ff2844','ff282b'];
-const Sharder = require('eris-sharder').Master;
+/*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
 clientOptions: {
 	stats: true,
@@ -70,7 +70,7 @@ sharder.on("stats", stats => {
 });
 sharder.on("ready", () => {
   console.log("gotova blyat");
-});
+});*/
 client.on("ready", () => {
     //Отпраляет сообщение в логи что бот запущен (+ количество серверов).${i}
 
@@ -2790,46 +2790,22 @@ message.channel.send({embed});
   
    /////////////////////////START TYPES/////////////////////////////////////////
   if (args[0] === "rock") message.channel.send(rock)
-  if (args[0] === "Rock") message.channel.send(rock)
-  if (args[0] === "r") message.channel.send(rock)
-  if (args[0] === "rock") message.channel.send(rock)
-  if (args[0] === "Rock") message.channel.send(rock)
   if (args[0] === "r") message.channel.send(rock)
 	    //language changed//
   if (args[0] === "камень") message.channel.send(rock)
-  if (args[0] === "Камень") message.channel.send(rock)
   if (args[0] === "к") message.channel.send(rock)
-  if (args[0] === "камень") message.channel.send(rock)
-  if (args[0] === "Камень") message.channel.send(rock)
-  if (args[0] === "К") message.channel.send(rock)
   /////////////////////////type changed////////////////////////////////////////
   if (args[0] === "paper") message.channel.send(paper)
-  if (args[0] === "Paper") message.channel.send(paper)
-  if (args[0] === "p") message.channel.send(paper)
-  if (args[0] === "paper") message.channel.send(paper)
-  if (args[0] === "Paper") message.channel.send(paper)
   if (args[0] === "p") message.channel.send(paper)
 	    //language changed//
   if (args[0] === "бумага") message.channel.send(paper)
-  if (args[0] === "Бумага") message.channel.send(paper)
   if (args[0] === "б") message.channel.send(paper)
-  if (args[0] === "бумага") message.channel.send(paper)
-  if (args[0] === "Бумага") message.channel.send(paper)
-  if (args[0] === "Б") message.channel.send(paper)
   /////////////////////////type changed/////////////////////////////////////////
   if (args[0] === "scissors") message.channel.send(scissors)
-  if (args[0] === "Scissors") message.channel.send(scissors)
-  if (args[0] === "s") message.channel.send(scissors)
-  if (args[0] === "scissors") message.channel.send(scissors)
-  if (args[0] === "Scissors") message.channel.send(scissors)
   if (args[0] === "s") message.channel.send(scissors)
 	    //language changed//
   if (args[0] === "ножницы") message.channel.send(scissors)
-  if (args[0] === "Ножницы") message.channel.send(scissors)
   if (args[0] === "н") message.channel.send(scissors)
-  if (args[0] === "ножницы") message.channel.send(scissors)
-  if (args[0] === "Ножницы") message.channel.send(scissors)
-  if (args[0] === "Н") message.channel.send(scissors)
   /////////////////////////END TYPES/////////////////////////////////////////
   if (!args[0]) message.channel.send("Опции: ``камень`` `к`, ``бумага`` `б`, ``ножницы`` `н`. *Usage: +rps <option>*")
   }
