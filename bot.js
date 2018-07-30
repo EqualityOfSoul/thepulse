@@ -330,7 +330,6 @@ message.channel.stopTyping();
 
 	let blacklist = config.blacklist;
 	if (bl.has(message.author.id)) return console.log('yay');
-	if(blacklist.has(message.author.id)) return;
 
     if (message.author.bot) return;
   //  if (message.author.id === '369471128835457026') return;
