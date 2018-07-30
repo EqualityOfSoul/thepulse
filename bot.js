@@ -2530,7 +2530,7 @@ message.channel.stopTyping()
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let Wrole = message.mentions.roles.first();// || message.guild.roles.find('name', args.join(" "));
 	    if(!Wrole) return message.reply("упомяните роль или введите примерное название роли.");
-	    let members = [];
+	    let roles = [];
             let indexes = [];
 	    message.guild.roles.forEach(function(role){
     roles.push(role.name);
