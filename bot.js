@@ -2813,7 +2813,6 @@ message.channel.send({embed});
 			message.channel.send(`${ppl.username} был убран из черного списка данной сесии.`)
 		}
 	}
-		}
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
