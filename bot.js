@@ -2604,7 +2604,7 @@ message.channel.stopTyping()
     .setTimestamp();
 	    message.channel.send(embed).catch(error => { 
 		    return message.reply(`Однако ошибка: ${error}`)
-	    }
+	    })
     } else if(['battle', 'duel'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let battler = message.mentions.users.first();
