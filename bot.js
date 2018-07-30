@@ -99,7 +99,7 @@ if (message.content.startsWith("x!$")) {
 }
 });
 */
-client.on("guildMemberAdd", member => {
+//client.on("guildMemberAdd", member => {
 	/*let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel || member.guild.channels.find('name', "bot-hell");
 	if (!chan) return;
@@ -109,7 +109,7 @@ client.on("guildMemberAdd", member => {
 	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\nЗарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
 	.setThumbnail(member.user.avatarURL);
 	chan.send(welcomeEmbed);*/
-	const kanal = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
+	/*const kanal = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	let q = member.user.tag;
         let r = member.guild.name;
         let img = member.user.displayAvatarURL;
@@ -128,10 +128,10 @@ client.on("guildMemberAdd", member => {
             });
           });
         });
-});
+});*/
 
 
-client.on("guildMemberRemove", member => {
+/*client.on("guildMemberRemove", member => {
 	const kanal = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
 	let q = member.user.tag;
         let r = member.guild.name;
@@ -150,7 +150,7 @@ client.on("guildMemberRemove", member => {
               });
             });
           });
-        });
+        });*/
 	/*let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
         let days_s = Math.ceil(Math.abs(new Date().getTime() - member.joinedAt.getTime()) / (1000 * 3600 * 24));
 	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
