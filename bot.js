@@ -2585,6 +2585,7 @@ message.channel.stopTyping()
 			//.addField('Права', allPermissions);
 		 message.channel.send(roleInfo);
     } else if(['invitelb'].includes(command)) {
+	    if(message.channel.type === "DM") return message.channel.send("Работает только на серверах.");
 	    let invites = await message.guild.fetchInvites().catch(error => { 
         return message.channel.send('Кажись у меня нет прав на просмотр инвайтов.');
     }) 
@@ -2599,7 +2600,8 @@ message.channel.stopTyping()
     const embed = new Discord.RichEmbed()
         .setColor("RANDOM")
         .addField('Leaderboard', `\`\`\`${table.table(possibleInvites)}\`\`\``)
-    .setFooter("Invites Leaderboard");
+    .setFooter(`Invites Leaderboard for  ${message.guild.name}`)
+    .setTimestamp();
 	    message.channel.send(embed).catch(error => { 
 		    return message.reply(`Однако ошибка: ${error}`)
 	    }
