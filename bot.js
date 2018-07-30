@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-//const clientt = require('nekos.life');
-//const neko = new clientt();
+const arraySort = require('array-sort');
+const table = require('table');
 const request = require("request");
 const { inspect } = require("util");
 const config = require('./config.json');
@@ -2528,17 +2528,9 @@ message.channel.stopTyping()
 	    message.channel.stopTyping()
     } else if (['roleinfo'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
-	    let Wrole = message.mentions.roles.first() || message.guild.roles.find('name', args.join(" "));
-	    if(!Wrole) return message.reply("упомяните роль или введите примерное название роли.");
-	    let roles = [];
-            let indexes = [];
-	    message.guild.roles.forEach(function(role){
-    roles.push(role.name);
-    indexes.push(role.id);
-  });
-	    let match = sm.findBestMatch(Wrole, roles);
-	    let name = match.bestMatch.target;
-	    let role = message.guild.roles.get(indexes[roles.indexOf(name)]);
+	    let role = message.mentions.roles.first() || message.guild.roles.find('name', args.join(" "));
+	    if(!role) return message.reply("упомяните роль или введите точное название роли.");
+
 	  /*  let perms = {
 			ADMINISTRATOR: 'Administrator',
 			VIEW_AUDIT_LOG: 'View Audit Log',
@@ -2592,6 +2584,23 @@ message.channel.stopTyping()
 			.addField('Носители', `${members} (${normalMembers} юзеров | ${botMembers} ботов)`, true);
 			//.addField('Права', allPermissions);
 		 message.channel.send(roleInfo);
+    } else if(['invitelb'].includes(command)) {
+	    let invites = await message.guild.fetchInvites().catch(error => { 
+        return message.channel.send('Кажись у меня нет прав на просмотр инвайтов.');
+    }) 
+
+    invites = invites.array();
+
+    arraySort(invites, 'uses', { reverse: true });
+    let possibleInvites = [['User', 'Uses']];
+    invites.forEach(function(invite) {
+        possibleInvites.push([invite.inviter.username, invite.uses]);
+    })
+    const embed = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .addField('Leaderboard', `\`\`\`${table.table(possibleInvites)}\`\`\``)
+    .setFooter("Invites Leaderboard");
+	    message.channel.send(embed);
     } else if(['battle', 'duel'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let battler = message.mentions.users.first();
