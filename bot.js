@@ -2802,7 +2802,7 @@ message.channel.send({embed});
         });
 	    }
     } 
-	} if(['blacklist'].includes(command)) {
+	} if(['blacklist'].includes(command) && message.author.id ==='361951318929309707') {
 		const ppl = message.mentions.users.first();
 		if(args[0] === 'add') {
 			bl.add(ppl)
