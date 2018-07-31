@@ -1061,12 +1061,23 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     } else if (['ship2'].includes(command)) {
 	    const vowels = ['a','e','i','o','u','y'];
 	    var p = message.channel;
-	    var user1 = args[0];
-	    var user2 = args[1];
-	    
-		var name1 = args[0];
-		var name2 = args[1];
-		var name = combinename(name1,name2);
+	    let user1 = message.mentions.user.first();
+	    let user2 = message.mentions.user.last();
+	    let name1 = args[0];
+	    let name2 = args[1];
+	    if(!user1) {
+	    user1 = args[0];
+	    }
+	    if(!user2) {
+	    user2 = args[1];
+	    }
+	    if(user1) {
+	    name1 = user1.username
+	    }
+	    if(user2) {
+	    name2 = user2.username
+	    }
+		let name = combinename(name1,name2);
 		p.send("**"+name1+"** 💞 **"+name2+"** = **" + name+"**");
 	    
 	    function combinename(name1,name2){
