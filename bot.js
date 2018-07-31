@@ -1064,8 +1064,8 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 	    var user1 = args[0];
 	    var user2 = args[1];
 	    
-		var name1 = user1.username;
-		var name2 = user2.username;
+		var name1 = args[0];
+		var name2 = args[1];
 		var name = combinename(name1,name2);
 		p.send("**"+name1+"** 💞 **"+name2+"** = **" + name+"**");
 	    
