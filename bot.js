@@ -57,7 +57,7 @@ music(client, {
 	prefix: 'x!',     
 	global: false,     
 	maxQueueSize: 10,  
-	clearInvoker: true,
+	clearInvoker: false,
 anyoneCanSkip: false
 //channel: 'music'   
 });
@@ -2800,7 +2800,7 @@ message.channel.send({embed});
             jimp.loadFont(jimp.FONT_SANS_32_WHITE).then(function(font) {
               jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(function(font2) {
                 image2.print(font, 9, 150, q);
-                image2.print(font2, 151, 111, `to ${r}, you are ${member.guild.memberCount}th member!`);
+                image2.print(font2, 151, 111, `to ${r}, you are ${message.guild.memberCount}th member!`);
                 image.resize(128, 128);
                 image2.composite(image, 2, 2);
                 image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
