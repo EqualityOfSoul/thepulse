@@ -15,13 +15,14 @@ const sm = require('string-similarity');
 const db = require('quick.db');
 const translate = require('google-translate-api');
 const canvas = require('canvas');
-const codeContext =  {};
 const opusscript = require('opusscript');
 const weather = require("weather-js");
 const os = require('os');
+const urban = require('relevant-urban');
 const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
 const querystring = require('querystring');
+var QRCode = require('qrcode');
 const client = new Discord.Client();
 const prefix = "<@441667160025333762>";
 const creators = ['361951318929309707'];
@@ -29,7 +30,7 @@ const emojis = {
 	nya:'435849475865575424',
 	google:'466553119745114122'
 };
-const urban = require('relevant-urban');
+const codeContext =  {};
 let money = 0; 
 let actFUN = 0;  // actFUN = actFUN + 1;actALL = actALL +1;
 let actMOD = 0;  // actMOD = actMOD + 1;actALL = actALL +1;
@@ -2851,7 +2852,14 @@ message.channel.send({embed});
 			bl.delete(ppl)
 			message.channel.send(`<@${ppl}> был убран из черного списка данной сесии.`)
 		}
-	}
+	} else if(['QR', 'QRcode'].includes(command)) {
+		const text = args.join(" ")
+		QRCode.toDataURL(text, function (err, url) {
+  message.channel.send({embed: new Discord.RichEmbed()
+			.setImage(url)
+			.setTitle(`[url](${url})`)
+		       })
+		})
 	}
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
