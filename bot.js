@@ -198,8 +198,8 @@ async function color () {
 client.on('message', async (message) => {
 	if (message.channel.type === 'dm') {
         if ([`${client.user.id}`].includes(message.author.id)) return;
-        if (['361951318929309707'].includes(message.author.id)) return client.channels.get('454011475493912586').send('Сообщение от '+message.author+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```');
         client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+'|' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```')
+		return;
     }
 });
 /*client.on("messageUpdate", (old_message, new_message) => {
@@ -2787,10 +2787,10 @@ message.channel.send({embed});
     message.channel.send(embed)
     } else if(['QR', 'QRcode'].includes(command)) {
 		const text = args.join(" ");
-		QRCode.toDataURL(text, function (err, url) {
+		QRCode.toString(args.join(" "), function (err, url) {
+			console.log(url)
 			const embed = new Discord.RichEmbed()
-			.setImage(url)
-			.setTitle(`[url](${url})`);
+			.setDescription(` \`\`\`${url}\`\`\` `)
   message.channel.send({embed: embed})
 		})
 	} else if(['hastebin'].includes(command)) {
