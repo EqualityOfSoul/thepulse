@@ -23,7 +23,7 @@ const urban = require('relevant-urban');
 const cheerio = require('cheerio');
 const snekfetch = require('snekfetch');
 const querystring = require('querystring');
-var QRCode = require('qrcode');
+const QRCode = require('qrcode');
 const client = new Discord.Client();
 const prefix = "<@441667160025333762>";
 const creators = ['361951318929309707'];
@@ -138,7 +138,7 @@ client.on("guildMemberAdd", member => {
             jimp.loadFont(jimp.FONT_SANS_32_WHITE).then(function(font) {
               jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(function(font2) {
                 image2.print(font, 9, 150, q);
-                image2.print(font2, 151, 111, `to ${r}`);
+                image2.print(font2, 151, 111, `to ${r}, you are ${member.guild.memberCount}th member!`);
                 image.resize(128, 128);
                 image2.composite(image, 2, 2);
                 image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
@@ -2800,7 +2800,7 @@ message.channel.send({embed});
             jimp.loadFont(jimp.FONT_SANS_32_WHITE).then(function(font) {
               jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(function(font2) {
                 image2.print(font, 9, 150, q);
-                image2.print(font2, 151, 111, `to ${r}`);
+                image2.print(font2, 151, 111, `to ${r}, you are ${member.guild.memberCount}th member!`);
                 image.resize(128, 128);
                 image2.composite(image, 2, 2);
                 image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
@@ -2843,18 +2843,7 @@ message.channel.send({embed});
 			bl.delete(ppl)
 			message.channel.send(`<@${ppl}> был убран из черного списка данной сесии.`)
 		}
-	} else if(['language', 'lang'].includes(command) && message.author.id ==='361951318929309707') {
-		let lang = {
-        'ru': {
-		'test': 'Россия'
-	},
-	'en': {
-		'test': 'WHAT?'
-	}
-		};
-	lang = lang[language];
-	message.reply(lang['test'])
-	}
+	} 
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
