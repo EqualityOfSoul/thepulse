@@ -186,6 +186,12 @@ function profile() {
 	
 	})
 }
+function wrap(text) {
+	return '```\n' + text.replace(/`/g, '`' + String.fromCharCode(8203)) + '\n```';
+}
+function nosym(text) {
+	return ' ' + text.replace(/`/g, '`' + String.fromCharCode(8203)) + ' ';
+}
 async function color () {
     await servers.forEach(async function (item1, number1) {
         if (client.guilds.get(item1[0]) && client.guilds.get(item1[0]).roles.get(item1[1]).editable)
