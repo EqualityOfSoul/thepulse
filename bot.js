@@ -47,7 +47,6 @@ vm.createContext(codeContext);
 //массив цветов
 const colors = ['ff2828','ff3d28','ff4b28','ff5a28','ff6828','ff7628','ff8c28','ffa128','ffac28','ffb728','ffc228','ffd028','ffd728','ffe228','fff028','fffb28','edff28','deff28','d0ff28','c2ff28','b3ff28','9aff28','8cff28','7dff28','6fff28','5aff28','3dff28','28ff2b','28ff41','28ff56','28ff6c','28ff81','28ff93','28ffa9','28ffba','28ffc9','28ffde','28fff4','28ffff','28f0ff','28deff','28deff','28d3ff','28c5ff','28baff','28b0ff','28a5ff','289eff','2893ff','2885ff','2876ff','2864ff','2856ff','284bff','2841ff','2836ff','2828ff','3228ff','4428ff','5328ff','6828ff','7628ff','7e28ff','8828ff','9328ff','a128ff','b028ff','be28ff','c928ff','d328ff','db28ff','e528ff','f028ff','ff28ff','ff28f7','ff28e5','ff28de','ff28d0','ff28c9','ff28ba','ff28b3','ff28a5','ff289a','ff288c','ff2881','ff287a','ff2873','ff2868','ff2861','ff2856','ff284f','ff2848','ff2844','ff282b'];
 
-let serverLanguage;
 
 
 
@@ -138,7 +137,8 @@ client.on("guildMemberAdd", member => {
             jimp.loadFont(jimp.FONT_SANS_32_WHITE).then(function(font) {
               jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(function(font2) {
                 image2.print(font, 9, 150, q);
-                image2.print(font2, 151, 111, `to ${r}, you are ${member.guild.memberCount}th member!`);
+                image2.print(font2, 151, 111, `to ${r}`);
+		image2.print(font2, 151, 131, `You are ${member.guild.memberCount}th member!`);
                 image.resize(128, 128);
                 image2.composite(image, 2, 2);
                 image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
@@ -184,20 +184,27 @@ client.on("guildMemberRemove", member => {
 	chan.send(goodbyeEmbed);*/
 })
 const servers = config.servers;
-function profile() {
-	let user = message.author;
-	message.channel.send({embed: new Discord.RichEmbed()
-		.setTitle(`profile of ${message.author.username}`)
-		.addField(`money: ${money}`)
-		.setColor('RANDOM')
-	
-	})
+function profile(message) {
+	return new Canvas(600, 300)
+.setColor('#7289DA')
+.addRect(0, 0, 600, 300)
+.setColor('#2C2F33')
+.addRect(0, 125, 600, 300)
+.setColor("#84BDF9")
+.addRect(0, 75, 500, 50)
+.addRect(500, 0, 100, 125)
+.setColor("#483D8B")
+.setTextFont('30px ARIAL BLACK')
+.addText(message.author.username, 50, 110, 200)
+.toBuffer();
+	message.channel.send({files: [profile()]})
+
 }
 function wrap(text) {
 	return '```\n' + text.replace(/`/g, '`' + String.fromCharCode(8203)) + '\n```';
 }
 function nosym(text) {
-	return text.replace(/`/g, '`' + String.fromCharCode(8203));
+	return text.replace(/`/g, ' ' + String.fromCharCode(8203));
 }
 async function color () {
     await servers.forEach(async function (item1, number1) {
@@ -211,7 +218,7 @@ async function color () {
 client.on('message', async (message) => {
 	if (message.channel.type === 'dm') {
         if ([`${client.user.id}`].includes(message.author.id)) return;
-        client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+'|' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```')
+        client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+' | ' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```')
 		return;
     }
 });
@@ -360,13 +367,7 @@ message.channel.stopTyping();
 	//} else {
 	//if (bl.has(message.author.id)) return console.log('yay');
 
-    if (message.author.bot) return;
-	if(message.guild.region === 'russia') {
-	serverLanguage = ru
-}
-if(!message.guild.region === 'russia') {
-	serverLanguage = en
-}
+   
   //  if (message.author.id === '369471128835457026') return;
     //Отвечает за установку префикса в команды
     let prefixes = ['X1', 'X!', 'X@', 'x1', 'x!', 'x@'];
@@ -2800,7 +2801,8 @@ message.channel.send({embed});
             jimp.loadFont(jimp.FONT_SANS_32_WHITE).then(function(font) {
               jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(function(font2) {
                 image2.print(font, 9, 150, q);
-                image2.print(font2, 151, 111, `to ${r}, you are ${message.guild.memberCount}th member!`);
+                image2.print(font2, 151, 111, `to ${r}`)
+		image2.print(font2, 151, 131, `You are ${message.guild.memberCount}th member!`);
                 image.resize(128, 128);
                 image2.composite(image, 2, 2);
                 image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
