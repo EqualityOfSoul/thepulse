@@ -2785,7 +2785,15 @@ message.channel.send({embed});
     embed.setTitle(`Discrim: ${args[0]}`)
         .setDescription(resp);
     message.channel.send(embed)
-    } else if(['hastebin'].includes(command)) {
+    }  else if(['QR', 'QRcode'].includes(command)) {
+		const text = args.join(" ");
+		QRCode.toDataURL(text, function (err, url) {
+  message.channel.send({embed: new Discord.RichEmbed()
+			.setImage(url)
+			.setTitle(`[url](${url})`)
+		       })
+		})
+	} else if(['hastebin'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let language = args[0];
 	    if(!language) return message.reply("Укажите язык, например js, py, ruby");
@@ -2852,14 +2860,6 @@ message.channel.send({embed});
 			bl.delete(ppl)
 			message.channel.send(`<@${ppl}> был убран из черного списка данной сесии.`)
 		}
-	} else if(['QR', 'QRcode'].includes(command)) {
-		const text = args.join(" ")
-		QRCode.toDataURL(text, function (err, url) {
-  message.channel.send({embed: new Discord.RichEmbed()
-			.setImage(url)
-			.setTitle(`[url](${url})`)
-		       })
-		})
 	}
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
