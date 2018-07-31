@@ -2771,11 +2771,11 @@ message.channel.send({embed});
     message.channel.send(embed)
     } else if(['QR', 'QRcode'].includes(command)) {
 		const text = args.join(" ");
-		QRCode.toString(args.join(" "), function (err, url) {
-			console.log(url)
+		QRCode.toString(text, function (err, string) {
+			console.log(string)
 			const embed = new Discord.RichEmbed()
-			.setDescription(` \`\`\`${url}\`\`\` `)
-  message.channel.send({embed: embed})
+			.setDescription(` \`\`\`${string}\`\`\` `)
+  message.channel.send({embed})
 		})
 	} else if(['hastebin'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
