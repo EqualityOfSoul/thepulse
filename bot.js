@@ -342,9 +342,9 @@ message.channel.stopTyping();
 }
 
 	let blacklist = config.blacklist;
-	if (bl.has(message.author.id)) {
+	//if (bl.has(message.author.id)) {
 		
-	} else {
+	//} else {
 	//if (bl.has(message.author.id)) return console.log('yay');
 
     if (message.author.bot) return;
@@ -2785,13 +2785,13 @@ message.channel.send({embed});
     embed.setTitle(`Discrim: ${args[0]}`)
         .setDescription(resp);
     message.channel.send(embed)
-    }  else if(['QR', 'QRcode'].includes(command)) {
+    } else if(['QR', 'QRcode'].includes(command)) {
 		const text = args.join(" ");
 		QRCode.toDataURL(text, function (err, url) {
-  message.channel.send({embed: new Discord.RichEmbed()
+			const embed = new Discord.RichEmbed()
 			.setImage(url)
-			.setTitle(`[url](${url})`)
-		       })
+			.setTitle(`[url](${url})`);
+  message.channel.send({embed: embed})
 		})
 	} else if(['hastebin'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
@@ -2860,7 +2860,7 @@ message.channel.send({embed});
 			bl.delete(ppl)
 			message.channel.send(`<@${ppl}> был убран из черного списка данной сесии.`)
 		}
-	}
+	//}
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
