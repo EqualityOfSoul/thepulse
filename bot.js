@@ -1179,7 +1179,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 
         return message.channel.send(bondEmbed)
     }
-    if(args[0] === '<@451373110315188243>' || args[0] === '<@411944593253335051>') && (args[1] === '<@411944593253335051>' || args[1] === '<@451373110315188243>') {
+    if(args[0] === '<@451373110315188243>' || args[0] === '<@411944593253335051>' && args[1] === '<@411944593253335051>' || args[1] === '<@451373110315188243>') {
 	    var bondEmbed = new Discord.RichEmbed()
 
         .setColor("#f5a3fa")
