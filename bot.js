@@ -2850,12 +2850,10 @@ message.channel.send({embed});
 		if (!/^#(?:[0-9a-fA-F]{3}){1,2}$/i.test(args[0]))
 			color = decToHex(color);
 
-		try {
-			const url = `http://www.thecolorapi.com/id?hex=${encodeURIComponent(color)}`;
-			const result = await request(url);
-			const xml = JSON.parse(result.text);
+			request(`http://www.thecolorapi.com/id?hex=${color}`, (err, resp, data) => {try {
+				let xml = JSON.parse(data);
 			if (isNaN(hexToDec(xml.hex.clean)))
-				return message.channel.send(`немогу конвертировать \`${args[0]}\` в \`цвет\``);
+				return message.channel.send(`немогу конвертировать \`${color}\` в цвет`);
 
 			const colorEmbed = new Discord.RichEmbed()
 				.setThumbnail(`https://dummyimage.com/500x500/${xml.hex.clean}/${xml.hex.clean}.png`)
@@ -2873,6 +2871,7 @@ message.channel.send({embed});
 		} catch (err) {
 			return message.channel.send(`${err} Результатов нет`);
 		}
+												   })
 	}
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
