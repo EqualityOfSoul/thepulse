@@ -346,6 +346,13 @@ message.channel.stopTyping();
     }
 }
 
+	function decToHex(dec) {
+	return (parseInt(dec)).toString(16);
+}
+
+function hexToDec(hex) {
+	return parseInt(hex, 16);
+}
 	let blacklist = config.blacklist;
 	//if (bl.has(message.author.id)) {
 		
@@ -2838,7 +2845,35 @@ message.channel.send({embed});
 			bl.delete(ppl)
 			message.channel.send(`<@${ppl}> был убран из черного списка данной сесии.`)
 		}
-	} 
+	} else if(['color'].includes(command)) {
+		let color = args[0];
+		if (!/^#(?:[0-9a-fA-F]{3}){1,2}$/i.test(args[0]))
+			color = decToHex(color);
+
+		try {
+			const url = `http://www.thecolorapi.com/id?hex=${encodeURIComponent(color)}`;
+			const result = await request(url);
+			const xml = JSON.parse(result.text);
+			if (isNaN(hexToDec(xml.hex.clean)))
+				return message.channel.send(`немогу конвертировать \`${args[0]}\` в \`цвет\``);
+
+			const colorEmbed = new Discord.RichEmbed()
+				.setThumbnail(`https://dummyimage.com/500x500/${xml.hex.clean}/${xml.hex.clean}.png`)
+				.setColor(hexToDec(xml.hex.clean))
+				.addField('HEX', xml.hex.clean, true)
+				.addField('DEC', hexToDec(xml.hex.clean), true)
+				.addField('CMYK', xml.cmyk.value, true)
+				.addField('RGB', xml.rgb.value, true)
+			        .addField('HSL', xml.hsl.value, true);
+			if (xml.name.exact_match_name) colorEmbed.setTitle(`Имя: ${xml.name.value}`);
+			if (xml.name.value !== '' && !xml.name.exact_match_name)
+				colorEmbed.setFooter(`Ближающие имя цвета: ${xml.name.value} (${xml.name.closest_named_hex})`, `https://dummyimage.com/500x500/${xml.name.closest_named_hex.slice(1)}/${xml.name.closest_named_hex.slice(1)}.png`);
+
+			return message.channel.send(colorEmbed);
+		} catch (err) {
+			return message.channel.send(`${err} Результатов нет`);
+		}
+	}
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
