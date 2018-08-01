@@ -1179,18 +1179,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 
         return message.channel.send(bondEmbed)
     }
-    if(args[0] === '<@451373110315188243>' || args[0] === '<@411944593253335051>' && args[1] === '<@411944593253335051>' || args[1] === '<@451373110315188243>') {
-	    var bondEmbed = new Discord.RichEmbed()
-
-        .setColor("#f5a3fa")
-        .addField("MATCHMAKING", `${args[0]} ♥ ${args[1]}`)
-        .addField("Points", `100%`)
-        .addField("Любовь..", `♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥`)
-        .addField("Ответ", `Идеальная пара <3_<3 :ok_hand:`);
-
-
-        return message.channel.send(bondEmbed)
-    }
+    
     if(args[0] === '<@361951318929309707>') {
         var bondEmbed5 = new Discord.RichEmbed()
 
