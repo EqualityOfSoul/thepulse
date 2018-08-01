@@ -389,7 +389,7 @@ message.channel.stopTyping();
 	const NSFWembed = 'В данном канале категория NSFW не работает, измените настройки или перейдите в подходящий канал. https://media.discordapp.net/attachments/465580817452630036/468455310122811393/NSFW.gif';
 	    //Эмулирует произвольный код из аккаунта.
     if(['changelog'].includes(command)) {
-	    message.channel.send(wrap("+changelog fixed"))
+	    message.channel.sendCode("js", "+changelog fixed")
     } else if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 
