@@ -1057,12 +1057,12 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     } else if (['ship2'].includes(command)) {
 	    const vowels = ['a','e','i','o','u','y'];
 	    var p = message.channel;
-	    let user1 = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-            let user2 = message.guild.member(message.guild.members.get(args[1]));
-	    let name1 = user1.username;
-	    let name2 = user2.username;
+	    var user1 = args[0];
+	    var user2 = args[1];
 	    
-		let name = combinename(name1,name2);
+		var name1 = args[0];
+		var name2 = args[1];
+		var name = combinename(name1,name2);
 		p.send("**"+name1+"** 💞 **"+name2+"** = **" + name+"**");
 	    
 	    function combinename(name1,name2){
