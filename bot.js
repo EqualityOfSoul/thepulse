@@ -184,22 +184,7 @@ client.on("guildMemberRemove", member => {
 	chan.send(goodbyeEmbed);*/
 })
 const servers = config.servers;
-function profile(message) {
-	return new Canvas(600, 300)
-.setColor('#7289DA')
-.addRect(0, 0, 600, 300)
-.setColor('#2C2F33')
-.addRect(0, 125, 600, 300)
-.setColor("#84BDF9")
-.addRect(0, 75, 500, 50)
-.addRect(500, 0, 100, 125)
-.setColor("#483D8B")
-.setTextFont('30px ARIAL BLACK')
-.addText(message.author.username, 50, 110, 200)
-.toBuffer();
-	message.channel.send({files: [profile()]})
 
-}
 function wrap(text) {
 	return '```\n' + text.replace(/`/g, '`' + String.fromCharCode(8203)) + '\n```';
 }
@@ -389,7 +374,7 @@ message.channel.stopTyping();
 	const NSFWembed = 'В данном канале категория NSFW не работает, измените настройки или перейдите в подходящий канал. https://media.discordapp.net/attachments/465580817452630036/468455310122811393/NSFW.gif';
 	    //Эмулирует произвольный код из аккаунта.
     if(['changelog'].includes(command)) {
-	    const lang = 'js';
+	    const lang = 'css';
 	    message.channel.sendCode(lang, `+changelog updated`)
     } else if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
@@ -1432,7 +1417,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
 		    message.channel.send("**`Данная команда позволяет обходить все права пользователя.`** \n**`Команды:`** \n**shutdown** - `выключить бота (использовать 2 раза)` \n**ban** [user] - `обход прав на бан.` \n**kick** [user] - `обход прав на кик.` \n**mute** [user] - `обход прав на мут.` \n**unmute** [user] - `обход прав на анмут.`")
 	    }
 	    if(args[0] === 'shutdown') {
-		    message.channel.send("выключаюсь")
+		    message.channel.send("ok")
 		    setTimeout(() => {
 			    process.exit();
   }, 5000)
@@ -2026,13 +2011,18 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
         message.guild.roles.forEach((role, num, roles_all) => {
             roles[roles_all.size-role.position] = role.name.replace(/`/g, "`" + String.fromCharCode(8203))
         });
-        const embed = new Discord.RichEmbed()
+	    let output = roles.join('\n')
+	    const embed = new Discord.RichEmbed()
         .setTitle(`Роли сервера ${message.channel.guild.name}`)
         .setThumbnail(message.channel.guild.iconURL)
         .setColor("#0000ff")
-        .setDescription('```'+roles.join('\n')+'```')
+        .setDescription('```'+output+'```')
         .setFooter("Могут быть показаны не все роли.")
-        message.channel.send({embed});
+	    if (output.length < 1950) {
+            message.channel.send(embed);
+        } else {
+            message.channel.send(`${output}`, {split:"\n", code:"json"});
+            }
     } else if (['embed', 'e'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         try {
