@@ -29,7 +29,7 @@
     "relevant-urban": "^2.0.0",
     "google-images": "^2.1.0",
     "ffmpeg": "0.0.4",
-    "opusscript": "^0.0.6"
+    "node-opus": "^0.3.0"
   },
   "optionalDependencies": {
         "array-sort": "^1.0.0",
