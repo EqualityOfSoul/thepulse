@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const music = require('discord.js-music-v11');
+const music2 = require('discord.js-music-hiico');
 const arraySort = require('array-sort');
 const table = require('table');
 const request = require("request");
@@ -54,7 +55,7 @@ var encoder = new opus.OpusEncoder( rate );
 var frame_size = rate/100;
 
 
-
+music2(client)
 music(client, {
 	prefix: 'x!',     
 	global: false,     
