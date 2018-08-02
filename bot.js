@@ -2651,13 +2651,13 @@ message.channel.stopTyping()
         }
     } else if(['botinfo'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
-	    const bot = message.mentions.users.first();
+	    let bot = message.mentions.users.first();
 	    if(bot.bot === false) return message.reply("Это явно не бот");
 	    let botid = bot.id;
 	    if(!bot){
 		    botid === args[0]
 		    }
-	    request('https://discordbots.org/api/bots/' + botid, (e, r, b)=> {
+	    request('https://discordbots.org/api/bots/' + botid || args[0], (e, r, b)=> {
 						let contenu = JSON.parse(b)
 					if(contenu.error === "Not found")  {
 					const embed = new Discord.RichEmbed()
@@ -2822,14 +2822,12 @@ message.channel.send({embed});
 			message.channel.send(`<@${ppl}> был убран из черного списка данной сесии.`)
 		}
 	} else if(['color'].includes(command)) {
-		let color = args[1];
-		if (!/^#(?:[0-9a-fA-F]{3}){1,2}$/i.test(args[0]))
-			color = decToHex(color);
-
+		let color = args[0];
+		
 			request('http://www.thecolorapi.com/id?hex='+color, (err, resp, data) => {try {
 				let xml = JSON.parse(data);
-			if (isNaN(hexToDec(xml.hex.clean))) 
-				return message.channel.send(`немогу конвертировать \`${color}\` в цвет`);
+/*if (isNaN(hexToDec(xml.hex.clean))) 
+				return message.channel.send(`немогу конвертировать \`${color}\` в цвет`);*/
 
 			const colorEmbed = new Discord.RichEmbed()
 				.setThumbnail(`https://dummyimage.com/500x500/${xml.hex.clean}/${xml.hex.clean}.png`)
