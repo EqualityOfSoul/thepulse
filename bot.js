@@ -15,7 +15,7 @@ const sm = require('string-similarity');
 const db = require('quick.db');
 const translate = require('google-translate-api');
 const canvas = require('canvas');
-const opusscript = require('opusscript');
+const opus = require('node-opus');
 const weather = require("weather-js");
 const os = require('os');
 const codeContext =  {};
@@ -47,7 +47,14 @@ vm.createContext(codeContext);
 //массив цветов
 const colors = ['ff2828','ff3d28','ff4b28','ff5a28','ff6828','ff7628','ff8c28','ffa128','ffac28','ffb728','ffc228','ffd028','ffd728','ffe228','fff028','fffb28','edff28','deff28','d0ff28','c2ff28','b3ff28','9aff28','8cff28','7dff28','6fff28','5aff28','3dff28','28ff2b','28ff41','28ff56','28ff6c','28ff81','28ff93','28ffa9','28ffba','28ffc9','28ffde','28fff4','28ffff','28f0ff','28deff','28deff','28d3ff','28c5ff','28baff','28b0ff','28a5ff','289eff','2893ff','2885ff','2876ff','2864ff','2856ff','284bff','2841ff','2836ff','2828ff','3228ff','4428ff','5328ff','6828ff','7628ff','7e28ff','8828ff','9328ff','a128ff','b028ff','be28ff','c928ff','d328ff','db28ff','e528ff','f028ff','ff28ff','ff28f7','ff28e5','ff28de','ff28d0','ff28c9','ff28ba','ff28b3','ff28a5','ff289a','ff288c','ff2881','ff287a','ff2873','ff2868','ff2861','ff2856','ff284f','ff2848','ff2844','ff282b'];
 
-
+var rate = 48000;
+var encoder = new opus.OpusEncoder( rate );
+ 
+// Encode and decode.
+var frame_size = rate/100;
+var encoded = encoder.encode( buffer, frame_size );
+var decoded = encoder.decode( encoded, frame_size );
+ 
 
 
 
@@ -2510,6 +2517,7 @@ message.channel.stopTyping()
 	    
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    const text = args.join(" ");
+	    if(!text) return message.channel.send("text pls?");
 	    const embed = new Discord.RichEmbed()
 	    .setColor("RANDOM")
 	    .setImage(`https://dummyimage.com/2000x500/33363c/ffffff&text=${encodeURIComponent(text)}`);
@@ -2573,7 +2581,7 @@ message.channel.stopTyping()
         normalMembers += 1
       }
     });
-	    const allPermissions = Object.entries(role.permissions.serialize()).filter(allowed => allowed[1]).map(([perm]) => this.perms[perm]).join(' ');
+	   // const allPermissions = Object.entries(role.permissions.serialize()).filter(allowed => allowed[1]).map(([perm]) => this.perms[perm]).join(' ');
 		const roleInfo = new Discord.RichEmbed()
 			.setColor(role.hexColor || '#FFF')
 			.addField('Название', role.name, true)
@@ -2653,13 +2661,7 @@ message.channel.stopTyping()
 	    let botid;
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let bot = message.mentions.users.first();
-	    if(bot) { 
-		    if(bot.bot === false) return message.reply("Это явно не бот");
-		    botid = bot.id
-	    }
-	    if(!bot){
-		    botid === args[0]
-		    }
+	    
 	    request('https://discordbots.org/api/bots/' + botid || args[0], (e, r, b)=> {
 						let contenu = JSON.parse(b)
 					if(contenu.error === "Not found")  {
@@ -2753,8 +2755,9 @@ message.channel.send({embed});
 		QRCode.toString(text, function (err, string) {
 			console.log(string)
 			const embed = new Discord.RichEmbed()
-			.setDescription(` \`\`\`${string}\`\`\` `)
+			.setDescription(wrap(string));
   message.channel.send({embed})
+                               .catch(err => message.channel.send(err))
 		})
 	} else if(['hastebin'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
