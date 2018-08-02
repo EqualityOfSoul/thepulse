@@ -2652,7 +2652,7 @@ message.channel.stopTyping()
     } else if(['botinfo'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let bot = message.mentions.users.first();
-	    if(bot.bot === false) return message.reply("Это явно не бот");
+	   // if(bot.bot === false) return message.reply("Это явно не бот");
 	    let botid = bot.id;
 	    if(!bot){
 		    botid === args[0]
@@ -2661,7 +2661,7 @@ message.channel.stopTyping()
 						let contenu = JSON.parse(b)
 					if(contenu.error === "Not found")  {
 					const embed = new Discord.RichEmbed()
-						embed.setDescription("**Error**\nУказан неправельный бот, либо данного бота нет в discordbotsorg, упомяните нужного вам бота.")
+						embed.setDescription("**Error**\nУказан неправельный бот, либо данного бота нет в DBL.org, упомяните нужного вам бота.")
 						embed.setColor("#ffd954")
 						message.channel.send({embed});
 					} else {
