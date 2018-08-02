@@ -54,7 +54,7 @@ var encoder = new opus.OpusEncoder( rate );
 var frame_size = rate/100;
 
 const db = require('quick.db');
-db.createWebview(process.env.PASS, process.env.PORT);
+db.createWebview(process.env.PASS, process.env.CON.PORT); //DATABASE CONNECT
 
 music(client, {
 	prefix: 'x!',     
