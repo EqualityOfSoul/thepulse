@@ -55,7 +55,7 @@ var encoder = new opus.OpusEncoder( rate );
 var frame_size = rate/100;
 
 
-music2(client)
+
 music(client, {
 	prefix: 'x!',     
 	global: false,     
