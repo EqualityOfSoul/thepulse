@@ -54,7 +54,7 @@ var encoder = new opus.OpusEncoder( rate );
 var frame_size = rate/100;
 
 const db = require('quick.db');
-db.createWebview(process.env.PASS, process.env.CON.PORT); //DATABASE CONNECT
+db.createWebview(process.env.PASS, process.env.CON_PORT); //DATABASE CONNECT
 
 music(client, {
 	prefix: 'x!',     
@@ -359,7 +359,7 @@ function hexToDec(hex) {
 	    //Эмулирует произвольный код из аккаунта.
     if(['changelog'].includes(command)) {
 	    const lang = 'css';
-	    message.channel.sendCode(lang, `+changelog updated`)
+	    message.channel.sendCode(lang, `+added DATABASE \n+changelog updated`)
     } else if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 
