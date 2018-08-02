@@ -13,7 +13,6 @@ const moment = require("moment");
 const hastebiconstn = require('hastebin-gen');
 const jimp = require("jimp");
 const sm = require('string-similarity');
-const db = require('quick.db');
 const translate = require('google-translate-api');
 const canvas = require('canvas');
 const opus = require('node-opus');
