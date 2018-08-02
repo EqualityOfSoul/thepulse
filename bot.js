@@ -2653,7 +2653,10 @@ message.channel.stopTyping()
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    const bot = message.mentions.users.first();
 	    if(bot.bot === false) return message.reply("Это явно не бот");
-	    const botid = bot.id || args[0];
+	    let botid = bot.id;
+	    if(!bot){
+		    botid === args[0]
+		    }
 	    request('https://discordbots.org/api/bots/' + botid, (e, r, b)=> {
 						let contenu = JSON.parse(b)
 					if(contenu.error === "Not found")  {
