@@ -529,6 +529,7 @@ function hexToDec(hex) {
 	if(['owner'].includes(command)) {
 	    message.channel.send(`owner >>> ${message.channel.guild.owner}`)
 } else if(['urban'].includes(command)) {
+        if(!message.channel.nsfw) return message.channel.send("По правилам ботов, команда urban должна использоваться в каналах с меткой NSFW");
 	const q = args.join(" ");
      urban.random(q)
       .then(result => {
