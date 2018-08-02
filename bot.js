@@ -9,7 +9,7 @@ const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
 const moment = require("moment");
-const hastebin = require('hastebin-gen');
+const hastebiconstn = require('hastebin-gen');
 const jimp = require("jimp");
 const sm = require('string-similarity');
 const db = require('quick.db');
@@ -60,35 +60,8 @@ music(client, {
 anyoneCanSkip: false
 //channel: 'music'   
 });
-/*const Sharder = require('eris-sharder').Master;
-const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
-clientOptions: {
-	stats: true,
-  debug: true,
-  guildsPerShard: "20",
-  name: "xeval bot",
-  webhooks: {
-    shard: {
-      id: "472849859574104074",
-      token: "5RVF6EsHzvy9acRM330Hu9fLJWDjAcAnuYZqGUCuFqBrA2oRu9dcVlLqh8gfhzHwemH6"
-    },
-     cluster: {
-      id: "0Taa7RBh1EeVvJDdo-jxJrvZqd0w1ycpndGeWj7TQdy0oUk_QK7CAjt-rEkVBQfYPnqp",
-      token: "472850422563078154"
-    }
-  },
-  clientOptions: {
-      messageLimit: 150,
-      defaultImageFormat: "png"
-  }
-}
-});
-sharder.on("stats", stats => {
-  console.log(stats);
-});
-sharder.on("ready", () => {
-  console.log("gotova blyat");
-});*/
+
+  
 client.on("ready", () => {
     //Отпраляет сообщение в логи что бот запущен (+ количество серверов).${i}
 
@@ -2559,7 +2532,7 @@ message.channel.stopTyping()
 	    let role = message.mentions.roles.first() || message.guild.roles.find('name', args.join(" "));
 	    if(!role) return message.reply("упомяните роль или введите точное название роли.");
 
-	    let perms = {
+	 /*   let perms = {
 			ADMINISTRATOR: 'Administrator',
 			VIEW_AUDIT_LOG: 'View Audit Log',
 			MANAGE_GUILD: 'Manage Server',
@@ -2588,7 +2561,7 @@ message.channel.stopTyping()
 			DEAFEN_MEMBERS: 'Deafen Members',
 			MOVE_MEMBERS: 'Move Members',
 			USE_VAD: 'Use Voice Activity'
-		};
+		};*/
 	  let members = 0,
         normalMembers = 0,
         botMembers    = 0;
@@ -2850,9 +2823,9 @@ message.channel.send({embed});
 		if (!/^#(?:[0-9a-fA-F]{3}){1,2}$/i.test(args[0]))
 			color = decToHex(color);
 
-			request(`http://www.thecolorapi.com/id?hex=${color}`, (err, resp, data) => {try {
+			request('http://www.thecolorapi.com/id?hex='+color, (err, resp, data) => {try {
 				let xml = JSON.parse(data);
-			if (isNaN(hexToDec(xml.hex.clean)))
+			if (isNaN(hexToDec(xml.hex.clean))) 
 				return message.channel.send(`немогу конвертировать \`${color}\` в цвет`);
 
 			const colorEmbed = new Discord.RichEmbed()
@@ -2863,13 +2836,13 @@ message.channel.send({embed});
 				.addField('CMYK', xml.cmyk.value, true)
 				.addField('RGB', xml.rgb.value, true)
 			        .addField('HSL', xml.hsl.value, true);
-			if (xml.name.exact_match_name) colorEmbed.setTitle(`Имя: ${xml.name.value}`);
+			if (xml.name.exact_match_name) colorEmbed.setTitle(`${xml.name.value}`);
 			if (xml.name.value !== '' && !xml.name.exact_match_name)
 				colorEmbed.setFooter(`Ближающие имя цвета: ${xml.name.value} (${xml.name.closest_named_hex})`, `https://dummyimage.com/500x500/${xml.name.closest_named_hex.slice(1)}/${xml.name.closest_named_hex.slice(1)}.png`);
 
 			return message.channel.send(colorEmbed);
 		} catch (err) {
-			return message.channel.send(`${err} Результатов нет`);
+			return message.channel.send(`${err}`);
 		}
 												   })
 	}
