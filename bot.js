@@ -2650,11 +2650,14 @@ message.channel.stopTyping()
             message.channel.send({embed:embed});
         }
     } else if(['botinfo'].includes(command)) {
+	    let botid;
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let bot = message.mentions.users.first();
-	   // if(bot.bot === false) return message.reply("Это явно не бот");
-	    let botid = bot.id;
-	    if(!botid){
+	    if(bot) { 
+		    if(bot.bot === false) return message.reply("Это явно не бот");
+		    botid = bot.id
+	    }
+	    if(!bot){
 		    botid === args[0]
 		    }
 	    request('https://discordbots.org/api/bots/' + botid || args[0], (e, r, b)=> {
