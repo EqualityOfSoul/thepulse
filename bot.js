@@ -2654,7 +2654,7 @@ message.channel.stopTyping()
 	    let bot = message.mentions.users.first();
 	   // if(bot.bot === false) return message.reply("Это явно не бот");
 	    let botid = bot.id;
-	    if(!bot){
+	    if(!botid){
 		    botid === args[0]
 		    }
 	    request('https://discordbots.org/api/bots/' + botid || args[0], (e, r, b)=> {
