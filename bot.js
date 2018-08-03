@@ -65,8 +65,8 @@ anyoneCanSkip: false
 //channel: 'music'   
 });
 const dbl = require("dblposter");
-const DBLPoster = new dbl(process.env.BOT_KEY);
-DBLPoster.bind(client);
+const DBLPoster = new dbl(process.env.BOT_KEY, client);
+DBLPoster.bind();
 client.on('ready', () => {
     //Отпраляет сообщение в логи что бот запущен (+ количество серверов).${i}
 
