@@ -2881,11 +2881,13 @@ message.channel.stopTyping()
             message.channel.send({embed:embed});
         }
     } else if(['botinfo'].includes(command)) {
-	    let botid;
+	    
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let bot = message.mentions.users.first();
-	    
-	    request('https://discordbots.org/api/bots/' + botid || args[0], (e, r, b)=> {
+	    let botid = bot.id;
+	    if(!bot) return message.channel.send("Укажите бота");
+	    if(!bot.bot) return message.channel.send("А это точно бот?");
+	    request('https://discordbots.org/api/bots/' + botid, (e, r, b)=> {
 						let contenu = JSON.parse(b)
 					if(contenu.error === "Not found")  {
 					const embed = new Discord.RichEmbed()
