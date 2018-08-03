@@ -2896,32 +2896,14 @@ message.channel.stopTyping()
 						embed.setColor("#ffd954")
 						message.channel.send({embed});
 					} else {
-						if(botid === "441667160025333762") {
-							const embed = new Discord.RichEmbed()
+                                                const embed = new Discord.RichEmbed()
 						embed.setAuthor(contenu.username, "https://cdn.discordapp.com/avatars/"+botid+"/"+contenu.avatar+".png")
 						embed.setThumbnail("https://cdn.discordapp.com/avatars/"+botid+"/"+contenu.avatar+".png")
 						embed.setColor("#ffd954")
 						embed.setTimestamp()
 						embed.addField(contenu.username, contenu.shortdesc, true)
 						embed.addField("Проверенный? <:dblCertified:392249976639455232>", contenu.certifiedBot === true ? "Да <:tickYes:315009125694177281>" : "Нет <:tickNo:315009174163685377>", true)
-						embed.addField("Количество серверов", client.guilds.size, true)
-						embed.addField("Библиотека", contenu.lib, true)
-						embed.addField("Дата добавления", contenu.date, true)
-						embed.addField("Префикс", contenu.prefix, true)
-						embed.addField("Upvotes", contenu.points, true)
-						embed.addField("тег(и)", contenu.tags.length != 0 ? contenu.tags.join(", ") : "Тегов нет", true)
-						embed.addField("Ссылки", "[Invite](" + contenu.invite + "), [DBL.org](https://discordbots.org/bot/" + botid + " ), [Github](" + contenu.github + "), [Website](" + contenu.website + "), [Support Server](https://discordapp.com/invite/" + contenu.support + ")", true)
-message.channel.send({embed});
-						}
-						if(botid !== "441667160025333762") {
-					const embed = new Discord.RichEmbed()
-						embed.setAuthor(contenu.username, "https://cdn.discordapp.com/avatars/"+botid+"/"+contenu.avatar+".png")
-						embed.setThumbnail("https://cdn.discordapp.com/avatars/"+botid+"/"+contenu.avatar+".png")
-						embed.setColor("#ffd954")
-						embed.setTimestamp()
-						embed.addField(contenu.username, contenu.shortdesc, true)
-						embed.addField("Проверенный? <:dblCertified:392249976639455232>", contenu.certifiedBot === true ? "Да <:tickYes:315009125694177281>" : "Нет <:tickNo:315009174163685377>", true)
-						embed.addField("Количество серверов", contenu.server_count, true)
+						embed.addField("Количество серверов", `${contenu.server_count} серверов | ${contenu.shard_count} shards, true)
 						embed.addField("Библиотека", contenu.lib, true)
 						embed.addField("Дата добавления", contenu.date, true)
 						embed.addField("Префикс", contenu.prefix, true)
@@ -2930,7 +2912,7 @@ message.channel.send({embed});
 						embed.addField("тег(и)", contenu.tags.length != 0 ? contenu.tags.join(", ") : "Тегов нет", true)
 						embed.addField("Ссылки", "[Invite](" + contenu.invite + "), [DBL.org](https://discordbots.org/bot/" + botid + " ), [Github](" + contenu.github + "), [Website](" + contenu.website + "), [Support Server](https://discordapp.com/invite/" + contenu.support + ")", true)
 message.channel.send({embed});
-						}
+						
     }
   })
     } else if(['weather', 'погода'].includes(command)) {
