@@ -64,9 +64,10 @@ music(client, {
 anyoneCanSkip: false
 //channel: 'music'   
 });
-
-  
-client.on("ready", () => {
+const dbl = require("dblposter");
+const DBLPoster = new dbl(process.env.BOT_KEY);
+DBLPoster.bind(client);
+client.on('ready', () => {
     //Отпраляет сообщение в логи что бот запущен (+ количество серверов).${i}
 
     console.log(`Успешный старт. ${client.guilds.size} серверов`);
