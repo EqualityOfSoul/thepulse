@@ -359,7 +359,7 @@ function hexToDec(hex) {
 	    //Эмулирует произвольный код из аккаунта.
     if(['changelog'].includes(command)) {
 	    const lang = 'css';
-	    message.channel.sendCode(lang, `+added DATABASE \n+changelog updated`)
+	    message.channel.sendCode(lang, `+Changelog доступен для всех \n+added color command \n+added 13 NSFW commands \n+added DATABASE \n+changelog updated`)
     } else if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 
@@ -1711,12 +1711,12 @@ let voice = 0;
             .setThumbnail('https://cdn.pixabay.com/photo/2016/06/15/15/02/info-1459077_960_720.png')
             .addField("Fun", "**x!say** сообщение от бота. \n**x!embed** (x!helpembed) embed сообщение от бота. \n**x!invite** пригласить бота на сервер.) \n**x!servers** узнать сервера бота,их создателей, их ID. \n**x!afk** <причина> \n**x!ping** проверка. \n**x!ship** проверка совместимости. \n**x!summon** [user] <reason> - вызвать пользователя с причиной (или без) \n**x!nya** тест эмодзи. \n**x!poll** создать голосование. \n**x!idea** идея по поводу сервера. (Quasar only) \n**x!vote** начать голосование (Galactic empire only) \n**x!avatar** просмотр аватара. \n**бот пиши** начну писать в чат где вы меня вызвали. \n**бот не пиши** перестану писать в чат где вы меня вызвали.")
             .addField("Fun (continued)", "**x!logo** узнать иконку сервера. \n**x!ascii** [text] - перевести текст в ascii \n**x!render [font] [text]** - преобразовать текст в один из 50+ шрифтов (x!fonts) \n**x!fonts** - список шрифтов для команды **x!render** \n**x!emojify** [text] - перевод текста в эмодзи \n**x!timer** [time - ms] - запуск таймера, напишите x!timer для помощи. \n**x!count** - добавить +1 \n**x!reverse** [text] - реверс текста. \n**x!space** [text] - пробельный текст. \n**x!time** - мск время. \n**x!save** [key] [message] - сохранить сообщение в ключ. \n**x!view** <key> - просмотреть ключ(и). \n**x!owoify** [текст на английском] \n**x!support** - support server (нет) \n**x!urban** [word] - выдаст информацию на запрос. \n**x!cathash** <user> - просмотр пользователя через robothash. \n**x!texthash** [text] - перевод любого текста в кота (очень редко в роботов) \n**x!translate** [language] [text] - переводчик. \n**x!battle** [user] - мини дуэль. \n**x!hastebin** [lang] [code] - быстрое создание hastebin через бота. ")
-            .addField("Info", "**x!roles** узнать роли сервера. \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!quote** [message id] - просмотреть содержание сообщения (только с данного сервера)  \n**x!roleinfo** [rolename / role] - информация об роли. \n**x!botinfo** [bot] - информация об боте с DBL если он там есть. \n**x!weather** [region] - узнать погоду региона. \n**x!emojis** - узнать эмодзи сервера. \n**x!discrim** [discrim] - просмотреть пользователей в боте имеющий [discrim] дискриминатор. \n**x!invitelb** - таблица лидеров по приглашениям")
+            .addField("Info", "**x!roles** узнать роли сервера. \n**x!about** информация об количествах серверов, пользователей, каналов. \n**x!userinfo** информация об вас. \n**x!serverinfo** информация об сервере. \n**x!inviteInfo** [invite] - информация про приглашение. \n**x!quote** [message id] - просмотреть содержание сообщения (только с данного сервера)  \n**x!roleinfo** [rolename / role] - информация об роли. \n**x!botinfo** [bot] - информация об боте с DBL если он там есть. \n**x!weather** [region] - узнать погоду региона. \n**x!emojis** - узнать эмодзи сервера. \n**x!discrim** [discrim] - просмотреть пользователей в боте имеющий [discrim] дискриминатор. \n**x!invitelb** - таблица лидеров по приглашениям \n**x!color [color] - узнать информацию про цвет (ОБЯЗАТЕЛЬНО писать без #)")
 	    .addField("Mod", "**x!prune** <user> [ammout] - очистка сообений от пользователя либо чата. \n **x!softban** [users] - бан нескольких пользователей за раз. (времено отключено) \n**x!ban** [user] - бан пользователя. \n**x!unban** [user id] - разбан пользователя. \n**x!kick** [user] - кик пользователя. \n**x!prunemembers** - пропишите команду для большей помощи. \n**x!rs** [channel id] [message] - удаленая отправка сообщений. \n**x!addrole** [role | user] [user | role] - добавить роль пользователю. \n**x!removerole** [role | user] [user | role] - снять роль. \n**x!mute** [user] - мут пользователя (на сервере должна имется роль `muted`) \n**x!unmute** [user] \n**x!warn** предупредить пользователя. \n**x!createEmoji** [url] [name] - создать эмодзи. \n**x!pinvite** - проверить на наличие приглашений в статусах. \n**x!tts** [text] - tts Сообщение.")
             .addField("Bot owner", "**x!eval** [code] - эмуляция js кода. \n**x!presence** [type] [status] - смена статуса. \n**x!us** [user id] - приватное сообщение от лица бота.")
             .addField("Reactions", "**x!suicide** - суицид. \n**x!cry** - плакать. \n**x!wasted** [user] - уебать. \n**x!kiss** [user] - поцелуй. \n**x!pat** [user] - погладить. \n**x!nom** [user] - дать поесть. \n**x!slap** [user] - ударить. \n**x!hug** [user] - обнять. \n**x!cuddle** [user] - прижаться. \n**x!tickle** [user] - пощекотать. \n**x!poke** [user] - тыкнуть.")
             .addField("Images", "**x!nyan** - описание не указано. \n**x!foxGirl** - рандомное fox girl изображение. \n**x!waifu** - рандомное waifu изображение. \n**x!neko** - рандомное neko изображение. \n**x!cat** - рандомное изображение с котом.")
-            .addField("NSFW", "**x!ero** \n**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko**")
+            .addField("NSFW", "**x!ero** \n**x!pussy** \n**x!anal** \n**x!hentai** \n**x!boobs** \n**x!nNeko** \n**x!eron** \n**x!trap** \n**x!yuri** \n**x!futunari** \n**x!les** \n**x!kemonomimi** \n**x!kuni** \n**x!solo** \n**x!tits** \n**x!femdom** \n**x!cum** \n**x!lewdkemo** \n**x!blowjob**")
 	    .addField("Music", "**x!play** [url] - добавить музыку в очередь. \n**x!skip [number]** - пропустить количество песень. \n**x!queue** - узнать лист музыки. \n**x!pause** - пауза плеера. \n**x!resume** - возрат плеера. \n**x!volume** [1/100] - установить силу звука. \n**x!leave** - выйти из войса и отичистить лист. \n**x!clearqueue** - очистить лист. \n\n\n**Сменить язык на русский нельзя так как это специальный модуль**\n\n**Модуль еще не доделал, это значит что будет много багов✓, либо команды будут работать некорректно✓, либо бот будет жить своей жизнью× (советуем прихватить святой воды)**")
 	    .addField("Filters", "**x!invert** [user] - инверсия аватара \n**x!magik** [user] - расплющить изображение\n**x!flip** [user] - перевернуть изображение.\n**x!gay** [user] - наложить гей флаг.\n**x!blur** [user] - наложить пятно. \n**x!sepia** [user] - наложить эффект сепии. \n**x!banner** [text] - создать баннер")
             .addField("utility (временно недоступно)", "**x!pin** [channel id] [message id] - закрепить сообщение ботом. \n**x!unpin** [channel id] [message id] - открепить сообщение ботом.")
@@ -2385,6 +2385,216 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
         if (!message.channel.nsfw) return message.reply(NSFWembed);
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/hentai', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['yuri'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/yuri', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['trap'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/trap', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['kuni'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/kuni', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['solo'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/solo', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['tits'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/tits', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['futanari'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/futanari', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['femdom'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/femdom', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['eron'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/eron', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['lewdkemo'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/lewdkemo', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['eroyuri'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/eroyuri', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['blowjob'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/blowjob', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['cum'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/cum', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['kemonomimi'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/kemonomimi', function (error, response, body) {
+                try {
+                    let arr = JSON.parse(body);
+                    let embed = new Discord.RichEmbed()
+                        .setImage(arr['url'])
+                        .setColor('RANDOM')
+                        .setFooter(`requested by ${message.author.username} | powered by nekos.life`);
+                    msg.edit({embed});
+                } catch (e) {console.log(e)}
+            });
+        });
+    } else if(['les'].includes(command)) {
+	    actNSFW = actNSFW + 1;actALL = actALL +1;
+        if (!message.channel.nsfw) return message.reply(NSFWembed);
+        message.channel.send('Загрузка...').then(msg => {
+            request('https://nekos.life/api/v2/img/les', function (error, response, body) {
                 try {
                     let arr = JSON.parse(body);
                     let embed = new Discord.RichEmbed()
