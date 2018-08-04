@@ -386,7 +386,7 @@ function hexToDec(hex) {
             }
         } catch (error) {
             //Захватывает ошибку и говорит об этом.
-            message.channel.send(`Произошла ошибка \`\`\`js\n${error}\`\`\``);
+            message.channel.send(`Error \`\`\`js\n${error}\`\`\``);
             //Ставит реакцию (Ошибка).
             message.react("❎")
         }
