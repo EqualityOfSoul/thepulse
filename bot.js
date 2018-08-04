@@ -9,7 +9,7 @@ const { inspect } = require("util");
 const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
-const moment = require("moment");
+const mment = require("moment");
 const hastebiconstn = require('hastebin-gen');
 const jimp = require("jimp");
 const sm = require('string-similarity');
@@ -2963,9 +2963,7 @@ message.channel.send({embed});
 		const text = args.join(" ");
 		QRCode.toString(text, function (err, string) {
 			console.log(string)
-			const embed = new Discord.RichEmbed()
-			.setDescription(wrap(string));
-  message.channel.send({embed})
+                       message.channel.send(wrap(string))
                                .catch(err => message.channel.send(err))
 		})
 	} else if(['hastebin'].includes(command)) {
@@ -2974,8 +2972,8 @@ message.channel.send({embed});
 	    if(!language) return message.reply("Укажите язык, например js, py, ruby");
 	    args.shift();
 	    let bin = args.join(" ");
-	    if(!bin) return message.reply("Добавьте тест / код");
-	    hastebin(bin, language).then(link => {
+	    if(!bin) return message.reply("Добавьте текст / код");
+	    hastebin(language, bin).then(link => {
 		    message.reply(`Готово, вот ваша ссылка: ${link}`)
 	    }).catch(err => {
 		    message.reply(`Error: ${err}`)
@@ -3045,7 +3043,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
 				return message.channel.send(`немогу конвертировать \`${color}\` в цвет`);
 
 			const colorEmbed = new Discord.RichEmbed()
-				.setThumbnail(`https://dummyimage.com/500x500/${xml.hex.clean}/0011ff.png&text=${xml.name.value}`)
+				.setThumbnail(`https://dummyimage.com/500x500/${xml.hex.clean}/000000.png&text=${xml.name.value}`)
 				.setColor(hexToDec(xml.hex.clean))
 				.addField('HEX', xml.hex.clean, true)
 				.addField('DEC', hexToDec(xml.hex.clean), true)
