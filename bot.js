@@ -2884,13 +2884,13 @@ message.channel.stopTyping()
             message.channel.send({embed:embed});
         }
     } else if(['number'].includes(command)) {
-	    finder.getData(args.join(" "), function (e, r, d) {
-    let contenu = JSON.parse(b)
+	    finder.getData(args.join(" "), function (e, response, body) {
+    let arr = JSON.parse(body)
     const embed = new Discord.RichEmbed()
     .setTitle(args.join(" "))
-    .addField("Код", contenu.code)
-    .addField("Регион", contenu.region)
-    .addField("Оператор", contenu.operator)
+    .addField("Код", arr['code'])
+    .addField("Регион", arr['region'])
+    .addField("Оператор", arr['operator'])
     .setColor('RANDOM');
 		    message.channel.send(embed).catch(err => message.channel.send(err))
 });
