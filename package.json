@@ -43,6 +43,7 @@
         "string-similarity": "^1.2.0",
         "fs-nextra": "^0.3.5",
         "quick.db": "^6.3.2",
+        "numcap": "^0.0.14",
         "table": "^4.0.3",
         "qrcode": "^1.2.0",
         "google-translate-api": "^2.3.0",
