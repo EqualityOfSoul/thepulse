@@ -17,6 +17,7 @@ const translate = require('google-translate-api');
 const canvas = require('canvas');
 const opus = require('node-opus');
 const weather = require("weather-js");
+const numcap = require('numcap');
 const os = require('os');
 const codeContext =  {};
 const urban = require('relevant-urban');
@@ -31,6 +32,7 @@ const emojis = {
 	nya:'435849475865575424',
 	google:'466553119745114122'
 };
+var finder = new numcap();
 let money = 0; 
 let actFUN = 0;  // actFUN = actFUN + 1;actALL = actALL +1;
 let actMOD = 0;  // actMOD = actMOD + 1;actALL = actALL +1;
@@ -2881,6 +2883,17 @@ message.channel.stopTyping()
                 .setColor("#ffd954");
             message.channel.send({embed:embed});
         }
+    } else if(['number'].includes(command)) {
+	    finder.getData(args.join(" "), function (e, r, d) {
+    let contenu = JSON.parse(b)
+    const embed = new Discord.RichEmbed()
+    .setTitle(args.join(" "))
+    .addField("Код", contenu.code)
+    .addField("Регион", contenu.region)
+    .addField("Оператор", contenu.operator)
+    .setColor('RANDOM');
+		    message.channel.send(embed).catch(err => message.channel.send(err))
+});
     } else if(['botinfo'].includes(command)) {
 	    
 	    actFUN = actFUN + 1; actALL = actALL + 1;
