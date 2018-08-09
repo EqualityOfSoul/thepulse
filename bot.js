@@ -44,6 +44,7 @@ let actALL = 0; //  actALL = actALL +1;actALL = actALL +1;
 let gameCount = 0;
 const talkedRecently = new Set();
 const bl = new Set();
+const tet = new Set();
 let serversPlay = {}
 vm.createContext(codeContext);
 //массив цветов
@@ -347,6 +348,11 @@ function hexToDec(hex) {
     prefixes.forEach(prefix_ => {
         if (message.content.startsWith(prefix_)) {
             prefix = prefix_;
+        }
+    })
+        tet.forEach(tat => {
+        if (message.content.startsWith(tat)) {
+            prefix = tat;
         }
     })
     if (prefix === false) return;
