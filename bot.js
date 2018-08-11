@@ -776,9 +776,12 @@ bot.edit(embed);}, Math.floor(Math.random() * (1- 1)) + 1);
         const s = args[0] * 1000;
 	const m = args[1] * 60000;
 	const h = args[2] * 3600000;
-	const vremya = s+m+h;
+let vremya = s+m+h;
+if(!m && h) { vremya = s }
+if(!h) { vremya = s+m }
+if(!s) return message.channel.send("¿");
   if(!vremya) return message.reply("Пожалуйста укажите время. \n**`x!timer [time]` \nHelp: 1 слово учитывается как секунды, 2 слово как минуты, 3 слово как часы. \nExample: `x!timer 10 43 1`**")
-  if(vremya < 10000) return message.reply("Ваше число слишком мало");
+  //if(vremya < 10000) return message.reply("Ваше число слишком мало");
   if(vremya > 31536000000) return message.reply("Ваше число превышает лимит.");
   let embed = new Discord.RichEmbed()
   .setTitle("Timer")
@@ -1380,7 +1383,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 	    actFUN = actFUN + 1;actALL = actALL +1;
   
         let users = 0;
-client.guilds.forEach((guild) => {users += client.users.size});
+client.guilds.forEach((guild) => {guild.memberCount += users});
         const embed = new Discord.RichEmbed()
             .setColor("#00ff00")
             .setTitle('Статистика')
@@ -1392,7 +1395,7 @@ client.guilds.forEach((guild) => {users += client.users.size});
         //embed.addField('Сервер', process.env.DYNO, true);
         //embed.addField('Порт', process.env.PORT, true);*
         embed.addField('Количество серверов', client.guilds.size)
-        embed.addField('Количество онлайн пользователей', client.users.size)
+        embed.addField('Количество пользователей', users)
         embed.addField('Количество каналов', client.channels.size)
         embed.addField('Модуль FUN использован', `${actFUN} раз.`)
         embed.addField('Модуль MOD использован', `${actMOD} раз.`)
@@ -2479,7 +2482,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                 } catch (e) {console.log(e)}
             });
         });
-    } else if(['futanari'].includes(command)) {
+    } else if(['futanari', 'унеехуй'].includes(command)) {
 	    actNSFW = actNSFW + 1;actALL = actALL +1;
         if (!message.channel.nsfw) return message.reply(NSFWembed);
         message.channel.send('Загрузка...').then(msg => {
@@ -2659,7 +2662,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
                 } catch (e) {console.log(e)}
             });
         });
-    } else if(['smallboobs', 'smailboobs'].includes(command)) {
+    } else if(['smallboobs', 'smailboobs', 'цп'].includes(command)) {
 	    actNSFW = actNSFW + 1;actALL = actALL +1;
         if (!message.channel.nsfw) return message.reply(NSFWembed);
         message.channel.send('Загрузка...').then(msg => {
