@@ -334,6 +334,7 @@ message.channel.stopTyping();
 function hexToDec(hex) {
 	return parseInt(hex, 16);
 }
+if(message.auhor.bot) return;
 	let blacklist = config.blacklist;
 	//if (bl.has(message.author.id)) {
 		
@@ -368,7 +369,7 @@ function hexToDec(hex) {
 	    //Эмулирует произвольный код из аккаунта.
     if(['changelog'].includes(command)) {
 	    const lang = 'css';
-	    message.channel.sendCode(lang, `+Changelog доступен для всех \n+added color command \n+added 13 NSFW commands \n+added DATABASE \n+changelog updated`)
+	    message.channel.sendCode(lang, `+bots responde fixed \n+Changelog доступен для всех \n+added color command \n+added 13 NSFW commands \n+added DATABASE \n+changelog updated`)
     } else if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 
