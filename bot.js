@@ -297,6 +297,7 @@ client.on('message', async (message) => {
 	if (message.content.startsWith(".t") && message.author.id === '361951318929309707') {
 		message.delete()
 	}
+if(message.author.bot) return;
 	if (message.content.startsWith(">t") && message.author.id === '361951318929309707') {
 		message.delete()
 	}
@@ -334,7 +335,7 @@ message.channel.stopTyping();
 function hexToDec(hex) {
 	return parseInt(hex, 16);
 }
-if(message.auhor.bot) return;
+
 	let blacklist = config.blacklist;
 	//if (bl.has(message.author.id)) {
 		
