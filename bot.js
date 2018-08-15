@@ -957,15 +957,15 @@ return message.channel.send(members.map(member => `\```${member.id}\``` ${member
         message.channel.send(new_text);
     } else if(['voice'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
-        if(args[0] === 'join') return message.member.voiceChannel.join(); message.channel.send("осуществлен вход в канал: **"+ message.member.voiceChannel.name + "**");
-        if(args[0] === 'leave') return message.member.voiceChannel.leave(); message.channel.send("осуществлен выход из канала: **"+ message.member.voiceChannel.name + "**");
+        if(args[0] === 'join') { message.member.voiceChannel.join(); message.channel.send("осуществлен вход в канал: **"+ message.member.voiceChannel.name + "**"); }
+        if(args[0] === 'leave') { message.member.voiceChannel.leave(); message.channel.send("осуществлен выход из канала: **"+ message.member.voiceChannel.name + "**"); }
     } else if(['render'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	  let font = args[0];
 	  args.shift();
 	  let text = args.join(" ");
 	    request('https://dmascii.now.sh/render?text='+text+'!&font='+font, function (error, response, body) {
-            message.channel.send('<a:loading:435849475865575424> Обрабатываю запрос...').then(function(message) {
+            message.channel.send('<a:loading:435849475865575424> Обрабатываем запрос...').then(function(message) {
 message.edit("```"+body+"```");
     }).catch(function() {});
 });
@@ -2338,6 +2338,15 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
         const urls = ['https://media1.tenor.com/images/6d55ad934bb27473d3df8211bb8831bf/tenor.gif?itemid=9975194', 'https://media2.giphy.com/media/ROF8OQvDmxytW/giphy.gif', 'http://gifimage.net/wp-content/uploads/2017/07/anime-cry-gif-28.gif', 'http://gifimage.net/wp-content/uploads/2017/10/cry-anime-gif-9.gif', 'http://i0.kym-cdn.com/photos/images/original/000/980/628/a33.gif', 'http://gifimage.net/wp-content/uploads/2017/07/anime-cry-gif-24.gif', 'https://i.gifer.com/Drie.gif', 'https://media.giphy.com/media/3o6ZtqXXIROMIDjrSE/source.gif', 'http://37.media.tumblr.com/bf5836922dc31ccabb555c7a0db00e10/tumblr_n7fmo4Y8V31sppmhjo1_500.gif', 'https://i.pinimg.com/originals/08/43/e8/0843e8663770d63ce16c3828f9a57ccf.gif', 'https://i.gifer.com/Yf7N.gif', 'https://thumbs.gfycat.com/GoodnaturedRemarkableFurseal-size_restricted.gif'];
                     let embed = new Discord.RichEmbed()
                         .setDescription(`${message.author.username} заплакал(а)`)
+                        .setImage(urls[Math.floor(Math.random() * urls.length)])
+                        .setColor('RANDOM');
+                    msg.edit({embed});
+        });
+    } else if(['smoke'].includes(command)) {
+	     message.channel.send('Загрузка...').then(msg => {
+		     const urls = ['https://thumbs.gfycat.com/SphericalDependentHalibut-small.gif', 'https://78.media.tumblr.com/7746fca41c6782df47d7cd6925adba6f/tumblr_orcpabAWTV1sqhf08o1_500.gif', 'http://animeonline.su/uploads/posts/2015-06/1435137244_end.gif', 'https://media.giphy.com/media/hnRXZQiHWTtTO/giphy.gif', 'https://media.giphy.com/media/1k6S4iyfFyTRK/giphy.gif' ,'https://i.pinimg.com/originals/10/4b/9e/104b9ea0f2dea93d9374b092b82e1256.gif', 'https://s3-eu-west-1.amazonaws.com/files.surfory.com/uploads/2015/2/14/54dd05a41f395d0b468b465a/54df5bf31f395daa438b4c8e.gif', 'http://s8.favim.com/orig/150926/anime-guy-black-and-white-gif-smoking-Favim.com-3361618.gif', 'http://img0.safereactor.cc/pics/post/anime-gif-Anime-Subete-ga-F-ni-Naru-The-Perfect-Insider-2638766.gif', 'http://s017.radikal.ru/i424/1111/2b/ecae2f095abb.gif', 'https://78.media.tumblr.com/5bec6027d1c27194e6d3d5863c739d5f/tumblr_ozmfkvy8Pc1urnatuo1_500.gif', 'https://78.media.tumblr.com/6ac2528e3cde0894adb41fbc4e56def0/tumblr_owayv78WNu1vbfbhho1_500.gif'];
+		     let embed = new Discord.RichEmbed()
+                        .setDescription(`${message.author.username} выкурил(а) сигарету.`)
                         .setImage(urls[Math.floor(Math.random() * urls.length)])
                         .setColor('RANDOM');
                     msg.edit({embed});
