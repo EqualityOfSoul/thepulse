@@ -58,7 +58,17 @@ var frame_size = rate/100;
 
 const db = require('quick.db');
 db.createWebview(process.env.PASS, process.env.CON_PORT); //DATABASE CONNECT
-
+const Sharder = require('eris-sharder').Master;
+const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
+  stats: true,
+  debug: true,
+  shards: 3,
+  name: 'XeVAL',
+  guildsPerShard: "50"
+})
+sharder.on("stats", stats => {
+  console.log(stats);
+});
 music(client, {
 	prefix: 'x!',     
 	global: false,     
