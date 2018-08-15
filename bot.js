@@ -55,10 +55,7 @@ var encoder = new opus.OpusEncoder( rate );
  
 // Encode and decode.
 var frame_size = rate/100;
-const Shard = require('discord.js-sharder');
-Shard.manager('/src/main.js', {
-   token: process.env.BOT_TOKEN
-});
+
 const db = require('quick.db');
 db.createWebview(process.env.PASS, process.env.CON_PORT); //DATABASE CONNECT
 const Sharder = require('eris-sharder').Master;
