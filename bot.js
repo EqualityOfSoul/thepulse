@@ -62,6 +62,7 @@ const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
   stats: true,
   debug: true,
+  clusters: 2,
   shards: 3,
   name: 'XeVAL',
   guildsPerShard: "50"
