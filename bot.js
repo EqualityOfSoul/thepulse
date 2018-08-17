@@ -98,7 +98,6 @@ client.on('ready', () => {
 	console.log(`Залогинился в ${client.user.name}`)
 	console.log(`ID: ${client.user.id}`)
 	console.log("------------------------------")
-	console.log((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' МСК'))
     //Ставит боту статус.
     client.user.setActivity(`x!help • ${client.guilds.size} servers`)
     //Функция необходимая для запуска радуги.
