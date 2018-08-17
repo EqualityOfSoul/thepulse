@@ -84,7 +84,21 @@ DBLPoster.bind();
 client.on('ready', () => {
     //Отпраляет сообщение в логи что бот запущен (+ количество серверов).${i}
 
-    console.log(`Успешный старт. ${client.guilds.size} серверов`);
+        console.log(`Успешный старт.`)
+	console.log("----------Количество---------- ")
+	console.log(`${client.guilds.size} серверов `)
+	console.log(`${client.channels.size} каналов`)
+	console.log(`${client.users.size} юзеров    `)
+	console.log("----------Данные-------------- ")
+	console.log(`Лог сервер: 449284842534993931 (XEVAL LOGS)`)
+	console.log(`Овнер: 361951318929309707 (X-49#8847)`)
+	console.log(`Сайт: https://xeval.glitch.me  `)
+	console.log("----------Логин---------- ")
+	console.log(`Успешный логин.`)
+	console.log(`Залогинился в ${client.user.name}`)
+	console.log(`ID: ${client.user.id}`)
+	console.log("------------------------------")
+	console.log((new Date(new Date().getTime() + 3*60*60*1000)).toISOString().replace(/(.*?)T/, '').replace(/\..+/, '')+' МСК')})
     //Ставит боту статус.
     client.user.setActivity(`x!help • ${client.guilds.size} servers`)
     //Функция необходимая для запуска радуги.
