@@ -58,7 +58,7 @@ var frame_size = rate/100;
 
 const db = require('quick.db');
 db.createWebview(process.env.PASS, process.env.CON_PORT); //DATABASE CONNECT
-const Sharder = require('eris-sharder').Master;
+/*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
   stats: true,
   debug: true,
@@ -69,7 +69,7 @@ const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
 })
 sharder.on("stats", stats => {
   console.log(stats);
-});
+});*/
 music(client, {
 	prefix: 'x!',     
 	global: false,     
@@ -214,7 +214,9 @@ client.on('message', async (message) => {
         message.channel.startTyping();
     }
     //tyt
-
+	if (message.content.has("<@441667160025333762>")) {
+	    message.channel.send("my prefix is `x!`")
+	    }
 	if (message.content.startsWith(".t") && message.author.id === '361951318929309707') {
 		message.delete()
 	}
@@ -1293,7 +1295,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 				  .setColor('RANDOM')
 				  .setFooter(`requested by ${message.author.username}`)
 				 })
-    } else if (['about'].includes(command)) {
+    } else if (['about', 'stats'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
   
         let users = 0;
@@ -1304,21 +1306,22 @@ client.guilds.forEach((guild) => {guild.memberCount += users});
             .setDescription('Команды указаны за данный запуск')
             .setThumbnail(client.user.avatarURL);
         embed.addField('Пинг', client.ping, true);
-	embed.addField("UpTime", `${Math.round(client.uptime / (1000 * 60 * 60 * 24))} дня(дней), ${Math.round(client.uptime / (1000 * 60 * 60))} часа(ов), ${Math.round(client.uptime / (1000 * 60)) % 60} минут, ${Math.round(client.uptime / 1000) % 60} секунд`)
-        embed.addField('ОЗУ', process.env.WEB_MEMORY + 'мб / ' + process.env.MEMORY_AVAILABLE + 'мб', true);
+	embed.addField("UpTime", `${Math.round(client.uptime / (1000 * 60 * 60 * 24))} days, ${Math.round(client.uptime / (1000 * 60 * 60))} hours, ${Math.round(client.uptime / (1000 * 60)) % 60} minutes, ${Math.round(client.uptime / 1000) % 60} sec`)
+        embed.addField('ОЗУ', process.env.WEB_MEMORY + 'MB / ' + process.env.MEMORY_AVAILABLE + 'MB', true);
+	embed.addField('Version', process.version)
+	embed.addField('Lib', "discord.js (^11.3.0)")
         //embed.addField('Сервер', process.env.DYNO, true);
         //embed.addField('Порт', process.env.PORT, true);*
-        embed.addField('Количество серверов', client.guilds.size)
-        embed.addField('Количество пользователей', users)
-        embed.addField('Количество каналов', client.channels.size)
-        embed.addField('Модуль FUN использован', `${actFUN} раз.`)
-        embed.addField('Модуль MOD использован', `${actMOD} раз.`)
-        embed.addField('Модуль OWN использован', `${actOWN} раз.`)
-        embed.addField('Модуль REACTION использован', `${actRCT} раз.`)
-        embed.addField('Модуль IMAGE использован', `${actIMG} раз.`)
-        embed.addField('Модуль NSFW использован', `${actNSFW} раз.`)
-        embed.addField('Использовано команд за этот запуск', `${actALL} раз.`)
-        embed.addField('Со-Авторы', '<@421030089732653057>')
+        embed.addField('servers count', client.guilds.size)
+        embed.addField('users count', users)
+        embed.addField('channels count', client.channels.size)
+        embed.addField('FUN uses', `${actFUN}.`)
+        embed.addField('MOD uses', `${actMOD}.`)
+        embed.addField('REACTION uses', `${actRCT}.`)
+        embed.addField('IMAGE uses', `${actIMG}.`)
+        embed.addField('NSFW uses', `${actNSFW}.`)
+        embed.addField('commands run', `${actALL} раз.`)
+        embed.addField('authors', '<@441667160025333762> (X-49#8847) <@421030089732653057> (zziger#8040)')
 	embed.setImage('https://discordbots.org/api/widget/441667160025333762.png');
         message.channel.send(embed);
         message.delete();
