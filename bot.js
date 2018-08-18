@@ -1296,12 +1296,9 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     } else if (['about', 'stats'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
   
-        let users = 0;
-client.guilds.forEach((guild) => {guild.memberCount += users});
         const embed = new Discord.RichEmbed()
             .setColor("#00ff00")
-            .setTitle('Статистика')
-            .setDescription('Команды указаны за данный запуск')
+            .setTitle('stats')
             .setThumbnail(client.user.avatarURL);
         embed.addField('Пинг', client.ping, true);
 	embed.addField("UpTime", `${Math.round(client.uptime / (1000 * 60 * 60 * 24))} days, ${Math.round(client.uptime / (1000 * 60 * 60))} hours, ${Math.round(client.uptime / (1000 * 60)) % 60} minutes, ${Math.round(client.uptime / 1000) % 60} sec`)
@@ -1311,7 +1308,7 @@ client.guilds.forEach((guild) => {guild.memberCount += users});
         //embed.addField('Сервер', process.env.DYNO, true);
         //embed.addField('Порт', process.env.PORT, true);*
         embed.addField('servers count', client.guilds.size)
-        embed.addField('users count', users)
+        embed.addField('users count', client.users.size)
         embed.addField('channels count', client.channels.size)
         embed.addField('FUN uses', `${actFUN}.`)
         embed.addField('MOD uses', `${actMOD}.`)
@@ -1319,7 +1316,7 @@ client.guilds.forEach((guild) => {guild.memberCount += users});
         embed.addField('IMAGE uses', `${actIMG}.`)
         embed.addField('NSFW uses', `${actNSFW}.`)
         embed.addField('commands run', `${actALL} раз.`)
-        embed.addField('authors', '<@441667160025333762> (X-49#8847) <@421030089732653057> (zziger#8040)')
+        embed.addField('authors', '<@361951318929309707> (X-49#8847) <@421030089732653057> (zziger#8040)')
 	embed.setImage('https://discordbots.org/api/widget/441667160025333762.png');
         message.channel.send(embed);
         message.delete();
