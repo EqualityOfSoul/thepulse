@@ -214,9 +214,7 @@ client.on('message', async (message) => {
         message.channel.startTyping();
     }
     //tyt
-	if (message.content.has("<@441667160025333762>")) {
-	    message.channel.send("my prefix is `x!`")
-	    }
+
 	if (message.content.startsWith(".t") && message.author.id === '361951318929309707') {
 		message.delete()
 	}
