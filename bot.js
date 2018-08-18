@@ -106,33 +106,8 @@ client.on('ready', () => {
     });
     color();
 });
-/*client.on('message', message => {
-    let sender = message.author;
-    let msg = message.content.toUpperCase();
-    //events
-    let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
-    if (!userData[sender.id + message.guild.id]) userData[sender.id + message.guild.id] = {}
-    if (!userData[sender.id + message.guild.id].money) userData[sender.id + message.guild.id].money = 1000; //start money
-    if (!userData[sender.id + message.guild.id].lastDaily) userData[sender.id + message.guild.id].lastDaily = "Not Collected";
-if (message.content.startsWith("x!$")) {
-    const embed = new Discord.RichEmbed()
-    .setColor("#f44242")
-    .setTitle("Ваш баланс составляет: " + userData[sender.id + message.guild.id].money + " $");
-    message.channel.send({embed});
-}
-});
-*/
 client.on("guildMemberAdd", member => {
 	if(member.guild.id === '264445053596991498') return;
-	/*let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
-	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
-	if (!chan) return;
-	const welcomeEmbed = new Discord.RichEmbed()
-	.setTitle("Welcome")
-	.setColor("#00ff00")
-	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\nЗарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
-	.setThumbnail(member.user.avatarURL);
-	chan.send(welcomeEmbed);*/
 	if(!member.guild.systemChannel) return;
 	let q = member.user.tag;
         let r = member.guild.name;
@@ -177,16 +152,6 @@ client.on("guildMemberRemove", member => {
             });
           });
         });
-	/*let days = Math.ceil(Math.abs(new Date().getTime() - member.user.createdAt.getTime()) / (1000 * 3600 * 24));
-        let days_s = Math.ceil(Math.abs(new Date().getTime() - member.joinedAt.getTime()) / (1000 * 3600 * 24));
-	const chan = member.guild.channels.find('name', "logs") || member.guild.systemChannel;
-	if (!chan) return;
-	const goodbyeEmbed = new Discord.RichEmbed()
-	.setTitle("Good bye")
-	.setColor("#ff0000")
-	.setDescription(`${member}  \`${member.user.tag}\`\n${member.user.id}\nЗарегистрирован: ${member.user.createdAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days}** дней в дискорде.\nЗашел на сервер: ${member.joinedAt.toISOString().replace(/[TZ]/g, ' ')} UTC\n**${days_s}** дней пробыл на сервере.\n\n**${member.guild.memberCount}** пользователей на сервере.`)
-	.setThumbnail(member.user.avatarURL);
-	chan.send(goodbyeEmbed);*/
 })
 const servers = config.servers;
 
@@ -212,74 +177,6 @@ client.on('message', async (message) => {
 		return;
     }
 });
-/*client.on("messageUpdate", (old_message, new_message) => {
-	//if(message.channel.type === 'dm') return;
-	const chan = old_message.guild.channels.find('name', "logs");
-	if (!chan) return;
-    if (old_message.author.bot) return;
-	if (old_message.channel.name === undefined) return;
-	if (old_message.content === new_message.content && old_message.attachments === new_message.attachments && old_message.embeds === new_message.embeds) return;
-	const embedEdited = new Discord.RichEmbed()
-	.setTitle("Message edited")
-	.setColor("#ffff00")
-	.addField("Сообщение пользователя:", `- ${old_message.author} (${old_message.author.id})`)
-	.addField("В канале:", `- ${old_message.channel} (${old_message.channel.id})`)
-	.addField("До:", `- ${old_message.content}`)
-	.addField("После:", `- ${new_message.content}`)
-	.setFooter(`Message id: ${old_message.id}`);
-	chan.send(embedEdited);
-});
-client.on("channelUpdate", (old_channel, new_channel) => {
-	const chan = old_channel.guild.channels.find('name', "logs");
-	if (!chan) return;
-	let cOldPosition = old_channel.position;
-	let cNewPosition = new_channel.position;
-	let cOldName = old_channel.name;
-	let cNewName = new_channel.name;
-	if (old_channel.name === new_channel.name) {
-		cNewName = 'без изменений.'
-	}
-	if (old_channel.position === new_channel.position) {
-		cNewPosition = 'без изменений.'
-	}
-	let cOldTopic = old_channel.topic;
-	let cNewTopic = new_channel.topic;
-	if(!cOldTopic) {
-		cOldTopic = 'не указано'
-	}
-	if (old_channel.topic === new_channel.topic) {
-		cNewTopic = 'без изменений.'
-	}
-	const channelEmbed = new Discord.RichEmbed()
-    .setTitle("Channel update")
-    .setColor("#ffff00")
-    .addField("Позиция до обновления", `- ${cOldPosition}`, true)
-    .addField("Позиция после обновления", `- ${cNewPosition}`, true)
-	.addBlankField()
-    //.addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
-    .addField("Имя до обновления", `- ${old_channel.name}`, true)
-    .addField("Имя после обновления", `- ${cNewName}`, true)
-	.addBlankField()
-    //.addField("⠀⠀⠀⠀⠀⠀⠀⠀⠀",  "⠀⠀⠀⠀⠀⠀⠀⠀⠀", false)
-    .addField("Описание до обновления", `- ${cOldTopic}`, true)
-    .addField("Описание после обновления", `- ${cNewTopic}`, true);
-	chan.send(channelEmbed)
-});
-client.on("messageDelete", (old_message) => {
-	//if(message.channel.type === 'dm') return;
-	const chan = old_message.guild.channels.find('name', "logs");
-	if (!chan) return;
-    if (old_message.author.bot) return;
-	if (old_message.channel.name === undefined) return;
-	const embedDeleted = new Discord.RichEmbed()
-	.setTitle("Message deleted")
-	.setColor("#ff0000")
-	.addField("Сообщение пользователя:", `- ${old_message.author} (${old_message.author.id})`, true)
-	.addField("В канале:", `- ${old_message.channel} (${old_message.channel.id})`, true)
-	.addField("Сообщение:", `- ${old_message.content}`, true)
-	.setFooter(`Message id: ${old_message.id}`);
-	chan.send(embedDeleted);
-});*/
 client.on("guildCreate", guild => {
   const logsServerJoin = client.channels.get('454637063527071756');
   const embed = new Discord.RichEmbed()
@@ -325,16 +222,7 @@ if(message.author.bot) return;
 	if (message.content.startsWith(">t") && message.author.id === '361951318929309707') {
 		message.delete()
 	}
-	if (message.content.startsWith(prefix2)) {
-    const args2 = message.content.slice(prefix2.length).trim().split(/ +/g);
-    const textMsg = args2.join(" ");
-    message.channel.startTyping()
-            request('https://nekos.life/api/v2/chat?&text='+textMsg, function (error, response, body) {
-                    let arr = JSON.parse(body);
-                        message.channel.send(arr['response'])
-            });
-message.channel.stopTyping();
-	}
+	
     if (message.content.startsWith("бот не пиши")) {
         //Отвечает за то чтобы бот перестал писать в вызваном чате.
         message.channel.stopTyping();
@@ -369,7 +257,7 @@ function hexToDec(hex) {
    
   //  if (message.author.id === '369471128835457026') return;
     //Отвечает за установку префикса в команды
-    let prefixes = ['X1', 'X!', 'X@', 'x1', 'x!', 'x@'];
+    let prefixes = ['X1', 'X!', 'X@', 'x1', 'x!', 'x@', '<@441667160025333762>'];
     let prefix = false;
     prefixes.forEach(prefix_ => {
         if (message.content.startsWith(prefix_)) {
