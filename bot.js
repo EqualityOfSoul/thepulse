@@ -64,6 +64,10 @@ const con = mysql.createConnection({
 	password:  process.env.PASS,
 	database:  process.env.DATABASE
 });
+con.connect(err => {
+	if(err) throw err;
+	console.log("connected")
+})
 db.createWebview(process.env.PASS, process.env.CON_PORT); //DATABASE CONNECT
 /*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
@@ -102,7 +106,7 @@ client.on('ready', () => {
 	console.log(`Сайт: https://xeval.glitch.me  `)
 	console.log("----------Логин---------- ")
 	console.log(`Успешный логин.`)
-	console.log(`Залогинился в ${client.user.name}`)
+	console.log(`Залогинился в ${client.user.username}`)
 	console.log(`ID: ${client.user.id}`)
 	console.log("------------------------------")
     //Ставит боту статус.
