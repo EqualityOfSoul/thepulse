@@ -31,7 +31,8 @@
     "google-images": "^2.1.0",
     "ffmpeg": "0.0.4",
     "node-opus": "^0.3.0",
-    "opusscript": "^0.0.6"
+    "opusscript": "^0.0.6",
+    "mysql": "2.16.0"
   },
   "optionalDependencies": {
         "array-sort": "^1.0.0",
