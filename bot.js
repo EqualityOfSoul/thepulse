@@ -58,15 +58,7 @@ var encoder = new opus.OpusEncoder( rate );
 var frame_size = rate/100;
 
 const db = require('quick.db');
-const con = mysql.createConnection({
-	host: process.env.HOST,
-	user: process.env.USER,
-	password:  process.env.PASS,
-	database:  process.env.DATABASE
-});
-con.connect(err => {
-	console.log("connected")
-})
+
 db.createWebview(process.env.PASS, process.env.CON_PORT); //DATABASE CONNECT
 /*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
@@ -218,18 +210,7 @@ function generateXp() {
 	let min = 5;
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-client.on('message', async message => {
-	  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-	let sql;
-	if (rows.lenght < 1) {
-		sql = `INSERT INTO xp (id, xp) VALUES ('${message.author.id}', ${generateXp()})`;
-	} else {
-		let xp = rows[0].xp;
-		sql = `UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`;
-	}
-	con.query(sql, console.log);
-});
-})
+
 client.on('message', async (message) => {
 	const prefix2 = "<@441667160025333762>";
 
