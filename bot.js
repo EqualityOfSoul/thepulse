@@ -1652,8 +1652,9 @@ let voice = 0;
 	    .setTitle("Help")
 	    .addField("Russian", "Помощь по командам можно найти тут https://xeval.glitch.me/ru/commands")
 	    .addField("English", "Help can be found at https://xeval.glitch.me/en/commands")
+	    .setFooter("Новое обновление будет доступно по достижении 200 серверов")
 	    .setColor('RANDOM');
-	    message.channel.send("Check DM")
+	    message.channel.send("i send help to your DM")
 	    message.author.send(embed)
 		    .catch(error => message.channel.send("DM has blocked"));
 	    /*let bot = await if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw`, `7 - filters` \nПригласить бота на сервер x!invite \nпроголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
