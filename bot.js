@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const music = require('discord.js-music-v11');
 const music2 = require('discord.js-music-hiico');
+const mysql = require("mysql");
 const arraySort = require('array-sort');
 const table = require('table');
 const request = require("request");
@@ -57,6 +58,12 @@ var encoder = new opus.OpusEncoder( rate );
 var frame_size = rate/100;
 
 const db = require('quick.db');
+const con = mysql.createConnection({
+	host: process.env.HOST,
+	user: process.env.USER,
+	password:  process.env.PASS,
+	database:  process.env.DATABASE
+});
 db.createWebview(process.env.PASS, process.env.CON_PORT); //DATABASE CONNECT
 /*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
