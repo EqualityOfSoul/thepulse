@@ -210,7 +210,24 @@ client.on("guildDelete", guild => {
   logsServerLeave.send({embed});
   logsServerLeave.send("``` ```");
 });
-
+function generateXp() {
+	let max = 30;
+	let min = 5;
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+client.on('message', async message => {
+	  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+	if (err) throw err;
+	let sql;
+	if (rows.lenght < 1) {
+		sql = `INSERT INTO xp (id, xp) VALUES ('${message.author.id}', ${generateXp()})`;
+	} else {
+		let xp = rows[0].xp;
+		sql = `UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`;
+	}
+	con.query(sql, console.log);
+});
+})
 client.on('message', async (message) => {
 	const prefix2 = "<@441667160025333762>";
 
