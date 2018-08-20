@@ -2104,6 +2104,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
 					      let embed = new Discord.RichEmbed()
                         .setDescription(`${user} пошел(шла) спать`)
                         .setImage(urls[Math.floor(Math.random() * urls.length)])
+					      .setFooter("Команда добавлена по проосьбам пользователей")
                         .setColor('RANDOM');
                     msg.edit({embed})
         });
@@ -2132,6 +2133,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
 		     let embed = new Discord.RichEmbed()
                         .setDescription(`${user} начал(а) танцевать`)
                         .setImage(urls[Math.floor(Math.random() * urls.length)])
+		     .setFooter("Команда добавлена по проосьбам пользователей")
                         .setColor('RANDOM');
                     msg.edit({embed})
         });
@@ -2161,6 +2163,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
 		const selfcookie = new Discord.RichEmbed()
 .setDescription(`${user} сьел печенье`)
 .setImage(urls[Math.floor(Math.random() * urls.length)])
+		.setFooter("Команда добавлена по проосьбам пользователей")
 .setColor('RANDOM');
 		if(!user1) return message.channel.send(selfcookie);
 let embed = new Discord.RichEmbed()
@@ -2223,8 +2226,9 @@ msg.edit({embed})
 "http://pa1.narvii.com/5935/a557baffc06658c5b3c2932eb0bc496cb112d04c_00.gif"//17//меня заставили!!
 ];//меня заставили!!
 let embed = new Discord.RichEmbed()//меня заставили!!
-      .setDescription(`${user} **Приветствует всех!**`)//меня заставили!!
+      .setDescription(`${user} Приветствует всех!`)//меня заставили!!
       .setImage(urls[Math.floor(Math.random() * urls.length)])//меня заставили!!
+	.setFooter("Команда добавлена по проосьбам пользователей")
       .setColor('RANDOM');//меня заставили!!
   msg.edit({embed})//меня заставили!!
 });//меня заставили!!
@@ -2255,6 +2259,18 @@ let embed = new Discord.RichEmbed()
       .setImage(urls[Math.floor(Math.random() * urls.length)])
       .setColor('RANDOM');
   msg.edit({embed})
+});
+    } else if(['kill'].includes(command)) {
+	    let user = message.author;
+    let user1 = message.mentions.users.first();
+	    if(!user1) return message.channel.send("вы хотите убить воздух?");
+    message.channel.send('Загрузка...').then(msg => {
+       const urls = ['http://img1.reactor.cc/pics/comment/Anime-Blood-%D0%A1-blood%2B-Blood-The-last-breed-of-alayers-355465.gif%27,%27http://s3.favim.com/orig/141005/anime-another-blood-dead-Favim.com-2127373.gif%27,%27http://s3.favim.com/orig/141005/anime-another-blood-dead-Favim.com-2127373.gif%27,%27https://giffiles.alphacoders.com/183/183939.gif', 'http://img1.joyreactor.cc/pics/post/Anime-Yuno-Gasai-Mirai-Nikki-anime-gif-1323261.gif%27,%27https://pa1.narvii.com/5606/a375335053d9e6985a54d718a093453a2ebfdbb8_hq.gif', 'https://www.picgifs.com/gifs/anime/code-geass/code-geass-RkLjAS.gif', 'http://img0.reactor.cc/pics/comment/Anime-anime-gif-%D0%9D%D1%8F%D1%88%D0%B8-%D0%BA%D1%83%D1%88%D0%B0%D1%8E%D1%82-%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B3%D0%B8%D1%84%D0%BE%D0%BA-1637636.gif%27,%27http://img0.reactor.cc/pics/comment/Anime-anime-gif-%D0%9D%D1%8F%D1%88%D0%B8-%D0%BA%D1%83%D1%88%D0%B0%D1%8E%D1%82-%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B3%D0%B8%D1%84%D0%BE%D0%BA-1637636.gif', 'http://os1.i.ua/3/1/7173115_e5195812.gif', 'http://os1.i.ua/3/1/7173115_e5195812.gif', 'https://i.gifer.com/Tsa.gif', 'https://i.gifer.com/Tsa.gif', 'http://slinky.me/uploads/pic/8/tumblr_na9w7k01b11rec90to1_500.gif', 'http://i87.beon.ru/37/88/1608837/29/125556029/tumblr_n23dohd9Hg1rydwbvo1_500.gif', 'http://gifimage.net/wp-content/uploads/2017/09/anime-knife-gif-13.gif%27,%27https://humoraf.ru/wp-content/uploads/2017/07/anime-gifs-22.gif%27,%27https://giffiles.alphacoders.com/238/23830.gif%27,%27https://technikitty.files.wordpress.com/2014/07/tumblr_meipfbccei1qm9z16o1_500.gif', 'https://technikitty.files.wordpress.com/2014/07/tumblr_meipfbccei1qm9z16o1_500.gif', 'http://gifimage.net/wp-content/uploads/2017/11/gif-anime-gore-11.gif', 'http://img1.joyreactor.cc/pics/comment/%D0%BF%D0%BE%D0%B7%D0%BD%D0%B0%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-%D1%85%D0%BE%D0%BB%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5-%D0%BE%D1%80%D1%83%D0%B6%D0%B8%D0%B5-%D0%BE%D1%80%D1%83%D0%B6%D0%B8%D0%B5-1466093.gif'];
+let embed = new Discord.RichEmbed()
+.setDescription(`${user} убил(а) ${user1}`)
+.setImage(urls[Math.floor(Math.random() * urls.length)])
+.setColor('RANDOM');
+msg.edit({embed})
 });
     } else if(['tickle'].includes(command)) {
 	    actRCT = actRCT + 1;actALL = actALL +1;
