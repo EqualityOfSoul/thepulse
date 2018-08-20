@@ -67,6 +67,7 @@ const con = mysql.createConnection({
   database:  process.env.DATABASE
 });
 con.connect(err => {
+	if(err) throw err;
   console.log("connected")
 })
 /*const Sharder = require('eris-sharder').Master;
@@ -148,6 +149,7 @@ function generateXp() {
 }
 client.on('message', async message => {
     con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+	    if(err) throw err;
   let sql;
   if (rows.lenght < 1) {
     sql = `INSERT INTO xp (id, xp) VALUES ('${message.author.id}', ${generateXp()})`;
