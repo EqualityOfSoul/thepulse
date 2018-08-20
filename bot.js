@@ -60,6 +60,15 @@ var frame_size = rate/100;
 const db = require('quick.db');
 
 db.createWebview(process.env.PASS, process.env.CON_PORT); //DATABASE CONNECT
+const con = mysql.createConnection({
+  host: process.env.HOST,
+  user: process.env.USER,
+  password:  process.env.PASS,
+  database:  process.env.DATABASE
+});
+con.connect(err => {
+  console.log("connected")
+})
 /*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
   stats: true,
@@ -132,7 +141,23 @@ client.on("guildMemberAdd", member => {
         });
 })
 
-
+function generateXp() {
+  let max = 30;
+  let min = 5;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+client.on('message', async message => {
+    con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+  let sql;
+  if (rows.lenght < 1) {
+    sql = `INSERT INTO xp (id, xp) VALUES ('${message.author.id}', ${generateXp()})`;
+  } else {
+    let xp = rows[0].xp;
+    sql = `UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`;
+  }
+  con.query(sql, console.log);
+});
+})
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
