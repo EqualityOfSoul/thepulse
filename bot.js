@@ -1657,8 +1657,8 @@ let voice = 0;
             .setTimestamp();*/
 	    const embed = new Discord.RichEmbed()
 	    .setTitle("Help")
-	    .addField("Russian", "Помощь по командам можно найти тут https://xeval.glitch.me/ru/commands")
-	    .addField("English", "Help can be found at https://xeval.glitch.me/en/commands")
+	    .addField("Russian", "Помощь по командам можно найти тут https://xeval.ga/ru/commands/")
+	    .addField("English", "Help can be found at https://xeval.ga/en/commands/")
 	    .setFooter("Новое обновление будет доступно по достижении 200 серверов")
 	    .setColor('RANDOM');
 	    message.channel.send("i send help to your DM")
