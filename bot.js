@@ -290,7 +290,7 @@ function hexToDec(hex) {
     if(['changelog'].includes(command)) {
 	    const lang = 'css';
 	    message.channel.sendCode(lang, `+bots responde fixed \n+Changelog доступен для всех \n+added color command \n+added 13 NSFW commands \n+added DATABASE \n+changelog updated`)
-    } else if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152")) {
+    } else if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "447376843708956682")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 
 	    //if(!message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152") return message.reply("Команда доступна только создателю и со-авторам.");
@@ -325,7 +325,7 @@ function hexToDec(hex) {
                 .replace(/`/g, "`" + String.fromCharCode(8203))
                 .replace(/@/g, "@" + String.fromCharCode(8203));
         }
-    } else if(['eval2'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152"))  {
+    } else if(['eval2'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "447376843708956682"))  {
 	    const code = message.content.split(" ").slice(1).join(" ");
         try {
          let evaled = eval(code);
@@ -1328,7 +1328,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         message.channel.send(embed);
         message.delete();
 
-    } else if (['admin'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057")) {
+    } else if (['admin'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "447376843708956682")) {
 	    if(!args[0] || args[0] === 'help') {
 		    message.channel.send("**`Данная команда позволяет обходить все права пользователя.`** \n**`Команды:`** \n**shutdown** - `выключить бота (использовать 2 раза)` \n**ban** [user] - `обход прав на бан.` \n**kick** [user] - `обход прав на кик.` \n**mute** [user] - `обход прав на мут.` \n**unmute** [user] - `обход прав на анмут.`")
 	    }
