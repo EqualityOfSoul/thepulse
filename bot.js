@@ -2509,12 +2509,10 @@ msg.edit({embed})
                         .setColor('RANDOM');
                     msg.edit(`${user1}`, {embed});
         });
-    } /*else if(['chat'].includes(command)) {
-	    await neko.getSFWHug();
-	    message.channel.send(url);
-	   
-    }*/ 
-     else if(['cat'].includes(command)) {
+    } else if(['8ball'].includes(command)) {
+	    const answers = ['Без сомннения!', 'Да, конечно', 'Да', 'может быть', 'возможно', 'Абсолютно нет!', 'конечно нет', 'не уверен', 'сомневаюсь']; 
+			    message.reply(answers[Math.floor(Math.random() * answers.length)])
+    } else if(['cat'].includes(command)) {
         actIMG = actIMG + 1;actALL = actALL +1;
         message.channel.send('Загрузка...').then(msg => {
             request('https://nekos.life/api/v2/img/meow', function (error, response, body) {
