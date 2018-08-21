@@ -2510,6 +2510,7 @@ msg.edit({embed})
                     msg.edit(`${user1}`, {embed});
         });
     } else if(['8ball'].includes(command)) {
+	    if(!args[0]) return message.channel.send("Мне нечем ответить на молчание");
 	    const answers = ['Без сомннения!', 'Да, конечно', 'Да', 'может быть', 'возможно', 'Абсолютно нет!', 'конечно нет', 'не уверен', 'сомневаюсь']; 
 			    message.reply(answers[Math.floor(Math.random() * answers.length)])
     } else if(['cat'].includes(command)) {
