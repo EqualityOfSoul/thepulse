@@ -3236,7 +3236,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
 	} if (['adderole'].includes(command)) {
 	if(!message.member.hasPermission("MANAGE_EMOJIS")) return message.channel.send("у вас нету нужных прав");
 	let role = message.mentions.users.first();
-	let emoji = args[0] ||;
+	let emoji = args[0];
 	if(!role) return message.channel.send('Укажите роль');
 	if (!emoji) return message.channel.send('Введите id или название эмодзи');
 	const RestrictedEmoji = role.guild.emojis.find('name', emoji) || role.guild.emojis.get(emoji);
