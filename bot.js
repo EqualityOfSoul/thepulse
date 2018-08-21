@@ -3239,7 +3239,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
 	let emoji = args[0];
 	if(!role) return message.channel.send('Укажите роль');
 	if (!emoji) return message.channel.send('Введите id или название эмодзи');
-	const RestrictedEmoji = role.guild.emojis.find('name', emoji) || role.guild.emojis.get(emoji);
+	const RestrictedEmoji = message.guild.emojis.find('name', emoji) || message.guild.emojis.get(emoji);
     RestrictedEmoji.addRestrictedRole(message.guild.roles.get(role.id))
 		.catch(e => message.channel.send("указывать название/id роли нужно в первую очередь"));
 		message.channel.send("Успех!")
@@ -3249,7 +3249,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
 	let emoji = args[0];
 	if(!role) return message.channel.send('Укажите роль');
 	if (!emoji) return message.channel.send('Введите id или название эмодзи');
-	const RestrictedEmoji = role.guild.emojis.find('name', emoji) || role.guild.emojis.get(emoji);
+	const RestrictedEmoji = message.guild.emojis.find('name', emoji) || message.guild.emojis.get(emoji);
     RestrictedEmoji.removeRestrictedRole(message.guild.roles.get(role.id))
 	    .catch(e => message.channel.send("указывать название/id роли нужно в первую очередь"));
 	message.channel.send("Успех!")
