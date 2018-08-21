@@ -3235,23 +3235,23 @@ if (isNaN(hexToDec(xml.hex.clean)))
 												   })
 	} if (['adderole'].includes(command)) {
 	if(!message.member.hasPermission("MANAGE_EMOJIS")) return message.channel.send("у вас нету нужных прав");
-	let role = message.mentions.users.first();
+	let role = args[1];
 	let emoji = args[0];
 	if(!role) return message.channel.send('Укажите роль');
 	if (!emoji) return message.channel.send('Введите id или название эмодзи');
 	const RestrictedEmoji = message.guild.emojis.find('name', emoji) || message.guild.emojis.get(emoji);
-    RestrictedEmoji.addRestrictedRole(message.guild.roles.get(role.id))
-		.catch(e => message.channel.send("указывать название/id роли нужно в первую очередь"));
+    RestrictedEmoji.addRestrictedRole(message.guild.roles.get(role))
+		.catch(e => message.channel.send("указывать id роли нужно в первую очередь"));
 		message.channel.send("Успех!")
 	} else if (['removeerole'].includes(command)) {
 	if(!message.member.hasPermission("MANAGE_EMOJIS")) return message.channel.send("у вас нету нужных прав");
-	let role = message.mentions.users.first();
+	let role = args[1];
 	let emoji = args[0];
 	if(!role) return message.channel.send('Укажите роль');
 	if (!emoji) return message.channel.send('Введите id или название эмодзи');
 	const RestrictedEmoji = message.guild.emojis.find('name', emoji) || message.guild.emojis.get(emoji);
-    RestrictedEmoji.removeRestrictedRole(message.guild.roles.get(role.id))
-	    .catch(e => message.channel.send("указывать название/id роли нужно в первую очередь"));
+    RestrictedEmoji.removeRestrictedRole(message.guild.roles.get(role))
+	    .catch(e => message.channel.send("укажите данные наооборот"));
 	message.channel.send("Успех!")
 }
 });
