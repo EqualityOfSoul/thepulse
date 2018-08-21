@@ -3233,7 +3233,25 @@ if (isNaN(hexToDec(xml.hex.clean)))
 			return message.channel.send(`${err}`);
 		}
 												   })
-	}
+	} if (['adderole'].includes(command)) {
+	if(!message.member.hasPermission("MANAGE_EMOJIS")) return message.reply("у вас нету нужных прав");
+	let role = message.mentions.users.first();
+	let emoji = args[0] || args[1];
+	if(!role) return message.channel.send('Укажите роль');
+	if (!emoji) return message.channel.send('Введите id или название эмодзи');
+	const RestrictedEmoji = role.guild.emojis.find('name', emoji) || role.guild.emojis.get(emoji);
+    RestrictedEmoji.addRestrictedRole(message.guild.roles.get(role)) || RestrictedEmoji.addRestrictedRole(message.guild.roles.find('name', role));
+		message.channel.send("Успех!")
+	} else if (['removeerole'].includes(command)) {
+	if(!message.member.hasPermission("MANAGE_EMOJIS")) return message.reply("у вас нету нужных прав");
+	let role = message.mentions.users.first();
+	let emoji = args[0] || args[1];
+	if(!role) return message.channel.send('Укажите роль');
+	if (!emoji) return message.channel.send('Введите id или название эмодзи');
+	const RestrictedEmoji = role.guild.emojis.find('name', emoji) || role.guild.emojis.get(emoji);
+    RestrictedEmoji.removeRestrictedRole(message.guild.roles.get(role)) || RestrictedEmoji.removeRestrictedRole(message.guild.roles.find('name', role));
+	message.channel.send("Успех!")
+}
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
