@@ -35,6 +35,7 @@ const emojis = {
 };
 var finder = new numcap();
 let money = 0; 
+let token = "=(";
 let actFUN = 0;  // actFUN = actFUN + 1;actALL = actALL +1;
 let actMOD = 0;  // actMOD = actMOD + 1;actALL = actALL +1;
 let actRCT = 0;  // actRCT = actRCT + 1;actALL = actALL +1;
