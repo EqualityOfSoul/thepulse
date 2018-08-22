@@ -215,7 +215,6 @@ client.on("guildCreate", guild => {
   .addField("Количество людей:", guild.memberCount)
   .addField("Количество ролей:", guild.roles.size)
   .addField("ID:", guild.id)
-  .addField("Owner:", guild.owner.username)
    logsServerJoin.send({embed});
    logsServerJoin.send("``` ```");
 });    
@@ -227,7 +226,6 @@ client.on("guildDelete", guild => {
   .setColor("ff0000")
   .addField("Количество людей:", guild.memberCount)
   .addField("Количество ролей:", guild.roles.size)
-  .addField("Owner:", guild.owner.username)
   .addField("ID:", guild.id)
  
  	
