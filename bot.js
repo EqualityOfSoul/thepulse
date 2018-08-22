@@ -2262,6 +2262,189 @@ let embed = new Discord.RichEmbed()
       .setColor('RANDOM');
   msg.edit({embed})
 });
+    } else if(['happy'].includes(command)) {
+	    let user = message.author;
+    message.channel.send('Загрузка...').then(msg => {
+        const urls = [
+			"https://media1.tenor.com/images/bd5e4f3a51515ed0ed3e41378f71d503/tenor.gif",
+			"https://media1.tenor.com/images/0ffa8ec3da79658d13d3531ab94381a0/tenor.gif",
+			"https://pa1.narvii.com/5672/8f859353df86ac2a58698006f435e1d7aba1f63e_hq.gif",
+			"http://i.giphy.com/4xYhMRFqGjoFG.gif",
+		"https://media.giphy.com/media/3Cm8cxtSHqu6Q/giphy.gif",
+		"https://media1.tenor.com/images/0f9847a5f258da9a3bdccc3860f91eb5/tenor.gif?itemid=9188246",
+		"https://media.tenor.com/images/559aa39a13635744c3c3ecd32b2aeb60/tenor.gif",
+		"https://i.kym-cdn.com/photos/images/original/001/103/137/7d4.gif",
+		"https://media1.tenor.com/images/29dc5102d126b8dc3970f71c0a1e99d5/tenor.gif?itemid=5959844",
+		"https://thumbs.gfycat.com/BrilliantScaryAmethystsunbird-size_restricted.gif",
+		"https://i.imgur.com/he3uUsy.gif",
+		"https://media0.giphy.com/media/dwe0zLhdweo8/200.gif",
+		"https://data.whicdn.com/images/174338423/original.gif",
+		"https://i.pinimg.com/originals/14/7b/ba/147bba012d5781ead622f9c2a4a02be2.gif",
+		"https://media.tenor.com/images/d93523c4db7e20254c4dcd512029d51e/tenor.gif",
+		"https://data.whicdn.com/images/174338297/original.gif",
+		"https://media1.tenor.com/images/7706dded712d1e0f6ddb38d0f6352c95/tenor.gif?itemid=6014343",
+		"https://cdn72.picsart.com/186168594000202.gif?r1024x1024",
+		"https://gifer.com/i/FPU2.gif",
+		"https://media.giphy.com/media/lDYHk3Okrag7K/giphy.gif",
+		"https://gifer.com/i/Vzg7.gif",
+		"https://media1.tenor.com/images/4e0a400d7621b5452854bcae00d9a98e/tenor.gif?itemid=5723668",
+		"https://i.pinimg.com/originals/31/c6/70/31c670df6249a955fecc9aea0814422b.gif",
+		"https://gifer.com/i/3TMr.gif",
+		"http://gifimage.net/wp-content/uploads/2017/07/anime-happy-gif-16.gif",
+		"https://gifer.com/i/VEGI.gif",
+		"https://pa1.narvii.com/6476/e7a05d97f12160e195e28faadff82becf28c54d7_hq.gif",
+		"https://gif-free.com/uploads/posts/2017-05/1493788658_happy-anime-hearts.gif",
+		"https://i.pinimg.com/originals/ff/41/c6/ff41c68ec0fdd1a48ce29c2a2846f5dd.gif",
+		"http://gifimage.net/wp-content/uploads/2017/06/happy-anime-gif-15.gif"
+		];
+let embed = new Discord.RichEmbed()
+      .setDescription(`${user} радуется`)
+      .setImage(urls[Math.floor(Math.random() * urls.length)])
+      .setColor('RANDOM');
+  msg.edit({embed})
+});
+    } else if(['yawn'].includes(command)) {
+	    let user = message.author;
+    message.channel.send('Загрузка...').then(msg => {
+        const urls = [
+			"https://lh3.googleusercontent.com/-Tghzzm_moYI/Vpv9Tim48-I/AAAAAAAEHcg/IB_oaMQRHJc/w506-h284/luckyyy%2Bop.gif",
+			"https://orig00.deviantart.net/9f06/f/2016/125/e/f/k_on__ritsu_is_bored___gif_animation_by_kyoflameashhylden-da1e0f9.gif",
+			"https://media.giphy.com/media/Bw4ECQSe8tkT6/giphy.gif",
+			"https://media.giphy.com/media/ib908PKTsuJXi/giphy.gif",
+			"https://nekketsunikki.files.wordpress.com/2013/09/prad3-25-wakana-yawning-gif.gif",
+			"https://78.media.tumblr.com/d01b8fbef3330601513a0f0eacc83276/tumblr_nymaloSqjh1tydz8to1_500.gif",
+			"http://1.bp.blogspot.com/-c7IYwWX2qX0/T2EHko0u50I/AAAAAAAABEM/mO5m86a7B2g/s1600/tumblr_ln2k4nc5VS1qejrr2o1_500_large.gif",
+			"http://pa1.narvii.com/5778/1c2cb88920e9ab85168b936d74e81679fd7a2e38_hq.gif",
+			"https://media.giphy.com/media/iQHDtnUZ7gxI4/giphy.gif",
+			"https://i.giphy.com/media/kgqNxRFENcp0I/giphy.gif",
+		"https://media.giphy.com/media/Byzxt2ompZJyE/giphy.gif",
+		"https://media1.tenor.com/images/9cef52ce27ab97e0fa9cfac1cdc1007f/tenor.gif?itemid=9525859",
+		"https://gifer.com/i/2UvD.gif",
+		"https://thumbs.gfycat.com/DentalEnragedHookersealion-size_restricted.gif",
+		"https://gifer.com/i/2m6l.gif",
+		"https://media.giphy.com/media/TwcK5edEfpNQY/giphy.gif",
+		"https://thumbs.gfycat.com/AdorableValuableBronco-size_restricted.gif",
+		"https://gifer.com/i/1UaJ.gif",
+		"https://media1.tenor.com/images/6b1d8cf7b9880bcfea290eea918b16fc/tenor.gif?itemid=5948549",
+		"https://data.whicdn.com/images/22623277/original.gif",
+		"http://25.media.tumblr.com/tumblr_lsh29uKhB81qkki6ro1_500.gif",
+		"https://i.pinimg.com/originals/7b/c7/6d/7bc76db75a2fe267ad1038bec492be59.gif",
+		"https://uploads.disquscdn.com/images/b78ebc75fbbea0323eccc3b51d07737688acd9ed5e3768b0ff96779eedec1019.gif",
+		"https://thumbs.gfycat.com/ImprobableSoggyAruanas-size_restricted.gif",
+		"https://media.tenor.com/images/4e3475b2f27c4870500389b038ad780b/tenor.gif",
+		"https://i.gifer.com/2dc7.gif"
+		]
+let embed = new Discord.RichEmbed()
+      .setDescription(`${user} зевает`)
+      .setImage(urls[Math.floor(Math.random() * urls.length)])
+      .setColor('RANDOM');
+  msg.edit({embed})
+});
+    } else if(['shy'].includes(command)) {
+	    let user = message.author;
+    message.channel.send('Загрузка...').then(msg => {
+        const urls = [
+			"https://media.giphy.com/media/1gbQIeNzZxcSk/giphy.gif",
+			"https://media.giphy.com/media/BkqSYWqv8Zfva/giphy.gif",
+			"https://media.giphy.com/media/12DrHDhr5dTjgs/giphy.gif",
+			"https://media.giphy.com/media/eNVI4Ue1MpjWg/giphy.gif",
+			"https://vignette.wikia.nocookie.net/degrassi/images/d/d7/Tsugumi_precious.gif",
+			"https://thumbs.gfycat.com/AfraidMistyGreatwhiteshark-max-1mb.gif",
+			"https://media.giphy.com/media/dkvGrfQ6ryIAU/giphy.gif",
+			"http://i.imgur.com/fxZdy3h.gif",
+			"https://media1.tenor.com/images/c271e69eaeaab17fb096ccb3c7fedb6d/tenor.gif",
+			"https://media.giphy.com/media/NPcbTHBxD7dAY/source.gif",
+			"https://media.giphy.com/media/tQWT183CTqHYI/source.gif",
+		"https://media1.tenor.com/images/71de7826ad02a908a1c3e572f50e6901/tenor.gif?itemid=5755233",
+		"https://media3.giphy.com/media/6CBGoJnEBbEWs/giphy.gif",
+		"https://media2.giphy.com/media/UrPxdGW62TDtS/giphy.gif",
+		"https://media1.tenor.com/images/9d417ab4391009a5999d5ffe3d2444f1/tenor.gif?itemid=9194392",
+		"https://data.whicdn.com/images/272630927/original.gif",
+		"https://media2.giphy.com/media/fARFPMuspJRx6/200.gif",
+		"http://gifimage.net/wp-content/uploads/2017/08/shy-anime-gif-12.gif",
+		"https://gifer.com/i/9O2r.gif",
+		"https://media1.tenor.com/images/d5acfb3df99f08e1d0c9df2d95bad99e/tenor.gif?itemid=6015968",
+		"https://i.pinimg.com/originals/f0/ef/6f/f0ef6feafada1ee18e2ad46a2563ab75.gif",
+		"https://78.media.tumblr.com/d2a8d6ba156c11aa2b5ee9a65b2e9176/tumblr_owepwelyXg1vviqkjo1_500.gif",
+		"http://gifimage.net/wp-content/uploads/2017/08/shy-anime-gif-3.gif",
+		"https://i.gifer.com/8VKY.gif",
+		"https://cdn51.picsart.com/170690980000202.gif?r1024x1024"
+		]
+let embed = new Discord.RichEmbed()
+      .setDescription(`${user} смущается`)
+      .setImage(urls[Math.floor(Math.random() * urls.length)])
+      .setColor('RANDOM');
+  msg.edit({embed})
+});
+    } else if(['shock'].includes(command)) {
+	    let user = message.author;
+    message.channel.send('Загрузка...').then(msg => {
+        const urls = [
+			"https://i.giphy.com/media/atyNuQv4pUOxG/giphy.gif",
+			"https://78.media.tumblr.com/6ab3f8e5cb874ab702815cd9514cdd79/tumblr_n92pljJGak1s5mgubo1_500.gif",
+			"https://erisischanadventure.files.wordpress.com/2015/05/shocked.gif",
+		"https://media.giphy.com/media/3ohjV3eA4uG9r0hv0I/giphy.gif",
+		"https://gifer.com/i/8gh.gif",
+		"https://media1.tenor.com/images/d91ea878a27bd20d5482bbf45bbdea3f/tenor.gif?itemid=546669",
+		"https://media1.tenor.com/images/d91ea878a27bd20d5482bbf45bbdea3f/tenor.gif?itemid=5466695",
+		"https://media.giphy.com/media/1FpxFCobvJra/giphy.gif",
+		"https://i.pinimg.com/originals/4b/44/1e/4b441e12fe0bc2af2763a43a261adf73.gif",
+		"http://gifimage.net/wp-content/uploads/2017/09/anime-shock-gif-10.gif",
+		"https://78.media.tumblr.com/fa98cd4b05512232fbb13083d5522ce1/tumblr_op6m23wz9B1vviqkjo1_500.gif",
+		"http://gifimage.net/wp-content/uploads/2017/09/anime-shock-gif-1.gif",
+		"https://media1.tenor.com/images/31eb560d6398ba696405d6719cb4e582/tenor.gif?itemid=7922528",
+		"https://i.kym-cdn.com/photos/images/newsfeed/001/250/784/d46.gif",
+		"https://media.giphy.com/media/pkIuMNLQZcO4g/giphy.gif"
+		]
+let embed = new Discord.RichEmbed()
+      .setDescription(`${user} в шоке`)
+      .setImage(urls[Math.floor(Math.random() * urls.length)])
+      .setColor('RANDOM');
+  msg.edit({embed})
+});
+    } else if(['ignore'].includes(command)) {
+	    let user = message.author;
+    let user1 = message.mentions.users.first();
+	    if(!user1) return message.channel.send("вы хотите игнорировать воздух?");
+    message.channel.send('Загрузка...').then(msg => {
+	    const urls = [
+			"https://media1.tenor.com/images/112c2abcf585b37e6c6950ebc3ab4168/tenor.gif",
+			"https://media.giphy.com/media/rFvtiIevmj0zu/giphy.gif",
+			"http://i0.kym-cdn.com/photos/images/original/000/906/455/51f.gif",
+			"https://78.media.tumblr.com/eb90caf5fe561e609dd5a9040e34186f/tumblr_nq2cvgKtjZ1un9vr1o2_500.gif",
+			"https://i.imgur.com/dtHhUx3.gif",
+		    "https://data.whicdn.com/images/227934384/original.gif",
+		    "https://media1.tenor.com/images/96c460d18d3f7fc9bad84a87cfef6512/tenor.gif?itemid=8033041",
+		    "http://media.giphy.com/media/11bY8RQnSLHwc0/giphy.gif",
+		    "https://em.wattpad.com/9dac4f1619ba670b8e758a788733234ec4c4b203/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f68325f6d595933445057616330673d3d2d3336322e313461633733646530666532623736393434373538383333343932352e676966?s=fit&w=720&h=720",
+		    "http://24.media.tumblr.com/ff8c7f318c39daa3d4f169ba216a4c41/tumblr_mtabimunhJ1sg0ygjo1_500.gif"
+		]
+	    let embed = new Discord.RichEmbed()
+.setDescription(`${user} ингнорирует ${user1}`)
+.setImage(urls[Math.floor(Math.random() * urls.length)])
+.setColor('RANDOM');
+msg.edit({embed})
+});
+    } else if (['afraid'].includes(command)) {
+	    let user = message.author;
+    let user1 = message.mentions.users.first();
+	    if(!user1) return message.channel.send("вы боитесь воздуха?");
+    message.channel.send('Загрузка...').then(msg => {
+	    const urld = [
+			"https://media.giphy.com/media/hhX3ARsqy9bYQ/giphy.gif",
+			"https://media.giphy.com/media/1ZXfnXk2F7Zio/giphy.gif",
+			"https://i.pinimg.com/originals/90/6d/61/906d61263992beb3000e6beab2d860aa.gif",
+			"https://78.media.tumblr.com/a1ec7a76d2c55d0e9ba5bcf14004bab0/tumblr_n4gagcXigK1tyunbro1_500.gif",
+			"https://i.giphy.com/media/UCdYMxha6iemA/giphy.gif",
+			"https://pa1.narvii.com/6329/21cf4fb4b212bfbe3ebe8fbebc59f49eabdd09f6_hq.gif",
+			"https://media.giphy.com/media/OGC76skhmPixi/giphy.gif"
+		];
+		let embed = new Discord.RichEmbed()
+.setDescription(`${user} боится ${user1}`)
+.setImage(urls[Math.floor(Math.random() * urls.length)])
+.setColor('RANDOM');
+msg.edit({embed})
+});
     } else if(['kill'].includes(command)) {
 	    let user = message.author;
     let user1 = message.mentions.users.first();
@@ -2270,6 +2453,62 @@ let embed = new Discord.RichEmbed()
        const urls = ['http://img1.reactor.cc/pics/comment/Anime-Blood-%D0%A1-blood%2B-Blood-The-last-breed-of-alayers-355465.gif%27,%27http://s3.favim.com/orig/141005/anime-another-blood-dead-Favim.com-2127373.gif%27,%27http://s3.favim.com/orig/141005/anime-another-blood-dead-Favim.com-2127373.gif%27,%27https://giffiles.alphacoders.com/183/183939.gif', 'http://img1.joyreactor.cc/pics/post/Anime-Yuno-Gasai-Mirai-Nikki-anime-gif-1323261.gif%27,%27https://pa1.narvii.com/5606/a375335053d9e6985a54d718a093453a2ebfdbb8_hq.gif', 'https://www.picgifs.com/gifs/anime/code-geass/code-geass-RkLjAS.gif', 'http://img0.reactor.cc/pics/comment/Anime-anime-gif-%D0%9D%D1%8F%D1%88%D0%B8-%D0%BA%D1%83%D1%88%D0%B0%D1%8E%D1%82-%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B3%D0%B8%D1%84%D0%BE%D0%BA-1637636.gif%27,%27http://img0.reactor.cc/pics/comment/Anime-anime-gif-%D0%9D%D1%8F%D1%88%D0%B8-%D0%BA%D1%83%D1%88%D0%B0%D1%8E%D1%82-%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE-%D0%B3%D0%B8%D1%84%D0%BE%D0%BA-1637636.gif', 'http://os1.i.ua/3/1/7173115_e5195812.gif', 'http://os1.i.ua/3/1/7173115_e5195812.gif', 'https://i.gifer.com/Tsa.gif', 'https://i.gifer.com/Tsa.gif', 'http://slinky.me/uploads/pic/8/tumblr_na9w7k01b11rec90to1_500.gif', 'http://i87.beon.ru/37/88/1608837/29/125556029/tumblr_n23dohd9Hg1rydwbvo1_500.gif', 'http://gifimage.net/wp-content/uploads/2017/09/anime-knife-gif-13.gif%27,%27https://humoraf.ru/wp-content/uploads/2017/07/anime-gifs-22.gif%27,%27https://giffiles.alphacoders.com/238/23830.gif%27,%27https://technikitty.files.wordpress.com/2014/07/tumblr_meipfbccei1qm9z16o1_500.gif', 'https://technikitty.files.wordpress.com/2014/07/tumblr_meipfbccei1qm9z16o1_500.gif', 'http://gifimage.net/wp-content/uploads/2017/11/gif-anime-gore-11.gif', 'http://img1.joyreactor.cc/pics/comment/%D0%BF%D0%BE%D0%B7%D0%BD%D0%B0%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE-%D1%85%D0%BE%D0%BB%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5-%D0%BE%D1%80%D1%83%D0%B6%D0%B8%D0%B5-%D0%BE%D1%80%D1%83%D0%B6%D0%B8%D0%B5-1466093.gif'];
 let embed = new Discord.RichEmbed()
 .setDescription(`${user} убил(а) ${user1}`)
+.setImage(urls[Math.floor(Math.random() * urls.length)])
+.setColor('RANDOM');
+msg.edit({embed})
+});
+    } else if(['squeeze'].icnludes(command)) {
+	    let user = message.author;
+    let user1 = message.mentions.users.first();
+	    if(!user1) return message.channel.send("user?");
+    message.channel.send('Загрузка...').then(msg => {
+	    const urls = [
+			"https://78.media.tumblr.com/b5c723d99ab6a885364a83cb988b41d1/tumblr_nezyz8dkr81tkv03zo1_500.gif",
+			"https://media1.tenor.com/images/1dfbcdcc996ee2832cbe743330702fa7/tenor.gif",
+			"https://media.giphy.com/media/ruYMwmyOtpIxa/giphy.gif",
+			"https://media.giphy.com/media/e01lZEJ6WZjiw/giphy.gif",
+			"https://media.giphy.com/media/guSbERilLjuQU/giphy.gif",
+		    "https://media1.tenor.com/images/0258c0d29159494fd63eea0e001eda39/tenor.gif?itemid=4874936",
+		    "https://media1.tenor.com/images/f119b672272ccc86674ada0fba51840c/tenor.gif?itemid=5102180",
+		    "https://media.giphy.com/media/l3V0F9XqbzayW8Xcc/giphy.gif",
+		    "http://33.media.tumblr.com/b5c723d99ab6a885364a83cb988b41d1/tumblr_nezyz8dkr81tkv03zo1_500.gif",
+		    "https://i.kym-cdn.com/photos/images/newsfeed/001/081/819/b24.gif"
+		]
+let embed = new Discord.RichEmbed()
+.setDescription(`${user} тянет за щеки ${user1}`)
+.setImage(urls[Math.floor(Math.random() * urls.length)])
+.setColor('RANDOM');
+msg.edit({embed})
+});
+    } else if(['smug'].includes(command)) {
+	    let user = message.author;
+    let user1 = message.mentions.users.first();
+	    if(!user1) return message.channel.send("user?");
+    message.channel.send('Загрузка...').then(msg => {
+	    const urls = [
+			"https://i.pinimg.com/originals/9a/3b/f4/9a3bf4ed68ed536542d047f221fea6f0.gif",
+			"https://i.warosu.org/data/g/img/0594/88/1489973466923.gif",
+		    "https://i.kym-cdn.com/photos/images/original/001/087/562/93c.gif",
+		    "https://media.tenor.com/images/1aa283e921c52a595903fa9661ea9a66/tenor.gif",
+		    "https://thumbs.gfycat.com/DescriptiveSmartKitty-max-1mb.gif",
+		    "https://i.kym-cdn.com/photos/images/newsfeed/001/161/167/eda.gif",
+		    "https://media1.tenor.com/images/d9b3127da3f9419cbb28f9f7c00860d8/tenor.gif?itemid=9588226",
+		    "https://i.pinimg.com/originals/c0/7c/28/c07c28b2f57bc12ec07d947c8877bfe7.gif",
+		    "https://i.kym-cdn.com/photos/images/newsfeed/001/223/569/12b.gif",
+		    "https://i.gifer.com/CCOj.gif",
+		    "https://media.tenor.com/images/a2741132a4f7ddf637513737364d87d9/tenor.gif",
+		    "https://thumbs.gfycat.com/TalkativePortlyEel-size_restricted.gif",
+		    "https://i.kym-cdn.com/photos/images/original/000/930/862/f1a.gif",
+		    "https://i.pinimg.com/originals/ec/1f/0c/ec1f0c5a719be61c7fa8005a52ff021a.gif",
+		    "https://78.media.tumblr.com/924d5e0c521d63bc28b6cf5c31937494/tumblr_nu6xskk0Wc1reorefo1_500.gif",
+		    "http://gifimage.net/wp-content/uploads/2017/09/anime-smug-gif-11.gif",
+		    "https://vignette.wikia.nocookie.net/vsbattles/images/e/e8/Smug_tokyo_ravens.gif/revision/latest?cb=20170525052602",
+		    "https://i.kym-cdn.com/photos/images/newsfeed/001/098/012/fac.gif",
+		    "http://gifimage.net/wp-content/uploads/2017/08/smug-anime-gif-18.gif"
+		    
+		]
+let embed = new Discord.RichEmbed()
+.setDescription(`${user} надмеивается над ${user1}`)
 .setImage(urls[Math.floor(Math.random() * urls.length)])
 .setColor('RANDOM');
 msg.edit({embed})
