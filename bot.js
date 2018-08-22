@@ -142,7 +142,7 @@ client.on("guildMemberAdd", member => {
         });
 })
 
-/*function generateXp() {
+function generateXp() {
   let max = 30;
   let min = 5;
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -159,7 +159,7 @@ client.on('message', async message => {
   }
   con.query(sql, console.log);
 });
-})*/
+})
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
