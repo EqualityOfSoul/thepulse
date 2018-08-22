@@ -1292,10 +1292,10 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         summoned.send(`Вас вызвали на сервере **${message.channel.guild.name}**. \nПользователем **${message.author}** (**${message.author.username}**) \nВ канале **${message.channel}** \n**Для быстрого перехода нажмите на название канала.** \nНужда:**${SummonMessage}** `)
     } else if (['warn'].includes(command) && message.member.hasPermission('MANAGE_MESSAGES'))  {
 	    actMOD = actMOD + 1;actALL = actALL +1;
-	   
+	    let sql;
         let member = message.mentions.members.first();
     args.shift();
-    const WarnMessage = args.join(" ");
+    let WarnMessage = args.join(" ");
         if (!member.user.id) return message.channel.send("Пользователь не указан.");
         if (member.user.id === message.author.id) return message.channel.send("Невозможно выписать предупреждение самому себе.")
         if (member.user.id === message.author.bot) return message.reply('Невозможно предупредить бота.')
@@ -1304,6 +1304,8 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 		    WarnMessage === 'причина не указана'
 		    }
     message.channel.send(`Пользователь ${member.user} получил предупреждение по причине: **` + WarnMessage + "**");
+	    sql = `INSERT INTO warns (id, user, reason) VALUES ('${Math.floor(Math.random() * (99999))}', ${member.username}, ${WarnMessage})`;
+    con.query(sql, console.log);
     } else if(['texthash'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    
