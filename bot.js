@@ -261,6 +261,15 @@ if(message.author.bot) return;
 	if (message.content.startsWith("x!")) {
 		console.log(`[${message.author.username} | ${message.author.id} | ${message.guild.name}] ${message.content}`)
 	}
+	if (message.content.startsWith("x@")) {
+		console.log(`[${message.author.username} | ${message.author.id} | ${message.guild.name}] ${message.content}`)
+	}
+	if (message.content.startsWith("x1")) {
+		console.log(`[${message.author.username} | ${message.author.id} | ${message.guild.name}] ${message.content}`)
+	}
+	if (message.content.startsWith("@441667160025333762>")) {
+		console.log(`[${message.author.username} | ${message.author.id} | ${message.guild.name}] ${message.content}`)
+	}
     if (message.content.startsWith("бот не пиши")) {
         //Отвечает за то чтобы бот перестал писать в вызваном чате.
         message.channel.stopTyping();
