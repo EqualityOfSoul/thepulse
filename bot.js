@@ -148,7 +148,7 @@ function generateXp() {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 client.on('message', async message => {
-    con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+    con.query(`SELECT xp FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	    if(err) throw err;
   let sql;
   if (rows.lenght < 1) {
