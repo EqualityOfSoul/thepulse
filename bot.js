@@ -2445,7 +2445,7 @@ msg.edit({embed})
     let user1 = message.mentions.users.first();
 	    if(!user1) return message.channel.send("вы боитесь воздуха?");
     message.channel.send('Загрузка...').then(msg => {
-	    const urld = [
+	    const urls = [
 			"https://media.giphy.com/media/hhX3ARsqy9bYQ/giphy.gif",
 			"https://media.giphy.com/media/1ZXfnXk2F7Zio/giphy.gif",
 			"https://i.pinimg.com/originals/90/6d/61/906d61263992beb3000e6beab2d860aa.gif",
