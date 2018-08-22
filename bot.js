@@ -147,7 +147,7 @@ function generateXp() {
   let min = 5;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-client.on('message', async message => {
+/*client.on('message', async message => {
     con.query(`SELECT xp FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	    if(err) throw err;
   let sql;
@@ -160,7 +160,7 @@ client.on('message', async message => {
   }
   con.query(sql, console.log);
 });
-})
+})*/
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
