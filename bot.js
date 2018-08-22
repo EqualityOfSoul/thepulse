@@ -259,7 +259,12 @@ if(message.author.bot) return;
 		message.delete()
 	}
 	if (message.content.startsWith("x!")) {
+		if(message.channel.type("DM")) {
+			console.log(`[${message.author.username} | ${message.author.id} | DM] ${message.content}`)
+		}
+		if(!message.channel.type("DM")) {
 		console.log(`[${message.author.username} | ${message.author.id}] ${message.content}`)
+		}
 	}
     if (message.content.startsWith("бот не пиши")) {
         //Отвечает за то чтобы бот перестал писать в вызваном чате.
