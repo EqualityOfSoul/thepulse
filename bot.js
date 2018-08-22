@@ -257,7 +257,9 @@ if(message.author.bot) return;
 	if (message.content.startsWith(">t") && message.author.id === '361951318929309707') {
 		message.delete()
 	}
-	
+	if (message.content.startsWith("x!")) {
+		console.log(`[${message.author.username} | ${message.author.id}] ${message.content}`)
+	}
     if (message.content.startsWith("бот не пиши")) {
         //Отвечает за то чтобы бот перестал писать в вызваном чате.
         message.channel.stopTyping();
