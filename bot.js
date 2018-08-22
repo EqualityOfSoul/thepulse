@@ -215,6 +215,7 @@ client.on("guildCreate", guild => {
   .addField("Количество людей:", guild.memberCount)
   .addField("Количество ролей:", guild.roles.size)
   .addField("ID:", guild.id)
+  .addField("Owner:", guild.owner.username)
    logsServerJoin.send({embed});
    logsServerJoin.send("``` ```");
 });    
@@ -226,6 +227,7 @@ client.on("guildDelete", guild => {
   .setColor("ff0000")
   .addField("Количество людей:", guild.memberCount)
   .addField("Количество ролей:", guild.roles.size)
+  .addField("Owner:", guild.owner.username)
   .addField("ID:", guild.id)
  
  	
@@ -484,7 +486,7 @@ function hexToDec(hex) {
 				     })
 	}
 	if(['owner'].includes(command)) {
-	    message.channel.send(`owner >>> ${message.channel.guild.owner}`)
+	    message.channel.send(`owner >>> ${message.channel.guild.owner.username}`)
 } else if(['urban'].includes(command)) {
         if(!message.channel.nsfw) return message.channel.send("По правилам ботов, команда urban должна использоваться в каналах с меткой NSFW");
 	const q = args.join(" ");
@@ -501,9 +503,8 @@ function hexToDec(hex) {
      } else if(['support'].includes(command)) {
 	 message.channel.send({embed: new Discord.RichEmbed()
 	.setTitle("Support")
-	.setDescription("**[Link to discord server](https://discord.io/gspace) \n[Link to server site](https://gamespace.ml/)**")
+	.setDescription("**[Link to discord server](https://discord.io/gspace) \n[Link to site](https://xeval.ga/)**")
 	.setColor("RANDOM")
-	.setImage("https://cdn.discordapp.com/attachments/471411944880996353/471986017629634560/logo_3.png")
 	});
 }
 	if(['voicetest'].includes(command)) {
@@ -1203,7 +1204,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         message.channel.send({embed})
     } else if (['kick'].includes(command)) {
 	    actMOD = actMOD + 1;actALL = actALL +1;
-	    if(message.member.hasPermission('KICK_MEMBERS')) return message.reply("Вы не являетесь модератором");
+	    if(!message.member.hasPermission('KICK_MEMBERS')) return message.reply("Вы не являетесь модератором");
             const user = message.mentions.users.first();
 	    if(member.highestRole.position >= message.member.highestRole.position) return message.reply("Вы не можете этого сделать, пользователь которого вы хотите кикнуть на равне с вами или выше вас.");
     if (user) {
@@ -1273,7 +1274,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         message.delete();
         const afkMessage = args.join(" ");
         const embed = new Discord.RichEmbed()
-        .setTitle(`${message.author.username}, ненадолго отошел`)
+        .setTitle(`${message.author.username} ненадолго отошел`)
         .setDescription(afkMessage.replace(/`/g, "\\`"))
         .setThumbnail('https://images-ext-1.discordapp.net/external/zOQcnhsC7Ud8tPF-pJQpt51YyrvvP-xwH5c9v02p4Ys/https/thumbs.gfycat.com/SinfulCompetentBeaver-max-1mb.gif?width=80&height=80')
         .setColor('RANDOM')
