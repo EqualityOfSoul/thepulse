@@ -121,8 +121,9 @@ client.on('ready', () => {
 });
 client.on("guildMemberAdd", member => {
 	con.query(`SELECT * FROM autorole WHERE guild = '${member.guild.id}'`, (err, rows) => {
-		if(!rows[0] || rows[0].guild != member.guild.id) return;
+		if(!rows[0] || rows[0].guild != member.guild.id) return console.log("ignored join");
 		member.addRole(rows[0].role)
+		console.log(`${member.username} joinder to ${member.guild.name}`);
 	});
 });
 client.on("guildMemberAdd", member => {
