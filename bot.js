@@ -1324,7 +1324,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     } 
 	if (['warns'].includes(command)) {
 	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' чтобы выполнить данную команду");
-	    const member = message.mentionts.users.first() || message.author;
+	    const member = message.mentions.members.first(); || message.author;
 	con.query(`SELECT * FROM warns WHERE userid = '${member.id}' AND guild = '${message.guild.id}'`, (err, rows) => {
         if(err) throw err;
 message.channel.send(`Варны для пользователя ${member.username} на сервере ${message.guild.name}: \n${rows.map(r => `ID: ${r.id}, Причина: ${r.reason}`).join("\n")}`)
