@@ -1327,11 +1327,17 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 	    const member = message.mentions.members.first() || message.author;
 	con.query(`SELECT * FROM warns WHERE userid = '${member.id}' AND guild = '${message.guild.id}'`, (err, rows) => {
         if(err) throw err;
+		if(rows.lenght < 1) return message.channel.send(`У ${member} нету варнов.`);
+return;
 message.channel.send(`Варны для пользователя ${member} на сервере ${message.guild.name}: \n${rows.map(r => `ID: ${r.id}, Причина: ${r.reason}`).join("\n")}`)
 })
     } else if(['warninfo'].includes(command)) {
 	   if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.member.hasPermission('KICK_MEMBERS') || !message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
-
+	    if(!args[0]) return message.channel.send("Укажите спец ID варна");
+	     con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
+		    if(rows.lenght < 1) return message.channel.send("Такого варна нет");
+return;
+	    });
 	    con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
         if(err) throw err;
 		    const warnid = rows[0].id;
@@ -1351,11 +1357,14 @@ message.channel.send(`Варны для пользователя ${member} на 
 	    }).catch(err => message.channel.send("Кажись такого варна нет"));
     } else if(['unwarn'].includes(command)) {
 			    if(!args[0]) return message.channel.send("Укажите спец ID варна");
+	    con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
+		    if(rows.lenght < 1) return message.channel.send("Такого варна нет");
+return;
+	    });
 	    if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.member.hasPermission('KICK_MEMBERS') || !message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    con.query(`DELETE FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
-		    if(rows.lenght < 0) return message.channel.send("Такого варна нет");
-		    message.channel.send(`Варн с идентифекатором ${args[0]} успешно удален`).catch(err => message.channel.send("Кажись такого варна нет"));
-	    }).catch(err => message.channel.send("Кажись такого варна нет"));
+		    message.channel.send(`Варн с идентифекатором ${args[0]} успешно удален`);
+	    });
     } else if(['texthash'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    
