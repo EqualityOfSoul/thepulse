@@ -3628,6 +3628,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
       });
 message.channel.stopTyping()
 } else if(['welcome'].includes(command)) {
+	if (!message.member.hasPermission("ADMINISTRATOR") || !message.member.hasPermission("KICK_MEMBERS") || !message.member.hasPermission("BAN_MEMBERS") || !message.member.hasPermission("MANAGE_SERVER")) return message.channel.send("Доступ отклонен, недостаточно прав для настройки приветсвий");
 	if(args[0] ==='channel') {
 		args.shift();
 		let c = args[0];
@@ -3646,22 +3647,22 @@ message.channel.stopTyping()
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			if(err) throw err;
 			con.query(`UPDATE welcome SET message = "${text}" WHERE guild = '${message.guild.id}'`);
-			message.author.send("Запомнил!");
+			message.author.send("Запомнил! Для проверки пропишите `x!welcome test`");
 		});
 	}
 	if(args[0] ==='test') {
 		let member = message.author;
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
-		if(!rows[0] || rows[0].guild != member.guild.id) return;
+		if(!rows[0] || rows[0].guild != message.guild.id) return;
 		let text = rows[0].message;
 		text = text.replaceAll("%member.username%", member.username)
 		text = text.replaceAll("%member.tag%", member.tag)
 		text = text.replaceAll("%member.id%", member.id)
 		text = text.replaceAll("%member.avatar%", member.avatarURL)
-		text = text.replaceAll("%guild.name%", member.guild.name)
-		text = text.replaceAll("%guild.id%", member.guild)
-		text = text.replaceAll("%guild.members%", member.guild.memberCount)
-		text = text.replaceAll("%guild.icon%", member.guild.iconURL)
+		text = text.replaceAll("%guild.name%", message.guild.name)
+		text = text.replaceAll("%guild.id%", message.guild.id)
+		text = text.replaceAll("%guild.members%", message.guild.memberCount)
+		text = text.replaceAll("%guild.icon%", message.guild.iconURL)
 		let channel = client.channels.get(rows[0].channel);
 		channel.send(text);
 });
