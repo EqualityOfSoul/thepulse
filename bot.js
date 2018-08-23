@@ -148,8 +148,8 @@ function generateXp() {
   let min = 5;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-/*client.on('message', async message => {
-    con.query(`SELECT xp FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+client.on('message', async message => {
+    con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	    if(err) throw err;
   let sql;
   if (rows.lenght < 1) {
@@ -161,7 +161,7 @@ function generateXp() {
   }
   con.query(sql, console.log);
 });
-})*/
+})
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
@@ -330,6 +330,8 @@ function hexToDec(hex) {
     if(['changelog'].includes(command)) {
 	    const lang = 'css';
 	    message.channel.sendCode(lang, `+bots responde fixed \n+Changelog доступен для всех \n+added color command \n+added 13 NSFW commands \n+added DATABASE \n+changelog updated`)
+    } else if(['create'].includes(command)) {
+	    
     } else if (['eval', 'эмулировать'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "447376843708956682")) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 
