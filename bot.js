@@ -1312,13 +1312,13 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     let WarnMessage = args.join(" ");
         if (!member.user.id) return message.channel.send("Пользователь не указан.");
         if (member.user.id === message.author.id) return message.channel.send("Невозможно выписать предупреждение самому себе.")
-        if (member.user.id === message.author.bot) return message.reply('Невозможно предупредить бота.')
+        if (member.user.bot) return message.reply('Невозможно предупредить бота.')
         if (member.user.id === message.channel.guild.ownerID) return message.channel.send("Невозможно предупредить создателя сервера.")
 	    if(!WarnMessage) {
 		    WarnMessage === 'причина не указана'
 		    }
     message.channel.send(`Пользователь ${member.user} получил предупреждение по причине: **` + WarnMessage + "**");
-	    sql = `INSERT INTO warns (id, user, userid, reason, moderator, guild) VALUES ('${Math.floor(Math.random() * (99999))}', '${member.username}', '${member.id}', '${WarnMessage}', '${message.author.username}', '${message.guild.id}')`;
+	    sql = `INSERT INTO warns (id, user, userid, reason, moderator, guild) VALUES ('${Math.floor(Math.random() * (99999))}', '${member.user.username}', '${member.id}', '${WarnMessage}', '${message.author.username}', '${message.guild.id}')`;
     con.query(sql, console.log);
     } else if(['texthash'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
