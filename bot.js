@@ -130,8 +130,8 @@ client.on("guildMemberAdd", member => {
 		if(!rows[0] || rows[0].guild != member.guild.id) return;
 		let text = rows[0].message;
 		text = text.replaceAll("%member.username%", member.username)
-		let chan = rows[0].channel;
-		chan.send(text);
+		let channel = client.channels.get(rows[0].channel);
+		channel.send(text);
 });
 });
 /*client.on("guildMemberAdd", member => {
