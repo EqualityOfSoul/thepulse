@@ -3527,26 +3527,27 @@ if (isNaN(hexToDec(xml.hex.clean)))
 } else if (['hypetar'].includes(command)) {
 	message.channel.startTyping()
 	let hype;
-	if(args[0] === "balance") {
+	if(args[1] === "balance") {
 		hype = "https://media.discordapp.net/attachments/472655542079455233/482093347817783298/balancedpacman.png"
 	}
-	if(args[0] === "bravery") {
+	if(args[1] === "bravery") {
 		hype = "https://media.discordapp.net/attachments/472655542079455233/482093346093924362/Bravery_v2.png"
 	}
-	if(args[0] === "brilliance") {
+	if(args[1] === "brilliance") {
 		hype = "https://media.discordapp.net/attachments/472655542079455233/482093348644192277/Image-1.png"
 	}
 	/////////
-	if(args[0] === "balance" && args[1] === "1") {
+	if(args[1] === "balance" && args[2] === "1") {
 		hype = "https://media.discordapp.net/attachments/472655542079455233/482093411759947778/test.png"
 	}
-	if(args[0] === "brilliance" && args[1] === "2") {
+	if(args[1] === "brilliance" && args[2] === "2") {
 		hype = "https://media.discordapp.net/attachments/472655542079455233/482093393594286102/profile-1.png"
 	}
-	if(args[0] === "brilliance" && args[1] === "1") {
+	if(args[1] === "brilliance" && args[2] === "1") {
 		hype = "https://media.discordapp.net/attachments/472655542079455233/482093345385218058/1111.png"
 	}
-        let img = message.author || message.mentions.users.first();
+        let img = message.mentions.users.first();
+	if(!img) return message.channel.send("укажите пользователя, пример: x!hypetar Unk#7585 bravery, x!hypetar Unk#7585 brilliance 1");
       jimp.read(img.avatarURL).then(function(image) {
         jimp.read(hype).then(function(image2) {
           image.resize(768, 768);
