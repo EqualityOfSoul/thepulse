@@ -3641,7 +3641,7 @@ message.channel.stopTyping()
 	}
 	if(args[0] ==='message') {
 		args.shift();
-		let text = args.join();
+		let text = args.join(" ");
 		if(!text) return message.channel.send("Укажите текст");
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			if(err) throw err;
