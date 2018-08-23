@@ -1350,7 +1350,7 @@ message.channel.send(`Варны для пользователя ${member.userna
     } else if(['unwarn'].includes(command)) {
 	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' чтобы выполнить данную команду");
 	    con.query(`DELETE FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
-		    message.channel.send(`Варн с идентифекатором ${rows[0].id} успешно удален
+		    message.channel.send(`Варн с идентифекатором ${rows[0].id} успешно удален`)
 	    })
     } else if(['texthash'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
