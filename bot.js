@@ -59,8 +59,7 @@ var encoder = new opus.OpusEncoder( rate );
 var frame_size = rate/100;
 
 const db = require('quick.db');
-
-db.createWebview(process.env.PASS, process.env.CON_PORT); //DATABASE CONNECT
+//DATABASE CONNECT
 const con = mysql.createConnection({
   host: process.env.HOST,
   user: process.env.USER,
@@ -71,6 +70,7 @@ con.connect(err => {
 	if(err) throw err;
   console.log("connected")
 })
+//пособие о том, как плодить шарды
 /*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
   stats: true,
@@ -120,7 +120,13 @@ client.on('ready', () => {
     color();
 });
 client.on("guildMemberAdd", member => {
-	if(member.guild.id === '264445053596991498') return;
+	con.query(`SELECT * FROM autorole WHERE guild = '${member.guild.id}'`, (err, rows) => {
+		member.addRole(rows[0].role)
+	}).catch(consloe.error);
+});
+client.on("guildMemberAdd", member => {
+	
+		if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
 	let q = member.user.tag;
         let r = member.guild.name;
@@ -141,6 +147,7 @@ client.on("guildMemberAdd", member => {
             });
           });
         });
+	
 })
 
 function generateXp() {
