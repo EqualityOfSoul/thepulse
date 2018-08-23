@@ -1304,8 +1304,9 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         const SummonMessage = args.join(" ");
         message.delete();
         summoned.send(`Вас вызвали на сервере **${message.channel.guild.name}**. \nПользователем **${message.author}** (**${message.author.username}**) \nВ канале **${message.channel}** \n**Для быстрого перехода нажмите на название канала.** \nНужда:**${SummonMessage}** `)
-    } else if (['warn'].includes(command) && message.member.hasPermission('MANAGE_MESSAGES'))  {
+    } else if (['warn'].includes(command))  {
 	    actMOD = actMOD + 1;actALL = actALL +1;
+	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' чтобы выполнить данную команду");
 	    let sql;
         let member = message.mentions.members.first();
     args.shift();
@@ -1320,6 +1321,37 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     message.channel.send(`Пользователь ${member.user} получил предупреждение по причине: **` + WarnMessage + "**");
 	    sql = `INSERT INTO warns (id, user, userid, reason, moderator, guild) VALUES ('${Math.floor(Math.random() * (99999))}', '${member.user.username}', '${member.id}', '${WarnMessage}', '${message.author.username}', '${message.guild.id}')`;
     con.query(sql, console.log);
+    } esle if (['warns'].includes(command)) {
+	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' чтобы выполнить данную команду");
+	    const member = message.mentionts.users.first() || message.author;
+	con.query(`SELECT * FROM warns WHERE userid = '${member.id}' AND guild = '${message.guild.id}'`, (err, rows) => {
+        if(err) throw err;
+message.channel.send(`Варны для пользователя ${member.username} на сервере ${message.guild.name}: \n${rows.map(r => `ID: ${r.id}, Причина: ${r.reason}`).join("\n")}`)
+})
+    } else if(['warninfo'].includes(command)) {
+	    con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
+        if(err) throw err;
+		    const warnid = rows[0].id;
+		    const user = rows[0].user;
+		    const userid = rows[0].userid;
+		    const reason = rows[0].reason;
+		    const moderator = rows[0].moderator;
+		    message.channel.send({embed: new Discord.RichEmbed()
+					  .setTitle(`Warn info`)
+					  .addField(`Warn ID`, warnid, true)
+					  .addField(`User`, user, true)
+					  .addField(`User ID`, userid, true)
+					  .addField(`Moderator`, moderator, true)
+					  .addField(`Reason`, reason)
+					  .setColor("YELLOW")
+					  .setFooter(message.guild.name)
+					 })
+	    })
+    } else if(['unwarn'].includes(command)) {
+	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' чтобы выполнить данную команду");
+	    con.query(`DELETE FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
+		    message.channel.send(`Варн с идентифекатором ${rows[0].id} успешно удален
+	    })
     } else if(['texthash'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    
