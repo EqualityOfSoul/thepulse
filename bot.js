@@ -122,7 +122,7 @@ client.on('ready', () => {
 client.on("guildMemberAdd", member => {
 	con.query(`SELECT * FROM autorole WHERE guild = '${member.guild.id}'`, (err, rows) => {
 		member.addRole(rows[0].role)
-	}).catch(err => cosnole.log(err));
+	});
 });
 client.on("guildMemberAdd", member => {
 	
