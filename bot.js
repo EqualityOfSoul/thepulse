@@ -3646,8 +3646,8 @@ message.channel.stopTyping()
 		if(!text) return message.channel.send("Укажите текст");
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			if(err) throw err;
-			con.query(`UPDATE welcome SET message = "${text}" WHERE guild = '${message.guild.id}'`);
-			message.author.send("Запомнил! Для проверки пропишите `x!welcome test`");
+			con.query(`UPDATE welcome SET message = "${text}" WHERE guild = '${message.guild.id}'`)
+			message.channel.send("Запомнил! Для проверки пропишите `x!welcome test`");
 		});
 	}
 	if(args[0] ==='title') {
@@ -3656,28 +3656,8 @@ message.channel.stopTyping()
 		if(!text) return message.channel.send("Укажите текст");
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			if(err) throw err;
-			con.query(`UPDATE welcome SET titile = "${text}" WHERE guild = '${message.guild.id}'`);
-			message.author.send("Запомнил! Для проверки пропишите `x!welcome test`");
-		});
-	}
-	if(args[0] ==='thumbnail') {
-		args.shift();
-		let text = args.join(" ");
-		if(!text) return message.channel.send("Укажите ссылку");
-		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
-			if(err) throw err;
-			con.query(`UPDATE welcome SET thumbnail = "${text}" WHERE guild = '${message.guild.id}'`);
-			message.author.send("Запомнил! Для проверки пропишите `x!welcome test`");
-		});
-	}
-	if(args[0] ==='image') {
-		args.shift();
-		let text = args.join(" ");
-		if(!text) return message.channel.send("Укажите ссылку");
-		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
-			if(err) throw err;
-			con.query(`UPDATE welcome SET image = "${text}" WHERE guild = '${message.guild.id}'`);
-			message.author.send("Запомнил! Для проверки пропишите `x!welcome test`");
+			con.query(`UPDATE welcome SET titile = "${text}" WHERE guild = '${message.guild.id}'`)
+			message.channel.send("Запомнил! Для проверки пропишите `x!welcome test`");
 		});
 	}
 	if(args[0] ==='color') {
@@ -3686,8 +3666,8 @@ message.channel.stopTyping()
 		if(!text) return message.channel.send("Укажите цвет");
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			if(err) throw err;
-			con.query(`UPDATE welcome SET color = "${text}" WHERE guild = '${message.guild.id}'`);
-			message.author.send("Запомнил! Для проверки пропишите `x!welcome test`");
+			con.query(`UPDATE welcome SET color = "${text}" WHERE guild = '${message.guild.id}'`)
+			message.channel.send("Запомнил! Для проверки пропишите `x!welcome test`");
 		});
 	}
 	if(args[0] ==='test') {
@@ -3703,14 +3683,12 @@ message.channel.stopTyping()
 		text = text.replaceAll("%guild.id%", message.guild.id)
 		text = text.replaceAll("%guild.members%", message.guild.memberCount)
 		text = text.replaceAll("%guild.icon%", message.guild.iconURL)
-		let channel = client.channels.get(rows[0].channel);
+		let channe = client.channels.get(rows[0].channel);
 		const embed = new Discord.RichEmbed()
-			      if(rows[0].title) embed.setTitle(rows[0].title);
-			if(rows[0].message) embed.setDescription(rows[0].message);
-			if(rows[0].thumbnail) embed.setThumbnail(rows[0].thumbnail);
-			if(rows[0].image) embed.setImage(rows[0].image);
-			if(rows[0].footer) embed.setFooter(rows[0].footer);
-			if(rows[0].color) embed.setColor(rows[0].color);
+		.setTitle(rows[0].title)
+		.setDescription(rows[0].message)
+		.setColor(rows[0].color);
+			channe.send(embed).catch(err => message.channel.send("Похоже вы не доконца настроили welcome, доступные пути: `color, message, title`"));
 });
 	}
 }
