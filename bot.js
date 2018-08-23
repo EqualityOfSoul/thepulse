@@ -1318,7 +1318,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 		    WarnMessage === 'причина не указана'
 		    }
     message.channel.send(`Пользователь ${member.user} получил предупреждение по причине: **` + WarnMessage + "**");
-	    sql = `INSERT INTO warns (id, user, reason) VALUES ('${Math.floor(Math.random() * (99999))}', '${member.id}', '${WarnMessage}')`;
+	    sql = `INSERT INTO warns (id, user, userid, reason, moderator, guild) VALUES ('${Math.floor(Math.random() * (99999))}', '${member.username}', '${member.id}', '${WarnMessage}', '${message.author.username}', '${message.guild.id}')`;
     con.query(sql, console.log);
     } else if(['texthash'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
