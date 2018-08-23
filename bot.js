@@ -3646,6 +3646,7 @@ message.channel.stopTyping()
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			if(err) throw err;
 			con.query(`UPDATE welcome SET message = "${text}" WHERE guild = '${message.guild.id}'`);
+			message.author.send("Запомнил!");
 		});
 	}
 	if(args[0] ==='test') {
