@@ -3533,12 +3533,22 @@ if (isNaN(hexToDec(xml.hex.clean)))
 	message.channel.startTyping()
 	let hype;
 	if(args[1] === "balance") {
-		hype = "https://media.discordapp.net/attachments/472655542079455233/482093347817783298/balancedpacman.png"
+		hype = "https://images-ext-2.discordapp.net/external/ivOQ0sZnXorKlDTjqeQ9tihXRg88lhvhHBeWsDQ0fwY/https/pbs.twimg.com/media/DlJYn2YWwAIaPp3.png"
 	}
 	if(args[1] === "bravery") {
-		hype = "https://media.discordapp.net/attachments/472655542079455233/482093346093924362/Bravery_v2.png"
+		hype = "https://images-ext-1.discordapp.net/external/Y2Z9pMQqlj6QA8tNImMjkHeqaDHqcax9Qu-icX48JAI/https/pbs.twimg.com/media/DlJYn2hX4AUuKrX.png"
 	}
 	if(args[1] === "brilliance") {
+		hype = "https://images-ext-2.discordapp.net/external/mwLmPj01iXCH_5UYTSGsEO-gYmSYuCuxDYQBYQYwAHY/https/pbs.twimg.com/media/DlJYn24W0AAqQn6.png"
+	}
+	////
+	if(args[1] === "balance" args[2] === "2") {
+		hype = "https://media.discordapp.net/attachments/472655542079455233/482093347817783298/balancedpacman.png"
+	}
+	if(args[1] === "bravery" args[2] === "1") {
+		hype = "https://media.discordapp.net/attachments/472655542079455233/482093346093924362/Bravery_v2.png"
+	}
+	if(args[1] === "brilliance" args[2] === "3") {
 		hype = "https://media.discordapp.net/attachments/472655542079455233/482093348644192277/Image-1.png"
 	}
 	/////////
