@@ -1702,6 +1702,10 @@ let voice = 0;
 	    .addField("English", "Help can be found at https://xeval.ga/")
 	    .setFooter("Новое обновление будет доступно по достижении 200 серверов")
 	    .setColor('RANDOM');
+	    	    if (message.channel.type === 'DM') {
+			    message.author.send(embed)
+			    return;
+		    }
 	    message.channel.send("i send help to your DM")
 	    message.author.send(embed)
 		    .catch(error => message.channel.send("DM has blocked"));
