@@ -129,7 +129,14 @@ client.on("guildMemberAdd", member => {
 	con.query(`SELECT * FROM welcome WHERE guild = '${member.guild.id}'`, (err, rows) => {
 		if(!rows[0] || rows[0].guild != member.guild.id) return;
 		let text = rows[0].message;
-		text = text.replaceAll("%user.username%", member.username)
+		text = text.replaceAll("%member.username%", member.user.username)
+		text = text.replaceAll("%member.tag%", member.tag)
+		text = text.replaceAll("%member.id%", member.id)
+		text = text.replaceAll("%member.avatar%", member.avatarURL)
+		text = text.replaceAll("%guild.name%", member.guild.name)
+		text = text.replaceAll("%guild.id%", member.guild)
+		text = text.replaceAll("%guild.members%", member.guild.memberCount)
+		text = text.replaceAll("%guild.icon%", member.guild.iconURL)
 		let channel = client.channels.get(rows[0].channel);
 		channel.send(text);
 });
@@ -3620,7 +3627,28 @@ if (isNaN(hexToDec(xml.hex.clean)))
         });
       });
 message.channel.stopTyping()
-} 
+} else if(['welcome'].includes(command)) {
+	if(args[0] ==='channel') {
+		args.shift();
+		let c = args[0];
+		if(!c) return message.channel.send("Укажите канал");
+		let ch = message.guild.channels.get(c);
+		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
+			if(err) throw err;
+			con.query(`UPDATE welcome SET channel = "${ch.id}" WHERE guild = '${message.guild.id}'`);
+			message.channel.send(`канал ${ch} был установлен для приветсвий`);
+		});
+	}
+	if(args[0] ==='message') {
+		args.shift();
+		let text = args.join();
+		if(!text) return message.channel.send("Укажите текст");
+		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
+			if(err) throw err;
+			con.query(`UPDATE welcome SET message = "${text}" WHERE guild = '${message.guild.id}'`);
+		});
+	}
+}
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
