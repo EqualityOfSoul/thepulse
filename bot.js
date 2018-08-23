@@ -121,7 +121,7 @@ client.on('ready', () => {
 });
 client.on("guildMemberAdd", member => {
 	con.query(`SELECT * FROM autorole WHERE guild = '${member.guild.id}'`, (err, rows) => {
-		if(err) throw err;
+		if(!rows[0] || rows[0].guild != member.guild.id) return;
 		member.addRole(rows[0].role)
 	});
 });
