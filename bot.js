@@ -156,11 +156,11 @@ function generateXp() {
   let min = 5;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-/*client.on('message', async message => {
+client.on('message', async message => {
     con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	    if(err) throw err;
   let sql;
-  if (rows.lenght < 1) {
+  if (!rows[0]) {
     sql = `INSERT INTO xp (id, xp) VALUES ('${message.author.id}', ${generateXp()})`;
   } else {
   console.log(rows)
@@ -169,7 +169,7 @@ function generateXp() {
   }
   con.query(sql, console.log);
 });
-})*/
+})
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
