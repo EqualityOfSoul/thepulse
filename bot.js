@@ -1347,14 +1347,14 @@ message.channel.send(`Варны для пользователя ${member} на 
 					  .addField(`Moderator`, moderator, true)
 					  .addField(`Reason`, reason)
 					  .setFooter(message.guild.name)
-					 }).catch(err => message.channel.send("Кажись такого варна нет");
-	    }).catch(err => message.channel.send("Кажись такого варна нет");
+					 }).catch(err => message.channel.send("Кажись такого варна нет"));
+	    }).catch(err => message.channel.send("Кажись такого варна нет"));
     } else if(['unwarn'].includes(command)) {
 			    if(args[0]) return message.channel.send("Укажите спец ID варна");
 	    if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.member.hasPermission('KICK_MEMBERS') || !message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    con.query(`DELETE FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
-		    message.channel.send(`Варн с идентифекатором ${args[0]} успешно удален`).catch(err => message.channel.send("Кажись такого варна нет");
-	    }).catch(err => message.channel.send("Кажись такого варна нет");
+		    message.channel.send(`Варн с идентифекатором ${args[0]} успешно удален`).catch(err => message.channel.send("Кажись такого варна нет"));
+	    }).catch(err => message.channel.send("Кажись такого варна нет"));
     } else if(['texthash'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    
