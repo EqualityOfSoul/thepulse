@@ -1702,13 +1702,8 @@ let voice = 0;
 	    .addField("English", "Help can be found at https://xeval.ga/")
 	    .setFooter("Новое обновление будет доступно по достижении 200 серверов")
 	    .setColor('RANDOM');
-	    	    if (message.channel.type === 'DM') {
-			    message.author.send(embed)
-			    return;
-		    }
-	    message.channel.send("i send help to your DM")
-	    message.author.send(embed)
-		    .catch(error => message.channel.send("DM has blocked"));
+	    message.channel.send(embed)
+		    .catch(error => message.channel.send("Error"));
 	    /*let bot = await if(!args[0]) return message.reply("**Пожалуйста выберите категорию. \nКатегории: `1 - fun`, `2 - moderation`, `3 - botOwner`, `4 - images`, `5 - reactions`, `6 - nsfw`, `7 - filters` \nПригласить бота на сервер x!invite \nпроголосовать за бота -https://discordbots.org/bot/441667160025333762/vote**");			       
 	    /*if(args[0] === 'fun' || args[0] === '1') {
 		    const funEmbed = new Discord.RichEmbed()
