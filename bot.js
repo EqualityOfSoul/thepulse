@@ -3650,7 +3650,7 @@ message.channel.stopTyping()
 	}
 	if(args[0] ==='test') {
 		let member = message.author;
-		con.query(`SELECT * FROM welcome WHERE guild = '${member.guild.id}'`, (err, rows) => {
+		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 		if(!rows[0] || rows[0].guild != member.guild.id) return;
 		let text = rows[0].message;
 		text = text.replaceAll("%member.username%", member.username)
