@@ -126,6 +126,15 @@ client.on("guildMemberAdd", member => {
 	});
 });
 client.on("guildMemberAdd", member => {
+	con.query(`SELECT * FROM welcome WHERE guild = '${member.guild.id}'`, (err, rows) => {
+		if(!rows[0] || rows[0].guild != member.guild.id) return;
+		let text = rows[0].message;
+		text = text.replaceAll("%member.username%", member.username)
+		let chan = rows[0].channel;
+		chan.send(text);
+});
+});
+/*client.on("guildMemberAdd", member => {
 	
 		if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
@@ -149,7 +158,7 @@ client.on("guildMemberAdd", member => {
           });
         });
 	
-})
+})*/
 
 function generateXp() {
   let max = 30;
