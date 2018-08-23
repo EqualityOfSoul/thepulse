@@ -121,9 +121,8 @@ client.on('ready', () => {
 });
 client.on("guildMemberAdd", member => {
 	con.query(`SELECT * FROM autorole WHERE guild = '${member.guild.id}'`, (err, rows) => {
-		if(!rows[0] || rows[0].guild != member.guild.id) return console.log("ignored join");
+		if(!rows[0] || rows[0].guild != member.guild.id) return;
 		member.addRole(rows[0].role)
-		console.log(`${member.username} joinder to ${member.guild.name}`);
 	});
 });
 client.on("guildMemberAdd", member => {
@@ -1336,7 +1335,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 	    const member = message.mentions.members.first() || message.author;
 	con.query(`SELECT * FROM warns WHERE userid = '${member.id}' AND guild = '${message.guild.id}'`, (err, rows) => {
         if(err) throw err;
-		if(rows.lenght < 1) return message.channel.send(`У ${member} нету варнов.`);
+		if(!rows) return message.channel.send(`У ${member} нету варнов.`);
 return;
 message.channel.send(`Варны для пользователя ${member} на сервере ${message.guild.name}: \n${rows.map(r => `ID: ${r.id}, Причина: ${r.reason}`).join("\n")}`)
 })
@@ -1346,6 +1345,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 
 	    con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
         if(err) throw err;
+		    if(!rows[0]) return message.channel.send("Такого варна нет");
 		    const warnid = rows[0].id;
 		    const user = rows[0].user;
 		    const userid = rows[0].userid;
@@ -1363,7 +1363,9 @@ message.channel.send(`Варны для пользователя ${member} на 
 	    }).catch(err => message.channel.send("Кажись такого варна нет"));
     } else if(['unwarn'].includes(command)) {
 			    if(!args[0]) return message.channel.send("Укажите спец ID варна");
-	    
+	    con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
+	    if(!rows[0]) return message.channel.send("Такого варна нет");
+	    });
 	    if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.member.hasPermission('KICK_MEMBERS') || !message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    con.query(`DELETE FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
 		    message.channel.send(`Варн с идентифекатором ${args[0]} успешно удален`);
@@ -3243,6 +3245,7 @@ message.channel.stopTyping()
       });
 	    message.channel.stopTyping()
     } else if (['roleinfo'].includes(command)) {
+	    const moment = require("moment");
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let role = message.mentions.roles.first() || message.guild.roles.find('name', args.join(" "));
 	    if(!role) return message.reply("упомяните роль или введите точное название роли.");
@@ -3364,17 +3367,6 @@ message.channel.stopTyping()
                 .setColor("#ffd954");
             message.channel.send({embed:embed});
         }
-    } else if(['number'].includes(command)) {
-	    finder.getData(args.join(" "), function (e, response, body) {
-    let arr = JSON.parse(body)
-    const embed = new Discord.RichEmbed()
-    .setTitle(args.join(" "))
-    .addField("Код", arr['code'])
-    .addField("Регион", arr['region'])
-    .addField("Оператор", arr['operator'])
-    .setColor('RANDOM');
-		    message.channel.send(embed).catch(err => message.channel.send(err))
-});
     } else if(['botinfo'].includes(command)) {
 	    
 	    actFUN = actFUN + 1; actALL = actALL + 1;
