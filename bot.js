@@ -129,7 +129,7 @@ client.on("guildMemberAdd", member => {
 	con.query(`SELECT * FROM welcome WHERE guild = '${member.guild.id}'`, (err, rows) => {
 		if(!rows[0] || rows[0].guild != member.guild.id) return;
 		let text = rows[0].message;
-		text = text.replaceAll("%member.username%", member.username)
+		text = text.replaceAll("%user.username%", member.username)
 		let channel = client.channels.get(rows[0].channel);
 		channel.send(text);
 });
