@@ -3524,7 +3524,42 @@ if (isNaN(hexToDec(xml.hex.clean)))
     RestrictedEmoji.removeRestrictedRole(message.guild.roles.get(role))
 	    .catch(e => message.channel.send("укажите данные наооборот"));
 	message.channel.send("Успех!")
-}
+} else if (['hypetar'].includes(command)) {
+	message.channel.startTyping()
+	let hype;
+	if(args[0] === "balance") {
+		hype = "https://media.discordapp.net/attachments/472655542079455233/482093347817783298/balancedpacman.png"
+	}
+	if(args[0] === "bravery") {
+		hype = "https://media.discordapp.net/attachments/472655542079455233/482093346093924362/Bravery_v2.png"
+	}
+	if(args[0] === "brilliance") {
+		hype = "https://media.discordapp.net/attachments/472655542079455233/482093348644192277/Image-1.png"
+	}
+	/////////
+	if(args[0] === "balance" && args[1] === "1") {
+		hype = "https://media.discordapp.net/attachments/472655542079455233/482093411759947778/test.png"
+	}
+	if(args[0] === "brilliance" && args[1] === "2") {
+		hype = "https://media.discordapp.net/attachments/472655542079455233/482093393594286102/profile-1.png"
+	}
+	if(args[0] === "brilliance" && args[1] === "1") {
+		hype = "https://media.discordapp.net/attachments/472655542079455233/482093345385218058/1111.png"
+	}
+        let img = message.author || message.mentions.users.first();
+      jimp.read(img.avatarURL).then(function(image) {
+        jimp.read(hype).then(function(image2) {
+          image.resize(768, 768);
+          image2.resize(768, 768);
+          image.composite(image2, 0, 0);
+          image.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+          message.channel.stopTyping()
+            message.channel.send({files: [{ name: 'hypetar.png', attachment: buffer }] });
+          });
+        });
+      });
+message.channel.stopTyping()
+} 
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
