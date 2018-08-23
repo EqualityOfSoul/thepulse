@@ -1306,7 +1306,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         summoned.send(`Вас вызвали на сервере **${message.channel.guild.name}**. \nПользователем **${message.author}** (**${message.author.username}**) \nВ канале **${message.channel}** \n**Для быстрого перехода нажмите на название канала.** \nНужда:**${SummonMessage}** `)
     } else if (['warn'].includes(command))  {
 	    actMOD = actMOD + 1;actALL = actALL +1;
-	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' чтобы выполнить данную команду");
+	    if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.member.hasPermission('KICK_MEMBERS') || !message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    let sql;
         let member = message.mentions.members.first();
     args.shift();
@@ -1321,7 +1321,8 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
     message.channel.send(`Пользователь ${member.user} получил предупреждение по причине: **` + WarnMessage + "**");
 	    sql = `INSERT INTO warns (id, user, userid, reason, moderator, guild) VALUES ('${Math.floor(Math.random() * (99999))}', '${member.user.username}', '${member.id}', '${WarnMessage}', '${message.author.username}', '${message.guild.id}')`;
     con.query(sql, console.log);
-    } esle if (['warns'].includes(command)) {
+    } 
+	if (['warns'].includes(command)) {
 	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' чтобы выполнить данную команду");
 	    const member = message.mentionts.users.first() || message.author;
 	con.query(`SELECT * FROM warns WHERE userid = '${member.id}' AND guild = '${message.guild.id}'`, (err, rows) => {
@@ -1345,7 +1346,7 @@ message.channel.send(`Варны для пользователя ${member.userna
 					  .addField(`Reason`, reason)
 					  .setColor("YELLOW")
 					  .setFooter(message.guild.name)
-					 })
+					 });
 	    })
     } else if(['unwarn'].includes(command)) {
 	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' чтобы выполнить данную команду");
