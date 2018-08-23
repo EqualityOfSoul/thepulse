@@ -1334,10 +1334,7 @@ message.channel.send(`Варны для пользователя ${member} на 
     } else if(['warninfo'].includes(command)) {
 	   if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.member.hasPermission('KICK_MEMBERS') || !message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    if(!args[0]) return message.channel.send("Укажите спец ID варна");
-	     con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
-		    if(rows.lenght < 1) return message.channel.send("Такого варна нет");
-return;
-	    });
+
 	    con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
         if(err) throw err;
 		    const warnid = rows[0].id;
@@ -1347,7 +1344,7 @@ return;
 		    const moderator = rows[0].moderator;
 		    message.channel.send({embed: new Discord.RichEmbed()
 					  .setTitle(`Warn info`)
-					  .addField(`Warn ID`, warnid, true)
+					  .addField(`Warn ID`,`- ${warnid}`, true)
 					  .addField(`User`, user, true)
 					  .addField(`User ID`, userid, true)
 					  .addField(`Moderator`, moderator, true)
@@ -1357,10 +1354,7 @@ return;
 	    }).catch(err => message.channel.send("Кажись такого варна нет"));
     } else if(['unwarn'].includes(command)) {
 			    if(!args[0]) return message.channel.send("Укажите спец ID варна");
-	    con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
-		    if(rows.lenght < 1) return message.channel.send("Такого варна нет");
-return;
-	    });
+	    
 	    if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.member.hasPermission('KICK_MEMBERS') || !message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    con.query(`DELETE FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
 		    message.channel.send(`Варн с идентифекатором ${args[0]} успешно удален`);
