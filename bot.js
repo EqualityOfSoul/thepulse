@@ -3525,6 +3525,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
 	    .catch(e => message.channel.send("укажите данные наооборот"));
 	message.channel.send("Успех!")
 } else if (['hypetar'].includes(command)) {
+	actFUN = actFUN + 1; actALL = actALL + 1;
 	message.channel.startTyping()
 	let hype;
 	if(args[1] === "balance") {
