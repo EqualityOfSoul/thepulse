@@ -1350,10 +1350,10 @@ message.channel.send(`Варны для пользователя ${member} на 
 					 }).catch(err => message.channel.send("Кажись такого варна нет"));
 	    }).catch(err => message.channel.send("Кажись такого варна нет"));
     } else if(['unwarn'].includes(command)) {
-			    if(args[0]) return message.channel.send("Укажите спец ID варна");
+			    if(!args[0]) return message.channel.send("Укажите спец ID варна");
 	    if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.member.hasPermission('KICK_MEMBERS') || !message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    con.query(`DELETE FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
-		    if(!rows) return message.channel.send("no");
+		    if(rows.lenght < 0) return message.channel.send("Такого варна нет");
 		    message.channel.send(`Варн с идентифекатором ${args[0]} успешно удален`).catch(err => message.channel.send("Кажись такого варна нет"));
 	    }).catch(err => message.channel.send("Кажись такого варна нет"));
     } else if(['texthash'].includes(command)) {
