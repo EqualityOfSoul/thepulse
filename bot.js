@@ -1336,7 +1336,6 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 	con.query(`SELECT * FROM warns WHERE userid = '${member.id}' AND guild = '${message.guild.id}'`, (err, rows) => {
         if(err) throw err;
 		if(!rows) return message.channel.send(`У ${member} нету варнов.`);
-return;
 message.channel.send(`Варны для пользователя ${member} на сервере ${message.guild.name}: \n${rows.map(r => `ID: ${r.id}, Причина: ${r.reason}`).join("\n")}`)
 })
     } else if(['warninfo'].includes(command)) {
