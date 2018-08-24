@@ -137,8 +137,12 @@ client.on("guildMemberAdd", member => {
 		text = text.replaceAll("%guild.id%", member.guild)
 		text = text.replaceAll("%guild.members%", member.guild.memberCount)
 		text = text.replaceAll("%guild.icon%", member.guild.iconURL)
-		let channel = client.channels.get(rows[0].channel);
-		channel.send(text);
+		let channe = client.channels.get(rows[0].channel);
+		const embed = new Discord.RichEmbed()
+		.setTitle(rows[0].title)
+		.setDescription(text)
+		.setColor(rows[0].color);
+			channe.send(embed).catch(err => message.channel.send("Похоже вы не доконца настроили welcome, доступные пути: `color, message, title`"));
 });
 });
 /*client.on("guildMemberAdd", member => {
@@ -3686,7 +3690,7 @@ message.channel.stopTyping()
 		let channe = client.channels.get(rows[0].channel);
 		const embed = new Discord.RichEmbed()
 		.setTitle(rows[0].title)
-		.setDescription(rows[0].message)
+		.setDescription(text)
 		.setColor(rows[0].color);
 			channe.send(embed).catch(err => message.channel.send("Похоже вы не доконца настроили welcome, доступные пути: `color, message, title`"));
 });
