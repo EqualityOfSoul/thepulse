@@ -3693,9 +3693,7 @@ message.channel.stopTyping()
 	if(args[0] ==='test') {
 		let member = message.author;
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
-		if(!rows[0]) {
-				message.channel.send("для того чтоб настроить welcome нужно его создать, напишите x!welcome create");
-			}
+		if(!rows) return message.channel.send("для того чтоб настроить welcome нужно его создать, напишите x!welcome create");
 		let text = rows[0].message;
 		text = text.replaceAll("%member.username%", member.username)
 		text = text.replaceAll("%member.tag%", member.tag)
