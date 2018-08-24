@@ -3649,6 +3649,10 @@ message.channel.stopTyping()
 		let text = args.join(" ");
 		if(!text) return message.channel.send("Укажите текст");
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
+			if(!rows[0]) {
+				con.query(`INSERT INTO welcome (guild, channel, message, title, color) VALUES ('${message.guild.id}', '${message.channel.id}', 'Текст приветсвия не настроен, пожалуйста найстройте title, color, message', 'Welcome title!', '00ff00'`)
+			message.channel.send("cоздано! Для проверки пропишите `x!welcome test`");
+			}
 			if(err) throw err;
 			con.query(`UPDATE welcome SET message = "${text}" WHERE guild = '${message.guild.id}'`)
 			message.channel.send("Запомнил! Для проверки пропишите `x!welcome test`");
@@ -3659,6 +3663,10 @@ message.channel.stopTyping()
 		let text = args.join(" ");
 		if(!text) return message.channel.send("Укажите текст");
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
+			if(!rows[0]) {
+				con.query(`INSERT INTO welcome (guild, channel, message, title, color) VALUES ('${message.guild.id}', '${message.channel.id}', 'Текст приветсвия не настроен, пожалуйста найстройте title, color, message', 'Welcome title!', '00ff00'`)
+			message.channel.send("cоздано! Для проверки пропишите `x!welcome test`");
+			}
 			if(err) throw err;
 			con.query(`UPDATE welcome SET title = "${text}" WHERE guild = '${message.guild.id}'`)
 			message.channel.send("Запомнил! Для проверки пропишите `x!welcome test`");
@@ -3670,6 +3678,10 @@ message.channel.stopTyping()
 		if(!text) return message.channel.send("Укажите цвет");
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			if(err) throw err;
+			if(!rows[0]) {
+				con.query(`INSERT INTO welcome (guild, channel, message, title, color) VALUES ('${message.guild.id}', '${message.channel.id}', 'Текст приветсвия не настроен, пожалуйста найстройте title, color, message', 'Welcome title!', '00ff00'`)
+			message.channel.send("cоздано! Для проверки пропишите `x!welcome test`");
+			}
 			con.query(`UPDATE welcome SET color = "${text}" WHERE guild = '${message.guild.id}'`)
 			message.channel.send("Запомнил! Для проверки пропишите `x!welcome test`");
 		});
