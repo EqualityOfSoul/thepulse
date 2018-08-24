@@ -3656,7 +3656,7 @@ message.channel.stopTyping()
 		if(!text) return message.channel.send("Укажите текст");
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			if(err) throw err;
-			con.query(`UPDATE welcome SET titile = "${text}" WHERE guild = '${message.guild.id}'`)
+			con.query(`UPDATE welcome SET title = "${text}" WHERE guild = '${message.guild.id}'`)
 			message.channel.send("Запомнил! Для проверки пропишите `x!welcome test`");
 		});
 	}
