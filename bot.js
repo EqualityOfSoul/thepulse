@@ -3688,11 +3688,11 @@ message.channel.stopTyping()
 	}
 	if(args[0] ==='create') {
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
-			if(rows) message.channel.send("Кажись у вас уже есть приветсвие");
-			return;
-		})
+			if(rows) return message.channel.send("Кажись у вас уже есть приветсвие");
+
 		con.query(`INSERT INTO welcome (guild, channel, message, title, color) VALUES ('${message.guild.id}', '${message.channel.id}', 'Текст приветсвия не настроен, пожалуйста найстройте title, color, message', 'Welcome title!', '00ff00')`)
 			message.channel.send("Создано! Теперь настройте welcome `x!welcome argument` \nАргументы: title, message, color, channel");
+		})
 	}
 	if(args[0] ==='test') {
 		let member = message.author;
