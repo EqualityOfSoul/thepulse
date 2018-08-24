@@ -142,7 +142,7 @@ client.on("guildMemberAdd", member => {
 		.setTitle(rows[0].title)
 		.setDescription(text)
 		.setColor(rows[0].color);
-			channe.send(embed).catch(err => message.channel.send("Похоже вы не доконца настроили welcome, доступные пути: `color, message, title`"));
+			channe.send(embed).catch(err => channe.send("Похоже вы не доконца настроили welcome, доступные пути: `color, message, title`"));
 });
 });
 /*client.on("guildMemberAdd", member => {
@@ -3639,6 +3639,9 @@ message.channel.stopTyping()
 		if(!c) return message.channel.send("Укажите канал");
 		let ch = message.guild.channels.get(c);
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
+			if(!rows[0]) {
+				message.channel.send("для того чтоб настроить welcome нужно его создать, напишите x!welcome create");
+			}
 			if(err) throw err;
 			con.query(`UPDATE welcome SET channel = "${ch.id}" WHERE guild = '${message.guild.id}'`);
 			message.channel.send(`канал ${ch} был установлен для приветсвий`);
@@ -3650,8 +3653,7 @@ message.channel.stopTyping()
 		if(!text) return message.channel.send("Укажите текст");
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			if(!rows[0]) {
-				con.query(`INSERT INTO welcome (guild, channel, message, title, color) VALUES ('${message.guild.id}', '${message.channel.id}', 'Текст приветсвия не настроен, пожалуйста найстройте title, color, message', 'Welcome title!', '00ff00'`)
-			message.channel.send("cоздано! Для проверки пропишите `x!welcome test`");
+				message.channel.send("для того чтоб настроить welcome нужно его создать, напишите x!welcome create");
 			}
 			if(err) throw err;
 			con.query(`UPDATE welcome SET message = "${text}" WHERE guild = '${message.guild.id}'`)
@@ -3664,8 +3666,7 @@ message.channel.stopTyping()
 		if(!text) return message.channel.send("Укажите текст");
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			if(!rows[0]) {
-				con.query(`INSERT INTO welcome (guild, channel, message, title, color) VALUES ('${message.guild.id}', '${message.channel.id}', 'Текст приветсвия не настроен, пожалуйста найстройте title, color, message', 'Welcome title!', '00ff00'`)
-			message.channel.send("cоздано! Для проверки пропишите `x!welcome test`");
+				message.channel.send("для того чтоб настроить welcome нужно его создать, напишите x!welcome create");
 			}
 			if(err) throw err;
 			con.query(`UPDATE welcome SET title = "${text}" WHERE guild = '${message.guild.id}'`)
@@ -3679,17 +3680,22 @@ message.channel.stopTyping()
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			if(err) throw err;
 			if(!rows[0]) {
-				con.query(`INSERT INTO welcome (guild, channel, message, title, color) VALUES ('${message.guild.id}', '${message.channel.id}', 'Текст приветсвия не настроен, пожалуйста найстройте title, color, message', 'Welcome title!', '00ff00'`)
-			message.channel.send("cоздано! Для проверки пропишите `x!welcome test`");
+				message.channel.send("для того чтоб настроить welcome нужно его создать, напишите x!welcome create");
 			}
 			con.query(`UPDATE welcome SET color = "${text}" WHERE guild = '${message.guild.id}'`)
 			message.channel.send("Запомнил! Для проверки пропишите `x!welcome test`");
 		});
 	}
+	if(args[0] ==='create') {
+		con.query(`INSERT INTO welcome (guild, channel, message, title, color) VALUES ('${message.guild.id}', '${message.channel.id}', 'Текст приветсвия не настроен, пожалуйста найстройте title, color, message', 'Welcome title!', '00ff00'`)
+			message.channel.send("Создано! Теперь настройте welcome `x!welcome argument` \nАргументы: title, message, color, channel");
+	}
 	if(args[0] ==='test') {
 		let member = message.author;
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
-		if(!rows[0] || rows[0].guild != message.guild.id) return;
+		if(!rows[0]) {
+				message.channel.send("для того чтоб настроить welcome нужно его создать, напишите x!welcome create");
+			}
 		let text = rows[0].message;
 		text = text.replaceAll("%member.username%", member.username)
 		text = text.replaceAll("%member.tag%", member.tag)
