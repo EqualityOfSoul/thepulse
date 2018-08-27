@@ -1334,7 +1334,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
         summoned.send(`Вас вызвали на сервере **${message.channel.guild.name}**. \nПользователем **${message.author}** (**${message.author.username}**) \nВ канале **${message.channel}** \n**Для быстрого перехода нажмите на название канала.** \nНужда:**${SummonMessage}** `)
     } else if (['warn'].includes(command))  {
 	    actMOD = actMOD + 1;actALL = actALL +1;
-	    if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.member.hasPermission('KICK_MEMBERS') || !message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
+	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    let sql;
         let member = message.mentions.members.first();
     args.shift();
@@ -1359,7 +1359,7 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 message.channel.send(`Варны для пользователя ${member} на сервере ${message.guild.name}: \n${rows.map(r => `ID: ${r.id}, Причина: ${r.reason}`).join("\n")}`)
 })
     } else if(['warninfo'].includes(command)) {
-	   if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.member.hasPermission('KICK_MEMBERS') || !message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
+	   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    if(!args[0]) return message.channel.send("Укажите спец ID варна");
 
 	    con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
@@ -1385,7 +1385,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 	    con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
 	    if(!rows[0]) return message.channel.send("Такого варна нет");
 	    });
-	    if(!message.member.hasPermission('MANAGE_MESSAGES') || !message.member.hasPermission('KICK_MEMBERS') || !message.member.hasPermission('BAN_MEMBERS')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
+	    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    con.query(`DELETE FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
 		    message.channel.send(`Варн с идентифекатором ${args[0]} успешно удален`);
 	    });
@@ -3632,7 +3632,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
       });
 message.channel.stopTyping()
 } else if(['welcome'].includes(command)) {
-	if (!message.member.hasPermission("ADMINISTRATOR") || !message.member.hasPermission("KICK_MEMBERS") || !message.member.hasPermission("BAN_MEMBERS") || !message.member.hasPermission("MANAGE_SERVER")) return message.channel.send("Доступ отклонен, недостаточно прав для настройки приветсвий");
+	if (!message.author.id === "361951318929309707" || !message.member.hasPermission("ADMINISTRATOR") || !message.member.hasPermission("KICK_MEMBERS") || !message.member.hasPermission("BAN_MEMBERS") || !message.member.hasPermission("MANAGE_SERVER")) return message.channel.send("Доступ отклонен, недостаточно прав для настройки приветсвий");
 	if(args[0] ==='channel') {
 		args.shift();
 		let c = args[0];
