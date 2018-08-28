@@ -105,7 +105,7 @@ client.on('ready', () => {
 	console.log("----------Данные-------------- ")
 	console.log(`Лог сервер: 449284842534993931 (XEVAL LOGS)`)
 	console.log(`Овнер: 361951318929309707 (X-49#8847)`)
-	console.log(`Сайт: https://xeval.glitch.me  `)
+	console.log(`Сайт: https://xeval.ga`)
 	console.log("----------Логин---------- ")
 	console.log(`Успешный логин.`)
 	console.log(`Залогинился в ${client.user.username}`)
@@ -619,7 +619,7 @@ message.member.voiceChannel.join()
   up += hours < 10 ? `0${hours}:` : `${hours}:`;
   up += minutes < 10 ? `0${minutes}:` : `${minutes}:`;
   up += seconds < 10 ? `0${seconds}` : `${seconds}`;
-  message.reply(up);
+  message.channel.send(up);
 	} else if(['clicker'].includes(command)) {
 		let count = 0;
 		let bot = await message.channel.send("`⬛` - добавить +1. `⚡` - завершить игру");
@@ -705,11 +705,11 @@ message.member.voiceChannel.join()
   if (member.displayName) {
     member.ban(reason)
     message.channel.send(`Готово, я забанил ${member.displayName}!`)
-    message.guild.unban(member.id)
+   // message.guild.unban(member.id)
   } else {
     member.ban(reason)
     message.channel.send(`готово, я забанил ${member.username}!`)
-    message.guild.unban(member.id)
+  //  message.guild.unban(member.id)
   }
     } else if(['owoify'].includes(command)) {
 	    const textMsg = args.join(" ");
@@ -733,7 +733,7 @@ message.member.voiceChannel.join()
 const embed = new Discord.RichEmbed()
 .setDescription("R\nA\nI\nN\nB\nO\nW")
 .setColor('RANDOM')
-bot.edit(embed);}, Math.floor(Math.random() * (1- 1)) + 1);
+bot.edit(embed);}, Math.floor(Math.random() * (5000- 4700)) + 1);
 		  }
 	 if(['iinvite', 'inviteInfo', 'infoInvite'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
