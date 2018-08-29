@@ -3743,16 +3743,22 @@ message.channel.stopTyping()
 				if(!rows) return message.channel.send("У вас нету аккаунта, но он был только что создан");
 	        let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
-	  const NeedXp = 5 * (lvl ^ 2) + 50 * lvl + 100;
-		if(!xp >= NeedXp) return message.channel.send(`У вас недостаточно опыта, вам нужно ${NeedXp} но у вас только ${xp}, наберите еще ${NeedXp - xp} и обратитесь еще раз.`);
-		
-		con.query(`UPDATE xp SET lvl = ${lvl++} WHERE id = '${message.author.id}'`)
-		con.query(`UPDATE xp SET xp = ${NeedXp - xp} WHERE id = '${message.author.id}'`)
+	        const NeedXp = 5 * (rows[0].lvl ^ 2) + 50 * rows[0].lvl + 100;
+		if(rows[0].xp < NeedXp) {
+	 	message.channel.send(`У вас недостаточно опыта, вам нужно ${NeedXp} но у вас только ${xp}, наберите еще ${NeedXp - xp} и обратитесь еще раз.`);
+		return;
+		}
+				if(xp >= NeedXp) {
+		let ru`UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`;
+		let ur = `UPDATE xp SET xp = ${NeedXp - xp} WHERE id = '${message.author.id}'`;
+					con.query(ru)
+					con.query(ur)
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setTitle("Lvl UP")
-				      .setDescription(`Уровень повышен до ${lvl}!`)
+				      .setDescription(`Уровень повышен до ${rows[0].lvl}!`)
 				      .setColor("RANDOM")
 				     })
+				}
 				});
 }
 				     
