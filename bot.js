@@ -3726,9 +3726,9 @@ message.channel.stopTyping()
 	con.query(`SELECT * FROM autorole WHERE guild = '${message.guild.id}'`, (err, rows) => {
 		if(rows) return message.channel.send("У вас уже назначена авто роль, используйте команду `x!autorole reset` для сброса роли.");
 	});
-		con.query(`INSERT INTO autorole (guild, role) VALUES ('${message.guild.id}', '${rol.id}')`)
+		con.query(`INSERT INTO autorole (guild, role) VALUES ('${message.guild.id}', '${rol.id}'`, (err, rows) => {
 			message.channel.send("Запомнил!");
-		})
+		});
 	}
 	if(args[0] === 'reset') {
 		con.query(`SELECT * FROM autorole WHERE guild = '${message.guild.id}'`, (err, rows) => {
@@ -3736,7 +3736,7 @@ message.channel.stopTyping()
 	});
 		con.query(`DELETE FROM autorole WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			message.channel.send('Готово!');
-		})
+		});
 	}
 }
 });
