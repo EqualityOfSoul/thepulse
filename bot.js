@@ -3749,7 +3749,7 @@ message.channel.stopTyping()
 		return;
 		}
 				if(xp >= NeedXp) {
-		let ru`UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`;
+		let ru = `UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`;
 		let ur = `UPDATE xp SET xp = ${NeedXp - xp} WHERE id = '${message.author.id}'`;
 					con.query(ru)
 					con.query(ur)
