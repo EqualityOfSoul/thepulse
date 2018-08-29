@@ -3807,6 +3807,10 @@ message.channel.stopTyping()
 				      .setFooter(`Requested by ${message.author.username}`)
 				     })
 	})
+} else if(['top', 'lb', 'leaderboard'].includes(command)) {
+	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
+message.channel.send("```Топ 10: \n"+(rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n\n")+"```")
+})
 }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
