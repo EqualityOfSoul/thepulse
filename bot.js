@@ -185,8 +185,9 @@ client.on('message', async message => {
   } else {
     let xp = rows[0].xp;
 	  let lvl = rows[0].lvl;
-	  if(xp >= '${Math.floor(Math.pow(rows[0].lvl, 1.5) * 300)}') {
+	  if(xp >= 5 * (lvl ^ 2) + 50 * lvl + 100) {
 		  con.query(`UPDATE xp SET lvl = lvl++ WHERE id = '${message.author.id}'`);
+		  return;
 	  }
     sql = `UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`;
   }
