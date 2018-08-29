@@ -3740,6 +3740,7 @@ message.channel.stopTyping()
 } else if (['buy'].includes(command)) {
 	if(args[0]==='lvl') {
 			con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+				if(!rows) return message.channel.send("У вас нету аккаунта, но он был только что создан");
 	        let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
 	  const NeedXp = 5 * (lvl ^ 2) + 50 * lvl + 100;
