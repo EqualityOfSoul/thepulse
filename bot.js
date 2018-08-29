@@ -176,18 +176,23 @@ function generateXp() {
   let min = 5;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+function generateMon() {
+  let max = 20;
+  let min = 5;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 client.on('message', async message => {
 	if(message.guild.id === '264445053596991498') return;
     con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	    if(err) throw err;
   let sql;
   if (!rows[0]) {
-    sql = `INSERT INTO xp (id, xp, lvl) VALUES ('${message.author.id}', ${generateXp()}, '1')`;
+    con.query(`INSERT INTO xp (id, xp, lvl, money) VALUES ('${message.author.id}', ${generateXp()}, '1', '${generateMon()}')`);
   } else {
     let xp = rows[0].xp;
-    sql = `UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`;
+    con.query(`UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`);
+    con.query(`UPDATE xp SET money = ${xp + generateMon()} WHERE id = '${message.author.id}'`);
   }
-  con.query(sql);
 });
 })
 client.on("guildMemberRemove", member => {
@@ -3769,14 +3774,15 @@ message.channel.stopTyping()
 	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
 		let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
+		let money = rows[0].money;
 	        let NeedXp = 5 * (rows[0].lvl ^ 2) + 50 * rows[0].lvl + 100;
 		let XpToLvlUp = NeedXp - xp;
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setTitle(`${user.username}'s profile`)
 				      .addField('**XP**', `${xp}/${NeedXp}`, true)
 				      .addField('**LvL**', lvl, true)
-				      .addField('XP to Lvl UP', XpToLvlUp)
-				      .addField('Money', "???")
+				      .addField('**XP to Lvl UP**', XpToLvlUp, true)
+				      .addField('**Money**', money, true)
 				     })
 	})
 }
