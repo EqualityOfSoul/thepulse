@@ -95,7 +95,7 @@ const dbl = require("dblposter");
 const DBLPoster = new dbl(process.env.BOT_KEY, client);
 DBLPoster.bind();
 client.on('ready', () => {
-    //Отпраляет сообщение в логи что бот запущен (+ количество серверов).${i}
+    //Отпраляет сообщение в логи что бот запущен (+ количество серверов).
 
         console.log(`Успешный старт.`)
 	console.log("----------Количество---------- ")
@@ -3588,6 +3588,9 @@ if (isNaN(hexToDec(xml.hex.clean)))
 	actFUN = actFUN + 1; actALL = actALL + 1;
 	message.channel.startTyping()
 	let hype;
+	if(args[1] === "rainbow") {
+	hype = "https://cdn.discordapp.com/attachments/481773525426765824/483227662341373952/Trinity.png"
+	}
 	if(args[1] === "balance") {
 		hype = "https://images-ext-2.discordapp.net/external/ivOQ0sZnXorKlDTjqeQ9tihXRg88lhvhHBeWsDQ0fwY/https/pbs.twimg.com/media/DlJYn2YWwAIaPp3.png"
 	}
@@ -3632,7 +3635,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
       });
 message.channel.stopTyping()
 } else if(['welcome'].includes(command)) {
-	if (!message.author.id === "361951318929309707" || !message.member.hasPermission("ADMINISTRATOR") || !message.member.hasPermission("KICK_MEMBERS") || !message.member.hasPermission("BAN_MEMBERS") || !message.member.hasPermission("MANAGE_SERVER")) return message.channel.send("Доступ отклонен, недостаточно прав для настройки приветсвий");
+	if (!message.author.id === "361951318929309707" || !message.member.hasPermission("ADMINISTRATOR") || !message.member.hasPermission("MANAGE_SERVER")) return message.channel.send("Доступ отклонен, недостаточно прав для настройки приветсвий");
 	if(args[0] ==='channel') {
 		args.shift();
 		let c = args[0];
@@ -3714,6 +3717,26 @@ message.channel.stopTyping()
 		.setColor(rows[0].color);
 			channe.send(embed).catch(err => message.channel.send("Похоже вы не доконца настроили welcome, доступные пути: `color, message, title`"));
 });
+	}
+} else if (['autorole'].includes(command)) {
+		if (!message.author.id === "361951318929309707" || !message.member.hasPermission("ADMINISTRATOR") || !message.member.hasPermission("MANAGE_SERVER")) return message.channel.send("Доступ отклонен, недостаточно прав для настройки автороли");
+	if(args[0] === 'set') {
+		let rol = message.mentions.roles.first();
+		if(!rol) return message.channel.send("Укажите роль");
+	con.query(`SELECT * FROM autorole WHERE guild = '${message.guild.id}'`, (err, rows) => {
+		if(rows) return message.channel.send("У вас уже назначена авто роль, используйте команду `x!autorole reset` для сброса роли.");
+	});
+		con.query(`INSERT INTO autorole (guild, role) VALUES ('${message.guild.id}', '${rol.id}')`)
+			message.channel.send("Запомнил!");
+		})
+	}
+	if(args[0] === 'reset') {
+		con.query(`SELECT * FROM autorole WHERE guild = '${message.guild.id}'`, (err, rows) => {
+		if(!rows) return message.channel.send("У вас нету авто роли.");
+	});
+		con.query(`DELETE FROM autorole WHERE guild = '${message.guild.id}'`, (err, rows) => {
+			message.channel.send('Готово!');
+		})
 	}
 }
 });
