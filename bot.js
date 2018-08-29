@@ -184,9 +184,7 @@ function generateMon() {
 }
 client.on('message', async message => {
 	if(message.guild.id === '264445053596991498') return;
-	 if (talked.has(message.author.id)) {
-		 return;
-    } else {
+	 if (talked.has(message.author.id)) return;
     con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	    if(err) throw err;
   let sql;
@@ -196,12 +194,13 @@ client.on('message', async message => {
     let xp = rows[0].xp;
     con.query(`UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`);
     con.query(`UPDATE xp SET money = ${xp + generateMon()} WHERE id = '${message.author.id}'`);
+	  talked.add(message.author.id);
+        setTimeout(() => {
+          talked.delete(message.author.id);
+        }, 10000);
   }
 });
-	    talkedRecently.add(message.author.id);
-        setTimeout(() => {
-          talkedRecently.delete(message.author.id);
-        }, 10000);
+	   
 })
 client.on("message", message => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
