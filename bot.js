@@ -205,10 +205,10 @@ client.on("message", message => {
 		return;
 		}
 				if(xp >= NeedXp) {
-		let ru = `UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`;
-		let ur = `UPDATE xp SET xp = ${NeedXp - xp} WHERE id = '${message.author.id}'`;
-					con.query(ru)
-					con.query(ur)
+		con.query(`UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`, (err, rows) => {
+			console.log(`${message.author.username} получил уровень ${rows[0].lvl++}`);
+		})
+		con.query(`UPDATE xp SET xp = ${NeedXp - xp} WHERE id = '${message.author.id}'`)
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setTitle("Lvl UP")
 				      .setDescription(`${message.author} Уровень повышен до ${rows[0].lvl++}!`)
