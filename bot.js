@@ -176,20 +176,23 @@ function generateXp() {
   let min = 5;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-/*client.on('message', async message => {
+client.on('message', async message => {
     con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	    if(err) throw err;
   let sql;
   if (!rows[0]) {
-    sql = `INSERT INTO xp (id, xp) VALUES ('${message.author.id}', ${generateXp()})`;
+    sql = `INSERT INTO xp (id, xp, lvl) VALUES ('${message.author.id}', ${generateXp()}, '1')`;
   } else {
-  console.log(rows)
     let xp = rows[0].xp;
+	  let lvl = rows[0].lvl;
+	  if(xp >= 100 && lvl == '1') {
+		  con.query(`UPDATE xp SET lvl = '2' WHERE id = '${message.author.id}'`);
+	  }
     sql = `UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`;
   }
-  con.query(sql, console.log);
+  con.query(sql);
 });
-})*/
+})
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
