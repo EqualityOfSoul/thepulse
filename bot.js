@@ -184,11 +184,6 @@ client.on('message', async message => {
     sql = `INSERT INTO xp (id, xp, lvl) VALUES ('${message.author.id}', ${generateXp()}, '1')`;
   } else {
     let xp = rows[0].xp;
-	  let lvl = rows[0].lvl;
-	  if(xp >= 5 * (lvl ^ 2) + 50 * lvl + 100) {
-		  sql = `UPDATE xp SET lvl = lvl+1 WHERE id = '${message.author.id}'`;
-		  return;
-	  }
     sql = `UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`;
   }
   con.query(sql);
@@ -3741,6 +3736,19 @@ message.channel.stopTyping()
 		con.query(`DELETE FROM autorole WHERE guild = '${message.guild.id}'`, (err, rows) => {
 			message.channel.send('Готово!');
 		});
+	}
+} else if (['buy'].includes(command)) {
+	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+	if(args[0]==='lvl') {
+	let lvl = rows[0].lvl;
+		let xp = rows[0].xp;
+	  const NeedXp = 5 * (lvl ^ 2) + 50 * lvl + 100;
+		if(!xp >= NeedXp) {
+			message.channel.send(`У вас недостаточно опыта, вам нужно ${NeedXp} но у вас только ${xp}, наберите еще ${NeedXp - xp} и обратитесь еще раз.`)
+		con.query(`UPDATE xp SET lvl = lvl++ WHERE id = '${message.author.id}'`)
+			con.query(`UPDATE xp SET xp = NeedXp - xp WHERE id = '${message.author.id}'`)
+	  });
+	  }
 	}
 }
 });
