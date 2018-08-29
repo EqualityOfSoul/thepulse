@@ -177,6 +177,7 @@ function generateXp() {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 client.on('message', async message => {
+	if(message.guild.id === '264445053596991498') return;
     con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	    if(err) throw err;
   let sql;
@@ -3738,6 +3739,7 @@ message.channel.stopTyping()
 		});
 	}
 } else if (['buy'].includes(command)) {
+	if(message.guild.id === '264445053596991498') return message.channel.send("Disabled");
 	if(args[0]==='lvl') {
 			con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 				if(!rows) return message.channel.send("У вас нету аккаунта, но он был только что создан");
@@ -3762,6 +3764,21 @@ message.channel.stopTyping()
 				});
 }
 				     
+} else if (['profile'].includes(command)) {
+	let user = message.mentions.members.first() || message.author;
+	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+		let lvl = rows[0].lvl;
+		let xp = rows[0].xp;
+	        let NeedXp = 5 * (rows[0].lvl ^ 2) + 50 * rows[0].lvl + 100;
+		let XpToLvlUp = NeedXp - xp;
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setTitle(`${user.username}'s profile`)
+				      .addField('**XP**', `${xp}/${NeedXp}`, true)
+				      .addField('**LvL**', lvl, true)
+				      .addField('XP to Lvl UP', XpToLvlUp)
+				      .addField('Money', "???")
+				     })
+	})
 }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
