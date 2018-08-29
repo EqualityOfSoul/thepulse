@@ -211,7 +211,7 @@ client.on("message", message => {
 					con.query(ur)
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setTitle("Lvl UP")
-				      .setDescription(`Уровень повышен до ${rows[0].lvl}!`)
+				      .setDescription(`${message.author} Уровень повышен до ${rows[0].lvl++}!`)
 				      .setColor("RANDOM")
 				     })
 				}
@@ -3805,6 +3805,7 @@ message.channel.stopTyping()
 				      .addField('**LvL**', lvl, true)
 				      .addField('**XP to Lvl UP**', XpToLvlUp, true)
 				      .addField('**Money**', money, true)
+				      .setColor("RANDOM")
 				     })
 	})
 }
