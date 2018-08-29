@@ -3795,24 +3795,14 @@ message.channel.stopTyping()
 		let money = rows[0].money;
 	        let NeedXp = 5 * (rows[0].lvl ^ 2) + 50 * rows[0].lvl + 100;
 		let totalxp = rows[0].global;
-		if(user) {
 		message.channel.send({embed: new Discord.RichEmbed()
-				      .setTitle(`${user.user.username}'s profile`)
+				      .setTitle(`Profile`)
 				      .addField('**XP**', `${xp}/${NeedXp}`, true)
 				      .addField('**LvL**', lvl, true)
 				      .addField('**Total XP**', totalxp, true)
 				      .addField('**Money**', money, true)
 				      .setColor("RANDOM")
-				     })
-		}
-		if(!user) {
-		message.channel.send({embed: new Discord.RichEmbed()
-				      .setTitle(`${message.author.username}'s profile`)
-				      .addField('**XP**', `${xp}/${NeedXp}`, true)
-				      .addField('**LvL**', lvl, true)
-				      .addField('**Total XP**', totalxp, true)
-				      .addField('**Money**', money, true)
-				      .setColor("RANDOM")
+				      .setFooter(`Requested by ${message.author.username}`)
 				     })
 		}
 	})
