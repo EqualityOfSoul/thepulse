@@ -1435,7 +1435,7 @@ message.channel.send(`Варны для пользователя ${member} на 
         embed.addField('IMAGE uses', `${actIMG}.`)
         embed.addField('NSFW uses', `${actNSFW}.`)
         embed.addField('commands run', `${actALL} раз.`)
-        embed.addField('authors', '<@361951318929309707> (X-49#8847) <@421030089732653057> (zziger#8040)')
+        embed.addField('authors', '<@361951318929309707> (X-49#8847), <@421030089732653057> (zziger#8040), <@447376843708956682> (Dogious#3749)')
 	embed.setImage('https://discordbots.org/api/widget/441667160025333762.png');
         message.channel.send(embed);
         message.delete();
