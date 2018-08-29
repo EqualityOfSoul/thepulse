@@ -212,6 +212,7 @@ client.on("message", message => {
 		return;
 		}
 				if(xp >= NeedXp) {
+					if(!rows[0]) return;
 		con.query(`UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`);
 		con.query(`UPDATE xp SET xp = ${NeedXp - xp} WHERE id = '${message.author.id}'`);
 		message.channel.send({embed: new Discord.RichEmbed()
@@ -454,18 +455,7 @@ function hexToDec(hex) {
     
          message.channel.send({embed});
        }
-    } 
-	/*if(['profile'].includes(command)) {
-	    const profilEm = new Discord.RichEmbed()
-	    .setTitle(`профиль ${message.author.username}`)
-	    .setColor(message.member.highestRole.color)
-	    .addField("Stats", `Balance: ${money}$`)
-	    .setFooter("BETA COMMAND TEST");
-	    message.channel.send(profilEm);
-    } else if (['work'].includes(command)) {
-	    message.channel.send(`ваш баланс пополнен на 100$`)
-	    money = money + 100;
-    } */if(['save'].includes(command)) {
+    } if(['save'].includes(command)) {
 	    
 	    message.channel.send("**Disclaimer:** ваш ключ сохранен не навсегда, ключ будет удален при перезапуске бота.");
 			if(args.length < 2){
@@ -3796,21 +3786,34 @@ message.channel.stopTyping()
 }
 				     
 } */else if (['profile'].includes(command)) {
-	let user = message.mentions.members.first() || message.author;
+	let user = message.mentions.members.first();
 	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+		if(!rows[0]) return message.channel.send(`${user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
 		let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
 		let money = rows[0].money;
 	        let NeedXp = 5 * (rows[0].lvl ^ 2) + 50 * rows[0].lvl + 100;
 		let XpToLvlUp = NeedXp - xp;
+		if(user) {
 		message.channel.send({embed: new Discord.RichEmbed()
-				      .setTitle(`${user.username}'s profile`)
+				      .setTitle(`${user.user.username}'s profile`)
 				      .addField('**XP**', `${xp}/${NeedXp}`, true)
 				      .addField('**LvL**', lvl, true)
 				      .addField('**XP to Lvl UP**', XpToLvlUp, true)
 				      .addField('**Money**', money, true)
 				      .setColor("RANDOM")
 				     })
+		}
+		if(!user) {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setTitle(`${message.author.username}'s profile`)
+				      .addField('**XP**', `${xp}/${NeedXp}`, true)
+				      .addField('**LvL**', lvl, true)
+				      .addField('**XP to Lvl UP**', XpToLvlUp, true)
+				      .addField('**Money**', money, true)
+				      .setColor("RANDOM")
+				     })
+		}
 	})
 }
 });
