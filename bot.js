@@ -3755,6 +3755,7 @@ message.channel.stopTyping()
 				      .setDescription(`Уровень повышен до ${lvl}!`)
 				      .setColor("RANDOM")
 				     })
+	}
 }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
