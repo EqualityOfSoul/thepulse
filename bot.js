@@ -45,6 +45,7 @@ let actIMG = 0; //  actIMG = actIMG + 1;actALL = actALL +1;
 let actALL = 0; //  actALL = actALL +1;actALL = actALL +1;
 let gameCount = 0;
 const talkedRecently = new Set();
+const talked = new Set();
 const bl = new Set();
 const tet = new Set();
 let serversPlay = {}
@@ -183,6 +184,9 @@ function generateMon() {
 }
 client.on('message', async message => {
 	if(message.guild.id === '264445053596991498') return;
+	 if (talked.has(message.author.id)) {
+		 return;
+    } else {
     con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	    if(err) throw err;
   let sql;
@@ -194,6 +198,10 @@ client.on('message', async message => {
     con.query(`UPDATE xp SET money = ${xp + generateMon()} WHERE id = '${message.author.id}'`);
   }
 });
+	    talkedRecently.add(message.author.id);
+        setTimeout(() => {
+          talkedRecently.delete(message.author.id);
+        }, 10000);
 })
 client.on("message", message => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
@@ -1934,7 +1942,6 @@ let voice = 0;
 		});*/
 	    talkedRecently.add(message.author.id);
         setTimeout(() => {
-          
           talkedRecently.delete(message.author.id);
         }, 10000);
     }
