@@ -3745,10 +3745,16 @@ message.channel.stopTyping()
 	  const NeedXp = 5 * (lvl ^ 2) + 50 * lvl + 100;
 		if(!xp >= NeedXp) {
 			message.channel.send(`У вас недостаточно опыта, вам нужно ${NeedXp} но у вас только ${xp}, наберите еще ${NeedXp - xp} и обратитесь еще раз.`)
+			return;
+	  }
+		});
 		con.query(`UPDATE xp SET lvl = lvl++ WHERE id = '${message.author.id}'`)
 			con.query(`UPDATE xp SET xp = NeedXp - xp WHERE id = '${message.author.id}'`)
-	  }
-	});
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setTitle("Lvl UP")
+				      .setDescription(`Уровень повышен до ${lvl}!`)
+				      .setColor("RANDOM")
+				     })
 }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
