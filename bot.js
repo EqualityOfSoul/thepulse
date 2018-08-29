@@ -195,6 +195,28 @@ client.on('message', async message => {
   }
 });
 })
+client.on("message", message => {
+	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+	if(!rows[0]) return;
+	        let lvl = rows[0].lvl;
+		let xp = rows[0].xp;
+	        const NeedXp = 5 * (rows[0].lvl ^ 2) + 50 * rows[0].lvl + 100;
+		if(rows[0].xp < NeedXp) {
+		return;
+		}
+				if(xp >= NeedXp) {
+		let ru = `UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`;
+		let ur = `UPDATE xp SET xp = ${NeedXp - xp} WHERE id = '${message.author.id}'`;
+					con.query(ru)
+					con.query(ur)
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setTitle("Lvl UP")
+				      .setDescription(`Уровень повышен до ${rows[0].lvl}!`)
+				      .setColor("RANDOM")
+				     })
+				}
+				});
+});
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
@@ -3743,7 +3765,7 @@ message.channel.stopTyping()
 			message.channel.send('Готово!');
 		});
 	}
-} else if (['buy'].includes(command)) {
+} /*else if (['buy'].includes(command)) {
 	if(message.guild.id === '264445053596991498') return message.channel.send("Disabled");
 	if(args[0]==='lvl') {
 			con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
@@ -3769,7 +3791,7 @@ message.channel.stopTyping()
 				});
 }
 				     
-} else if (['profile'].includes(command)) {
+} */else if (['profile'].includes(command)) {
 	let user = message.mentions.members.first() || message.author;
 	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
 		let lvl = rows[0].lvl;
