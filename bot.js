@@ -3788,7 +3788,7 @@ message.channel.stopTyping()
 } */else if (['profile'].includes(command)) {
 	let user = message.mentions.members.first();
 	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
-		if(!rows[0]) return message.channel.send(`${user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
+		if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
 		let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
 		let money = rows[0].money;
