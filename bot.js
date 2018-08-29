@@ -185,6 +185,7 @@ function generateMon() {
 client.on('message', async message => {
 	if(message.guild.id === '264445053596991498') return;
 	 if (talked.has(message.author.id)) return;
+	if(message.author.bot) return;
     con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	    if(err) throw err;
   let sql;
@@ -3786,20 +3787,20 @@ message.channel.stopTyping()
 }
 				     
 } */else if (['profile'].includes(command)) {
-	let user = message.mentions.members.first();
+	let user = message.mentions.members.first() || message.author;
 	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
 		if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
 		let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
 		let money = rows[0].money;
 	        let NeedXp = 5 * (rows[0].lvl ^ 2) + 50 * rows[0].lvl + 100;
-		let XpToLvlUp = NeedXp - xp;
+		let totalxp = rows[0].global;
 		if(user) {
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setTitle(`${user.user.username}'s profile`)
 				      .addField('**XP**', `${xp}/${NeedXp}`, true)
 				      .addField('**LvL**', lvl, true)
-				      .addField('**XP to Lvl UP**', XpToLvlUp, true)
+				      .addField('**Total XP**', totalxp, true)
 				      .addField('**Money**', money, true)
 				      .setColor("RANDOM")
 				     })
@@ -3809,7 +3810,7 @@ message.channel.stopTyping()
 				      .setTitle(`${message.author.username}'s profile`)
 				      .addField('**XP**', `${xp}/${NeedXp}`, true)
 				      .addField('**LvL**', lvl, true)
-				      .addField('**XP to Lvl UP**', XpToLvlUp, true)
+				      .addField('**Total XP**', totalxp, true)
 				      .addField('**Money**', money, true)
 				      .setColor("RANDOM")
 				     })
