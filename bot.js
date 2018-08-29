@@ -183,6 +183,7 @@ function generateMon() {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 client.on('message', async message => {
+	let newxp = Math.floor(Math.random() * (30 - 10 + 1)) + 30;
 	if(message.guild.id === '264445053596991498') return;
 	 if (talked.has(message.author.id)) return;
 	if(message.author.bot) return;
@@ -190,12 +191,12 @@ client.on('message', async message => {
 	    if(err) throw err;
   let sql;
   if (!rows[0]) {
-    con.query(`INSERT INTO xp (id, xp, lvl, money, global) VALUES ('${message.author.id}', ${Math.floor(Math.random() * (30 - 10 + 1)) + 30}, '1', '${generateMon()}', '${generateXp()}')`);
+    con.query(`INSERT INTO xp (id, xp, lvl, money, global) VALUES ('${message.author.id}', ${newxp}, '1', '${generateMon()}', '${newxp}')`);
   } else {
     let xp = rows[0].xp;
-    con.query(`UPDATE xp SET xp = ${xp + Math.floor(Math.random() * (30 - 10 + 1)) + 30} WHERE id = '${message.author.id}'`);
+    con.query(`UPDATE xp SET xp = ${xp + newxp} WHERE id = '${message.author.id}'`);
     con.query(`UPDATE xp SET money = ${xp + generateMon()} WHERE id = '${message.author.id}'`);
-    con.query(`UPDATE xp SET global = ${rows[0].global + Math.floor(Math.random() * (30 - 10 + 1)) + 30} WHERE id = '${message.author.id}'`);
+    con.query(`UPDATE xp SET global = ${rows[0].global + newxp} WHERE id = '${message.author.id}'`);
 	  talked.add(message.author.id);
         setTimeout(() => {
           talked.delete(message.author.id);
