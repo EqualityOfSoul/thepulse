@@ -191,7 +191,7 @@ client.on('message', async message => {
 	    if(err) throw err;
   let sql;
   if (!rows[0]) {
-    con.query(`INSERT INTO xp (id, xp, lvl, money, global) VALUES ('${message.author.id}', ${newxp}, '1', '${generateMon()}', '${newxp}')`);
+    con.query(`INSERT INTO xp (id, xp, lvl, money, global, name) VALUES ('${message.author.id}', ${newxp}, '1', '${generateMon()}', '${newxp}', '${message.author.tag})`);
   } else {
     let xp = rows[0].xp;
     con.query(`UPDATE xp SET xp = ${xp + newxp} WHERE id = '${message.author.id}'`);
