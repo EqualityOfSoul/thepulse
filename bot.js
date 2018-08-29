@@ -3738,15 +3738,12 @@ message.channel.stopTyping()
 		});
 	}
 } else if (['buy'].includes(command)) {
-	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	if(args[0]==='lvl') {
+			con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
 	  const NeedXp = 5 * (lvl ^ 2) + 50 * lvl + 100;
-		if(!xp >= NeedXp) {
-			message.channel.send(`У вас недостаточно опыта, вам нужно ${NeedXp} но у вас только ${xp}, наберите еще ${NeedXp - xp} и обратитесь еще раз.`)
-			return;
-	  }
+		if(xp < NeedXp) return message.channel.send(`У вас недостаточно опыта, вам нужно ${NeedXp} но у вас только ${xp}, наберите еще ${NeedXp - xp} и обратитесь еще раз.`);
 		});
 		con.query(`UPDATE xp SET lvl = lvl++ WHERE id = '${message.author.id}'`)
 			con.query(`UPDATE xp SET xp = NeedXp - xp WHERE id = '${message.author.id}'`)
@@ -3754,8 +3751,9 @@ message.channel.stopTyping()
 				      .setTitle("Lvl UP")
 				      .setDescription(`Уровень повышен до ${lvl}!`)
 				      .setColor("RANDOM")
-				     }
-	})
+				     })
+}
+				     
 }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
