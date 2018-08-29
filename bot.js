@@ -3747,9 +3747,8 @@ message.channel.stopTyping()
 			message.channel.send(`У вас недостаточно опыта, вам нужно ${NeedXp} но у вас только ${xp}, наберите еще ${NeedXp - xp} и обратитесь еще раз.`)
 		con.query(`UPDATE xp SET lvl = lvl++ WHERE id = '${message.author.id}'`)
 			con.query(`UPDATE xp SET xp = NeedXp - xp WHERE id = '${message.author.id}'`)
-	  });
 	  }
-	}
+	});
 }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
