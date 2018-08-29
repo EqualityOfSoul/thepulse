@@ -190,11 +190,12 @@ client.on('message', async message => {
 	    if(err) throw err;
   let sql;
   if (!rows[0]) {
-    con.query(`INSERT INTO xp (id, xp, lvl, money, global) VALUES ('${message.author.id}', ${generateXp()}, '1', '${generateMon()}', '${generateXp()}')`);
+    con.query(`INSERT INTO xp (id, xp, lvl, money, global) VALUES ('${message.author.id}', ${Math.floor(Math.random() * (30 - 10 + 1)) + 30}, '1', '${generateMon()}', '${generateXp()}')`);
   } else {
     let xp = rows[0].xp;
-    con.query(`UPDATE xp SET xp = ${xp + generateXp()} WHERE id = '${message.author.id}'`);
+    con.query(`UPDATE xp SET xp = ${xp + Math.floor(Math.random() * (30 - 10 + 1)) + 30} WHERE id = '${message.author.id}'`);
     con.query(`UPDATE xp SET money = ${xp + generateMon()} WHERE id = '${message.author.id}'`);
+    con.query(`UPDATE xp SET global = ${rows[0].global + Math.floor(Math.random() * (30 - 10 + 1)) + 30} WHERE id = '${message.author.id}'`);
 	  talked.add(message.author.id);
         setTimeout(() => {
           talked.delete(message.author.id);
