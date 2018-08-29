@@ -3804,7 +3804,6 @@ message.channel.stopTyping()
 				      .setColor("RANDOM")
 				      .setFooter(`Requested by ${message.author.username}`)
 				     })
-		}
 	})
 }
 });
