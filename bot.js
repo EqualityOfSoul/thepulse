@@ -3798,7 +3798,41 @@ message.channel.stopTyping()
 }
 				     
 } */else if (['profile'].includes(command)) {
-	let user = message.mentions.members.first() || message.author;
+	let user = message.mentions.members.first();
+	if(user) {
+		let av = user.user.avatarUR;
+	}
+	if(!user) {
+		let av = message.author.avatarURL,
+		    user = message.author;
+		}
+	jimp.read(av).then(function(image) {
+        jimp.read("https://cs5-1.4pda.to/3027245.jpg").then(function(image2) {  jimp.read("http://www.penguinpetes.com/images/IMBG/gradient_background_3.png").then(function(image3) {
+jimp.loadFont(jimp.FONT_SANS_16_BLACK).then(function(font) {
+con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+let lvl = rows[0].lvl;
+        let xp = rows[0].xp;
+        let money = rows[0].money;
+            let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
+        let totalxp = rows[0].global;
+image.resize(80, 80);
+image2.resize(400, 100);
+image3.resize(350, 70);
+image3.fade(0.2);
+image2.composite(image3, 60, 15);
+image2.composite(image, 20, 10);
+image2.print(font, 110, 20, `${rows[0].name}`);
+image2.print(font, 110, 40, `XP: ${xp}/${NeedXp} Total: ${totalxp}`);
+image2.print(font, 110, 60, `LVL: ${lvl} Money: ${money}`);
+          image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
+          });
+        });
+      });
+});
+});
+});
+	if(args[0] === 'noimg') {
 	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
 		if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
 		let lvl = rows[0].lvl;
@@ -3816,6 +3850,7 @@ message.channel.stopTyping()
 				      .setFooter(`Requested by ${message.author.username}`)
 				     })
 	})
+	}
 } else if(['top', 'lb', 'leaderboard'].includes(command)) {
 	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
 message.channel.send("```Топ 10: \n"+(rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n\n")+"```")
