@@ -3799,11 +3799,12 @@ message.channel.stopTyping()
 				     
 } */else if (['profile'].includes(command)) {
 	let user = message.mentions.members.first();
+	let av;
 	if(user) {
-		let av = user.user.avatarUR;
+		av = user.user.avatarUR;
 	}
 	if(!user) {
-		let av = message.author.avatarURL,
+		av = message.author.avatarURL;
 		    user = message.author;
 		}
 	jimp.read(av).then(function(image) {
