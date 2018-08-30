@@ -1502,9 +1502,36 @@ message.channel.send(`Варны для пользователя ${member} на 
 	    if(args[0] === 'set' && args[1] === 'money') {
 		    let member = message.mentions.members.first();
 		    if(!member) return message.channel.send("Указать забыл");
-		    con.query(`SELECT * FROM xp WHERE id = '${member.id}'`, (err, rows) => {
+		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
-			    con.query(`UPDATE xp SET money = ${args[2]} WHERE id = '${member.id}'`);
+			    con.query(`UPDATE xp SET money = ${args[2]} WHERE id = '${member.user.id}'`);
+		    });
+		    
+	    }
+	    if(args[0] === 'set' && args[1] === 'lvl') {
+		    let member = message.mentions.members.first();
+		    if(!member) return message.channel.send("Указать забыл");
+		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
+			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
+			    con.query(`UPDATE xp SET lvl = ${args[2]} WHERE id = '${member.user.id}'`);
+		    });
+		    
+	    }
+	    if(args[0] === 'set' && args[1] === 'xp') {
+		    let member = message.mentions.members.first();
+		    if(!member) return message.channel.send("Указать забыл");
+		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
+			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
+			    con.query(`UPDATE xp SET xp = ${args[2]} WHERE id = '${member.user.id}'`);
+		    });
+		    
+	    }
+	    if(args[0] === 'set' && args[1] === 'totalxp') {
+		    let member = message.mentions.members.first();
+		    if(!member) return message.channel.send("Указать забыл");
+		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
+			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
+			    con.query(`UPDATE xp SET global = ${args[2]} WHERE id = '${member.user.id}'`);
 		    });
 		    
 	    }
@@ -3823,7 +3850,6 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 				      .setFooter(`Requested by ${message.author.username}`)
 				     })
 	})
-		return;
 	}
 } else if(['top', 'lb', 'leaderboard'].includes(command)) {
 	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
