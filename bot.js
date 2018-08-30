@@ -3773,16 +3773,17 @@ message.channel.stopTyping()
 	}
 } else if (['profile'].includes(command)) {
 	let user = message.mentions.members.first();
+	let id = user.user.id;
 	if(!user) return message.channel.send("Укажите пользователя");
 	con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
-			if(!rows[0]) return message.channel.send(`${user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
+			if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
 	});
 	jimp.read(user.user.avatarURL).then(function(image) {
         jimp.read("https://cs5-1.4pda.to/3027245.jpg").then(function(image2) {
 	jimp.read("http://www.penguinpetes.com/images/IMBG/gradient_background_3.png").then(function(image3) {
 jimp.loadFont(jimp.FONT_SANS_16_BLACK).then(function(font) {
 con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
-let lvl = rows[0].lvl;
+	let lvl = rows[0].lvl;
         let xp = rows[0].xp;
         let money = rows[0].money;
             let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
