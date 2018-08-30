@@ -3846,8 +3846,8 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 });
 });
 });
+});
 	message.channel.stopTyping()
-	}
 } else if(['top', 'lb', 'leaderboard'].includes(command)) {
 	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
 message.channel.send((rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n"))
