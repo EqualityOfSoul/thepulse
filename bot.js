@@ -1545,7 +1545,10 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
 			    con.query(`UPDATE xp SET bg = '${args[2]}' WHERE id = '${member.user.id}'`);
-			    message.channel.send(`Фон пользователя ${rows[0].name} изменен на ${args[2]}`);
+			    message.channel.send({embed: new Discord.RichEmbed()
+						  .setTitle("Success")
+						  .setDescrition(`Фон пользователя ${rows[0].name} изменен.`)
+						  .setImage(`http:${args[2]}` || `https:${args[2]}`
 		    });
 		    
 	    }
@@ -3869,6 +3872,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
 message.channel.send((rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n"))
 })
+} else if(['setbg'].includes(command)) {
 }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
