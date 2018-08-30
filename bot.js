@@ -3897,7 +3897,7 @@ message.channel.send((rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lv
 			    con.query(`UPDATE xp SET bg = 'http://1.bp.blogspot.com/-q-prOnO1Tfw/Uph-TzSb48I/AAAAAAAAJ3o/0I4eg06W044/s1600/ChristmasWashiTapeFree.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
-		if(args[0] === 'glith2') {
+		if(args[0] === 'glitch2') {
 			    con.query(`UPDATE xp SET bg = 'http://i69.photobucket.com/albums/i74/blizzed/PBT8.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
