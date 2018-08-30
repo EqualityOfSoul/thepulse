@@ -183,7 +183,7 @@ function generateMon() {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 client.on('message', async message => {
-	let newxp = Math.floor(Math.random() * (30 - 10 + 1)) + 30;
+	let newxp = Math.floor(Math.random() * (20 - 10 + 1)) + 20;
 	if(message.guild.id === '264445053596991498') return;
 	 if (talked.has(message.author.id)) return;
 	if(message.author.bot) return;
@@ -217,7 +217,7 @@ client.on("message", message => {
 				if(xp >= NeedXp) {
 					if(!rows[0]) return;
 		con.query(`UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`);
-		con.query(`UPDATE xp SET xp = ${NeedXp - xp} WHERE id = '${message.author.id}'`);
+		con.query(`UPDATE xp SET xp = 0 WHERE id = '${message.author.id}'`);
 	/*	message.channel.send({embed: new Discord.RichEmbed()
 				      .setTitle("Lvl UP")
 				      .setDescription(`${message.author} Уровень повышен до ${rows[0].lvl++}!`)
