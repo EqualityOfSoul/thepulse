@@ -210,7 +210,7 @@ client.on("message", message => {
 	if(!rows[0]) return;
 	        let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
-	        const NeedXp = 5 * (rows[0].lvl ^ 3) + 50 * rows[0].lvl + 100;
+	        const NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
 		if(rows[0].xp < NeedXp) {
 		return;
 		}
@@ -3795,7 +3795,7 @@ message.channel.stopTyping()
 		let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
 		let money = rows[0].money;
-	        let NeedXp = 5 * (rows[0].lvl ^ 3) + 50 * rows[0].lvl + 100;
+	        let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
 		let totalxp = rows[0].global;
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setTitle(`Profile`)
