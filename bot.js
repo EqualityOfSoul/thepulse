@@ -1542,10 +1542,12 @@ message.channel.send(`Варны для пользователя ${member} на 
 	    if(args[0] === 'set' && args[1] === 'bg') {
 		    let member = message.mentions.members.first();
 		    if(!member) return message.channel.send("Указать забыл");
+		    args.shift(1);
+		    let a = args.join(" ");
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
 			    con.query(`UPDATE xp SET bg = ${args[2]} WHERE id = '${member.user.id}'`);
-			    message.channel.send(`Фон пользователя ${rows[0].name} изменен на ${args[2]}`);
+			    message.channel.send(`Фон пользователя ${rows[0].name} изменен на ${a}`);
 		    });
 		    
 	    }
