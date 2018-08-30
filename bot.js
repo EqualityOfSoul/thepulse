@@ -195,7 +195,7 @@ client.on('message', async message => {
   } else {
     let xp = rows[0].xp;
     con.query(`UPDATE xp SET xp = ${xp + newxp} WHERE id = '${message.author.id}'`);
-    con.query(`UPDATE xp SET money = ${xp + generateMon()} WHERE id = '${message.author.id}'`);
+    con.query(`UPDATE xp SET money = ${rows[0].money + generateMon()} WHERE id = '${message.author.id}'`);
     con.query(`UPDATE xp SET global = ${rows[0].global + newxp} WHERE id = '${message.author.id}'`);
 	  talked.add(message.author.id);
         setTimeout(() => {
@@ -1498,6 +1498,15 @@ message.channel.send(`Варны для пользователя ${member} на 
 	    if(args[0] === 'kick') {
 		    let member = message.mentions.members.first();
 		    member.kick();
+	    }
+	    if(args[0] === 'set' && args[1] === 'money') {
+		    let member = message.mentions.members.first();
+		    if(!member) return message.channel.send("Указать забыл");
+		    con.query(`SELECT * FROM xp WHERE id = '${member.id}'`, (err, rows) => {
+			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
+			    con.query(`UPDATE xp SET money = ${args[2]} WHERE id = '${member.id}'`);
+		    });
+		    
 	    }
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
 	    actFUN = actFUN + 1;actALL = actALL +1;
