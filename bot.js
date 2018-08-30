@@ -1548,7 +1548,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    message.channel.send({embed: new Discord.RichEmbed()
 						  .setTitle("Success")
 						  .setDescrition(`Фон пользователя ${rows[0].name} изменен.`)
-						  .setImage(`http:${args[2]}` || `https:${args[2]}`
+						  .setImage(`http:${args[2]}` || `https:${args[2]}`)
 		    });
 		    
 	    }
