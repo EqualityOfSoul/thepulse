@@ -1544,7 +1544,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    if(!member) return message.channel.send("Указать забыл");
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
-			    con.query(`UPDATE xp SET bg = '${args[2]}' WHERE id = '${member.user.id}'`);
+			    con.query(`UPDATE xp SET bg = 'http:${args[2]}' WHERE id = '${member.user.id}'`);
 			    message.channel.send("success")
 	    });
 	    }
@@ -3868,44 +3868,44 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
 message.channel.send((rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n"))
 })
-} else if(['setbg'].includes(command)) {
+}  else if(['setbg'].includes(command)) {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
 		if(!args[0]) return message.channel.send("Доступные фоны: `pattern`, `glitch`, `bluespace`, `water`, `code`, `freezee`, `glitch2`, `anime`, `anime2`");
 	if(args[0] === 'pattern') {
-			    con.query(`UPDATE xp SET bg = '//www.penguinpetes.com/images/IMBG/pattern_background_1.png' WHERE id = '${message.author.id}'`);
+			    con.query(`UPDATE xp SET bg = 'http://www.penguinpetes.com/images/IMBG/pattern_background_1.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		if(args[0] === 'glitch') {
-			    con.query(`UPDATE xp SET bg = '//s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
+			    con.query(`UPDATE xp SET bg = 'https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		if(args[0] === 'bluespace') {
-			    con.query(`UPDATE xp SET bg = '//orig00.deviantart.net/940d/f/2011/271/c/c/blue_space_sig_background_by_y2james7-d4b6zyu.jpg' WHERE id = '${message.author.id}'`);
+			    con.query(`UPDATE xp SET bg = 'https://orig00.deviantart.net/940d/f/2011/271/c/c/blue_space_sig_background_by_y2james7-d4b6zyu.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		if(args[0] === 'water') {
-			    con.query(`UPDATE xp SET bg = '//www.gfxvoid.com/tutorials/1/sigbackground/final.jpg' WHERE id = '${message.author.id}'`);
+			    con.query(`UPDATE xp SET bg = 'http://www.gfxvoid.com/tutorials/1/sigbackground/final.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		if(args[0] === 'code') {
-			    con.query(`UPDATE xp SET bg = '//teachingalam.weebly.com/uploads/5/1/7/1/51719481/3699543_orig.gif' WHERE id = '${message.author.id}'`);
+			    con.query(`UPDATE xp SET bg = 'http://teachingalam.weebly.com/uploads/5/1/7/1/51719481/3699543_orig.gif' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		if(args[0] === 'freezee') {
-			    con.query(`UPDATE xp SET bg = '//1.bp.blogspot.com/-q-prOnO1Tfw/Uph-TzSb48I/AAAAAAAAJ3o/0I4eg06W044/s1600/ChristmasWashiTapeFree.png' WHERE id = '${message.author.id}'`);
+			    con.query(`UPDATE xp SET bg = 'http://1.bp.blogspot.com/-q-prOnO1Tfw/Uph-TzSb48I/AAAAAAAAJ3o/0I4eg06W044/s1600/ChristmasWashiTapeFree.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		if(args[0] === 'glith2') {
-			    con.query(`UPDATE xp SET bg = '//i69.photobucket.com/albums/i74/blizzed/PBT8.jpg' WHERE id = '${message.author.id}'`);
+			    con.query(`UPDATE xp SET bg = 'http://i69.photobucket.com/albums/i74/blizzed/PBT8.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		if(args[0] === 'anime') {
-			    con.query(`UPDATE xp SET bg = '//i.imgur.com/X5nEOdi.png' WHERE id = '${message.author.id}'`);
+			    con.query(`UPDATE xp SET bg = 'http://i.imgur.com/X5nEOdi.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		if(args[0] === 'anime2') {
-			    con.query(`UPDATE xp SET bg = '//i112.photobucket.com/albums/n189/Momoko_No_Densetu/3-1.png' WHERE id = '${message.author.id}'`);
+			    con.query(`UPDATE xp SET bg = 'http://i112.photobucket.com/albums/n189/Momoko_No_Densetu/3-1.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		
