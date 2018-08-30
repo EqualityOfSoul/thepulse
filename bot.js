@@ -3818,6 +3818,7 @@ message.channel.stopTyping()
 	con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
 			if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
 	});
+	message.channel.startTyping()
 	jimp.read(user.user.avatarURL).then(function(image) {
 		con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
         jimp.read(rows[0].bg).then(function(image2) {
@@ -3845,25 +3846,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 });
 });
 });
-	return;
-	if(args[0] === 'noimg') {
-	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
-		if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
-		let lvl = rows[0].lvl;
-		let xp = rows[0].xp;
-		let money = rows[0].money;
-	        let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
-		let totalxp = rows[0].global;
-		message.channel.send({embed: new Discord.RichEmbed()
-				      .setTitle(`Profile`)
-				      .addField('**XP**', `${xp}/${NeedXp}`, true)
-				      .addField('**LvL**', lvl, true)
-				      .addField('**Total XP**', totalxp, true)
-				      .addField('**Money**', money, true)
-				      .setColor("RANDOM")
-				      .setFooter(`Requested by ${message.author.username}`)
-				     })
-	})
+	message.channel.stopTyping()
 	}
 } else if(['top', 'lb', 'leaderboard'].includes(command)) {
 	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
