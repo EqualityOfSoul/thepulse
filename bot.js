@@ -1544,7 +1544,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    if(!member) return message.channel.send("Указать забыл");
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
-			    con.query(`UPDATE xp SET bg = ${args[2]} WHERE id = '${member.user.id}'`);
+			    con.query(`UPDATE xp SET bg = '${args[2]}' WHERE id = '${member.user.id}'`);
 			    message.channel.send(`Фон пользователя ${rows[0].name} изменен на ${args[2]}`);
 		    });
 		    
@@ -3820,7 +3820,7 @@ message.channel.stopTyping()
 	});
 	jimp.read(user.user.avatarURL).then(function(image) {
 		con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
-        jimp.read(rows[0].bg).then(function(image2) {
+        jimp.read(`https:${rows[0].bg}` || `http:${rows[0].bg}`).then(function(image2) {
 	jimp.read("http://www.penguinpetes.com/images/IMBG/gradient_background_3.png").then(function(image3) {
 jimp.loadFont(jimp.FONT_SANS_16_BLACK).then(function(font) {
 	let lvl = rows[0].lvl;
