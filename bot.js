@@ -3911,7 +3911,7 @@ message.channel.send((rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lv
 		}
 		
 	});
-		  } else if (['work'].icnludes(command)) {
+		  } else if (['work'].includes(command)) {
 			  if (talked.has(message.author.id)) return message.channel.send("Работать можно раз в 10 минут.");
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 			  let nxp = Math.floor(Math.random() * (200 - 50 + 1)) + 300;
