@@ -3805,7 +3805,6 @@ message.channel.stopTyping()
 	let av;
 	if(user) {
 		av = user.user.avatarUR;
-		user.user;
 	}
 	if(!user) {
 		av = message.author.avatarURL;
