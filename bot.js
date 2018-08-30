@@ -3773,7 +3773,6 @@ message.channel.stopTyping()
 	}
 } else if (['profile'].includes(command)) {
 	let user = message.mentions.members.first();
-	let id = user.user.id;
 	if(!user) return message.channel.send("Укажите пользователя");
 	con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
 			if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
