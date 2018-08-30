@@ -222,9 +222,9 @@ client.on("message", message => {
 				      .setTitle("Lvl UP")
 				      .setDescription(`${message.author} Уровень повышен до ${rows[0].lvl++}!`)
 				      .setColor("RANDOM")
-				     })
+				     })*/
 				}
-				});*/
+				});
 });
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
