@@ -1542,7 +1542,8 @@ message.channel.send(`Варны для пользователя ${member} на 
 	    if(args[0] === 'set' && args[1] === 'bg') {
 		    let member = message.mentions.members.first();
 		    if(!member) return message.channel.send("Указать забыл");
-		    args.shift(2);
+		    args.shift();
+		    args.shift();
 		    let a = args.join(" ");
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
