@@ -1539,15 +1539,15 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    });
 		    
 	    }
-	    if(args[0] === 'set' && args[1] === 'bg') {
+	    if(args[0] === 'setbg') {
 		    let member = message.mentions.members.first();
 		    if(!member) return message.channel.send("Указать забыл");
 		    args.shift();
 		    args.shift();
-		    let a = args.join(" ");
+		    let a = args[1];
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
-			    con.query(`UPDATE xp SET bg = ${args[2]} WHERE id = '${member.user.id}'`);
+			    con.query(`UPDATE xp SET bg = ${args[1]} WHERE id = '${member.user.id}'`);
 			    message.channel.send(`Фон пользователя ${rows[0].name} изменен на ${a}`);
 		    });
 		    
@@ -3870,7 +3870,8 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 	}
 } else if(['top', 'lb', 'leaderboard'].includes(command)) {
 	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
-message.channel.send("```Топ 10: \n"+(rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n\n")+"```")
+message.channel.send({embed: new Discord.RichEmbed()
+		      .addField((rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n"))
 })
 }
 });
