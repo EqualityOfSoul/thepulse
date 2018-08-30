@@ -3819,7 +3819,7 @@ message.channel.stopTyping()
 	});
 	jimp.read(user.user.avatarURL).then(function(image) {
 		con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
-        jimp.read(`https:${rows[0].bg}` || `http:${rows[0].bg}` || rows[0].bg).then(function(image2) {
+        jimp.read(rows[0].bg).then(function(image2) {
 	jimp.read("http://www.penguinpetes.com/images/IMBG/gradient_background_3.png").then(function(image3) {
 jimp.loadFont(jimp.FONT_SANS_16_BLACK).then(function(font) {
 	let lvl = rows[0].lvl;
