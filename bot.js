@@ -3771,49 +3771,17 @@ message.channel.stopTyping()
 			message.channel.send('Готово!');
 		});
 	}
-} /*else if (['buy'].includes(command)) {
-	if(message.guild.id === '264445053596991498') return message.channel.send("Disabled");
-	if(args[0]==='lvl') {
-			con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-				if(!rows) return message.channel.send("У вас нету аккаунта, но он был только что создан");
-	        let lvl = rows[0].lvl;
-		let xp = rows[0].xp;
-	        const NeedXp = 5 * (rows[0].lvl ^ 2) + 50 * rows[0].lvl + 100;
-		if(rows[0].xp < NeedXp) {
-	 	message.channel.send(`У вас недостаточно опыта, вам нужно ${NeedXp} но у вас только ${xp}, наберите еще ${NeedXp - xp} и обратитесь еще раз.`);
-		return;
-		}
-				if(xp >= NeedXp) {
-		let ru = `UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`;
-		let ur = `UPDATE xp SET xp = ${NeedXp - xp} WHERE id = '${message.author.id}'`;
-					con.query(ru)
-					con.query(ur)
-		message.channel.send({embed: new Discord.RichEmbed()
-				      .setTitle("Lvl UP")
-				      .setDescription(`Уровень повышен до ${rows[0].lvl}!`)
-				      .setColor("RANDOM")
-				     })
-				}
-				});
-}
-				     
-} */else if (['profile'].includes(command)) {
+} else if (['profile'].includes(command)) {
 	let user = message.mentions.members.first();
-	let av;
-	if(user) {
-		av = user.user.avatarUR;
-	}
-	if(!user) {
-		av = message.author.avatarURL;
-		    user = message.author;
-		}
-	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+	if(!user) return message.channel.send("Укажите пользователя");
+	con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
 			if(!rows[0]) return message.channel.send(`${user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
 	});
-	jimp.read(av).then(function(image) {
-        jimp.read("https://cs5-1.4pda.to/3027245.jpg").then(function(image2) {  jimp.read("http://www.penguinpetes.com/images/IMBG/gradient_background_3.png").then(function(image3) {
+	jimp.read(user.user.avatarURL).then(function(image) {
+        jimp.read("https://cs5-1.4pda.to/3027245.jpg").then(function(image2) {
+	jimp.read("http://www.penguinpetes.com/images/IMBG/gradient_background_3.png").then(function(image3) {
 jimp.loadFont(jimp.FONT_SANS_16_BLACK).then(function(font) {
-con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
 let lvl = rows[0].lvl;
         let xp = rows[0].xp;
         let money = rows[0].money;
