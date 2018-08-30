@@ -3869,7 +3869,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 message.channel.send((rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n"))
 })
 } else if(['setbg'].includes(command)) {
-	con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
+	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
 		if(!args[0]) return message.channel.send("Доступные фоны: `pattern`, `glitch`, `bluespace`, `water`, `code`, `freezee`, `glitch2`, `anime`, `anime2`");
 	if(args[0] === 'pattern') {
