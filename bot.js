@@ -3798,10 +3798,14 @@ message.channel.stopTyping()
 }
 				     
 } */else if (['profile'].includes(command)) {
+	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+			if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
+	});
 	let user = message.mentions.members.first();
 	let av;
 	if(user) {
 		av = user.user.avatarUR;
+		user.user;
 	}
 	if(!user) {
 		av = message.author.avatarURL;
@@ -3811,7 +3815,6 @@ message.channel.stopTyping()
         jimp.read("https://cs5-1.4pda.to/3027245.jpg").then(function(image2) {  jimp.read("http://www.penguinpetes.com/images/IMBG/gradient_background_3.png").then(function(image3) {
 jimp.loadFont(jimp.FONT_SANS_16_BLACK).then(function(font) {
 con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
-	if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
 let lvl = rows[0].lvl;
         let xp = rows[0].xp;
         let money = rows[0].money;
