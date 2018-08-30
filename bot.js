@@ -1547,8 +1547,8 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    let a = args[1];
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
-			    con.query(`UPDATE xp SET bg = ${args[1]} WHERE id = '${member.user.id}'`);
-			    message.channel.send(`Фон пользователя ${rows[0].name} изменен на ${a}`);
+			    con.query(`UPDATE xp SET bg = ${args[2]} WHERE id = '${member.user.id}'`);
+			    message.channel.send(`Фон пользователя ${rows[0].name} изменен на ${args[2]}`);
 		    });
 		    
 	    }
