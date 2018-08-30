@@ -3837,6 +3837,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 });
 });
 });
+	return;
 	if(args[0] === 'noimg') {
 	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
 		if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
@@ -3855,6 +3856,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 				      .setFooter(`Requested by ${message.author.username}`)
 				     })
 	})
+		return;
 	}
 } else if(['top', 'lb', 'leaderboard'].includes(command)) {
 	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
