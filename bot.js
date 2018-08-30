@@ -48,6 +48,7 @@ const talkedRecently = new Set();
 const talked = new Set();
 const bl = new Set();
 const tet = new Set();
+const worked = new Set();
 let serversPlay = {}
 vm.createContext(codeContext);
 //массив цветов
@@ -3910,6 +3911,20 @@ message.channel.send((rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lv
 		}
 		
 	});
+		  } else if (['work'].icnludes(command)) {
+			  if (talked.has(message.author.id)) return message.channel.send("Работать можно раз в 10 минут.");
+			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+			  let nxp = Math.floor(Math.random() * (200 - 50 + 1)) + 300;
+			  let nmoney = Math.floor(Math.random() * (250 - 100 + 1)) + 250;
+				  con.query(`UPDATE xp SET money = ${rows[0].money + nmoney}`);
+				  con.query(`UPDATE xp SET xp = ${rows[0].xp + nxp}`);
+				  con.query(`UPDATE xp SET xp = ${rows[0].global + nxp}`);
+				  message.channel.send(`Вы заработали ${nxp} опыта и ${nmoney} денег.`)
+			  });
+			  talked.add(message.author.id);
+        setTimeout(() => {
+          talked.delete(message.author.id);
+        }, 600000);
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
