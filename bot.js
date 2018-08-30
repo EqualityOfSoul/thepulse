@@ -1551,6 +1551,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 						  .setImage(`http:${args[2]}` || `https:${args[2]}`)
 		    });
 		    
+	    });
 	    }
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
 	    actFUN = actFUN + 1;actALL = actALL +1;
