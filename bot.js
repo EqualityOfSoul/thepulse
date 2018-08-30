@@ -200,7 +200,7 @@ client.on('message', async message => {
 	  talked.add(message.author.id);
         setTimeout(() => {
           talked.delete(message.author.id);
-        }, 10000);
+        }, 60000);
   }
 });
 	   
