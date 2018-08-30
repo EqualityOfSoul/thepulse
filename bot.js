@@ -1545,12 +1545,10 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
 			    con.query(`UPDATE xp SET bg = '${args[2]}' WHERE id = '${member.user.id}'`);
-			    message.channel.send({embed: new Discord.RichEmbed()
-						  .setTitle("Success")
+			    const embed = new Discord.RichEmbed()
 						  .setDescrition(`Фон пользователя ${rows[0].name} изменен.`)
-						  .setImage(`http:${args[2]}` || `https:${args[2]}`)
-		    });
-		    
+						  .setImage(`http:${args[2]}` || `https:${args[2]}`);
+			    message.channel.send(embed)
 	    });
 	    }
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
