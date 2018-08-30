@@ -195,7 +195,7 @@ client.on('message', async message => {
   } else {
     let xp = rows[0].xp;
     con.query(`UPDATE xp SET xp = ${xp + newxp} WHERE id = '${message.author.id}'`);
-    con.query(`UPDATE xp SET money = ${rows[0].money + generateMon()} WHERE id = '${message.author.id}'`);
+    con.query(`UPDATE xp SET money = '${rows[0].money + generateMon()}' WHERE id = '${message.author.id}'`);
     con.query(`UPDATE xp SET global = ${rows[0].global + newxp} WHERE id = '${message.author.id}'`);
 	  talked.add(message.author.id);
         setTimeout(() => {
