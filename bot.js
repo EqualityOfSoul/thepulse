@@ -1505,6 +1505,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
 			    con.query(`UPDATE xp SET money = ${args[2]} WHERE id = '${member.user.id}'`);
+			    message.channel.send(`Баланс успешно изменен на ${args[2]}`);
 		    });
 		    
 	    }
@@ -1514,6 +1515,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
 			    con.query(`UPDATE xp SET lvl = ${args[2]} WHERE id = '${member.user.id}'`);
+			    message.channel.send(`Уровень успешно изменен на ${args[2]}`);
 		    });
 		    
 	    }
@@ -1523,6 +1525,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
 			    con.query(`UPDATE xp SET xp = ${args[2]} WHERE id = '${member.user.id}'`);
+			    message.channel.send(`Опыт успешно изменен на ${args[2]}`);
 		    });
 		    
 	    }
@@ -1532,6 +1535,17 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
 			    con.query(`UPDATE xp SET global = ${args[2]} WHERE id = '${member.user.id}'`);
+			    message.channel.send(`Глобальный опыт успешно изменен на ${args[2]}`);
+		    });
+		    
+	    }
+	    if(args[0] === 'set' && args[1] === 'totalxp') {
+		    let member = message.mentions.members.first();
+		    if(!member) return message.channel.send("Указать забыл");
+		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
+			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
+			    con.query(`UPDATE xp SET bg = ${args[2]} WHERE id = '${member.user.id}'`);
+			    message.channel.send(`Фон пользователя ${rows[0].name} изменен на ${args[2]}`);
 		    });
 		    
 	    }
