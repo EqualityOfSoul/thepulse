@@ -210,7 +210,7 @@ client.on("message", message => {
 	if(!rows[0]) return;
 	        let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
-	        const NeedXp = 5 * (rows[0].lvl ^ 2) + 50 * rows[0].lvl + 100;
+	        const NeedXp = 5 * (rows[0].lvl ^ 3) + 50 * rows[0].lvl + 100;
 		if(rows[0].xp < NeedXp) {
 		return;
 		}
@@ -218,13 +218,13 @@ client.on("message", message => {
 					if(!rows[0]) return;
 		con.query(`UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`);
 		con.query(`UPDATE xp SET xp = ${NeedXp - xp} WHERE id = '${message.author.id}'`);
-		message.channel.send({embed: new Discord.RichEmbed()
+	/*	message.channel.send({embed: new Discord.RichEmbed()
 				      .setTitle("Lvl UP")
 				      .setDescription(`${message.author} Уровень повышен до ${rows[0].lvl++}!`)
 				      .setColor("RANDOM")
 				     })
 				}
-				});
+				});*/
 });
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
@@ -3795,7 +3795,7 @@ message.channel.stopTyping()
 		let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
 		let money = rows[0].money;
-	        let NeedXp = 5 * (rows[0].lvl ^ 2) + 50 * rows[0].lvl + 100;
+	        let NeedXp = 5 * (rows[0].lvl ^ 3) + 50 * rows[0].lvl + 100;
 		let totalxp = rows[0].global;
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setTitle(`Profile`)
