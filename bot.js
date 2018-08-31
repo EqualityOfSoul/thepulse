@@ -3847,7 +3847,7 @@ image2.print(font2, 20, 480, `Money: ${money}`);
 image2.print(font2, 20, 560, `LVL: ${lvl}`);
 image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
           image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
+message.channel.send({files: [{ name: 'card.png', attachment: buffer }] }).catch(err => message.channel.send("Ошибка! Пожалуйста смените профиль и сообщите создателю бота об этом."));;
           });
         });
       });
@@ -3898,7 +3898,7 @@ image2.print(font2, 20, 480, `Money: ${money}`);
 image2.print(font2, 20, 560, `LVL: ${lvl}`);
 image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
           image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-message.channel.send({files: [{ name: 'card.png', attachment: buffer }] }).catch(err => message.channel.send("Ошибка! Пожалуйста смените профиль и сообщите создателю бота об этом.");
+message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
           });
         });
       });
