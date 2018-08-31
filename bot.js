@@ -47,6 +47,7 @@ let gameCount = 0;
 const talkedRecently = new Set();
 const talked = new Set();
 const bl = new Set();
+const pf = new Set();
 const tet = new Set();
 const worked = new Set();
 let serversPlay = {}
@@ -1846,7 +1847,6 @@ let voice = 0;
 	    .setTitle("Help")
 	    .addField("Russian", "Помощь по командам можно найти тут https://xeval.ga/")
 	    .addField("English", "Help can be found at https://xeval.ga/")
-	    .setFooter("Новое обновление будет доступно по достижении 200 серверов")
 	    .setColor('RANDOM');
 	    message.channel.send(embed)
 		    .catch(error => message.channel.send("Error"));
@@ -3813,6 +3813,7 @@ message.channel.stopTyping()
 		});
 	}
 } else if (['profile'].includes(command)) {
+	if (pf.has(message.author.id)) return message.channel.send("CoolDown!");
 	let user = message.mentions.members.first();
 	if(!user) return message.channel.send("Укажите пользователя");
 con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
@@ -3855,6 +3856,10 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 })
 })
 	message.channel.stopTyping()
+	 pf.add(message.author.id);
+        setTimeout(() => {
+          pf.delete(message.author.id);
+        }, 10000);
 } else if(['top', 'lb', 'leaderboard'].includes(command)) {
 	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
 message.channel.send("```Топ 10 пользователей: \n"+(rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n\n")+"```")
@@ -3944,6 +3949,10 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 		}
 		if(args[0] === 'leaves2') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485039713590181888/1121898710_w0_h0_18806.png' WHERE id = '${message.author.id}'`);
+		message.channel.send("success updated your background");
+		}
+		if(args[0] === 'default') {
+			    con.query(`UPDATE xp SET bg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQVSJVegQW7Jq1nvnNCqvT9Y65g76jNp5YTUTtCStpjatuyQpUPw' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		
