@@ -3905,8 +3905,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 } else if(['setbg'].includes(command)) {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
-		message.channel.send("Времено недоступно")
-		if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
+		if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `glitch2`, `anime`, `anime2`, `leaves`, `leaves2`");
 		if(args[0] === 'glitch') {
 			    con.query(`UPDATE xp SET bg = 'https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
@@ -3915,7 +3914,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 			    con.query(`UPDATE xp SET bg = 'http://www.gfxvoid.com/tutorials/1/sigbackground/final.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
-		if(args[0] === 'glitch') {
+		if(args[0] === 'glitch2') {
 			    con.query(`UPDATE xp SET bg = 'http://i69.photobucket.com/albums/i74/blizzed/PBT8.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
