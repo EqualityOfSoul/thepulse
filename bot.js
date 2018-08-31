@@ -3814,6 +3814,7 @@ message.channel.stopTyping()
 	}
 } else if (['profile'].includes(command)) {
 	let user = message.mentions.members.first();
+	if(!user) return message.channel.send("Укажите пользователя");
 con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
             if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
     });
@@ -3856,12 +3857,13 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 	message.channel.stopTyping()
 } else if(['top', 'lb', 'leaderboard'].includes(command)) {
 	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
-message.channel.send("```"+(rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)+"```").join("\n"))
+message.channel.send("```Топ 10 пользователей: \n"+(rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n\n")+"```")
 })
 }  else if(['setbg'].includes(command)) {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
-		if(!args[0]) return message.channel.send("Доступные фоны: `pattern`, `bluespace`, `water`, `code`, `freezee`, `chaotic_piano`, `redgreen`, `glitch`, `glitch2`, `anime`, `anime2`, `opulus`, `opulus2`");
+		message.channel.send("Времено недоступно")
+		/*if(!args[0]) return message.channel.send("Доступные фоны: `pattern`, `bluespace`, `water`, `code`, `freezee`, `chaotic_piano`, `redgreen`, `glitch`, `glitch2`, `anime`, `anime2`, `opulus`, `opulus2`");
 	if(args[0] === 'pattern') {
 			    con.query(`UPDATE xp SET bg = 'http://www.penguinpetes.com/images/IMBG/pattern_background_1.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
@@ -3913,14 +3915,14 @@ message.channel.send("```"+(rows.map(r => `Имя: ${r.name}, \nУровень: 
 		if(args[0] === 'opulus2') {
 			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/opulus_abstract1_rank.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
-		}
+		}*/
 		
 	});
 		  } else if (['work'].includes(command)) {
 			  if (worked.has(message.author.id)) return message.channel.send("Работать можно раз в 10 минут.");
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-			  let nxp = Math.floor(Math.random() * (200 - 50 + 1)) + 300;
-			  let nmoney = Math.floor(Math.random() * (250 - 100 + 1)) + 250;
+			  let nxp = Math.floor(Math.random() * (100 - 50 + 1)) + 100;
+			  let nmoney = Math.floor(Math.random() * (100 - 20 + 1)) + 100;
 				  con.query(`UPDATE xp SET money = ${rows[0].money + nmoney}`);
 				  con.query(`UPDATE xp SET xp = ${rows[0].xp + nxp}`);
 				  con.query(`UPDATE xp SET xp = ${rows[0].global + nxp}`);
