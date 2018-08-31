@@ -3774,7 +3774,7 @@ message.channel.stopTyping()
 	if(args[0] ==='test') {
 		let member = message.author;
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
-		if(!rows) return message.channel.send("для того чтоб настроить welcome нужно его создать, напишите x!welcome create");
+		if(!rows[0]) return message.channel.send("для того чтоб настроить welcome нужно его создать, напишите x!welcome create");
 		let text = rows[0].message;
 		text = text.replaceAll("%member.username%", member.username)
 		text = text.replaceAll("%member.tag%", member.tag)
@@ -4031,6 +4031,18 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 			  setTimeout(() => {
           worked.delete(message.author.id);
         }, 600000);
+		  } else if (['rep'].includes(command)) {
+			  let member = message.mentions.users.first();
+			  if(!member) return message.channel.send("Укажите пользователя");
+			  if(member === message.author) return message.channel.send("Я не такой тупой как ты думал");
+			  con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
+				  con.query(`UPDATE xp SET rep = ${rows[0].rep + 1}`);
+				  message.channel.send(`${message.author} дал ${member} репутацию`);
+				  repe.add(message.author.id);
+			  setTimeout(() => {
+          repe.delete(message.author.id);
+        }, 600000);
+			  });
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
