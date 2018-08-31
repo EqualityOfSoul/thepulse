@@ -3845,7 +3845,8 @@ image2.composite(image, 0, 150);
 image2.print(font2, 250, 320, `${rows[0].name}`);
 image2.print(font2, 20, 400, `XP: ${xp}/${NeedXp}`);
 image2.print(font2, 20, 480, `Money: ${money}`);
-image2.print(font2, 20, 560, `LVL: ${lvl}   REP: ${rows[0].rep}`);
+image2.print(font2, 20, 560, `LVL: ${lvl}`);
+image2.print(font2, 60, 560, `REP: ${rows[0].rep}`);
 image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
           image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'card.png', attachment: buffer }] }).catch(err => message.channel.send("Ошибка! Пожалуйста смените профиль и сообщите создателю бота об этом."));;
@@ -3896,7 +3897,8 @@ image2.composite(image, 0, 150);
 image2.print(font2, 250, 320, `${rows[0].name}`);
 image2.print(font2, 20, 400, `XP: ${xp}/${NeedXp}`);
 image2.print(font2, 20, 480, `Money: ${money}`);
-image2.print(font2, 20, 560, `LVL: ${lvl}   REP: ${rows[0].rep}`);
+image2.print(font2, 20, 560, `LVL: ${lvl}`);
+image2.print(font2, 60, 560, `REP: ${rows[0].rep}`);
 image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
           image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
@@ -4037,7 +4039,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 			  let member = message.mentions.users.first();
 			  if(!member) return message.channel.send("Укажите пользователя");
 			  if(member === message.author) return message.channel.send("Я не такой тупой как ты думал");
-			  con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
+			  con.query(`SELECT * FROM xp WHERE id = '${member.id}'`, (err, rows) => {
 				  con.query(`UPDATE xp SET rep = ${rows[0].rep + 1}`);
 				  message.channel.send(`${message.author} дал ${member} репутацию`);
 				  repe.add(message.author.id);
