@@ -3816,6 +3816,7 @@ message.channel.stopTyping()
 	if (pf.has(message.author.id)) return message.channel.send("CoolDown!");
 	let user = message.mentions.members.first();
 	if(!user) return message.channel.send("Укажите пользователя");
+	if(user.user.bot) return message.channel.send("У ботов нет аккаунтов");
 con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
             if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
     });
@@ -3897,7 +3898,7 @@ image2.print(font2, 20, 480, `Money: ${money}`);
 image2.print(font2, 20, 560, `LVL: ${lvl}`);
 image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
           image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
+message.channel.send({files: [{ name: 'card.png', attachment: buffer }] }).catch(err => message.channel.send("Ошибка! Пожалуйста смените профиль и сообщите создателю бота об этом.");
           });
         });
       });
@@ -3966,8 +3967,10 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 		}
 } else if(['setbg'].includes(command)) {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+		
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
 		if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `glitch2`, `anime`, `anime2`, `leaves`, `leaves2`");
+		if(rows[0].money =< 5000) return message.channel.send(`Простите, но этот фон стоит 5000 а у вас всего ${rows[0].money}, накопите еще ${5000 - rows[0].money}`);
 		if(args[0] === 'glitch') {
 			    con.query(`UPDATE xp SET bg = 'https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
