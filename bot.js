@@ -3910,7 +3910,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
 });
 });
 message.channel.stopTyping()
-} else if(['bg'].includes(command)) {
+} /*else if(['bg'].includes(command)) {
 	if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `glitch2`, `anime`, `anime2`, `leaves`, `leaves2`");
 		if(args[0] === 'glitch') {
 		message.channel.send({embed: new Discord.RichEmbed()
@@ -3967,11 +3967,11 @@ message.channel.stopTyping()
 				      .setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQVSJVegQW7Jq1nvnNCqvT9Y65g76jNp5YTUTtCStpjatuyQpUPw")
 				     })
 		}
-} else if(['setbg'].includes(command)) {
+}*/ else if(['setbg'].includes(command)) {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
-		if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `glitch2`, `anime`, `anime2`, `leaves`, `leaves2`");
+		if(!args[0]) return message.channel.send("Доступные фоны: `polygon`, `aura`, `water`, `chaotic_piano`, `redgreen`, `pixel`, `lines2`, `lines`, `glitch`, `glitch2`, `anime`, `anime2`, `leaves`, `leaves2`");
 		if(rows[0].money < 5000) return message.channel.send(`Простите, но этот фон стоит 5000 а у вас всего ${rows[0].money}, накопите еще ${5000 - rows[0].money}`);
 		if(args[0] === 'glitch') {
 			    con.query(`UPDATE xp SET bg = 'https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
@@ -4011,6 +4011,22 @@ message.channel.stopTyping()
 		}
 		if(args[0] === 'leaves2') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485039713590181888/1121898710_w0_h0_18806.png' WHERE id = '${message.author.id}'`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		}
+		if(args[0] === 'lines') {
+			    con.query(`UPDATE xp SET bg = ' http://asset.treering.com.s3.amazonaws.com/wp-content/uploads/20160804083721/Copy-of-Poses-21.jpg' WHERE id = '${message.author.id}'`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		}
+		if(args[0] === 'polygon') {
+			    con.query(`UPDATE xp SET bg = 'http://mooxidesign.com/wp-content/uploads/2014/06/5-premium-free-polygon-backgrounds.jpg' WHERE id = '${message.author.id}'`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		}
+		if(args[0] === 'aura') {
+			    con.query(`UPDATE xp SET bg = 'http://barbmayer.com/images/backgrounds/aura-background-large-1.jpg' WHERE id = '${message.author.id}'`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		}
+		if(args[0] === 'lines2') {
+			    con.query(`UPDATE xp SET bg = 'https://cdn.dribbble.com/users/1742866/screenshots/3522446/09_rounded_lines.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
 		if(args[0] === 'default') {
