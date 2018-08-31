@@ -1528,7 +1528,6 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    con.query(`SELECT * FROM xp WHERE id = '${member.user.id}'`, (err, rows) => {
 			    if(!rows) return message.channel.send("У пользователя нет аккаунта.");
 			    con.query(`UPDATE xp SET xp = ${args[2]} WHERE id = '${member.user.id}'`);
-			    con.query(`UPDATE xp SET global = ${rows[0].xp + args[2]} WHERE id = '${member.user.id}'`);
 			    message.channel.send(`Опыт успешно изменен на ${args[2]}`);
 		    });
 		    
@@ -3857,7 +3856,7 @@ image2.print(font2, 250, 320, `${rows[0].name}`);
 image2.print(font2, 20, 400, `XP: ${xp}/${NeedXp}`);
 image2.print(font2, 20, 480, `Money: ${money}`);
 image2.print(font2, 20, 560, `LVL: ${lvl}`);
-image2.print(font2, 300, 560, `REP: ${rows[0].rep}`);
+image2.print(font2, 250, 560, `REP: ${rows[0].rep}`);
 image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
           image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'card.png', attachment: buffer }] }).catch(err => message.channel.send("Ошибка! Пожалуйста смените профиль и сообщите создателю бота об этом."));;
@@ -3909,7 +3908,7 @@ image2.print(font2, 250, 320, `${rows[0].name}`);
 image2.print(font2, 20, 400, `XP: ${xp}/${NeedXp}`);
 image2.print(font2, 20, 480, `Money: ${money}`);
 image2.print(font2, 20, 560, `LVL: ${lvl}`);
-image2.print(font2, 300, 560, `REP: ${rows[0].rep}`);
+image2.print(font2, 250, 560, `REP: ${rows[0].rep}`);
 image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
           image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
