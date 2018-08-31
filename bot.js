@@ -3970,7 +3970,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 		
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
 		if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `glitch2`, `anime`, `anime2`, `leaves`, `leaves2`");
-		if(rows[0].money =< 5000) return message.channel.send(`Простите, но этот фон стоит 5000 а у вас всего ${rows[0].money}, накопите еще ${5000 - rows[0].money}`);
+		if(!rows[0].money > 5000) return message.channel.send(`Простите, но этот фон стоит 5000 а у вас всего ${rows[0].money}, накопите еще ${5000 - rows[0].money}`);
 		if(args[0] === 'glitch') {
 			    con.query(`UPDATE xp SET bg = 'https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
