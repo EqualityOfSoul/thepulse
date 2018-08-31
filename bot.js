@@ -3814,30 +3814,35 @@ message.channel.stopTyping()
 	}
 } else if (['profile'].includes(command)) {
 	let user = message.mentions.members.first();
-	if(!user) return message.channel.send("Укажите пользователя");
-	con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
-			if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
-	});
+con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
+            if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
+    });
 	message.channel.startTyping()
-	jimp.read(user.user.avatarURL).then(function(image) {
-		con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
+    jimp.read(message.author.avatarURL).then(function(image) {
+        con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
         jimp.read(rows[0].bg).then(function(image2) {
-	jimp.read("http://www.penguinpetes.com/images/IMBG/gradient_background_3.png").then(function(image3) {
-jimp.loadFont(jimp.FONT_SANS_16_BLACK).then(function(font) {
-	let lvl = rows[0].lvl;
+    jimp.read("http://s7d4.scene7.com/is/image/eidupont/SilverGray_630x315").then(function(image3) {
+ jimp.read("http://s7d4.scene7.com/is/image/eidupont/SilverGray_630x315").then(function(image4) {
+jimp.loadFont(jimp.FONT_SANS_64_BLACK).then(function(font) {
+jimp.loadFont("fonts/godna.fnt").then(function(font2) {
+    let lvl = rows[0].lvl;
         let xp = rows[0].xp;
         let money = rows[0].money;
             let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
         let totalxp = rows[0].global;
-image.resize(80, 80);
-image2.resize(400, 100);
-image3.resize(350, 70);
-image3.fade(0.2);
-image2.composite(image3, 60, 15);
-image2.composite(image, 20, 10);
-image2.print(font, 110, 20, `${rows[0].name}`);
-image2.print(font, 110, 40, `XP: ${xp}/${NeedXp} Total: ${totalxp}`);
-image2.print(font, 110, 60, `LVL: ${lvl} Money: ${money}`);
+image.resize(250, 250);
+image2.resize(800, 800);
+image3.resize(800, 350);
+image4.resize(800, 100);
+image3.fade(0.1)
+image2.composite(image3, 0, 400);
+image2.composite(image4, 100, 300);
+image2.composite(image, 0, 150);
+image2.print(font2, 250, 320, `${rows[0].name}`);
+image2.print(font2, 20, 400, `XP: ${xp}/${NeedXp}`);
+image2.print(font2, 20, 480, `Money: ${money}`);
+image2.print(font2, 20, 560, `LVL: ${lvl}`);
+image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
           image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
           });
@@ -3845,11 +3850,13 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
       });
 });
 });
-});
+})
+})
+})
 	message.channel.stopTyping()
 } else if(['top', 'lb', 'leaderboard'].includes(command)) {
 	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
-message.channel.send((rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n"))
+message.channel.send("```"+(rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)+"```").join("\n"))
 })
 }  else if(['setbg'].includes(command)) {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
