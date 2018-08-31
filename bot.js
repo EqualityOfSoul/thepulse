@@ -3831,47 +3831,38 @@ con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
             if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
     });
 	message.channel.startTyping()
-    jimp.read(user.user.avatarURL).then(function(image) {
+    jimp.read(message.author.avatarURL).then(function(image) {
         con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
-        jimp.read(rows[0].bg).then(function(image2) {
-    jimp.read("http://s7d4.scene7.com/is/image/eidupont/SilverGray_630x315").then(function(image3) {
- jimp.read("http://s7d4.scene7.com/is/image/eidupont/SilverGray_630x315").then(function(image4) {
-jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image5) {
-jimp.loadFont(jimp.FONT_SANS_64_BLACK).then(function(font) {
-jimp.loadFont("fonts/godna.fnt").then(function(font2) {
-    let lvl = rows[0].lvl;
+        jimp.read("https://media.discordapp.net/attachments/464882068766195715/485169722862862346/1535743865221.png").then(function(image2) {
+jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image3) {
+jimp.read(rows[0].bg).then(function(image4) {
+jimp.loadFont("fonts/rus.fnt").then(function(font2) {
+let lvl = rows[0].lvl;
         let xp = rows[0].xp;
         let money = rows[0].money;
             let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
         let totalxp = rows[0].global;
-image.resize(250, 250);
-image5.resize(250, 250);
-image2.resize(800, 800);
-image3.resize(800, 350);
-image4.resize(800, 100);
-image3.fade(0.1)
-image.mask(image5,0,0)
-image2.composite(image3, 0, 400);
-image2.composite(image4, 100, 300);
-image2.composite(image, 0, 150);
-image2.print(font2, 250, 320, `${rows[0].name}`);
-image2.print(font2, 20, 400, `XP: ${xp}/${NeedXp}`);
-image2.print(font2, 20, 480, `Money: ${money}`);
-image2.print(font2, 20, 560, `LVL: ${lvl}`);
-image2.print(font2, 250, 560, `REP: ${rows[0].rep}`);
-image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
-          image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-message.channel.send({files: [{ name: 'card.png', attachment: buffer }] }).catch(err => message.channel.send("Ошибка! Пожалуйста смените профиль и сообщите создателю бота об этом."));;
-          });
-        });
-      });
+image.resize(160, 160)
+image4.resize(800, 600)
+image2.mask(image4, 0, 0)
+image3.resize(160, 160);
+image.mask(image3,0,0)
+image2.composite(image, 330, 235);
+image2.print(font2, 40, 123, `XP: ${xp}/${NeedXp}`);
+image2.print(font2, 40, 190, `Money: ${rows[0].money}`);
+image2.print(font2, 425, 123, `LVL: ${rows[0].lvl}`);
+image2.print(font2, 425, 190, `REP: ${rows[0].rep}`);
+image2.print(font2, 220, 440, `Total XP: ${totalxp}`);
+image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
+})
 });
 });
 });
 });
-	});
-    });
-	message.channel.stopTyping()
+});
+});
+message.channel.stopTyping()
 	 pf.add(message.author.id);
         setTimeout(() => {
           pf.delete(message.author.id);
@@ -3887,47 +3878,38 @@ con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
             if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
     });
 	message.channel.startTyping()
-    jimp.read(user.user.avatarURL).then(function(image) {
+    jimp.read(message.author.avatarURL).then(function(image) {
         con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
-        jimp.read(args[1]).then(function(image2) {
-    jimp.read("http://s7d4.scene7.com/is/image/eidupont/SilverGray_630x315").then(function(image3) {
- jimp.read("http://s7d4.scene7.com/is/image/eidupont/SilverGray_630x315").then(function(image4) {
-jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image5) {
-jimp.loadFont(jimp.FONT_SANS_64_BLACK).then(function(font) {
-jimp.loadFont("fonts/godna.fnt").then(function(font2) {
-    let lvl = rows[0].lvl;
+        jimp.read("https://media.discordapp.net/attachments/464882068766195715/485169722862862346/1535743865221.png").then(function(image2) {
+jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image3) {
+jimp.read(rows[0].bg).then(function(image4) {
+jimp.loadFont("fonts/rus.fnt").then(function(font2) {
+let lvl = rows[0].lvl;
         let xp = rows[0].xp;
         let money = rows[0].money;
             let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
         let totalxp = rows[0].global;
-image.resize(250, 250);
-image2.resize(800, 800);
-image3.resize(800, 350);
-image4.resize(800, 100);
-image5.resize(250, 250);
-image3.fade(0.1)
-	image.mask(image5, 0, 0);
-image2.composite(image3, 0, 400);
-image2.composite(image4, 100, 300);
-image2.composite(image, 0, 150);
-image2.print(font2, 250, 320, `${rows[0].name}`);
-image2.print(font2, 20, 400, `XP: ${xp}/${NeedXp}`);
-image2.print(font2, 20, 480, `Money: ${money}`);
-image2.print(font2, 20, 560, `LVL: ${lvl}`);
-image2.print(font2, 250, 560, `REP: ${rows[0].rep}`);
-image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
-          image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
-          });
-        });
-      });
+image.resize(160, 160)
+image4.resize(800, 600)
+image2.mask(image4, 0, 0)
+image3.resize(160, 160);
+image.mask(image3,0,0)
+image2.composite(image, 330, 235);
+image2.print(font2, 40, 123, `XP: ${xp}/${NeedXp}`);
+image2.print(font2, 40, 190, `Money: ${rows[0].money}`);
+image2.print(font2, 425, 123, `LVL: ${rows[0].lvl}`);
+image2.print(font2, 425, 190, `REP: ${rows[0].rep}`);
+image2.print(font2, 220, 440, `Total XP: ${totalxp}`);
+image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
+})
 });
 });
 });
 });
 });
-    });
-	message.channel.stopTyping()
+});
+message.channel.stopTyping()
 } else if(['bg'].includes(command)) {
 	if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `glitch2`, `anime`, `anime2`, `leaves`, `leaves2`");
 		if(args[0] === 'glitch') {
