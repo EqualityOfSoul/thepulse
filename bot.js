@@ -3906,59 +3906,47 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
 		message.channel.send("Времено недоступно")
-		/*if(!args[0]) return message.channel.send("Доступные фоны: `pattern`, `bluespace`, `water`, `code`, `freezee`, `chaotic_piano`, `redgreen`, `glitch`, `glitch2`, `anime`, `anime2`, `opulus`, `opulus2`");
-	if(args[0] === 'pattern') {
-			    con.query(`UPDATE xp SET bg = 'http://www.penguinpetes.com/images/IMBG/pattern_background_1.png' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
-		}
+		if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
 		if(args[0] === 'glitch') {
 			    con.query(`UPDATE xp SET bg = 'https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
-		}
-		if(args[0] === 'bluespace') {
-			    con.query(`UPDATE xp SET bg = 'https://orig00.deviantart.net/940d/f/2011/271/c/c/blue_space_sig_background_by_y2james7-d4b6zyu.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		if(args[0] === 'water') {
 			    con.query(`UPDATE xp SET bg = 'http://www.gfxvoid.com/tutorials/1/sigbackground/final.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
-		if(args[0] === 'code') {
-			    con.query(`UPDATE xp SET bg = 'http://teachingalam.weebly.com/uploads/5/1/7/1/51719481/3699543_orig.gif' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
-		}
-		if(args[0] === 'freezee') {
-			    con.query(`UPDATE xp SET bg = 'http://1.bp.blogspot.com/-q-prOnO1Tfw/Uph-TzSb48I/AAAAAAAAJ3o/0I4eg06W044/s1600/ChristmasWashiTapeFree.png' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
-		}
-		if(args[0] === 'glitch2') {
+		if(args[0] === 'glitch') {
 			    con.query(`UPDATE xp SET bg = 'http://i69.photobucket.com/albums/i74/blizzed/PBT8.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
-		}
-		if(args[0] === 'anime') {
-			    con.query(`UPDATE xp SET bg = 'http://i.imgur.com/X5nEOdi.png' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
-		}
-		if(args[0] === 'anime2') {
-			    con.query(`UPDATE xp SET bg = 'http://i112.photobucket.com/albums/n189/Momoko_No_Densetu/3-1.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		if(args[0] === 'chaotic_piano') {
 			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/chaotic_piano_rank_bg.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
-		if(args[0] === 'opulus') {
-			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/opulus_wallhaven_backgrounds13_rank.png' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
-		}
 		if(args[0] === 'redgreen') {
 			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/RedGreenLineBG.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
-		if(args[0] === 'opulus2') {
-			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/opulus_abstract1_rank.png' WHERE id = '${message.author.id}'`);
+		if(args[0] === 'anime') {
+			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485044019265536000/158fbb59b6671521b08529c6bd74798628380fc8_00.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
-		}*/
+		}
+		if(args[0] === 'anime2') {
+			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485044185997639692/nightcore_forgiven_anime_devushka_ushi_art_102632_300x240.png' WHERE id = '${message.author.id}'`);
+		message.channel.send("success updated your background");
+		}
+		if(args[0] === 'pixel') {
+			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485040744588115975/Rojos.png' WHERE id = '${message.author.id}'`);
+		message.channel.send("success updated your background");
+		}
+		if(args[0] === 'leaves') {
+			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485040415406555156/30452966.png' WHERE id = '${message.author.id}'`);
+		message.channel.send("success updated your background");
+		}
+		if(args[0] === 'leaves2') {
+			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485039713590181888/1121898710_w0_h0_18806.png' WHERE id = '${message.author.id}'`);
+		message.channel.send("success updated your background");
+		}
 		
 	});
 		  } else if (['work'].includes(command)) {
