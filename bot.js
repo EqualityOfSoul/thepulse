@@ -3882,7 +3882,7 @@ con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
         con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
         jimp.read("https://media.discordapp.net/attachments/464882068766195715/485169722862862346/1535743865221.png").then(function(image2) {
 jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image3) {
-jimp.read(rows[0].bg).then(function(image4) {
+jimp.read(args[0]).then(function(image4) {
 jimp.loadFont("fonts/rus.fnt").then(function(font2) {
 let lvl = rows[0].lvl;
         let xp = rows[0].xp;
