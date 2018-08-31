@@ -3845,7 +3845,7 @@ image2.composite(image, 0, 150);
 image2.print(font2, 250, 320, `${rows[0].name}`);
 image2.print(font2, 20, 400, `XP: ${xp}/${NeedXp}`);
 image2.print(font2, 20, 480, `Money: ${money}`);
-image2.print(font2, 20, 560, `LVL: ${lvl}`);
+image2.print(font2, 20, 560, `LVL: ${lvl}   REP: ${rows[0].rep}`);
 image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
           image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'card.png', attachment: buffer }] }).catch(err => message.channel.send("Ошибка! Пожалуйста смените профиль и сообщите создателю бота об этом."));;
@@ -3896,7 +3896,7 @@ image2.composite(image, 0, 150);
 image2.print(font2, 250, 320, `${rows[0].name}`);
 image2.print(font2, 20, 400, `XP: ${xp}/${NeedXp}`);
 image2.print(font2, 20, 480, `Money: ${money}`);
-image2.print(font2, 20, 560, `LVL: ${lvl}`);
+image2.print(font2, 20, 560, `LVL: ${lvl}   REP: ${rows[0].rep}`);
 image2.print(font2, 20, 640, `Total XP: ${totalxp}`);
           image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
@@ -4043,7 +4043,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 				  repe.add(message.author.id);
 			  setTimeout(() => {
           repe.delete(message.author.id);
-        }, 600000);
+        }, 10800000);
 			  });
 		  }
 });
