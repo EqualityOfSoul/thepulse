@@ -3550,11 +3550,10 @@ message.channel.send({embed});
         .setDescription(resp);
     message.channel.send(embed)
     } else if(['QR', 'QRcode'].includes(command)) {
-		const text = args.join(" ");
-		QRCode.toString(text, function (err, string) {
-			console.log(string)
-                       message.channel.send(wrap(string))
-                               .catch(err => message.channel.send(err))
+	    if(!args[0]) return message.channel.send('text pls');
+		QRCode.toString(args.join(" "), function (err, string) {
+		console.log(string)
+                message.channel.send(wrap(string))
 		})
 	} else if(['hastebin'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
@@ -3776,7 +3775,7 @@ message.channel.stopTyping()
 	}
 	if(args[0] ==='create') {
 		con.query(`SELECT * FROM welcome WHERE guild = '${message.guild.id}'`, (err, rows) => {
-			if(rows) return message.channel.send("Кажись у вас уже есть приветсвие");
+			if(!rows) return message.channel.send("Кажись у вас уже есть приветсвие");
 
 		con.query(`INSERT INTO welcome (guild, channel, message, title, color) VALUES ('${message.guild.id}', '${message.channel.id}', 'Текст приветсвия не настроен, пожалуйста найстройте title, color, message', 'Welcome title!', '00ff00')`)
 			message.channel.send("Создано! Теперь настройте welcome `x!welcome argument` \nАргументы: title, message, color, channel");
@@ -4048,7 +4047,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 			  if (repe.has(message.author.id)) return message.channel.send("Дать репутацию можно раз в 3 часа.");
 			  let member = message.mentions.users.first();
 			  if(!member) return message.channel.send("Укажите пользователя");
-			  if(member === member.user.bot) return message.channel.send("У ботов не профиля");
+			  if(member.user.bot) return message.channel.send("У ботов нет профиля");
 			  if(member === message.author) return message.channel.send("Самому себе не получится");
 			  con.query(`SELECT * FROM xp WHERE id = '${member.id}'`, (err, rows) => {
 				  con.query(`UPDATE xp SET rep = ${rows[0].rep + 1}`);
