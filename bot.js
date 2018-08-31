@@ -3854,7 +3854,7 @@ message.channel.send((rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lv
 }  else if(['setbg'].includes(command)) {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
-		if(!args[0]) return message.channel.send("Доступные фоны: `pattern`, `glitch`, `bluespace`, `water`, `code`, `freezee`, `glitch2`, `anime`, `anime2`");
+		if(!args[0]) return message.channel.send("Доступные фоны: `pattern`, `bluespace`, `water`, `code`, `freezee`, `chaotic_piano`, `redgreen`, `glitch`, `glitch2`, `anime`, `anime2`, `opulus`, `opulus2`");
 	if(args[0] === 'pattern') {
 			    con.query(`UPDATE xp SET bg = 'http://www.penguinpetes.com/images/IMBG/pattern_background_1.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
@@ -3889,6 +3889,22 @@ message.channel.send((rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lv
 		}
 		if(args[0] === 'anime2') {
 			    con.query(`UPDATE xp SET bg = 'http://i112.photobucket.com/albums/n189/Momoko_No_Densetu/3-1.png' WHERE id = '${message.author.id}'`);
+		message.channel.send("success updated your background");
+		}
+		if(args[0] === 'chaotic_piano') {
+			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/chaotic_piano_rank_bg.png' WHERE id = '${message.author.id}'`);
+		message.channel.send("success updated your background");
+		}
+		if(args[0] === 'opulus') {
+			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/opulus_wallhaven_backgrounds13_rank.png' WHERE id = '${message.author.id}'`);
+		message.channel.send("success updated your background");
+		}
+		if(args[0] === 'redgreen') {
+			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/RedGreenLineBG.png' WHERE id = '${message.author.id}'`);
+		message.channel.send("success updated your background");
+		}
+		if(args[0] === 'opulus2') {
+			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/opulus_abstract1_rank.png' WHERE id = '${message.author.id}'`);
 		message.channel.send("success updated your background");
 		}
 		
