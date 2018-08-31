@@ -4048,7 +4048,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 			  if (repe.has(message.author.id)) return message.channel.send("Дать репутацию можно раз в 3 часа.");
 			  let member = message.mentions.users.first();
 			  if(!member) return message.channel.send("Укажите пользователя");
-			  if(member === member.bot) return message.channel.send("У ботов не профиля");
+			  if(member === member.user.bot) return message.channel.send("У ботов не профиля");
 			  if(member === message.author) return message.channel.send("Самому себе не получится");
 			  con.query(`SELECT * FROM xp WHERE id = '${member.id}'`, (err, rows) => {
 				  con.query(`UPDATE xp SET rep = ${rows[0].rep + 1}`);
