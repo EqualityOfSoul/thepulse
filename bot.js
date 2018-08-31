@@ -3907,55 +3907,112 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 })
 })
 	message.channel.stopTyping()
+} else if(['bg'].includes(command)) {
+	if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `glitch2`, `anime`, `anime2`, `leaves`, `leaves2`");
+		if(args[0] === 'glitch') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg")
+				     })
+		}
+		if(args[0] === 'water') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("http://www.gfxvoid.com/tutorials/1/sigbackground/final.jpg")
+				     })
+		}
+		if(args[0] === 'glitch2') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("http://i69.photobucket.com/albums/i74/blizzed/PBT8.jpg")
+				     })
+		}
+		if(args[0] === 'chaotic_piano') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://tatsumaki.xyz/images/backgrounds/rank/chaotic_piano_rank_bg.png")
+				     })
+		}
+		if(args[0] === 'redgreen') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://tatsumaki.xyz/images/backgrounds/rank/RedGreenLineBG.png")
+				     })
+		}
+		if(args[0] === 'anime') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://media.discordapp.net/attachments/472655542079455233/485044019265536000/158fbb59b6671521b08529c6bd74798628380fc8_00.png")
+				     })
+		}
+		if(args[0] === 'anime2') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://media.discordapp.net/attachments/472655542079455233/485044185997639692/nightcore_forgiven_anime_devushka_ushi_art_102632_300x240.png")
+				     })
+		}
+		if(args[0] === 'pixel') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://media.discordapp.net/attachments/472655542079455233/485040744588115975/Rojos.png")
+				     })
+		}
+		if(args[0] === 'leaves') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://media.discordapp.net/attachments/472655542079455233/485040415406555156/30452966.png")
+				     })
+		}
+		if(args[0] === 'leaves2') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://media.discordapp.net/attachments/472655542079455233/485039713590181888/1121898710_w0_h0_18806.png")
+				     })
+		}
+		if(args[0] === 'default') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQVSJVegQW7Jq1nvnNCqvT9Y65g76jNp5YTUTtCStpjatuyQpUPw")
+				     })
+		}
 } else if(['setbg'].includes(command)) {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
 		if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `glitch2`, `anime`, `anime2`, `leaves`, `leaves2`");
 		if(args[0] === 'glitch') {
 			    con.query(`UPDATE xp SET bg = 'https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
 		if(args[0] === 'water') {
 			    con.query(`UPDATE xp SET bg = 'http://www.gfxvoid.com/tutorials/1/sigbackground/final.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
 		if(args[0] === 'glitch2') {
 			    con.query(`UPDATE xp SET bg = 'http://i69.photobucket.com/albums/i74/blizzed/PBT8.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
 		if(args[0] === 'chaotic_piano') {
 			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/chaotic_piano_rank_bg.png' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
 		if(args[0] === 'redgreen') {
 			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/RedGreenLineBG.png' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
 		if(args[0] === 'anime') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485044019265536000/158fbb59b6671521b08529c6bd74798628380fc8_00.png' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
 		if(args[0] === 'anime2') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485044185997639692/nightcore_forgiven_anime_devushka_ushi_art_102632_300x240.png' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
 		if(args[0] === 'pixel') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485040744588115975/Rojos.png' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
 		if(args[0] === 'leaves') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485040415406555156/30452966.png' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
 		if(args[0] === 'leaves2') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485039713590181888/1121898710_w0_h0_18806.png' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
 		if(args[0] === 'default') {
 			    con.query(`UPDATE xp SET bg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQVSJVegQW7Jq1nvnNCqvT9Y65g76jNp5YTUTtCStpjatuyQpUPw' WHERE id = '${message.author.id}'`);
-		message.channel.send("success updated your background");
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
-		
+		con.query(`UPDATE xp SET bg = ${rows[0].money - 5000} WHERE id = '${message.author.id}'`);
 	});
 		  } else if (['work'].includes(command)) {
 			  if (worked.has(message.author.id)) return message.channel.send("Работать можно раз в 10 минут.");
