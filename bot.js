@@ -3818,7 +3818,7 @@ con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
             if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
     });
 	message.channel.startTyping()
-    jimp.read(message.author.avatarURL).then(function(image) {
+    jimp.read(user.user.avatarURL).then(function(image) {
         con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
         jimp.read(rows[0].bg).then(function(image2) {
     jimp.read("http://s7d4.scene7.com/is/image/eidupont/SilverGray_630x315").then(function(image3) {
