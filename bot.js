@@ -4015,7 +4015,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] });
 			    con.query(`UPDATE xp SET bg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQVSJVegQW7Jq1nvnNCqvT9Y65g76jNp5YTUTtCStpjatuyQpUPw' WHERE id = '${message.author.id}'`);
 		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
 		}
-		con.query(`UPDATE xp SET bg = ${rows[0].money - 5000} WHERE id = '${message.author.id}'`);
+		con.query(`UPDATE xp SET money = ${rows[0].money - 5000} WHERE id = '${message.author.id}'`);
 	});
 		  } else if (['work'].includes(command)) {
 			  if (worked.has(message.author.id)) return message.channel.send("Работать можно раз в 10 минут.");
