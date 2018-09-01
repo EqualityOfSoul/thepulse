@@ -3854,7 +3854,7 @@ image2.print(font2, 425, 123, `LVL: ${rows[0].lvl}`);
 image2.print(font2, 425, 190, `REP: ${rows[0].rep}`);
 image2.print(font2, 220, 440, `Total XP: ${totalxp}`);
 image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-message.channel.send(`Профиль пользователя ${user.user.username}:` +{files: [{ name: 'card.png', attachment: buffer }] })
+message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
 })
 });
 });
@@ -4064,16 +4064,26 @@ message.channel.stopTyping()
         }, 10800000);
 			  });
 		  } else if (['mask'].includes(command)) {
+			  message.channel.send('ok, this will take a while');
 			  jimp.read(args[0]).then(function(i) {
 jimp.read(args[1]).then(function(i2) {
+	i.resize(900, 900)
+	i2.resize(900, 900)
 	i.mask(i2, 0, 0)
 	i.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
-})
-})
-			  })
+}).catch(err => message.channel.send(`Ой, что-то пошло не так. \n${err}`))
+}).catch(err => message.channel.send(`Ой, что-то пошло не так. \n${err}`))
+			  }).catch(err => message.channel.send(`Ой, что-то пошло не так. \n${err}`))
 			  
 			  
+		  } else if (['resize'].includes(command)) {
+			  jimp.read(args[3]).then(function(i) {
+				  i.resize(args[0], args[1]);
+				  i.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
+}).catch(err => message.channel.send(`Ой, что-то пошло не так. \n${err}`))
+			  }).catch(err => message.channel.send(`Ой, что-то пошло не так. \n${err}`))
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
