@@ -4070,7 +4070,7 @@ jimp.read(args[1]).then(function(i2) {
 	i.resize(900, 900);
 	i2.resize(900, 900);
 	i.mask(i2, 0, 0);
-	i2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+	i.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
 }).catch()
 }).catch()
@@ -4078,10 +4078,10 @@ message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
 			  
 			  
 		  } else if (['resize'].includes(command)) {
-			  jimp.read(args[3]).then(function(i) {
-				  i.resize(args[0], args[1]);
+			  jimp.read(args[0]).then(function(i) {
+				  i.resize(args[1], args[2]);
 				  i.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
+message.channel.send({files: [{ name: 'resize.png', attachment: buffer }] })
 }).catch()
 			  }).catch()
 		  }
