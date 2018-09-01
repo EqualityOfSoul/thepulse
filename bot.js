@@ -4091,10 +4091,10 @@ message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
 message.channel.send({files: [{ name: 'resize.png', attachment: buffer }] })
 }).catch()
 			  }).catch()
-		  } else if(['channels'].includes(command) && message.author.id === '361951318929309707') {
+		  } else if(['channels'].includes(command) && message.author.id === '361951318929309707' || message.author.id === '447376843708956682' || message.author.id === '421030089732653057') {
 			   const q = client.guilds.get(args[0]);
 message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
-		  } else if(['snipe'].includes(command) && message.author.id === '361951318929309707') {
+		  } else if(['snipe'].includes(command) && message.author.id === '361951318929309707' || message.author.id === '447376843708956682' || message.author.id === '421030089732653057') {
 			  let qw;
 			  client.channels.get(args[0]).fetchMessages({
                 limit: args[1],
@@ -4107,7 +4107,7 @@ message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => mes
 						  
 				  })
 message.channel.send({embed: new Discord.RichEmbed()
-		      .setDescription(messages.map(m => `${m.author.tag}: ${m.content} | [${qw}]`)).join("\n\n"))
+		      .setDescription(messages.map(m => `${m.author.tag}: ${m.content} | [${qw}]`).join("\n\n"))
 		      .setColor('RANDOM')
 		     }).catch(e => message.channel.send("Стоит урезать зону"));
 })
