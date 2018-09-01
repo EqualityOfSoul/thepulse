@@ -4101,18 +4101,19 @@ message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => mes
                 }).then((messages) => {
 				  messages.map(m => {
 					  if(m.author.bot) {
-						  qw = 'BOT'
+						   qw = 'BOT'
 					  }
 					  if(!m.author.bot) {
-						  qw = 'USER'
+						   qw = 'USER'
 					  }
 						  
-				  })
+				  
 message.channel.send({embed: new Discord.RichEmbed()
 		      .setDescription(messages.map(m => `${m.author.tag}: ${m.content} | [${qw}]`).join("\n\n"))
 		      .setColor('RANDOM')
 		     }).catch(e => message.channel.send("Стоит урезать зону"));
 })
+				  })
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
