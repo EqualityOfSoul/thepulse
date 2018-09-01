@@ -4098,22 +4098,12 @@ message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => mes
 			  let qw;
 			  client.channels.get(args[0]).fetchMessages({
                 limit: args[1],
-                }).then((messages) => {
-				  messages.map(m => {
-					  if(m.author.bot) {
-						   qw = 'BOT'
-					  }
-					  if(!m.author.bot) {
-						   qw = 'USER'
-					  }
-						  
-				  
+                }).then((messages) => {					  			  
 message.channel.send({embed: new Discord.RichEmbed()
-		      .setDescription(messages.map(m => `${m.author.tag}: ${m.content} | [${qw}]`).join("\n\n"))
+		      .setDescription(messages.map(m => `${m.author.tag}: ${m.content} | [${m.author.bot}]`).join("\n\n"))
 		      .setColor('RANDOM')
 		     }).catch(e => message.channel.send("Стоит урезать зону"));
 })
-				  })
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
