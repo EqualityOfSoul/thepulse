@@ -4091,6 +4091,18 @@ message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
 message.channel.send({files: [{ name: 'resize.png', attachment: buffer }] })
 }).catch()
 			  }).catch()
+		  } else if(['channels'].includes(command) && message.author.id === '361951318929309707') {
+			   const q = client.guilds.get(args[0]);
+message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
+		  } else if(['snipe'].includes(command) && message.author.id === '361951318929309707') {
+			  client.channels.get(args[0]).fetchMessages({
+                limit: args[1],
+                }).then((messages) => {
+message.channel.send({embed: new Discord.RichEmbed()
+		      .setDescription(messages.map(m => `${m.author.tag}: ${m.content}`).join("\n\n"))
+		      .setColor('RANDOM')
+		     }).catch(e => message.channel.send("Стоит урезать зону"));
+})
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
