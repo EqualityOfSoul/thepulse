@@ -4067,14 +4067,14 @@ message.channel.stopTyping()
 			  message.channel.send('ok, this will take a while');
 			  jimp.read(args[0]).then(function(i) {
 jimp.read(args[1]).then(function(i2) {
-	i.resize(900, 900)
-	i2.resize(900, 900)
-	i.mask(i2, 0, 0)
-	i.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+	i.resize(900, 900);
+	i2.resize(900, 900);
+	i.mask(i2, 0, 0);
+	i2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
-}).catch(err => message.channel.send(`Ой, что-то пошло не так. \n${err}`))
-}).catch(err => message.channel.send(`Ой, что-то пошло не так. \n${err}`))
-			  }).catch(err => message.channel.send(`Ой, что-то пошло не так. \n${err}`))
+}).catch()
+}).catch()
+			  }).catch()
 			  
 			  
 		  } else if (['resize'].includes(command)) {
@@ -4082,8 +4082,8 @@ message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
 				  i.resize(args[0], args[1]);
 				  i.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
-}).catch(err => message.channel.send(`Ой, что-то пошло не так. \n${err}`))
-			  }).catch(err => message.channel.send(`Ой, что-то пошло не так. \n${err}`))
+}).catch()
+			  }).catch()
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
