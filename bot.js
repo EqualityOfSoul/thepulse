@@ -3705,8 +3705,12 @@ if (isNaN(hexToDec(xml.hex.clean)))
 		hype = "https://media.discordapp.net/attachments/472655542079455233/482093345385218058/1111.png"
 	}
         let img = message.mentions.users.first();
-	if(!img) return message.channel.send("укажите пользователя, пример: x!hypetar Unk#7585 bravery, x!hypetar Unk#7585 brilliance 1");
-      jimp.read(img.avatarURL).then(function(image) {
+	let img1 = img.avatarURL;
+	if(message.attachments.first() && !img) {
+		img1 = message.attachments.first().url;
+	}
+	if(!img1) return message.channel.send("укажите пользователя или прикрепите картинку, пример: x!hypetar Unk#7585 bravery, x!hypetar Unk#7585 brilliance 1");
+      jimp.read(img1).then(function(image) {
         jimp.read(hype).then(function(image2) {
           image.resize(768, 768);
           image2.resize(768, 768);
@@ -3873,16 +3877,17 @@ message.channel.send("```Топ 10 пользователей: \n"+(rows.map(r =
 })
 } else if(['testbg'].includes(command) && message.author.id === '361951318929309707') {
 	let user = message.mentions.members.first();
+	let img = user.avatarURL;
 	if(!user) return message.channel.send("Укажите пользователя");
 con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
             if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
     });
 	message.channel.startTyping()
-    jimp.read(user.user.avatarURL).then(function(image) {
+    jimp.read(img).then(function(image) {
         con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
         jimp.read("https://media.discordapp.net/attachments/464882068766195715/485169722862862346/1535743865221.png").then(function(image2) {
 jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image3) {
-jimp.read(args[0]).then(function(image4) {
+jimp.read(message.attachments.first().url || user.user.avatarURL).then(function(image4) {
 jimp.loadFont("fonts/rus.fnt").then(function(font2) {
 let lvl = rows[0].lvl;
         let xp = rows[0].xp;
