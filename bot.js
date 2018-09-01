@@ -4100,9 +4100,11 @@ message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => mes
                 limit: args[1],
                 }).then((messages) => {
 				  messages.map(m => {
-					  qw = 'USER';
 					  if(m.author.bot) {
 						  qw = 'BOT'
+					  }
+					  if(!m.author.bot) {
+						  qw = 'USER'
 					  }
 						  
 				  })
