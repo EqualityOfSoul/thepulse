@@ -3803,7 +3803,7 @@ message.channel.stopTyping()
 });
 	}
 } else if (['autorole'].includes(command)) {
-		if (!message.author.id === "361951318929309707" || !message.member.hasPermission("ADMINISTRATOR") || !message.member.hasPermission("MANAGE_SERVER")) return message.channel.send("Доступ отклонен, недостаточно прав для настройки автороли");
+		if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Доступ отклонен, недостаточно прав для настройки автороли");
 	if(args[0] === 'set') {
 		let rol = message.mentions.roles.first();
 		if(!rol) return message.channel.send("Укажите роль");
