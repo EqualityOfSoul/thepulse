@@ -4078,8 +4078,10 @@ message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
 			  
 			  
 		  } else if (['resize'].includes(command)) {
+			  let h = args[0].parseInt();
+			  let s = args[1].parseInt();
 			  jimp.read(args[0]).then(function(i) {
-				  i.resize(args[1], args[2]);
+				  i.resize(h, s);
 				  i.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'resize.png', attachment: buffer }] })
 }).catch()
