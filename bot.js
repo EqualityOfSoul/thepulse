@@ -308,11 +308,11 @@ function generateXp() {
 }
 
 client.on('message', async (message) => {
-	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+	/*con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows) return;
 		const bla = rows[0].b;
 		if(bla === 'true') return;
-	});
+	});*/
 	const prefix2 = "<@441667160025333762>";
 
 //При заданом сообщение выполняет действие.
