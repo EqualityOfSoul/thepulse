@@ -309,8 +309,8 @@ function generateXp() {
 
 client.on('message', async (message) => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-		if(!rows) return;
-		const bla = rows[0].b;
+	if(!rows[0]) return;
+	const bla = rows[0].b;
 		if(bla == 1) return;
 	});
 	const prefix2 = "<@441667160025333762>";
