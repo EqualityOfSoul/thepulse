@@ -4145,15 +4145,14 @@ message.channel.send({embed: new Discord.RichEmbed()
 			  });
 			  con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
 		if(!rows[0].married === 'no') return message.channel.send("Он(а) уже замужем");
+		if(!isNaN(rows[0].married)) return message.channel.send("Он(а) уже замужем");
 			  });
 			  
 			  
 if(!user) return message.channel.send('Выберите пользователя');
 			  if(user === message.author) return message.channel.send('жениться на себе?');
-			  message.channel.send(`${user}, ${message.author.username} сделал вам предложение, вы принимаете его? \`да/нет\``)
 			  let aut = message.author;
 			  const collector = new Discord.MessageCollector(message.channel, m => m.author.id === user.id, { time: 30000 });
-        console.log(collector)
         collector.on('collect', message => {
 		message.channel.send(`${user}, ${aut.username} сделал вам предложение, вы принимаете его? \`да/нет\``)
             if (["да", "ok", "lf", "yes", "da", "кнш"].includes(message.content)) {
