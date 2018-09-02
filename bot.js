@@ -205,8 +205,7 @@ client.on('message', async (message) => {
           talked.delete(message.author.id);
         }, 60000);
   }	   
-    })
-	});
+    });
 	client.on('message', async (message) => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	if(!rows[0]) return;
@@ -221,6 +220,7 @@ client.on('message', async (message) => {
 		con.query(`UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`);
 		con.query(`UPDATE xp SET xp = 0 WHERE id = '${message.author.id}'`);
 				});
+	});
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
