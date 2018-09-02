@@ -4170,12 +4170,21 @@ collector.stop('ответ принят');
 		if(rows[0].married === 'no') return message.channel.send("Вы не замужем");
 				  message.channel.send(`Вы развелись с ${client.users.get(rows[0].married).username}`)
 			  
-			  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHERE id = '${rows[0].married}'`);
-			  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHERE id = '${message.author.id}'`);
+			  con.query(`UPDATE xp SET married = 'no', marriedAt = 'no' WHERE id = '${rows[0].married}'`);
+			  con.query(`UPDATE xp SET married = 'no', marriedAt = 'no' WHERE id = '${message.author.id}'`);
 			  });
 		  } else if(['marryinfo'].includes(command)) {
-con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-if(rows[0].married === 'no') return message.channel.send("Вы не женаты :(");
+			  const user = message.mentions.users.first();
+			  if(user.bot) return message.channel.send("Это бот..");
+			  let id;
+			  if(!user) {
+				  id = message.author.id;
+			  }
+			  if (user) {
+				  id = user.id;
+			  }
+con.query(`SELECT * FROM xp WHERE id = '${id}'`, (err, rows) => {
+if(rows[0].married === 'no') return message.channel.send("Не женаты :(");
 let us = client.users.get(rows[0].married);
 message.channel.send({embed: new Discord.RichEmbed()
 .setTitle(`Вы женаты на: ${us.username}`)
