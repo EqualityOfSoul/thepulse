@@ -4144,6 +4144,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 				  if(!isNaN(rows[0].married)) return message.channel.send("Вы уже женаты");
 			  });
 			  con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+				  if(!rows) return message.channel.send(`${user.username} не имеет аккаунта, он(а) должен(на) отправить хотя бы 1 сообщение.`)
 		if(!rows[0].married === 'no') return message.channel.send("Он(а) уже замужем");
 		if(!isNaN(rows[0].married)) return message.channel.send("Он(а) уже замужем");
 			  });
