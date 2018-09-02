@@ -10,7 +10,7 @@ const { inspect } = require("util");
 const config = require('./config.json');
 const vm = require("vm");
 const fs = require("fs");
-const mment = require("moment");
+const moment = require("moment");
 const hastebin = require('hastebin-gen');
 const jimp = require("jimp");
 const sm = require('string-similarity');
@@ -4136,7 +4136,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 				  });
 			  }
 		  } else if(['marry'].includes(command)) {
-			  const moment = require("moment");
+			  let time = moment(Date.now()).format('MMMM Do YYYY')
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows[0].married === 'no') return message.channel.send("Вы уже женаты");
 			  });
@@ -4151,10 +4151,10 @@ if(!user) return message.channel.send('Выберите пользователя
         collector.on('collect', message => {
             if (["да", "ok", "lf", "yes", "da"].includes(message.content)) {
       message.channel.send(`${message.author} сказал(а) да`);
-		    con.query(`UPDATE xp SET married = '${aut.id}', marriedAt = Date.now() WHERE id = ${user.id}`);
-		    con.query(`UPDATE xp SET married = '${aut.id}', marriedAt = '${moment(Date.now()).format('MMMM Do YYYY')}' WHERE id = ${user.id}`);
-		    con.query(`UPDATE xp SET married = '${user.id}', marriedAt = Date.now() WHERE id = ${aut.id}`);
-		    con.query(`UPDATE xp SET married = '${user.id}', marriedAt = '${moment(Date.now()).format('MMMM Do YYYY')}' WHERE id = ${aut.id}`);
+		    con.query(`UPDATE xp SET married = '${aut.id}', marriedAt = '${time}' WHERE id = ${user.id}`);
+		    con.query(`UPDATE xp SET married = '${aut.id}', marriedAt = '${time}' WHERE id = ${user.id}`);
+		    con.query(`UPDATE xp SET married = '${user.id}', marriedAt = '${time}' WHERE id = ${aut.id}`);
+		    con.query(`UPDATE xp SET married = '${user.id}', marriedAt = '${time}' WHERE id = ${aut.id}`);
 collector.stop('ответ принят');
             } else if (message.content == "нет") {
             message.channel.send(`${message.author} сказал(а) нет`);
@@ -4174,7 +4174,6 @@ collector.stop('ответ принят');
 			  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHERE id = '${message.author.id}'`);
 			  });
 		  } else if(['marryinfo'].includes(command)) {
-			  const moment = require("moment");
 con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 if(rows[0].married === 'no') return message.channel.send("Вы не женаты :(");
 let us = client.users.get(rows[0].married);
