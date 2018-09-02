@@ -4118,20 +4118,20 @@ message.channel.send({embed: new Discord.RichEmbed()
 				  });
 			  }
 			  if(args[0] === 'remove') {
-				  con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
-				  con.query(`UPDATE xp SET b = 0 WHERE id = '${user.id}`);
+				  con.query(`SELECT * FROM xp WHERE id = ${user.id}`, (err, rows) => {
+				  con.query(`UPDATE xp SET b = 0 WHERE id = ${user.id}`);
 					  message.channel.send(`${rows[0].name} был удален с черного списка.`);
 				  });
 			  }
 			   if(args[0] === 'add' && args[1] === 'id') {
-				  con.query(`SELECT * FROM xp WHERE id = '${args[1]}'`, (err, rows) => {
-				  con.query(`UPDATE xp SET b = 1 = '${args[1]}'`);
+				  con.query(`SELECT * FROM xp WHERE id = ${args[1]}`, (err, rows) => {
+				  con.query(`UPDATE xp SET b = 1 = ${args[1]}`);
 					  message.channel.send(`${rows[0].name} был добавлен в черный список`)
 				  });
 			  }
 			  if(args[0] === 'remove' && args[1] === 'id') {
-				  con.query(`SELECT * FROM xp WHERE id = '${args[1]}'`, (err, rows) => {
-				  con.query(`UPDATE xp SET b = 0 WHERE id = '${args[1]}'`);
+				  con.query(`SELECT * FROM xp WHERE id = ${args[1]}`, (err, rows) => {
+				  con.query(`UPDATE xp SET b = 0 WHERE id = ${args[1]}`);
 					  message.channel.send(`${rows[0].name} был удален с черного списка.`);
 				  });
 			  }
