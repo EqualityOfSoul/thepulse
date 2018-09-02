@@ -4137,11 +4137,16 @@ message.channel.send({embed: new Discord.RichEmbed()
 			  }
 		  } else if(['marry'].includes(command)) {
 			  let time = moment(Date.now()).format('MMMM Do YYYY')
+			  const user = message.mentions.users.first();
+			  if(user.bot) return message.channel.send("Это бот..");
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows[0].married === 'no') return message.channel.send("Вы уже женаты");
 			  });
-			  const user = message.mentions.users.first();
-			  if(user.bot) return message.channel.send("Это бот..");
+			  con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+		if(!rows[0].married === 'no') return message.channel.send("Он(а) уже замужем");
+			  });
+			  
+			  
 if(!user) return message.channel.send('Выберите пользователя');
 			  if(user === message.author) return message.channel.send('жениться на себе?');
 			  message.channel.send(`${user}, ${message.author.username} сделал вам предложение, вы принимаете его? \`да/нет\``)
@@ -4185,9 +4190,10 @@ collector.stop('ответ принят');
 			  }
 con.query(`SELECT * FROM xp WHERE id = '${id}'`, (err, rows) => {
 if(rows[0].married === 'no') return message.channel.send("Не женаты :(");
+	if(!rows[0].married) return message.channel.send("Не женаты, а еще это бот :(");
 let us = client.users.get(rows[0].married);
 message.channel.send({embed: new Discord.RichEmbed()
-.setTitle(`Вы женаты на: ${us.username}`)
+.setTitle(`Женат(а) на: ${us.username}`)
 .addField(`женаты с`, rows[0].marriedAt)
 		      .setColor('RANDOM')
 .setThumbnail(us.avatarURL)
