@@ -185,7 +185,7 @@ function generateMon() {
   let min = 5;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-client.on('message', async (message) => {
+client.on('message', async message => {
 	let newxp = Math.floor(Math.random() * (20 - 10 + 1)) + 20;
 	if(message.guild.id === '264445053596991498') return;
 	 if (talked.has(message.author.id)) return;
@@ -204,9 +204,11 @@ client.on('message', async (message) => {
         setTimeout(() => {
           talked.delete(message.author.id);
         }, 60000);
-  }	   
-    });
-	client.on('message', async (message) => {
+  }
+});
+	   
+})
+client.on("message", message => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	if(!rows[0]) return;
 	        let lvl = rows[0].lvl;
@@ -219,8 +221,14 @@ client.on('message', async (message) => {
 					if(!rows[0]) return;
 		con.query(`UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`);
 		con.query(`UPDATE xp SET xp = 0 WHERE id = '${message.author.id}'`);
+	/*	message.channel.send({embed: new Discord.RichEmbed()
+				      .setTitle("Lvl UP")
+				      .setDescription(`${message.author} Уровень повышен до ${rows[0].lvl++}!`)
+				      .setColor("RANDOM")
+				     })*/
+				}
 				});
-	});
+});
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
