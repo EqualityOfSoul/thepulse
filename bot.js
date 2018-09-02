@@ -4135,6 +4135,23 @@ message.channel.send({embed: new Discord.RichEmbed()
 					  message.channel.send(`${rows[0].name} был удален с черного списка.`);
 				  });
 			  }
+		  } else if(['marry'].includes(command)) {
+			  const user = message.mentions.users.first();
+			  const collector = new Discord.MessageCollector(message.channel, m => m.author.id === user.id, { time: 30000 });
+        console.log(collector)
+        collector.on('collect', message => {
+            if (message.content == "да") {
+      message.channel.send(`${message.author} сказал(а) да`);
+		    con.query(`UPDATE xp SET married = ${message.author.id} WHERE id = m.author.id`);
+collector.stop('ответ принят');
+            } else if (message.content == "нет") {
+            message.channel.send(`${message.author} сказал(а) нет`);
+collector.stop('ответ принят');
+            } else {
+		    message.channel.send("Ответа небыло в течение 30 секунд, авто отказ");
+	    }
+        })
+
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
