@@ -270,7 +270,6 @@ client.on('message', async (message) => {
 		if(rows[0].black === 'true' && message.content.startsWith("x!")) return message.channel.send('Простите, но вы в черном списке');
 		if(rows[0].black === 'true') return;
 	});
-	client.on('message', async message => {
 	let newxp = Math.floor(Math.random() * (20 - 10 + 1)) + 20;
 	if(message.guild.id === '264445053596991498') return;
 	 if (talked.has(message.author.id)) return;
@@ -289,11 +288,8 @@ client.on('message', async (message) => {
         setTimeout(() => {
           talked.delete(message.author.id);
         }, 60000);
-  }
-});
-	   
+  }	   
 })
-client.on("message", message => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	if(!rows[0]) return;
 	        let lvl = rows[0].lvl;
@@ -306,8 +302,6 @@ client.on("message", message => {
 					if(!rows[0]) return;
 		con.query(`UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`);
 		con.query(`UPDATE xp SET xp = 0 WHERE id = '${message.author.id}'`);
-
-});
 	const prefix2 = "<@441667160025333762>";
 
 //При заданом сообщение выполняет действие.
