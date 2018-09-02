@@ -4108,7 +4108,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 		     }).catch(e => message.channel.send("Стоит урезать зону"));
 })
 		  } else if(['blacklist', 'b'].includes(command)) {
-			  const user = message.mentionts.users.first();
+			  const user = message.mentions.users.first();
 			  if(args[0] === 'add') {
 				  con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
 				  con.query(`UPDATE xp SET black = 'true'`);
