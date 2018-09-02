@@ -4141,6 +4141,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 			  if(user.bot) return message.channel.send("Это бот..");
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows[0].married === 'no') return message.channel.send("Вы уже женаты");
+				  if(!isNaN(rows[0].married)) return message.channel.send("Вы уже женаты");
 			  });
 			  con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
 		if(!rows[0].married === 'no') return message.channel.send("Он(а) уже замужем");
@@ -4189,7 +4190,6 @@ collector.stop('ответ принят');
 			  }
 con.query(`SELECT * FROM xp WHERE id = '${id}'`, (err, rows) => {
 if(rows[0].married === 'no') return message.channel.send("Не женаты :(");
-	if(!rows[0].married) return message.channel.send("Не женаты, а еще это бот :(");
 let us = client.users.get(rows[0].married);
 message.channel.send({embed: new Discord.RichEmbed()
 .setTitle(`Женат(а) на: ${us.username}`)
@@ -4198,6 +4198,8 @@ message.channel.send({embed: new Discord.RichEmbed()
 .setThumbnail(us.avatarURL)
 });
 });
+		  } else {
+			  message.channel.send("Не женаты, а еще это бот :(");
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
