@@ -4112,13 +4112,13 @@ message.channel.send({embed: new Discord.RichEmbed()
 		  } else if(['blacklist', 'b'].includes(command)) {
 			  const user = message.mentions.users.first();
 			  if(args[0] === 'add') {
-				  con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
+				  con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
 				  con.query(`UPDATE xp SET b = 'true'`);
 					  message.channel.send(`${rows[0].name} был добавлен в черный список`)
 				  });
 			  }
 			  if(args[0] === 'remove') {
-				  con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
+				  con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
 				  con.query(`UPDATE xp SET b = 'false'`);
 					  message.channel.send(`${rows[0].name} был удален с черного списка.`);
 				  });
