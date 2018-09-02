@@ -4136,6 +4136,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 				  });
 			  }
 		  } else if(['marry'].includes(command)) {
+			  const moment = require("moment");
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows[0].married === 'no') return message.channel.send("Вы уже женаты");
 			  });
