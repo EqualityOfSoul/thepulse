@@ -4163,7 +4163,7 @@ collector.stop('ответ принят');
 
 		  } else if (['divorce'].includes(command)) {
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-		if(!rows) return message.channel.send("Вы не замужем");
+		if(rows[0].married === 'no') return message.channel.send("Вы не замужем");
 				  message.channel.send(`Вы развелись с ${client.users.get(rows[0].married).username}`)
 			  
 			  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHEWE id = '${rows[0].married}'`);
@@ -4172,7 +4172,7 @@ collector.stop('ответ принят');
 		  } else if(['marryinfo'].includes(command)) {
 			  const moment = require("moment");
 con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-if(!rows[0].married) return message.channel.send("Вы не женаты :(");
+if(rows[0].married === 'no') return message.channel.send("Вы не женаты :(");
 let us = client.users.get(rows[0].married);
 message.channel.send({embed: new Discord.RichEmbed()
 .setTitle(`Вы женаты на: ${us.username}`)
