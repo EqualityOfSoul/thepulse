@@ -4146,13 +4146,13 @@ if(!user) return message.channel.send('Выберите пользователя
         collector.on('collect', message => {
             if (message.content == "да") {
       message.channel.send(`${message.author} сказал(а) да`);
-		    con.query(`UPDATE xp SET married = '${message.author.id}' WHERE id = ${aut.id}`);
+		    con.query(`UPDATE xp SET married = '${message.author.id}', marriedAt = Date.now() WHERE id = ${aut.id}`);
 collector.stop('ответ принят');
             } else if (message.content == "нет") {
             message.channel.send(`${message.author} сказал(а) нет`);
 collector.stop('ответ принят');
             } else {
-		    message.channel.send("Ответа небыло в течение 30 секунд, авто отказ");
+		    message.channel.send("Ответа не получен, авто отказ");
 	    }
         })
 
