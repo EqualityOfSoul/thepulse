@@ -4181,7 +4181,6 @@ collector.stop('ответ принят');
 		  } else if(['marryinfo'].includes(command)) {
 			  const user = message.mentions.users.first();
 			  let id;
-			  if(user.user.bot || user.bot) return message.channel.send("Это бот")
 			  if(!user) {
 				  id = message.author.id;
 			  }
