@@ -4169,8 +4169,8 @@ collector.stop('ответ принят');
 		if(rows[0].married === 'no') return message.channel.send("Вы не замужем");
 				  message.channel.send(`Вы развелись с ${client.users.get(rows[0].married).username}`)
 			  
-			  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHEWE id = '${rows[0].married}'`);
-				  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHEWE id = '${message.author.id}'`);
+			  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHERE id = '${rows[0].married}'`);
+			  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHERE id = '${message.author.id}'`);
 			  });
 		  } else if(['marryinfo'].includes(command)) {
 			  const moment = require("moment");
