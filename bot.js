@@ -4150,6 +4150,7 @@ if(!user) return message.channel.send('Выберите пользователя
         collector.on('collect', message => {
             if (message.content == "да") {
       message.channel.send(`${message.author} сказал(а) да`);
+		    con.query(`UPDATE xp SET married = '${aut.id}', marriedAt = Date.now() WHERE id = ${user.id}`);
 		    con.query(`UPDATE xp SET married = '${message.author.id}', marriedAt = Date.now() WHERE id = ${aut.id}`);
 collector.stop('ответ принят');
             } else if (message.content == "нет") {
@@ -4164,9 +4165,10 @@ collector.stop('ответ принят');
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(!rows) return message.channel.send("Вы не замужем");
 				  message.channel.send(`Вы развелись с ${client.users.get(rows[0].married).username}`)
-		  });
 			  
-			  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHEWE id = '${args[1]}'`);
+			  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHEWE id = '${rows[0].married}'`);
+				  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHEWE id = '${message.author.id}'`);
+			  });
 		  } else if(['marryinfo'].includes(command)) {
 			  const moment = require("moment");
 con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
