@@ -311,8 +311,8 @@ client.on('message', async (message) => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	if(!rows[0]) return;
 	const bla = rows[0].b;
-		if(bla === 1) return console.log("22");
-	});
+		if(bla === 1) return;
+	//});
 	const prefix2 = "<@441667160025333762>";
 
 //При заданом сообщение выполняет действие.
@@ -4136,6 +4136,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 				  });
 			  }
 		  }
+	});
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
