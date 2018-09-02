@@ -4144,7 +4144,9 @@ message.channel.send({embed: new Discord.RichEmbed()
 				  if(!isNaN(rows[0].married)) return message.channel.send("Вы уже женаты");
 			  });
 			  con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
-				  if(!rows) return message.channel.send(`${user.username} не имеет аккаунта, он(а) должен(на) отправить хотя бы 1 сообщение.`)
+				  if(!rows) return message.channel.send(`${user.username} не имеет аккаунта, он(а) должен(на) отправить хотя бы 1 сообщение.`);
+			  });
+			  con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
 		if(!rows[0].married === 'no') return message.channel.send("Он(а) уже замужем");
 		if(!isNaN(rows[0].married)) return message.channel.send("Он(а) уже замужем");
 			  });
@@ -4180,7 +4182,7 @@ collector.stop('ответ принят');
 			  con.query(`UPDATE xp SET married = 'no', marriedAt = 'no' WHERE id = '${rows[0].married}'`);
 			  con.query(`UPDATE xp SET married = 'no', marriedAt = 'no' WHERE id = '${message.author.id}'`);
 			  });
-		  } else if(['marryinfo'].includes(command)) {
+		  } if(['marryinfo'].includes(command)) {
 			  const user = message.mentions.users.first();
 			  let id;
 			  if(!user) {
