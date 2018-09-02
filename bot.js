@@ -4136,7 +4136,11 @@ message.channel.send({embed: new Discord.RichEmbed()
 				  });
 			  }
 		  } else if(['marry'].includes(command)) {
+			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+		if(rows[0].married) return message.channel.send("Вы уже женаты");
+			  });
 			  const user = message.mentions.users.first();
+			  if(user.bot) return message.channel.send("Это бот..");
 if(!user) return message.channel.send('Выберите пользователя');
 			  if(user === message.author) return message.channel.send('жениться на себе?');
 			  message.channel.send(`${user}, ${message.author.username} сделал вам предложение, вы принимаете его? \`да/нет\``)
@@ -4156,6 +4160,25 @@ collector.stop('ответ принят');
 	    }
         })
 
+		  } else if (['divorce'].includes(command)) {
+			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+		if(!rows) return message.channel.send("Вы не замужем");
+				  message.channel.send(`Вы развелись с ${client.users.get(rows[0].married).username}`)
+		  });
+			  
+			  con.query(`UPDATE xp SET married = no, marriedAt = 'no' WHEWE id = '${args[1]}'`);
+		  } else if(['marryinfo'].includes(command)) {
+			  const moment = require("moment");
+con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+if(!rows[0].married) return message.channel.send("Вы не женаты :(");
+let us = client.users.get(rows[0].married);
+message.channel.send({embed: new Discord.RichEmbed()
+.setTitle(`Вы женаты на: ${us.username}`)
+.addField(`женаты с`, moment(rows[0].marriedAt).format('MMMM Do YYYY'))
+		      .setColor('RANDOM')
+.setThumbnail(us.avatarURL)
+});
+});
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
