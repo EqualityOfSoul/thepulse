@@ -4137,12 +4137,16 @@ message.channel.send({embed: new Discord.RichEmbed()
 			  }
 		  } else if(['marry'].includes(command)) {
 			  const user = message.mentions.users.first();
+if(!user) return message.channel.send('Выберите пользователя');
+			  if(user = message.author) return message.channel.send('жениться на себе?');
+			  message.channel.send(`${user}, ${message.author.username} сделал вам предложение, вы принимаете его? \`да/нет\``)
+			  let aut = message.author;
 			  const collector = new Discord.MessageCollector(message.channel, m => m.author.id === user.id, { time: 30000 });
         console.log(collector)
         collector.on('collect', message => {
             if (message.content == "да") {
       message.channel.send(`${message.author} сказал(а) да`);
-		    con.query(`UPDATE xp SET married = ${message.author.id} WHERE id = m.author.id`);
+		    con.query(`UPDATE xp SET married = '${message.author.id}' WHERE id = ${aut.id}`);
 collector.stop('ответ принят');
             } else if (message.content == "нет") {
             message.channel.send(`${message.author} сказал(а) нет`);
