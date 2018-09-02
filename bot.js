@@ -311,7 +311,7 @@ client.on('message', async (message) => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	if(!rows[0]) return;
 	const bla = rows[0].b;
-		if(bla == 1) return;
+		if(bla === 1) return console.log("22");
 	});
 	const prefix2 = "<@441667160025333762>";
 
@@ -4113,25 +4113,25 @@ message.channel.send({embed: new Discord.RichEmbed()
 			  const user = message.mentions.users.first();
 			  if(args[0] === 'add') {
 				  con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
-				  con.query(`UPDATE xp SET b = 1`);
+				  con.query(`UPDATE xp SET b = 1 WHERE id = '${user.id}`);
 					  message.channel.send(`${rows[0].name} был добавлен в черный список`)
 				  });
 			  }
 			  if(args[0] === 'remove') {
 				  con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
-				  con.query(`UPDATE xp SET b = 0`);
+				  con.query(`UPDATE xp SET b = 0 WHERE id = '${user.id}`);
 					  message.channel.send(`${rows[0].name} был удален с черного списка.`);
 				  });
 			  }
 			   if(args[0] === 'add' && args[1] === 'id') {
 				  con.query(`SELECT * FROM xp WHERE id = '${args[1]}'`, (err, rows) => {
-				  con.query(`UPDATE xp SET b = 1`);
+				  con.query(`UPDATE xp SET b = 1 = '${args[1]}'`);
 					  message.channel.send(`${rows[0].name} был добавлен в черный список`)
 				  });
 			  }
 			  if(args[0] === 'remove' && args[1] === 'id') {
 				  con.query(`SELECT * FROM xp WHERE id = '${args[1]}'`, (err, rows) => {
-				  con.query(`UPDATE xp SET b = 0`);
+				  con.query(`UPDATE xp SET b = 0 WHERE id = '${args[1]}'`);
 					  message.channel.send(`${rows[0].name} был удален с черного списка.`);
 				  });
 			  }
