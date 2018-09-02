@@ -4149,7 +4149,7 @@ if(!user) return message.channel.send('Выберите пользователя
 			  const collector = new Discord.MessageCollector(message.channel, m => m.author.id === user.id, { time: 30000 });
         console.log(collector)
         collector.on('collect', message => {
-            if (["да", "ok", "lf", "yes", "da"].includes(message.content)) {
+            if (["да", "ok", "lf", "yes", "da", "кнш"].includes(message.content)) {
       message.channel.send(`${message.author} сказал(а) да`);
 		    con.query(`UPDATE xp SET married = '${aut.id}', marriedAt = '${time}' WHERE id = ${user.id}`);
 		    con.query(`UPDATE xp SET married = '${aut.id}', marriedAt = '${time}' WHERE id = ${user.id}`);
@@ -4176,6 +4176,7 @@ collector.stop('ответ принят');
 		  } else if(['marryinfo'].includes(command)) {
 			  const user = message.mentions.users.first();
 			  let id;
+			  if(user.user.bot || user.bot) return message.channel.send("Это бот")
 			  if(!user) {
 				  id = message.author.id;
 			  }
