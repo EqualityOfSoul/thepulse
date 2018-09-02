@@ -4137,7 +4137,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 			  }
 		  } else if(['marry'].includes(command)) {
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-		if(rows[0].married) return message.channel.send("Вы уже женаты");
+		if(!rows[0].married === 'no') return message.channel.send("Вы уже женаты");
 			  });
 			  const user = message.mentions.users.first();
 			  if(user.bot) return message.channel.send("Это бот..");
@@ -4151,7 +4151,7 @@ if(!user) return message.channel.send('Выберите пользователя
             if (message.content == "да") {
       message.channel.send(`${message.author} сказал(а) да`);
 		    con.query(`UPDATE xp SET married = '${aut.id}', marriedAt = Date.now() WHERE id = ${user.id}`);
-		    con.query(`UPDATE xp SET married = '${message.author.id}', marriedAt = Date.now() WHERE id = ${aut.id}`);
+		    con.query(`UPDATE xp SET married = '${message.author.id}', marriedAt = ${Date.now()} WHERE id = ${aut.id}`);
 collector.stop('ответ принят');
             } else if (message.content == "нет") {
             message.channel.send(`${message.author} сказал(а) нет`);
