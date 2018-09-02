@@ -309,8 +309,6 @@ function generateXp() {
 
 client.on('message', async (message) => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-	    if(err) throw err;
-		if(rows[0].black === 'true' && message.content.startsWith("x!")) return message.channel.send('Простите, но вы в черном списке');
 		if(rows[0].black === 'true') return;
 	});
 	const prefix2 = "<@441667160025333762>";
