@@ -4199,7 +4199,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 });
 });
 		  } else {
-			  message.channel.send("Не женаты, а еще это бот :(");
+			 
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
