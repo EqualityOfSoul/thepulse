@@ -185,7 +185,42 @@ function generateMon() {
   let min = 5;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
+client.on('message', async (message) => {
+	let newxp = Math.floor(Math.random() * (20 - 10 + 1)) + 20;
+	if(message.guild.id === '264445053596991498') return;
+	 if (talked.has(message.author.id)) return;
+	if(message.author.bot) return;
+    con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+	    if(err) throw err;
+  let sql;
+  if (!rows[0]) {
+    con.query(`INSERT INTO xp (id, xp, lvl, money, global, name) VALUES ('${message.author.id}', ${newxp}, '1', '${generateMon()}', '${newxp}', '${message.author.tag}')`);
+  } else {
+    let xp = rows[0].xp;
+    con.query(`UPDATE xp SET xp = ${xp + newxp} WHERE id = '${message.author.id}'`);
+    con.query(`UPDATE xp SET money = '${rows[0].money + generateMon()}' WHERE id = '${message.author.id}'`);
+    con.query(`UPDATE xp SET global = ${rows[0].global + newxp} WHERE id = '${message.author.id}'`);
+	  talked.add(message.author.id);
+        setTimeout(() => {
+          talked.delete(message.author.id);
+        }, 60000);
+  }	   
+    })
+	});
+	client.on('message', async (message) => {
+	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+	if(!rows[0]) return;
+	        let lvl = rows[0].lvl;
+		let xp = rows[0].xp;
+	        const NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
+		if(rows[0].xp < NeedXp) {
+		return;
+		}
+				if(xp >= NeedXp) {
+					if(!rows[0]) return;
+		con.query(`UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`);
+		con.query(`UPDATE xp SET xp = 0 WHERE id = '${message.author.id}'`);
+				});
 client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
@@ -270,38 +305,6 @@ client.on('message', async (message) => {
 		if(rows[0].black === 'true' && message.content.startsWith("x!")) return message.channel.send('Простите, но вы в черном списке');
 		if(rows[0].black === 'true') return;
 	});
-	let newxp = Math.floor(Math.random() * (20 - 10 + 1)) + 20;
-	if(message.guild.id === '264445053596991498') return;
-	 if (talked.has(message.author.id)) return;
-	if(message.author.bot) return;
-    con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-	    if(err) throw err;
-  let sql;
-  if (!rows[0]) {
-    con.query(`INSERT INTO xp (id, xp, lvl, money, global, name) VALUES ('${message.author.id}', ${newxp}, '1', '${generateMon()}', '${newxp}', '${message.author.tag}')`);
-  } else {
-    let xp = rows[0].xp;
-    con.query(`UPDATE xp SET xp = ${xp + newxp} WHERE id = '${message.author.id}'`);
-    con.query(`UPDATE xp SET money = '${rows[0].money + generateMon()}' WHERE id = '${message.author.id}'`);
-    con.query(`UPDATE xp SET global = ${rows[0].global + newxp} WHERE id = '${message.author.id}'`);
-	  talked.add(message.author.id);
-        setTimeout(() => {
-          talked.delete(message.author.id);
-        }, 60000);
-  }	   
-})
-	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-	if(!rows[0]) return;
-	        let lvl = rows[0].lvl;
-		let xp = rows[0].xp;
-	        const NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
-		if(rows[0].xp < NeedXp) {
-		return;
-		}
-				if(xp >= NeedXp) {
-					if(!rows[0]) return;
-		con.query(`UPDATE xp SET lvl = ${rows[0].lvl+1} WHERE id = '${message.author.id}'`);
-		con.query(`UPDATE xp SET xp = 0 WHERE id = '${message.author.id}'`);
 	const prefix2 = "<@441667160025333762>";
 
 //При заданом сообщение выполняет действие.
