@@ -4175,7 +4175,6 @@ collector.stop('ответ принят');
 			  });
 		  } else if(['marryinfo'].includes(command)) {
 			  const user = message.mentions.users.first();
-			  if(user.bot) return message.channel.send("Это бот..");
 			  let id;
 			  if(!user) {
 				  id = message.author.id;
