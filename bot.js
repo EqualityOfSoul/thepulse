@@ -4197,9 +4197,8 @@ message.channel.send({embed: new Discord.RichEmbed()
 .addField(`женаты с`, rows[0].marriedAt)
 		      .setColor('RANDOM')
 .setThumbnail(us.avatarURL)
-});
-});
-			  else message.channel.send("Это бот.");
+}).catch(err => {});
+}).catch(err => {});
 		  } else {
 			 
 		  }
