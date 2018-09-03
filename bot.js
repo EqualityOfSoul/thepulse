@@ -4199,7 +4199,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 		      .setColor('RANDOM')
 .setThumbnail(us.avatarURL)
 }).catch(err => {});
-}).catch(err => {});
+}).catch(err => {});*/
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
