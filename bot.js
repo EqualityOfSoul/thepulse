@@ -4135,7 +4135,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 					  message.channel.send(`${rows[0].name} был удален с черного списка.`);
 				  });
 			  }
-		  }/* else if(['marry'].includes(command)) {
+		  } else if(['marry'].includes(command)) {
 			  let time = moment(Date.now()).format('MMMM Do YYYY')
 			  const user = message.mentions.users.first();
 			  if(user.bot) return message.channel.send("Это бот..");
@@ -4199,7 +4199,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 		      .setColor('RANDOM')
 .setThumbnail(us.avatarURL)
 }).catch(err => {});
-}).catch(err => {});*/
+}).catch(err => {});
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
