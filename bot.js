@@ -4155,9 +4155,10 @@ message.channel.send({embed: new Discord.RichEmbed()
 if(!user) return message.channel.send('Выберите пользователя');
 			  if(user === message.author) return message.channel.send('жениться на себе?');
 			  let aut = message.author;
+			  message.channel.send(`${user}, ${aut.username} сделал вам предложение, вы принимаете его? \`да/нет\``)
 			  const collector = new Discord.MessageCollector(message.channel, m => m.author.id === user.id, { time: 30000 });
         collector.on('collect', message => {
-		message.channel.send(`${user}, ${aut.username} сделал вам предложение, вы принимаете его? \`да/нет\``)
+		
             if (["да", "ok", "lf", "yes", "da", "кнш"].includes(message.content)) {
       message.channel.send(`${message.author} сказал(а) да`);
 		    con.query(`UPDATE xp SET married = '${aut.id}', marriedAt = '${time}' WHERE id = ${user.id}`);
@@ -4201,8 +4202,6 @@ message.channel.send({embed: new Discord.RichEmbed()
 .setThumbnail(us.avatarURL)
 }).catch(err => {});
 }).catch(err => {});
-		  } else {
-			 
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
