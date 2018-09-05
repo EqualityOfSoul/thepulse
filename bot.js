@@ -71,6 +71,9 @@ const con = mysql.createConnection({
   database:  process.env.DATABASE
 });
 con.connect(err => {
+	if (err.fatal) {
+    console.trace('fatal error: ' + err.message);
+  }
 	if(err) throw err;
   console.log("connected")
 })
