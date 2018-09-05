@@ -71,10 +71,7 @@ const con = mysql.createConnection({
   database:  process.env.DATABASE
 });
 con.connect(err => {
-	if (err.fatal) {
-    console.trace('fatal error: ' + err.message);
-		throw err;
-  }
+	if (err) throw err;
   console.log("connected")
 })
 //пособие о том, как плодить шарды
