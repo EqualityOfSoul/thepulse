@@ -99,7 +99,7 @@ anyoneCanSkip: false
 //channel: 'music'   
 });
 const dbl = require("dblposter");
-const DBLPoster = new dbl(process.env.BOT_KEY, client);
+const DBLPoster = new dbl('Wolke '+process.env.BOT_KEY, client);
 DBLPoster.bind();
 client.on('ready', () => {
     //Отпраляет сообщение в логи что бот запущен (+ количество серверов).
