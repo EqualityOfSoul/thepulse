@@ -57,7 +57,7 @@
         "hastebin-gen": "^1.3.1",
         "pixl-request": "^1.0.21",
         "weeb.js": "^1.6.2",
-        "Wolken": "^0.2.1"
+        "wolken": "^0.2.1"
     },
   "author": "X-49",
   "license": "MIT",
