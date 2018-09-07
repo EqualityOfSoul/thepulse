@@ -4207,4 +4207,3 @@ client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
 process.env.OWN_TOKEN = 'NO';
 process.env.PASS = 'NO';
-process.env.WEEB_KEY = 'NO';
