@@ -1009,15 +1009,14 @@ message.edit("```"+body+"```");
     } else if(['google'].includes(command) && (message.author.id === "361951318929309707")) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let searh = args.join(" ")
-	    searh = searh.replaceAll('porn', 'котята')
-	    searh = searh.replaceAll('nudes', 'котята')
-	    searh = searh.replaceAll('sex', 'котята')
-	    searh = searh.replaceAll('gaysex', 'котята')
-	    searh = searh.replaceAll('порно', 'котята')
-	    searh = searh.replaceAll('порнуха', 'котята')
-	    searh = searh.replaceAll('секс', 'котята')
-	    searh = searh.replaceAll('ебля', 'котята')
-	    if(message.channel.guild.id === '417266233562365952') return message.reply("отключено для данного сервера");
+	    searh = searh.replaceAll('porn', 'котята');
+	    searh = searh.replaceAll('nudes', 'котята');
+	    searh = searh.replaceAll('sex', 'котята');
+	    searh = searh.replaceAll('gaysex', 'котята');
+	    searh = searh.replaceAll('порно', 'котята');
+	    searh = searh.replaceAll('порнуха', 'котята');
+	    searh = searh.replaceAll('секс', 'котята');
+	    searh = searh.replaceAll('ебля', 'котята');
 let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
   message.channel.send(`<a:google:466553119745114122> Ищу в google ${searh}...`)
   return snekfetch.get(searchUrl).then((result) => {
@@ -1569,9 +1568,9 @@ message.channel.send(`Варны для пользователя ${member} на 
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let guilds = [];
-	    const user = message.mentions.users.first();
+	    let user = message.mentions.users.first();
 	    if(!user) {
-		    user = message.author
+		    user = message.author;
 	    }
 	message.reply(`Сервера и их данные отправлены пользователю ${user}`);
         client.guilds.forEach(function (guild) {guilds.push(guild.name.replace(/`/g, "`" + String.fromCharCode(8203)) + ' OWNER: ' + guild.owner.user.tag.replace(/`/g, "`" + String.fromCharCode(8203)) + ' ID: ' + guild.id + ' MEMBERS: ' + guild.memberCount)});
