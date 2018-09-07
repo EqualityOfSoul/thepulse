@@ -229,7 +229,7 @@ client.on("message", message => {
 				}
 				});
 });
-client.on("guildMemberRemove", member => {
+/*client.on("guildMemberRemove", member => {
 	if(member.guild.id === '264445053596991498') return;
 	if(!member.guild.systemChannel) return;
 	let q = member.user.tag;
@@ -250,7 +250,7 @@ client.on("guildMemberRemove", member => {
             });
           });
         });
-})
+})*/
 const servers = config.servers;
 
 function wrap(text) {
