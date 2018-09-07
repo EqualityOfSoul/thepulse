@@ -1,4 +1,3 @@
-
 const Discord = require("discord.js");
 const music = require('discord.js-music-v11');
 const music2 = require('discord.js-music-hiico');
@@ -76,7 +75,7 @@ con.connect(err => {
   console.log("connected")
 })
 const sh = require("weeb.js");
-const weeb = new sh(`Wolke ${process.env.WEEB_KEY}`);
+const weeb = new sh(`Wolke ${process.env.WEEB_KEY}`, `xeval/${process.version}`);
 //пособие о том, как плодить шарды
 /*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
