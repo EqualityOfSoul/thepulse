@@ -3835,8 +3835,22 @@ message.channel.stopTyping()
 } else if (['profile'].includes(command)) {
 	if (pf.has(message.author.id)) return message.channel.send("CoolDown!");
 	let user = message.mentions.members.first();
-	if(!user) return message.channel.send("Укажите пользователя");
+	if(!args[0]) return message.channel.send("Укажите пользователя или похожее к нему имя");
 	if(user.user.bot) return message.channel.send("У ботов нет аккаунтов");
+	let members = [];
+	let indexes = [];
+
+	message.guild.members.forEach(function(member){
+	members.push(user.user.username);
+	indexes.push(user.id);
+
+	})
+	let match = sm.findBestMatch(user.user.username, members);
+let username = match.bestMatch.target;
+
+if(!user) {
+	user = message.guild.members.get(indexes[members.indexOf(username)])
+}
 con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
             if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
     });
