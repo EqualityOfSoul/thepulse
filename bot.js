@@ -3358,7 +3358,7 @@ message.channel.stopTyping()
 	    const moment = require("moment");
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let role = message.mentions.roles.first();
-	    if(!role) return message.reply("упомяните роль или введите примерное название роли.");
+	    if(!args[0]) return message.reply("упомяните роль или введите примерное название роли.");
 	    let roles = [];
 	let indexes = [];
 
