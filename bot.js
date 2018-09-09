@@ -3850,6 +3850,42 @@ let username = match.bestMatch.target;
 
 if(!user) {
 	user = message.guild.members.get(indexes[members.indexOf(username)])
+	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+		message.channel.startTyping()
+    jimp.read(user.avatarURL).then(function(image) {
+        con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+        jimp.read("https://media.discordapp.net/attachments/464882068766195715/485169722862862346/1535743865221.png").then(function(image2) {
+jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image3) {
+jimp.read(rows[0].bg).then(function(image4) {
+jimp.loadFont("fonts/rus.fnt").then(function(font2) {
+let lvl = rows[0].lvl;
+        let xp = rows[0].xp;
+        let money = rows[0].money;
+            let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
+        let totalxp = rows[0].global;
+image.resize(160, 160)
+image4.resize(800, 600)
+image2.mask(image4, 0, 0)
+image3.resize(160, 160);
+image.mask(image3,0,0)
+image2.composite(image, 330, 235);
+image2.print(font2, 40, 123, `XP: ${xp}/${NeedXp}`);
+image2.print(font2, 40, 190, `Money: ${rows[0].money}`);
+image2.print(font2, 425, 123, `LVL: ${rows[0].lvl}`);
+image2.print(font2, 425, 190, `REP: ${rows[0].rep}`);
+image2.print(font2, 220, 440, `Total XP: ${totalxp}`);
+image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
+})
+});
+});
+});
+});
+});
+});
+message.channel.stopTyping()
+	});
+return;
 }
 con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
             if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
