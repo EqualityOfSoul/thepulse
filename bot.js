@@ -3357,39 +3357,21 @@ message.channel.stopTyping()
     } else if (['roleinfo'].includes(command)) {
 	    const moment = require("moment");
 	    actFUN = actFUN + 1; actALL = actALL + 1;
-	    let role = message.mentions.roles.first() || message.guild.roles.find('name', args.join(" "));
-	    if(!role) return message.reply("упомяните роль или введите точное название роли.");
+	    let role = message.mentions.roles.first();
+	    if(!role) return message.reply("упомяните роль или введите примерное название роли.");
+	    let roles = [];
+	let indexes = [];
 
-	 /*   let perms = {
-			ADMINISTRATOR: 'Administrator',
-			VIEW_AUDIT_LOG: 'View Audit Log',
-			MANAGE_GUILD: 'Manage Server',
-			MANAGE_ROLES: 'Manage Roles',
-			MANAGE_CHANNELS: 'Manage Channels',
-			KICK_MEMBERS: 'Kick Members',
-			BAN_MEMBERS: 'Ban Members',
-			CREATE_INSTANT_INVITE: 'Create Instant Invite',
-			CHANGE_NICKNAME: 'Change Nickname',
-			MANAGE_NICKNAMES: 'Manage Nicknames',
-			MANAGE_EMOJIS: 'Manage Emojis',
-			MANAGE_WEBHOOKS: 'Manage Webhooks',
-			VIEW_CHANNEL: 'Read Text Channels and See Voice Channels',
-			SEND_MESSAGES: 'Send Messages',
-			SEND_TTS_MESSAGES: 'Send TTS Messages',
-			MANAGE_MESSAGES: 'Manage Messages',
-			EMBED_LINKS: 'Embed Links',
-			ATTACH_FILES: 'Attach Files',
-			READ_MESSAGE_HISTORY: 'Read Message History',
-			MENTION_EVERYONE: 'Mention Everyone',
-			USE_EXTERNAL_EMOJIS: 'Use External Emojis',
-			ADD_REACTIONS: 'Add Reactions',
-			CONNECT: 'Connect',
-			SPEAK: 'Speak',
-			MUTE_MEMBERS: 'Mute Members',
-			DEAFEN_MEMBERS: 'Deafen Members',
-			MOVE_MEMBERS: 'Move Members',
-			USE_VAD: 'Use Voice Activity'
-		};*/
+	message.guild.roles.forEach(function(role){
+	roles.push(role.name);
+	indexes.push(role.id);
+
+	})
+	let match = sm.findBestMatch(args.join(" "), roles);
+	let named = match.bestMatch.target;
+	role = message.guild.roles.get(indexes[roles.indexOf(named)]);
+
+	
 	  let members = 0,
         normalMembers = 0,
         botMembers    = 0;
@@ -3401,7 +3383,6 @@ message.channel.stopTyping()
         normalMembers += 1
       }
     });
-	   // const allPermissions = Object.entries(role.permissions.serialize()).filter(allowed => allowed[1]).map(([perm]) => this.perms[perm]).join(' ');
 		const roleInfo = new Discord.RichEmbed()
 			.setColor(role.hexColor || '#FFF')
 			.addField('Название', role.name, true)
@@ -3411,7 +3392,6 @@ message.channel.stopTyping()
 			.addField('Выделяется?', role.hoist ? 'да' : 'нет', true)
 			.addField('Упоминаемая?', role.mentionable ? 'да' : 'нет', true)
 			.addField('Носители', `${members} (${normalMembers} юзеров | ${botMembers} ботов)`, true);
-			//.addField('Права', allPermissions);
 		 message.channel.send(roleInfo);
     } else if(['invitelb'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
