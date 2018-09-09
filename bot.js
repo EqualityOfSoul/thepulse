@@ -2137,17 +2137,7 @@ msg.edit(`Pong! Задержка ${msg.createdTimestamp - message.createdTimesta
             roles[roles_all.size-role.position] = role.name.replace(/`/g, "`" + String.fromCharCode(8203))
         });
 	    let output = roles.join('\n')
-	    const embed = new Discord.RichEmbed()
-        .setTitle(`Роли сервера ${message.channel.guild.name}`)
-        .setThumbnail(message.channel.guild.iconURL)
-        .setColor("#0000ff")
-        .setDescription('```'+output+'```')
-        .setFooter("Могут быть показаны не все роли.")
-	    if (output.length < 1950) {
-            message.channel.send(embed);
-        } else {
             message.channel.send(`${output}`, {split:"\n", code:"json"});
-            }
     } else if (['embed', 'e'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
         try {
