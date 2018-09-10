@@ -2861,6 +2861,16 @@ message.channel.send({embed: new Discord.RichEmbed()
 		      .setFooter('Powered by weeb.sh')
 		     }).catch(err => message.channel.send("Ошибка при попытке отослать изображение, попробуйте еще раз"));
 }).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
+    } else if(['owo'].includes(command)) {
+	    actIMG = actIMG + 1;actALL = actALL +1;
+	    let types = ['png', 'gif'];
+	    weeb.random('owo', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
+message.channel.send({embed: new Discord.RichEmbed()
+		      .setImage(t.url)
+		      .setColor('RANDOM')
+		      .setFooter('Powered by weeb.sh')
+		     }).catch(err => message.channel.send("Ошибка при попытке отослать изображение, попробуйте еще раз"));
+}).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
     } else if(['waifu'].includes(command)) {
 	    actIMG = actIMG + 1;actALL = actALL +1;
         message.channel.send('Загрузка...').then(msg => {
