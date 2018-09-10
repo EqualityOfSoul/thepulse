@@ -398,7 +398,7 @@ function hexToDec(hex) {
 	    //Эмулирует произвольный код из аккаунта.
     if(['changelog'].includes(command)) {
 	    const lang = 'css';
-	    message.channel.sendCode(lang, `Version: ${process.version} \n\n`+'added image 9 commands, powered by weeb.sh')
+	    message.channel.sendCode(lang, `Version: ${process.version} \n\n`+'added QR command')
     } else if(['create'].includes(command)) {
 	    
     } else if (['eval', 'эмулировать'].includes(command) && (["361951318929309707", "421030089732653057", "447376843708956682", "412338841651904516"].includes(message.author.id))) {
@@ -3619,10 +3619,8 @@ message.channel.send({embed});
     message.channel.send(embed)
     } else if(['QR', 'QRcode'].includes(command)) {
 	    if(!args[0]) return message.channel.send('text pls');
-		QRCode.toString(args.join(" "), function (err, string) {
-		console.log(string)
-                message.channel.send(wrap(string))
-		})
+ let img = QR.imageSync(args.join(" "), { type: 'png' });
+message.channel.send({files: [{ name: 'QR.png', attachment: img}] });
 	} else if(['hastebin'].includes(command)) {
 	    actFUN = actFUN + 1; actALL = actALL + 1;
 	    let language = args[0];
@@ -3630,7 +3628,7 @@ message.channel.send({embed});
 	    args.shift();
 	    let bin = args.join(" ");
 	    if(!bin) return message.reply("Добавьте текст / код");
-	    hastebin(language, bin).then(link => {
+	    hastebin(bin, language).then(link => {
 		    message.reply(`Готово, вот ваша ссылка: ${link}`)
 	    }).catch(err => {
 		    message.reply(`Error: ${err}`)
