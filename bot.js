@@ -2912,7 +2912,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 }).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
     } else if(['initial_d'].includes(command)) {
 	    actIMG = actIMG + 1;actALL = actALL +1;
-	    weeb.random('initial_d', { hidden: false, nsfw: false, filetype: 'png'}).then(t => {
+	    weeb.random('initial_d', { hidden: false, nsfw: false, filetype: 'gif'}).then(t => {
 message.channel.send({embed: new Discord.RichEmbed()
 		      .setImage(t.url)
 		      .setColor('RANDOM')
