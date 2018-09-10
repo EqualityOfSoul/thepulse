@@ -2851,10 +2851,89 @@ msg.edit({embed})
                 } catch (e) {console.log(e)}
             });
         });
+    } else if(['delete_this', 'dthis'].includes(command)) {
+	    actIMG = actIMG + 1;actALL = actALL +1;
+	    let types = ['png', 'gif'];
+	    weeb.random('delete_this', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
+message.channel.send({embed: new Discord.RichEmbed()
+		      .setImage(t.url)
+		      .setColor('RANDOM')
+		      .setFooter('Powered by weeb.sh')
+		     }).catch(err => message.channel.send("Ошибка при попытке отослать изображение, попробуйте еще раз"));
+}).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
+    } else if(['triggered'].includes(command)) {
+	    actIMG = actIMG + 1;actALL = actALL +1;
+	    let types = ['png', 'gif'];
+	    weeb.random('triggered', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
+message.channel.send({embed: new Discord.RichEmbed()
+		      .setImage(t.url)
+		      .setColor('RANDOM')
+		      .setFooter('Powered by weeb.sh')
+		     }).catch(err => message.channel.send("Ошибка при попытке отослать изображение, попробуйте еще раз"));
+}).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
+    } else if(['discord_memes'].includes(command)) {
+	    actIMG = actIMG + 1;actALL = actALL +1;
+	    let types = ['png', 'gif'];
+	    weeb.random('discord_memes', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
+message.channel.send({embed: new Discord.RichEmbed()
+		      .setImage(t.url)
+		      .setColor('RANDOM')
+		      .setFooter('Powered by weeb.sh')
+		     }).catch(err => message.channel.send("Ошибка при попытке отослать изображение, попробуйте еще раз"));
+}).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
+    } else if(['thinking'].includes(command)) {
+	    actIMG = actIMG + 1;actALL = actALL +1;
+	    let types = ['png', 'gif'];
+	    weeb.random('thinking', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
+message.channel.send({embed: new Discord.RichEmbed()
+		      .setImage(t.url)
+		      .setColor('RANDOM')
+		      .setFooter('Powered by weeb.sh')
+		     }).catch(err => message.channel.send("Ошибка при попытке отослать изображение, попробуйте еще раз"));
+}).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
+    } else if(['insult'].includes(command)) {
+	    actIMG = actIMG + 1;actALL = actALL +1;
+	    let types = ['png', 'gif'];
+	    weeb.random('insult', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
+message.channel.send({embed: new Discord.RichEmbed()
+		      .setImage(t.url)
+		      .setColor('RANDOM')
+		      .setFooter('Powered by weeb.sh')
+		     }).catch(err => message.channel.send("Ошибка при попытке отослать изображение, попробуйте еще раз"));
+}).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
     } else if(['awoo'].includes(command)) {
 	    actIMG = actIMG + 1;actALL = actALL +1;
 	    let types = ['png', 'gif'];
 	    weeb.random('awoo', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
+message.channel.send({embed: new Discord.RichEmbed()
+		      .setImage(t.url)
+		      .setColor('RANDOM')
+		      .setFooter('Powered by weeb.sh')
+		     }).catch(err => message.channel.send("Ошибка при попытке отослать изображение, попробуйте еще раз"));
+}).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
+    } else if(['initial_d'].includes(command)) {
+	    actIMG = actIMG + 1;actALL = actALL +1;
+	    weeb.random('initial_d', { hidden: false, nsfw: false, filetype: 'png'}).then(t => {
+message.channel.send({embed: new Discord.RichEmbed()
+		      .setImage(t.url)
+		      .setColor('RANDOM')
+		      .setFooter('Powered by weeb.sh')
+		     }).catch(err => message.channel.send("Ошибка при попытке отослать изображение, попробуйте еще раз"));
+}).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
+    } else if(['deredere'].includes(command)) {
+	    actIMG = actIMG + 1;actALL = actALL +1;
+	    let types = ['png', 'gif'];
+	    weeb.random('deredere', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)]}).then(t => {
+message.channel.send({embed: new Discord.RichEmbed()
+		      .setImage(t.url)
+		      .setColor('RANDOM')
+		      .setFooter('Powered by weeb.sh')
+		     }).catch(err => message.channel.send("Ошибка при попытке отослать изображение, попробуйте еще раз"));
+}).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
+    } else if(['megumin'].includes(command)) {
+	    actIMG = actIMG + 1;actALL = actALL +1;
+	    let types = ['png', 'gif'];
+	    weeb.random('megumin', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
 message.channel.send({embed: new Discord.RichEmbed()
 		      .setImage(t.url)
 		      .setColor('RANDOM')
