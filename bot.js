@@ -44,6 +44,7 @@ let actOWN = 0; //  actOWN = actOWN + 1;actALL = actALL +1;
 let actIMG = 0; //  actIMG = actIMG + 1;actALL = actALL +1;
 let actALL = 0; //  actALL = actALL +1;actALL = actALL +1;
 let gameCount = 0;
+let sms = 0;
 const talkedRecently = new Set();
 const talked = new Set();
 const bl = new Set();
@@ -112,7 +113,7 @@ client.on('ready', () => {
 	console.log("------------------------------")
     client.user.setStatus("dnd");
     function randomStatus() {
-        let status = [`xeval.ga | ${client.guilds.size}`, `xeval.ga`,`x!help | ${client.guilds.size}`];
+        let status = [`xeval.ga | ${client.guilds.size} guilds`, `xeval.ga`,`x!help | ${client.guilds.size} guilds`];
         let rstatus = Math.floor(Math.random() * status.length);
         client.user.setActivity(status[rstatus]);
 
