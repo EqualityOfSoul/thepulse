@@ -3617,23 +3617,6 @@ message.channel.send({embed});
     embed.setTitle(`Discrim: ${args[0]}`)
         .setDescription(resp);
     message.channel.send(embed)
-    } else if(['QR', 'QRcode'].includes(command)) {
-	    if(!args[0]) return message.channel.send('text pls');
- let img = QR.imageSync(args.join(" "), { type: 'png' });
-message.channel.send({files: [{ name: 'QR.png', attachment: img}] });
-	} else if(['hastebin'].includes(command)) {
-	    actFUN = actFUN + 1; actALL = actALL + 1;
-	    let language = args[0];
-	    if(!language) return message.reply("Укажите язык, например js, py, ruby");
-	    args.shift();
-	    let bin = args.join(" ");
-	    if(!bin) return message.reply("Добавьте текст / код");
-	    hastebin(bin, language).then(link => {
-		    message.reply(`Готово, вот ваша ссылка: ${link}`)
-	    }).catch(err => {
-		    message.reply(`Error: ${err}`)
-	    })
-	   
     } else if (['test'].includes(command) && message.author.id === '361951318929309707') {
 	    if(args[0] === "welcome") {
 		    let member = message.mentions.users.first();
@@ -4284,7 +4267,24 @@ collector.stop('ответ принят');
 	    }
         })
 
-		  } else if (['divorce'].includes(command)) {
+		  } else if(['qr'].includes(command)) {
+	    if(!args) return message.channel.send('text?');
+ let img = QR.imageSync(args.join(" "), { type: 'png' });
+message.channel.send({files: [{ name: 'QR.png', attachment: img}] });
+	} else if(['hastebin'].includes(command)) {
+	    actFUN = actFUN + 1; actALL = actALL + 1;
+	    let language = args[0];
+	    if(!language) return message.reply("Укажите язык, например js, py, ruby");
+	    args.shift();
+	    let bin = args.join(" ");
+	    if(!bin) return message.reply("Добавьте текст / код");
+	    hastebin(bin, language).then(link => {
+		    message.reply(`Готово, вот ваша ссылка: ${link}`)
+	    }).catch(err => {
+		    message.reply(`Error: ${err}`)
+	    })
+	   
+    } else if (['divorce'].includes(command)) {
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		if(rows[0].married === 'no') return message.channel.send("Вы не замужем");
 				  message.channel.send(`Вы развелись с ${client.users.get(rows[0].married).username}`)
