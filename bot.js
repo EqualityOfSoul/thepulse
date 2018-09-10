@@ -397,7 +397,7 @@ function hexToDec(hex) {
 	    //Эмулирует произвольный код из аккаунта.
     if(['changelog'].includes(command)) {
 	    const lang = 'css';
-	    message.channel.sendCode(lang, `+bots responde fixed \n+Changelog доступен для всех \n+added color command \n+added 13 NSFW commands \n+added DATABASE \n+changelog updated`)
+	    message.channel.sendCode(lang, `Version: ${process.version} \n\n`+'added image 9 commands, powered by weeb.sh')
     } else if(['create'].includes(command)) {
 	    
     } else if (['eval', 'эмулировать'].includes(command) && (["361951318929309707", "421030089732653057", "447376843708956682", "412338841651904516"].includes(message.author.id))) {
