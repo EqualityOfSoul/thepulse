@@ -75,7 +75,9 @@ con.connect(err => {
   console.log("connected")
 })
 const Wolken = require('wolken');
-const wolken = new Wolken(process.env.WEEB_KEY, "Wolke", "xeval/1.0.0");
+//const wolken = new Wolken(process.env.WEEB_KEY, "Wolke", "xeval/1.0.0");
+const wrapper = require('weeb-wrapper');
+const weeb = new wrapper("Wolke "+process.env.WEEB_KEY);
 //пособие о том, как плодить шарды
 /*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
