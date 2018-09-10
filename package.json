@@ -51,6 +51,7 @@
         "numcap": "^0.0.14",
         "table": "^4.0.3",
         "qrcode": "^1.2.0",
+        "qr-image": "^3.2.0",
         "google-translate-api": "^2.3.0",
         "git-last-commit": "^0.3.0",
         "jimp": "^0.2.28",
