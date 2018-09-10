@@ -2851,10 +2851,10 @@ msg.edit({embed})
                 } catch (e) {console.log(e)}
             });
         });
-    } else if(['delete_this', 'dthis'].includes(command)) {
+    } else if(['delete_this', 'delete_this', 'dthis'].includes(command)) {
 	    actIMG = actIMG + 1;actALL = actALL +1;
 	    let types = ['png', 'gif'];
-	    weeb.random('delete_this', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
+	    weeb.random('delet_this', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
 message.channel.send({embed: new Discord.RichEmbed()
 		      .setImage(t.url)
 		      .setColor('RANDOM')
@@ -2871,7 +2871,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 		      .setFooter('Powered by weeb.sh')
 		     }).catch(err => message.channel.send("Ошибка при попытке отослать изображение, попробуйте еще раз"));
 }).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
-    } else if(['discord_memes'].includes(command)) {
+    } else if(['discord_memes', 'dmeme'].includes(command)) {
 	    actIMG = actIMG + 1;actALL = actALL +1;
 	    let types = ['png', 'gif'];
 	    weeb.random('discord_memes', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
@@ -2883,8 +2883,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 }).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
     } else if(['thinking'].includes(command)) {
 	    actIMG = actIMG + 1;actALL = actALL +1;
-	    let types = ['png', 'gif'];
-	    weeb.random('thinking', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
+	    weeb.random('thinking', { hidden: false, nsfw: false, filetype: 'gif'}).then(t => {
 message.channel.send({embed: new Discord.RichEmbed()
 		      .setImage(t.url)
 		      .setColor('RANDOM')
@@ -2932,8 +2931,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 }).catch(err => message.channel.send("Ошибка при попытке получить изображение, попробуйте еще раз"));
     } else if(['megumin'].includes(command)) {
 	    actIMG = actIMG + 1;actALL = actALL +1;
-	    let types = ['png', 'gif'];
-	    weeb.random('megumin', { hidden: false, nsfw: false, filetype: types[Math.floor(Math.random() * types.length)] }).then(t => {
+	    weeb.random('megumin', { hidden: false, nsfw: false, filetype: 'gif'}).then(t => {
 message.channel.send({embed: new Discord.RichEmbed()
 		      .setImage(t.url)
 		      .setColor('RANDOM')
