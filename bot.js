@@ -53,17 +53,13 @@ const worked = new Set();
 const repe = new Set();
 let serversPlay = {}
 vm.createContext(codeContext);
-//массив цветов
-const colors = ['ff2828','ff3d28','ff4b28','ff5a28','ff6828','ff7628','ff8c28','ffa128','ffac28','ffb728','ffc228','ffd028','ffd728','ffe228','fff028','fffb28','edff28','deff28','d0ff28','c2ff28','b3ff28','9aff28','8cff28','7dff28','6fff28','5aff28','3dff28','28ff2b','28ff41','28ff56','28ff6c','28ff81','28ff93','28ffa9','28ffba','28ffc9','28ffde','28fff4','28ffff','28f0ff','28deff','28deff','28d3ff','28c5ff','28baff','28b0ff','28a5ff','289eff','2893ff','2885ff','2876ff','2864ff','2856ff','284bff','2841ff','2836ff','2828ff','3228ff','4428ff','5328ff','6828ff','7628ff','7e28ff','8828ff','9328ff','a128ff','b028ff','be28ff','c928ff','d328ff','db28ff','e528ff','f028ff','ff28ff','ff28f7','ff28e5','ff28de','ff28d0','ff28c9','ff28ba','ff28b3','ff28a5','ff289a','ff288c','ff2881','ff287a','ff2873','ff2868','ff2861','ff2856','ff284f','ff2848','ff2844','ff282b'];
 
 var rate = 48000;
 var encoder = new opus.OpusEncoder( rate );
  
-// Encode and decode.
 var frame_size = rate/100;
 
 const db = require('quick.db');
-//DATABASE CONNECT
 const con = mysql.createConnection({
   host: process.env.HOST,
   user: process.env.USER,
@@ -75,10 +71,8 @@ con.connect(err => {
   console.log("connected")
 })
 const Wolken = require('wolken');
-//const wolken = new Wolken(process.env.WEEB_KEY, "Wolke", "xeval/1.0.0");
 const wrapper = require('weeb-wrapper');
 const weeb = new wrapper("Wolke "+process.env.WEEB_KEY);
-//пособие о том, как плодить шарды
 /*const Sharder = require('eris-sharder').Master;
 const sharder = new Sharder(process.env.BOT_TOKEN, "/src/main.js", {
   stats: true,
@@ -97,14 +91,11 @@ music(client, {
 	maxQueueSize: 10,  
 	clearInvoker: false,
 anyoneCanSkip: false
-//channel: 'music'   
 });
 const dbl = require("dblposter");
 const DBLPoster = new dbl('Wolke '+process.env.BOT_KEY, client);
 DBLPoster.bind();
 client.on('ready', () => {
-    //Отпраляет сообщение в логи что бот запущен (+ количество серверов).
-
         console.log(`Успешный старт.`)
 	console.log("----------Количество---------- ")
 	console.log(`${client.guilds.size} серверов `)
@@ -119,13 +110,13 @@ client.on('ready', () => {
 	console.log(`Залогинился в ${client.user.username}`)
 	console.log(`ID: ${client.user.id}`)
 	console.log("------------------------------")
-    //Ставит боту статус.
-    client.user.setActivity(`x!help • ${client.guilds.size} servers`)
-    //Функция необходимая для запуска радуги.
-    servers.forEach(function (item1, number1) {
-    if (!client.guilds.get(item1[0]) || !client.guilds.get(item1[0]).roles.get(item1[1]) || !client.guilds.get(item1[0]).roles.get(item1[1]).editable) servers.splice(number1, 1);
-    });
-    color();
+    client.user.setStatus("dnd");
+    function randomStatus() {
+        let status = [`xeval.ga | ${client.guilds.size}`, `xeval.ga`,`x!help | ${client.guilds.size}`];
+        let rstatus = Math.floor(Math.random() * status.length);
+        client.user.setActivity(status[rstatus]);
+
+    }; setInterval(randomStatus, 10000)
 });
 client.on("guildMemberAdd", member => {
 	con.query(`SELECT * FROM autorole WHERE guild = '${member.guild.id}'`, (err, rows) => {
