@@ -4144,9 +4144,9 @@ message.channel.stopTyping()
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 			  let nxp = Math.floor(Math.random() * (100 - 50 + 1)) + 100;
 			  let nmoney = Math.floor(Math.random() * (100 - 20 + 1)) + 100;
-				  con.query(`UPDATE xp SET money = ${rows[0].money + nmoney}`);
-				  con.query(`UPDATE xp SET xp = ${rows[0].xp + nxp}`);
-				  con.query(`UPDATE xp SET xp = ${rows[0].global + nxp}`);
+				  con.query(`UPDATE xp SET money = ${rows[0].money + nmoney} WHERE id = '${message.author.id}'`);
+				  con.query(`UPDATE xp SET xp = ${rows[0].xp + nxp} WHERE id = '${message.author.id}'`);
+				  con.query(`UPDATE xp SET global = ${rows[0].global + nxp} WHERE id = '${message.author.id}'`);
 				  message.channel.send(`Вы заработали ${nxp} опыта и ${nmoney} денег.`)
 			  });
 			  worked.add(message.author.id);
@@ -4160,7 +4160,7 @@ message.channel.stopTyping()
 			  if(member.bot) return message.channel.send("У ботов нет профиля");
 			  if(member === message.author) return message.channel.send("Самому себе не получится");
 			  con.query(`SELECT * FROM xp WHERE id = '${member.id}'`, (err, rows) => {
-				  con.query(`UPDATE xp SET rep = ${rows[0].rep + 1}`);
+				  con.query(`UPDATE xp SET rep = ${rows[0].rep + 1} WHERE id = '${message.author.id}'`);
 				  message.channel.send(`${message.author} дал ${member} репутацию`);
 				  repe.add(message.author.id);
 			  setTimeout(() => {
@@ -4268,7 +4268,7 @@ collector.stop('ответ принят');
         })
 
 		  } else if(['qr'].includes(command)) {
-	    if(!args) return message.channel.send('text?');
+	    if(!args[0]) return message.channel.send('text?');
  let img = QR.imageSync(args.join(" "), { type: 'png' });
 message.channel.send({files: [{ name: 'QR.png', attachment: img}] });
 	} else if(['hastebin'].includes(command)) {
