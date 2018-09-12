@@ -1505,15 +1505,14 @@ message.channel.send(`Варны для пользователя ${member} на 
 	    });
 	    }
 	    if(args[0] === 'warn') {
+		    
 		    let member = message.mentions.members.first().user.id || args[1];
 		    if(!member) return message.channel.send("Указать чела забыл");
 		    if(member === '361951318929309707') return message.channel.send('не прихуел ли ты?');
 		    let time = moment(Date.now()).format('MMMM Do YYYY')
-		    const collector = new Discord.MessageCollector(message.channel, m => m.author.id === user.id, { time: 30000 });
-		    message.channel.send("Теперь укажите причину, напишите `cancel` для отмены");
-        	    collector.on('collect', message => {
-			    if(message.content === 'cancel') return collector.end("отмена");
-		    });
+		    args.shift()
+		    args.shift(1)
+		    let reason = args.join(" ");
 		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
 			    if(!rows[0]) {
 			    con.query(`INSERT INTO bl (id, date, stage) VALUES ('${member}', '${time}', 1)`)
@@ -1531,6 +1530,19 @@ message.channel.send(`Варны для пользователя ${member} на 
 									    .addField('User', client.users.get(member) + ' || ' + client.users.get(member).username)
 									    .addField('Stage', rows[0].stage)
 									   });
+				    let w;
+				    if(rows[0].stage === 1) {
+					    w = 'FIRST'
+				    }
+				    if(rows[0].stage === 2) {
+					    w = 'LAST'
+				    }
+				    member.send({embed: new Discord.RichEmbed()
+						 .setTitle(`THIS IS YOUR ${w} WARNING`)
+						 .addField('Moderator', message.author.username)
+						 .addField('Причина', reason)
+						 .setFooter('Если вы считаете что это ошибка, напишите боту в личные сообщения "apillation + текст апелляции"');
+						});
 			    });
 	    });
 	    }
