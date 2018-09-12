@@ -1533,10 +1533,9 @@ message.channel.send(`Варны для пользователя ${member} на 
 									    .addField('ID', member)
 									    .addField('User', client.users.get(member) + ' || ' + client.users.get(member).username)
 									    .addField('Stage', rows[0].stage++)
-									   })
+									   });
 	    });
 	    }
-	    });
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let guilds = [];
