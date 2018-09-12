@@ -1,3 +1,4 @@
+
 const Discord = require("discord.js");
 const music = require('discord.js-music-v11');
 const music2 = require('discord.js-music-hiico');
@@ -205,10 +206,9 @@ client.on('message', async message => {
 });
 	   
 })
-client.on("message", async message => {
+client.on("message", message => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	if(!rows[0]) return;
-		if(rows[0].warnstage === 2) return;
 	        let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
 	        const NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
@@ -306,8 +306,12 @@ function generateXp() {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-client.on('message', message => {
-	
+client.on('message', async (message) => {
+	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+	if(!rows[0]) return;
+	const bla = rows[0].b;
+		if(bla === 1) return;
+	});
 	const prefix2 = "<@441667160025333762>";
 
 //При заданом сообщение выполняет действие.
