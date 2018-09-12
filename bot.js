@@ -466,8 +466,6 @@ function hexToDec(hex) {
          message.channel.send({embed});
        }
     } 
-	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-	if(rows[0].warnstage === 2) return;
 	if(['osu'].includes(command)) {
 		let mode = args[0];
 		let user = args[1] + ' ' + args[2];
@@ -4257,7 +4255,6 @@ message.channel.send({embed: new Discord.RichEmbed()
 }).catch(err => {});
 }).catch(err => {});
 		  }
-	});
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
