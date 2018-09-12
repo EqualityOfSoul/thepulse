@@ -208,6 +208,7 @@ client.on('message', async message => {
 client.on("message", message => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	if(!rows[0]) return;
+		if(rows[0].warnstage === 2) return;
 	        let lvl = rows[0].lvl;
 		let xp = rows[0].xp;
 	        const NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
@@ -307,10 +308,7 @@ function generateXp() {
 
 client.on('message', async (message) => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-	if(!rows[0]) return;
-	const bla = rows[0].b;
-		if(bla === 1) return;
-	});
+	if(rows[0].warnstage === 2) return;
 	const prefix2 = "<@441667160025333762>";
 
 //При заданом сообщение выполняет действие.
@@ -4258,6 +4256,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 }).catch(err => {});
 }).catch(err => {});
 		  }
+	});
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
 process.env.BOT_TOKEN = 'NO';
