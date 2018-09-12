@@ -306,9 +306,8 @@ function generateXp() {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-client.on('message', async (message) => {
-	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-	if(rows[0].warnstage === 2) return;
+client.on('message', message => {
+	
 	const prefix2 = "<@441667160025333762>";
 
 //При заданом сообщение выполняет действие.
@@ -467,6 +466,8 @@ function hexToDec(hex) {
          message.channel.send({embed});
        }
     } 
+	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+	if(rows[0].warnstage === 2) return;
 	if(['osu'].includes(command)) {
 		let mode = args[0];
 		let user = args[1] + ' ' + args[2];
