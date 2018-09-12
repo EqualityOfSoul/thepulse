@@ -1514,13 +1514,8 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    if(!rows[0]) {
 			    con.query(`INSERT INTO bl (id, date, reason, stage) VALUES ('${member}', '${reason}', '${time}', 1)`)
 				    
-			    message.channel.send(`${client.users.get(member).username} получает предупреждение.`)    
-			    } else {
-			    con.query(`UPDATE bl SET stage = ${rows[0].stage + 1} WHERE id = '${member}'`);
-			    message.channel.send(`${client.users.get(member).username} получает блок.`) 
-			    }
-			    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
-			    client.channels.get('489439351709761547').send({embed: new Discord.RichEmbed()
+			    message.channel.send(`${client.users.get(member).username} получает предупреждение.`)
+				    client.channels.get('489439351709761547').send({embed: new Discord.RichEmbed()
 									    .setTitle('WARN')
 									    .addField('Moderator', message.author.username)
 									    .addField('ID', member)
@@ -1538,9 +1533,15 @@ message.channel.send(`Варны для пользователя ${member} на 
 						 .setTitle(`THIS IS YOUR ${w} WARNING`)
 						 .addField('Moderator', message.author.username)
 						 .addField('Причина', reason)
-						 .setFooter('Если вы считаете что это ошибка, напишите боту в личные сообщения "apillation + текст апелляции"')
+						 .setFooter('Если вы думаете что это ошибка, напишите боту в личные сообщения "apillation + текст апелляции"')
 						});
-			    });
+				    return;
+			    } else {
+			    con.query(`UPDATE bl SET stage = ${rows[0].stage + 1} WHERE id = '${member}'`);
+			    message.channel.send(`${client.users.get(member).username} получает блок.`) 
+			    }
+			    //con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
+			   // });
 	    });
 	    }
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
