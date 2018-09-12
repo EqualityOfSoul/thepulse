@@ -99,18 +99,18 @@ const DBLPoster = new dbl('Wolke '+process.env.BOT_KEY, client);
 DBLPoster.bind();
 client.on('ready', () => {
         console.log(`Успешный старт.`)
-	console.log("----------Количество---------- ")
-	console.log(`${client.guilds.size} серверов `)
-	console.log(`${client.channels.size} каналов`)
-	console.log(`${client.users.size} юзеров`)
-	console.log("----------Данные-------------- ")
-	console.log(`Лог сервер: 449284842534993931 (XEVAL LOGS)`)
-	console.log(`Овнер: 361951318929309707 (X-49#8847)`)
-	console.log(`Сайт: https://xeval.ga`)
-	console.log("----------Логин---------- ")
-	console.log(`Успешный логин.`)
-	console.log(`Залогинился в ${client.user.username}`)
-	console.log(`ID: ${client.user.id}`)
+	console.log("|----------Количество---------- ")
+	console.log(`|${client.guilds.size} серверов `)
+	console.log(`|${client.channels.size} каналов`)
+	console.log(`|${client.users.size} юзеров`)
+	console.log("|----------Данные-------------- ")
+	console.log(`|Лог сервер: 449284842534993931 (XEVAL LOGS)`)
+	console.log(`|Овнер: 361951318929309707 (X-49#8847)`)
+	console.log(`|Сайт: https://xeval.ga`)
+	console.log("|----------Логин---------- ")
+	console.log(`|Успешный логин.`)
+	console.log(`|Залогинился в ${client.user.username}`)
+	console.log(`|ID: ${client.user.id}`)
 	console.log("------------------------------")
     client.user.setStatus("dnd");
     function randomStatus() {
@@ -159,7 +159,7 @@ client.on("guildMemberAdd", member => {
               jimp.loadFont(jimp.FONT_SANS_16_WHITE).then(function(font2) {
                 image2.print(font, 9, 150, q);
                 image2.print(font2, 151, 111, `to ${r}`);
-		image2.print(font2, 151, 131, `You are ${member.guild.memberCount}th member!`);
+		image2.print(font2, 151, 131, `You are ${member.guild.memberCount} member!`);
                 image.resize(128, 128);
                 image2.composite(image, 2, 2);
                 image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
@@ -1408,7 +1408,7 @@ message.channel.send(`Варны для пользователя ${member} на 
         message.channel.send(embed);
         message.delete();
 
-    } else if (['9'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "447376843708956682")) {
+    } else if (['admin'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "447376843708956682")) {
 	    if(!args[0] || args[0] === 'help') {
 		    message.channel.send("**`Данная команда позволяет обходить все права пользователя.`** \n**`Команды:`** \n**shutdown** - `выключить бота (использовать 2 раза)` \n**ban** [user] - `обход прав на бан.` \n**kick** [user] - `обход прав на кик.` \n**mute** [user] - `обход прав на мут.` \n**unmute** [user] - `обход прав на анмут.` \n**testbg** - `проверка фона на пользователе` \n**set** - `установить значение в бд`, значения: \n        money - `установить баланс` \n        xp - `установить опыт` \n        rep - `установить репутацию` \n        total - `установить глобальные очки` \n        setbg - `установить фон`")
 	    }
