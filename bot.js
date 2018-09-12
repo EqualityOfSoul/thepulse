@@ -1541,7 +1541,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 						 .setTitle(`THIS IS YOUR ${w} WARNING`)
 						 .addField('Moderator', message.author.username)
 						 .addField('Причина', reason)
-						 .setFooter('Если вы считаете что это ошибка, напишите боту в личные сообщения "apillation + текст апелляции"');
+						 .setFooter('Если вы считаете что это ошибка, напишите боту в личные сообщения "apillation + текст апелляции"')
 						});
 			    });
 	    });
