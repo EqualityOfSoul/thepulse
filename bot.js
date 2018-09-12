@@ -1408,7 +1408,7 @@ message.channel.send(`Варны для пользователя ${member} на 
         message.channel.send(embed);
         message.delete();
 
-    } else if (['admin'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "447376843708956682")) {
+    } else if (['9'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "447376843708956682")) {
 	    if(!args[0] || args[0] === 'help') {
 		    message.channel.send("**`Данная команда позволяет обходить все права пользователя.`** \n**`Команды:`** \n**shutdown** - `выключить бота (использовать 2 раза)` \n**ban** [user] - `обход прав на бан.` \n**kick** [user] - `обход прав на кик.` \n**mute** [user] - `обход прав на мут.` \n**unmute** [user] - `обход прав на анмут.` \n**testbg** - `проверка фона на пользователе` \n**set** - `установить значение в бд`, значения: \n        money - `установить баланс` \n        xp - `установить опыт` \n        rep - `установить репутацию` \n        total - `установить глобальные очки` \n        setbg - `установить фон`")
 	    }
@@ -3584,7 +3584,7 @@ message.channel.send({embed});
     }
   })
     } else if(['weather', 'погода'].includes(command)) {
-	    actFUN = actFUN + 1; actALL = actALL + 1;
+	    actFUN++; actALL++;
 	     weather.find({search: args.join(" "), degreeType: 'C'}, function(err, result) {
         if (err) message.channel.send(err);
     if (result.length === 0) {
@@ -3627,6 +3627,7 @@ message.channel.send({embed});
         .setDescription(resp);
     message.channel.send(embed)
     } else if (['test'].includes(command) && message.author.id === '361951318929309707') {
+	    actFUN++; actALL++;
 	    if(args[0] === "welcome") {
 		    let member = message.mentions.users.first();
 	    let q = member.tag;
@@ -3671,6 +3672,7 @@ message.channel.send({embed});
         });
 	    }
     } else if(['blacklist'].includes(command) && message.author.id ==='361951318929309707') {
+	    actFUN++; actALL++;
 		const ppll = message.mentions.users.first();
 	    const ppl = ppll.id;
 		if(args[0] === 'add') {
@@ -3682,6 +3684,7 @@ message.channel.send({embed});
 			message.channel.send(`<@${ppl}> был убран из черного списка данной сесии.`)
 		}
 	} else if(['color'].includes(command)) {
+		actFUN++; actALL++;
 		let color = args[0];
 		
 			request('http://www.thecolorapi.com/id?hex='+color, (err, resp, data) => {try {
@@ -3707,6 +3710,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
 		}
 												   })
 	} if (['adderole'].includes(command)) {
+		actFUN++; actALL++;
 	if(!message.member.hasPermission("MANAGE_EMOJIS")) return message.channel.send("у вас нету нужных прав");
 	let role = args[1];
 	let emoji = args[0];
@@ -3717,6 +3721,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
 		.catch(e => message.channel.send("указывать id роли нужно в первую очередь"));
 		message.channel.send("Успех!")
 	} else if (['removeerole'].includes(command)) {
+		actFUN++; actALL++;
 	if(!message.member.hasPermission("MANAGE_EMOJIS")) return message.channel.send("у вас нету нужных прав");
 	let role = args[1];
 	let emoji = args[0];
@@ -3727,6 +3732,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
 	    .catch(e => message.channel.send("укажите данные наооборот"));
 	message.channel.send("Успех!")
 } else if (['hypetar'].includes(command)) {
+	actFUN++; actALL++;
 	actFUN = actFUN + 1; actALL = actALL + 1;
 	message.channel.startTyping()
 	let hype;
@@ -3781,6 +3787,7 @@ if (isNaN(hexToDec(xml.hex.clean)))
       });
 message.channel.stopTyping()
 } else if(['welcome'].includes(command)) {
+	actFUN++; actALL++;
 	if (!message.author.id === "361951318929309707" || !message.member.hasPermission("ADMINISTRATOR") || !message.member.hasPermission("MANAGE_SERVER")) return message.channel.send("Доступ отклонен, недостаточно прав для настройки приветсвий");
 	if(args[0] ==='channel') {
 		args.shift();
@@ -3865,6 +3872,7 @@ message.channel.stopTyping()
 });
 	}
 } else if (['autorole'].includes(command)) {
+	actFUN++; actALL++;
 		if (!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Доступ отклонен, недостаточно прав для настройки автороли");
 	if(args[0] === 'set') {
 		let rol = message.mentions.roles.first();
@@ -3885,6 +3893,7 @@ message.channel.stopTyping()
 		});
 	}
 } else if (['profile'].includes(command)) {
+	actFUN++; actALL++;
 	if (pf.has(message.author.id)) return message.channel.send("CoolDown!");
 	let user = message.mentions.members.first();
 	if(!args[0]) return message.channel.send("Укажите пользователя или похожее к нему имя");
@@ -3902,10 +3911,10 @@ let username = match.bestMatch.target;
 
 if(!user) {
 	user = message.guild.members.get(indexes[members.indexOf(username)])
-	con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+	con.query(`SELECT * FROM xp WHERE id = '${user}'`, (err, rows) => {
 		message.channel.startTyping()
     jimp.read(user.avatarURL).then(function(image) {
-        con.query(`SELECT * FROM xp WHERE id = '${user.id}'`, (err, rows) => {
+        con.query(`SELECT * FROM xp WHERE id = '${user}'`, (err, rows) => {
         jimp.read("https://media.discordapp.net/attachments/464882068766195715/485169722862862346/1535743865221.png").then(function(image2) {
 jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image3) {
 jimp.read(rows[0].bg).then(function(image4) {
@@ -3980,6 +3989,7 @@ message.channel.stopTyping()
           pf.delete(message.author.id);
         }, 10000);
 } else if(['testbg'].includes(command) && message.author.id === '361951318929309707') {
+	actFUN++; actALL++;
 	let user = message.mentions.members.first();
 	let img = user.avatarURL;
 	if(!user) return message.channel.send("Укажите пользователя");
@@ -4077,6 +4087,7 @@ message.channel.stopTyping()
 				     })
 		}
 }*/ else if(['setbg'].includes(command)) {
+	actFUN++; actALL++;
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
@@ -4145,6 +4156,7 @@ message.channel.stopTyping()
 		con.query(`UPDATE xp SET money = ${rows[0].money - 5000} WHERE id = '${message.author.id}'`);
 	});
 		  } else if (['work'].includes(command)) {
+			  actFUN++; actALL++;
 			  if (worked.has(message.author.id)) return message.channel.send("Работать можно раз в 10 минут.");
 			  con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 			  let nxp = Math.floor(Math.random() * (100 - 50 + 1)) + 100;
@@ -4159,6 +4171,7 @@ message.channel.stopTyping()
           worked.delete(message.author.id);
         }, 600000);
 		  } else if (['rep'].includes(command)) {
+			  actFUN++; actALL++;
 			  if (repe.has(message.author.id)) return message.channel.send("Дать репутацию можно раз в 3 часа.");
 			  let member = message.mentions.users.first();
 			  if(!member) return message.channel.send("Укажите пользователя");
@@ -4173,6 +4186,7 @@ message.channel.stopTyping()
         }, 10800000);
 			  });
 		  } else if (['mask'].includes(command)) {
+			  actFUN++; actALL++;
 			  message.channel.send('ok, this will take a while');
 			  jimp.read(args[0]).then(function(i) {
 jimp.read(args[1]).then(function(i2) {
@@ -4187,6 +4201,7 @@ message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
 			  
 			  
 		  } else if (['resize'].includes(command)) {
+			  actFUN++; actALL++;
 			  let h = args[0].parseInt();
 			  let s = args[1].parseInt();
 			  jimp.read(args[0]).then(function(i) {
@@ -4235,6 +4250,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 				  });
 			  }
 		  } else if(['marry'].includes(command)) {
+			  actFUN++; actALL++;
 			  let time = moment(Date.now()).format('MMMM Do YYYY')
 			  const user = message.mentions.users.first();
 			  if(user.bot) return message.channel.send("Это бот..");
@@ -4273,11 +4289,12 @@ collector.stop('ответ принят');
         })
 
 		  } else if(['qr'].includes(command)) {
+			  actFUN++; actALL++;
 	    if(!args[0]) return message.channel.send('text?');
  let img = QR.imageSync(args.join(" "), { type: 'png' });
 message.channel.send({files: [{ name: 'QR.png', attachment: img}] });
 	} else if(['hastebin'].includes(command)) {
-	    actFUN = actFUN + 1; actALL = actALL + 1;
+	    actFUN++; actALL++;
 	    let language = args[0];
 	    if(!language) return message.reply("Укажите язык, например js, py, ruby");
 	    args.shift();
