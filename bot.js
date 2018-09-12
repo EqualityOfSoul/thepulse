@@ -1,3 +1,4 @@
+
 const Discord = require("discord.js");
 const music = require('discord.js-music-v11');
 const music2 = require('discord.js-music-hiico');
@@ -56,11 +57,6 @@ const repe = new Set();
 let serversPlay = {}
 vm.createContext(codeContext);
 
-
-let bmembers = 0;
-client.guilds.forEach(g => {
-bmembers = bmembers + g.memberCount;
-})
 var rate = 48000;
 var encoder = new opus.OpusEncoder( rate );
  
@@ -107,7 +103,7 @@ client.on('ready', () => {
 	console.log("----------Количество---------- ")
 	console.log(`${client.guilds.size} серверов `)
 	console.log(`${client.channels.size} каналов`)
-	console.log(`${bmembers} юзеров    `)
+	console.log(`${client.users.size} юзеров    `)
 	console.log("----------Данные-------------- ")
 	console.log(`Лог сервер: 449284842534993931 (XEVAL LOGS)`)
 	console.log(`Овнер: 361951318929309707 (X-49#8847)`)
@@ -468,7 +464,66 @@ function hexToDec(hex) {
     
          message.channel.send({embed});
        }
-    } 
+    } if(['save'].includes(command)) {
+	    
+	    message.channel.send("**Disclaimer:** ваш ключ сохранен не навсегда, ключ будет удален при перезапуске бота.");
+			if(args.length < 2){
+				message.channel.send(`Сохраните сообщение в ключ \`${prefix}save <key> <message>\``);
+				return;
+			}
+			var key = args[0];
+			var messageToSave = "";
+			for(var i = 0; i < args.length - 2; i++){
+				messageToSave += args[i + 1] + " ";
+			}
+			messageToSave += args[args.length - 1];
+			fs.readFile("save.json", "utf8", function(err, data){
+				if(err) throw err;
+				var save = JSON.parse(data);
+				if(save[message.author.username] === undefined){
+					save[message.author.username] = {};
+				}
+				save[message.author.username][key] = messageToSave;
+				fs.writeFile("save.json", JSON.stringify(save), "utf8", function(err){
+					if(err) throw err;
+					message.channel.send(`Ваше сообщение сохранено под ключем \`${key}\`! :tada:`);
+				});
+			});
+		} else if(['view'].includes(command)) {
+			fs.readFile("save.json", "utf8", function(err, data){
+				if(err) throw err;
+				var save = JSON.parse(data);
+				if(args.length === 0){
+					var messageKeys;
+					var savedMessages = "";
+					try{
+						messageKeys = Object.keys(save[message.author.username]);
+					} catch(e){
+						message.reply("У вас еще нет ключей, но вы можете их создать.");
+						return;
+					}
+					if(messageKeys.length === 0){
+						message.reply("У вас еще нет ключей, но вы можете их создать.");
+						return;
+					}
+					for(var i = 0; i < messageKeys.length - 1; i++){
+						savedMessages += messageKeys[i] + ", ";
+					}
+					savedMessages += messageKeys[messageKeys.length - 1];
+					message.reply("вот ваши ключи: **" + savedMessages + "**")
+				} else{
+					var key = args[0];
+					var recalledMessage;
+					try{
+						recalledMessage = save[message.author.username][key];
+					} catch(e){
+						message.reply(`У вас нет ключей именуемые \`${key}\``)
+						return;
+					}
+					message.channel.send(`${key}: ${recalledMessage}`);
+				}
+			});
+		} 
 	if(['osu'].includes(command)) {
 		let mode = args[0];
 		let user = args[1] + ' ' + args[2];
@@ -1403,7 +1458,7 @@ message.channel.send(`Варны для пользователя ${member} на 
         //embed.addField('Сервер', process.env.DYNO, true);
         //embed.addField('Порт', process.env.PORT, true);*
         embed.addField('servers count', client.guilds.size)
-        embed.addField('users count', bmembers)
+        embed.addField('users count', client.users.size)
         embed.addField('channels count', client.channels.size)
         embed.addField('FUN uses', `${actFUN}.`)
         embed.addField('MOD uses', `${actMOD}.`)
@@ -1653,10 +1708,10 @@ if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("*
                 messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
         }
 	    if(user) { 
-		    message.channel.send(`Было удалено ${amount} сообщений от пользователя ${user}. \nЗапрошено пользователем **${message.author}**`).then(m => m.delete(4000));
+		    message.channel.send(`Было удалено ${amount} сообщений от пользователя ${user}. \nЗапрошено пользователем **${message.author}**`);
 	    }
 	    if(!user) { 
-		    message.channel.send(`Было удалено ${amount} сообщений. \nЗапрошено пользователем **${message.author}**`).then(m => m.delete(4000));
+		    message.channel.send(`Было удалено ${amount} сообщений. \nЗапрошено пользователем **${message.author}**`)
 	    }
             message.channel.bulkDelete(messages).catch(error => message.channel.send(`Было удалено ${amount} соо.. Ой, тоесть ошибка ${error}`));
     });
