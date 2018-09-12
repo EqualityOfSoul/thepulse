@@ -1568,6 +1568,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
 			    if(!rows) return message.channel.send(`${client.users.get(member).username} не имеет варнов.`)
 			    con.query(`DELETE FROM bl WHERE id = '${member}'`);
+			    bl.delete(member)
 			    message.channel.send(`с ${client.users.get(member).username} сняты все варны.`) 
 		    });
 	    }
