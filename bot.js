@@ -1502,9 +1502,18 @@ message.channel.send(`Варны для пользователя ${member} на 
 	    });
 	    }
 	    if(args[0] === 'warn') {
-		    
-		    let member = message.mentions.members.first().user.id || args[1];
-		    if(!member) return message.channel.send("Указать чела забыл");
+		    let ids;
+		    let member;
+		    ids = message.mentions.members.first()
+		    if (ids) {
+			    member = ids.user.id;
+		    }
+		    if (!ids) {
+			    member = args[1];
+		    }
+		    if(!args[0]) return message.channel.send("Указать чела или id?");
+		    //let member = message.mentions.members.first().user.id || args[1];
+		    //if(!member) return message.channel.send("Указать чела забыл");
 		    if(member === '361951318929309707') return message.channel.send('не прихуел ли ты?');
 		    let time = moment(Date.now()).format('MMMM Do YYYY')
 		    args.shift()
@@ -1538,12 +1547,29 @@ message.channel.send(`Варны для пользователя ${member} на 
 				    client.users.get(member).send({embed: new Discord.RichEmbed()
 						 .setTitle(`THIS IS YOUR ${w} WARNING`)
 						 .addField('Moderator', message.author.username)
-						 .addField('Причина', reason)
+						 .addField('Причина', reason + '\n\nFIRST WARNING = предупреждение\nLAST WARNING = отключение всего функционала бота вплоть до админ команд')
 						 .setFooter('Если вы думаете что это ошибка, напишите боту в личные сообщения "apillation + текст апелляции"')
 						});
 				    return;
 			   });
 	    });
+	    }
+	    if(args[0] === 'unwarn') {
+		    let ids;
+		    let member;
+		    ids = message.mentions.members.first()
+		    if (ids) {
+			    member = ids.user.id;
+		    }
+		    if (!ids) {
+			    member = args[1];
+		    }
+		    if(!member) return message.channel.send("Указать чела забыл");
+		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
+			    if(!rows) return message.channel.send(`${client.users.get(member).username} не имеет варнов.`)
+			    con.query(`DELETE FROM bl WHERE id = '${member}'`);
+			    message.channel.send(`с ${client.users.get(member).username} сняты все варны.`) 
+		    });
 	    }
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
 	    actFUN = actFUN + 1;actALL = actALL +1;
