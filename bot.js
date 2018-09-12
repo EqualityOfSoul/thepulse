@@ -182,6 +182,9 @@ function generateMon() {
   let min = 5;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+function nosym(text) {
+	return text.replace(/`/g, ' ' + String.fromCharCode(8203));
+}
 client.on('message', async message => {
 	let newxp = Math.floor(Math.random() * (20 - 10 + 1)) + 20;
 	if(message.guild.id === '264445053596991498') return;
@@ -191,7 +194,7 @@ client.on('message', async message => {
 	    if(err) throw err;
   let sql;
   if (!rows[0]) {
-    con.query(`INSERT INTO xp (id, xp, lvl, money, global, name) VALUES ('${message.author.id}', ${newxp}, '1', '${generateMon()}', '${newxp}', '${message.author.tag}')`);
+    con.query(`INSERT INTO xp (id, xp, lvl, money, global) VALUES ('${message.author.id}', ${newxp}, '1', '${generateMon()}', '${newxp}')`);
   } else {
     let xp = rows[0].xp;
     con.query(`UPDATE xp SET xp = ${xp + newxp} WHERE id = '${message.author.id}'`);
@@ -254,9 +257,7 @@ const servers = config.servers;
 function wrap(text) {
 	return '```\n' + text.replace(/`/g, '`' + String.fromCharCode(8203)) + '\n```';
 }
-function nosym(text) {
-	return text.replace(/`/g, ' ' + String.fromCharCode(8203));
-}
+
 async function color () {
     await servers.forEach(async function (item1, number1) {
         if (client.guilds.get(item1[0]) && client.guilds.get(item1[0]).roles.get(item1[1]).editable)
@@ -324,7 +325,7 @@ client.on('message', async (message) => {
 client.guilds.forEach(g => {
 bmembers = bmembers + g.memberCount;
 })
-	con.query(`SELECT * FROM bl`, (err, rows) => {
+	con.query(`SELECT * FROM bl WHERE stage = 2`, (err, rows) => {
 rows.forEach(r => bl.add(r.id))
 });
 	if (bl.has(message.author.id)) return;
@@ -372,16 +373,6 @@ if(message.author.bot) return;
 function hexToDec(hex) {
 	return parseInt(hex, 16);
 }
-
-	let blacklist = config.blacklist;
-	//if (bl.has(message.author.id)) {
-		
-	//} else {
-	//if (bl.has(message.author.id)) return console.log('yay');
-
-   
-  //  if (message.author.id === '369471128835457026') return;
-    //Отвечает за установку префикса в команды
     let prefixes = ['X1', 'X!', 'X@', 'x1', 'x!', 'x@', '<@441667160025333762>'];
     let prefix = false;
     prefixes.forEach(prefix_ => {
@@ -1518,13 +1509,18 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    if(!member) return message.channel.send("Указать чела забыл");
 		    if(member === '361951318929309707') return message.channel.send('не прихуел ли ты?');
 		    let time = moment(Date.now()).format('MMMM Do YYYY')
+		    const collector = new Discord.MessageCollector(message.channel, m => m.author.id === user.id, { time: 30000 });
+		    message.channel.send("Теперь укажите причину, напишите `cancel` для отмены");
+        	    collector.on('collect', message => {
+			    if(message.content === 'cancel') return collector.end("отмена");
+		    });
 		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
 			    if(!rows[0]) {
 			    con.query(`INSERT INTO bl (id, date, stage) VALUES ('${member}', '${time}', 1)`)
-				    bl.add(member)
-			    message.channel.send(`${client.users.get(member).username} успешно добавлен в черный список.`)    
+				    
+			    message.channel.send(`${client.users.get(member).username} получает предупреждение.`)    
 			    } else {
-			    con.query(`UPDATE bl SET stage = ${rows[0].stage++} WHERE id = '${member}'`);
+			    con.query(`UPDATE bl SET stage = ${rows[0].stage + 1} WHERE id = '${member}'`);
 			    message.channel.send(`${client.users.get(member).username} получает блок.`) 
 			    }
 			    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
@@ -1533,7 +1529,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 									    .addField('Moderator', message.author.username)
 									    .addField('ID', member)
 									    .addField('User', client.users.get(member) + ' || ' + client.users.get(member).username)
-									    .addField('Stage', rows[0].stage++)
+									    .addField('Stage', rows[0].stage)
 									   });
 			    });
 	    });
@@ -3945,10 +3941,6 @@ message.channel.stopTyping()
         setTimeout(() => {
           pf.delete(message.author.id);
         }, 10000);
-} else if(['top', 'lb', 'leaderboard'].includes(command)) {
-	con.query(`SELECT * FROM xp ORDER BY global DESC LIMIT 10`, (err, rows) => {
-message.channel.send("```Топ 10 пользователей: \n"+(rows.map(r => `Имя: ${r.name}, \nУровень: ${r.lvl}, \nXP: ${r.global}`)).join("\n\n")+"```")
-})
 } else if(['testbg'].includes(command) && message.author.id === '361951318929309707') {
 	let user = message.mentions.members.first();
 	let img = user.avatarURL;
