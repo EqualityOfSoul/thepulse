@@ -1513,6 +1513,29 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    message.channel.send("success")
 	    });
 	    }
+	    if(args[0] === 'warn') {
+		    let member = message.mentions.members.first().user.id || args[1];
+		    if(!member) return message.channel.send("Указать чела забыл");
+		    if(member === '361951318929309707') return message.channel.send('не прихуел ли ты?');
+		    let time = moment(Date.now()).format('MMMM Do YYYY')
+		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
+			    if(!rows[0]) {
+			    con.query(`INSERT INTO bl (id, date, stage) VALUES ('${member}', '${time}', 1)`)
+				    bl.add(member)
+			    message.channel.send(`${client.users.get(member).username} успешно добавлен в черный список.`)    
+			    } else {
+			    con.query(`UPDATE bl SET stage = ${rows[0].stage++} WHERE id = '${member}'`);
+			    message.channel.send(`${client.users.get(member).username} получает блок.`) 
+			    }
+			    client.channels.get('489439351709761547').send({embed: new Discord.RichEmbed()
+									    .setTitle('WARN')
+									    .addField('Moderator', message.author.username)
+									    .addField('ID', member)
+									    .addField('User', client.users.get(member) + ' || ' + client.users.get(member).username)
+									    .addField('Stage', rows[0].stage++)
+									   })
+	    });
+	    });
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let guilds = [];
