@@ -55,10 +55,7 @@ let serversPlay = {}
 vm.createContext(codeContext);
 
 
-let bmembers = 0;
-client.guilds.forEach(g => {
-bmembers = bmembers + g.memberCount;
-})
+
 var rate = 48000;
 var encoder = new opus.OpusEncoder( rate );
  
@@ -105,7 +102,7 @@ client.on('ready', () => {
 	console.log("----------Количество---------- ")
 	console.log(`${client.guilds.size} серверов `)
 	console.log(`${client.channels.size} каналов`)
-	console.log(`${bmembers} юзеров`)
+	console.log(`${client.users.size} юзеров`)
 	console.log("----------Данные-------------- ")
 	console.log(`Лог сервер: 449284842534993931 (XEVAL LOGS)`)
 	console.log(`Овнер: 361951318929309707 (X-49#8847)`)
@@ -323,6 +320,10 @@ client.on('message', async (message) => {
         message.channel.startTyping();
     }
     //tyt
+	let bmembers = 0;
+client.guilds.forEach(g => {
+bmembers = bmembers + g.memberCount;
+})
 
 	if (message.content.startsWith(".t") && message.author.id === '361951318929309707') {
 		message.delete()
