@@ -182,9 +182,6 @@ function generateMon() {
   let min = 5;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-function nosym(text) {
-	return text.replace(/`/g, ' ' + String.fromCharCode(8203));
-}
 client.on('message', async message => {
 	let newxp = Math.floor(Math.random() * (20 - 10 + 1)) + 20;
 	if(message.guild.id === '264445053596991498') return;
