@@ -1534,7 +1534,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 				    if(rows[0].stage === 2) {
 					    w = 'LAST'
 				    }
-				    member.send({embed: new Discord.RichEmbed()
+				    client.users.get(member).send({embed: new Discord.RichEmbed()
 						 .setTitle(`THIS IS YOUR ${w} WARNING`)
 						 .addField('Moderator', message.author.username)
 						 .addField('Причина', reason)
