@@ -205,7 +205,7 @@ client.on('message', async message => {
 });
 	   
 })
-client.on("message", message => {
+client.on("message", async message => {
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 	if(!rows[0]) return;
 		if(rows[0].warnstage === 2) return;
