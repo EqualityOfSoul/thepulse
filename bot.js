@@ -327,7 +327,7 @@ bmembers = bmembers + g.memberCount;
 	con.query(`SELECT * FROM bl`, (err, rows) => {
 rows.forEach(r => bl.add(r.id))
 });
-	(bl.has(message.author.id)) return;
+	if (bl.has(message.author.id)) return;
 
 	if (message.content.startsWith(".t") && message.author.id === '361951318929309707') {
 		message.delete()
