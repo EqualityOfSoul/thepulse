@@ -1527,6 +1527,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    con.query(`UPDATE bl SET stage = ${rows[0].stage++} WHERE id = '${member}'`);
 			    message.channel.send(`${client.users.get(member).username} получает блок.`) 
 			    }
+			    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
 			    client.channels.get('489439351709761547').send({embed: new Discord.RichEmbed()
 									    .setTitle('WARN')
 									    .addField('Moderator', message.author.username)
@@ -1534,6 +1535,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 									    .addField('User', client.users.get(member) + ' || ' + client.users.get(member).username)
 									    .addField('Stage', rows[0].stage++)
 									   });
+			    });
 	    });
 	    }
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
