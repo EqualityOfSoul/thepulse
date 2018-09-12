@@ -1512,7 +1512,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    let reason = args.join(" ");
 		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
 			    if(!rows[0]) {
-			    con.query(`INSERT INTO bl (id, date, stage) VALUES ('${member}', '${time}', 1)`)
+			    con.query(`INSERT INTO bl (id, date, reason, stage) VALUES ('${member}', '${reason}', '${time}', 1)`)
 				    
 			    message.channel.send(`${client.users.get(member).username} получает предупреждение.`)    
 			    } else {
