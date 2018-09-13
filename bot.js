@@ -3921,9 +3921,7 @@ message.channel.stopTyping()
 									jimp.read("https://photogora.ru//img/product/th/3676/1473676296162003676.jpg").then(function(xpbar) {
 
 										xpback.resize(610, 20)
-										xpback.opacity(0.8)
 										xpbar.resize(length, 20)
-										xpbar.opacity(0.8)
 										image.resize(115, 115)
 										image2.resize(800, 600)
 										image2.fade(0.4)
