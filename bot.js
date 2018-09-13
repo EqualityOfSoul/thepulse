@@ -55,7 +55,6 @@ let serversPlay = {}
 vm.createContext(codeContext);
 
 
-
 var rate = 48000;
 var encoder = new opus.OpusEncoder( rate );
  
@@ -266,8 +265,13 @@ async function color () {
 }
 client.on('message', async (message) => {
 	if (message.channel.type === 'dm') {
+		let at = message.attachments.first();
         if ([`${client.user.id}`].includes(message.author.id)) return;
-        client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+' | ' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```')
+		let mss = '';
+		if(at) {
+			mss =+ `message.attachments.first().url`;
+		}
+        client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+' | ' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```' + mss)
 		return;
     }
 });
@@ -304,15 +308,7 @@ function generateXp() {
 }
 
 client.on('message', async (message) => {
-	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-	if(!rows[0]) return;
-	const bla = rows[0].b;
-		if(bla === 1) return;
-	});
-	const prefix2 = "<@441667160025333762>";
-
-//При заданом сообщение выполняет действие.
-	
+	let at = message.attachments.first().url;
     if (message.content.startsWith("бот пиши")) {
         //Отвечает за то чтобы бот начал писать в вызваном чате.
         message.channel.startTyping();
