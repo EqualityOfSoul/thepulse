@@ -4006,7 +4006,7 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
 });
 message.channel.stopTyping()
 } else if(['bg'].includes(command)) {
-	if(!args[0]) return message.channel.send("Доступные фоны: `aura`, `polygon`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
+	if(!args[0]) return message.channel.send("Доступные фоны: `HD`, `abstract`, `abstract2`, `abstract3`, `aura`, `polygon`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
 		if(args[0] === 'aura') {
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setImage("http://barbmayer.com/images/backgrounds/aura-background-large-1.jpg")
@@ -4094,7 +4094,7 @@ message.channel.stopTyping()
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
-		if(!args[0]) return message.channel.send("Доступные фоны: `polygon`, `aura`, `HD`, `redgreen`, `pixel`, `lines2`, `lines`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
+	if(!args[0]) return message.channel.send("Доступные фоны: `HD`, `abstract`, `abstract2`, `abstract3`, `aura`, `polygon`, `redgreen`, `pixel`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
 		if(rows[0].money < 4000) return message.channel.send(`Простите, но этот фон стоит 4000 а у вас всего ${rows[0].money}, накопите еще ${4000 - rows[0].money}`);
 		if(args[0] === 'glitch') {
 			    con.query(`UPDATE xp SET bg = 'https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
