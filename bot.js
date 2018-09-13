@@ -3908,8 +3908,8 @@ message.channel.stopTyping()
 				let money = rows[0].money;
 				let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
 				let totalxp = rows[0].global;
-				const number = xp / 100;
-				const xpnumber =  NeedXp / number;
+				const number = NeedXp / 100;
+				const xpnumber =  xp / number;
 				const length = xpnumber * 6.1;
 
 				jimp.read("https://media.discordapp.net/attachments/464882068766195715/489798509571342347/1536847441069.jpeg").then(function(image2) {
