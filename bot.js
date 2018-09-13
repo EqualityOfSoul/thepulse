@@ -4012,6 +4012,11 @@ message.channel.stopTyping()
 				      .setImage("http://barbmayer.com/images/backgrounds/aura-background-large-1.jpg")
 				     })
 		}
+		if(args[0] === 'HD') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://lh5.googleusercontent.com/-fpb81C7SS4k/VM7RGaiR9-I/AAAAAAAACEI/2FC2cC3goNw/s1600/2015-android-phone-hd-wallpapers-hd-1920x1080p-wallpaper-download.jpg")
+				     })
+		}
 		if(args[0] === 'polygon') {
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setImage("http://mooxidesign.com/wp-content/uploads/2014/06/5-premium-free-polygon-backgrounds.jpg")
@@ -4057,23 +4062,42 @@ message.channel.stopTyping()
 				      .setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQVSJVegQW7Jq1nvnNCqvT9Y65g76jNp5YTUTtCStpjatuyQpUPw")
 				     })
 		}
+		if(args[0] === 'lines') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("http://asset.treering.com.s3.amazonaws.com/wp-content/uploads/20160804083721/Copy-of-Poses-21.jpg")
+				     })
+		}
+			     
+		if(args[0] === 'lines2') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://cdn.dribbble.com/users/1742866/screenshots/3522446/09_rounded_lines.jpg")
+				     });
+		}
+		if(args[0] === 'abstract') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("http://7oom.ru/powerpoint/krasivie-fony-dlya-prezentacii-29.jpg?ver=3.0")
+				     });
+		}
+		if(args[0] === 'abstract2') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://png.pngtree.com/element_origin_min_pic/16/07/06/15577cb2218b1b9.jpg")
+				     });
+		}
+		if(args[0] === 'abstract3') {
+		message.channel.send({embed: new Discord.RichEmbed()
+				      .setImage("https://jooinn.com/images/abstract-background-278.jpg")
+				     });
+		}
+
 } else if(['setbg'].includes(command)) {
 	actFUN++; actALL++;
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
-		if(!args[0]) return message.channel.send("Доступные фоны: `polygon`, `aura`, `water`, `chaotic_piano`, `redgreen`, `pixel`, `lines2`, `lines`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
+		if(!args[0]) return message.channel.send("Доступные фоны: `polygon`, `aura`, `HD`, `redgreen`, `pixel`, `lines2`, `lines`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
 		if(rows[0].money < 4000) return message.channel.send(`Простите, но этот фон стоит 4000 а у вас всего ${rows[0].money}, накопите еще ${4000 - rows[0].money}`);
 		if(args[0] === 'glitch') {
 			    con.query(`UPDATE xp SET bg = 'https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
-		}
-		if(args[0] === 'water') {
-			    con.query(`UPDATE xp SET bg = 'http://www.gfxvoid.com/tutorials/1/sigbackground/final.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
-		}
-		if(args[0] === 'chaotic_piano') {
-			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/chaotic_piano_rank_bg.png' WHERE id = '${message.author.id}'`);
 		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'redgreen') {
@@ -4101,7 +4125,7 @@ message.channel.stopTyping()
 		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'lines') {
-			    con.query(`UPDATE xp SET bg = ' http://asset.treering.com.s3.amazonaws.com/wp-content/uploads/20160804083721/Copy-of-Poses-21.jpg' WHERE id = '${message.author.id}'`);
+			    con.query(`UPDATE xp SET bg = 'http://asset.treering.com.s3.amazonaws.com/wp-content/uploads/20160804083721/Copy-of-Poses-21.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'polygon') {
@@ -4114,6 +4138,22 @@ message.channel.stopTyping()
 		}
 		if(args[0] === 'lines2') {
 			    con.query(`UPDATE xp SET bg = 'https://cdn.dribbble.com/users/1742866/screenshots/3522446/09_rounded_lines.jpg' WHERE id = '${message.author.id}'`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
+		}
+		if(args[0] === 'abstract') {
+			    con.query(`UPDATE xp SET bg = 'http://7oom.ru/powerpoint/krasivie-fony-dlya-prezentacii-29.jpg?ver=3.0' WHERE id = '${message.author.id}'`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
+		}
+		if(args[0] === 'abstract2') {
+			    con.query(`UPDATE xp SET bg = 'https://png.pngtree.com/element_origin_min_pic/16/07/06/15577cb2218b1b9.jpg' WHERE id = '${message.author.id}'`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
+		}
+		if(args[0] === 'abstract3') {
+			    con.query(`UPDATE xp SET bg = 'https://jooinn.com/images/abstract-background-278.jpg' WHERE id = '${message.author.id}'`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
+		}
+		if(args[0] === 'HD') {
+			    con.query(`UPDATE xp SET bg = 'https://lh5.googleusercontent.com/-fpb81C7SS4k/VM7RGaiR9-I/AAAAAAAACEI/2FC2cC3goNw/s1600/2015-android-phone-hd-wallpapers-hd-1920x1080p-wallpaper-download.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'default') {
