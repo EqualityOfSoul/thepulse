@@ -265,11 +265,13 @@ async function color () {
 }
 client.on('message', async (message) => {
 	if (message.channel.type === 'dm') {
-		let at = message.attachments.first();
+		if(message.attachments.first()) {
+			let at = message.attachments.first();
+		}
         if ([`${client.user.id}`].includes(message.author.id)) return;
 		let mss = '';
 		if(at) {
-			mss =+ `message.attachments.first().url`;
+			mss += `message.attachments.first().url`;
 		}
         client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+' | ' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```' + mss)
 		return;
@@ -308,7 +310,9 @@ function generateXp() {
 }
 
 client.on('message', async (message) => {
-	let at = message.attachments.first().url;
+	if(message.attachments.first()) {
+		let at = message.attachments.first().url;
+	}
     if (message.content.startsWith("бот пиши")) {
         //Отвечает за то чтобы бот начал писать в вызваном чате.
         message.channel.startTyping();
