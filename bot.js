@@ -3900,6 +3900,7 @@ message.channel.stopTyping()
 	if(!args[0]) return message.channel.send("Укажите пользователя или похожее к нему имя");
 	if(user.user.bot) return message.channel.send("У ботов нет аккаунтов");
 	con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
+		if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
         	message.channel.startTyping()
 		jimp.read(user.user.avatarURL).then(function(image) {
 			con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
@@ -4058,55 +4059,51 @@ message.channel.stopTyping()
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
-		if(!args[0]) return message.channel.send("Доступные фоны: `polygon`, `aura`, `water`, `chaotic_piano`, `redgreen`, `pixel`, `lines2`, `lines`, `glitch`, `glitch2`, `anime`, `anime2`, `leaves`, `leaves2`");
-		if(rows[0].money < 5000) return message.channel.send(`Простите, но этот фон стоит 5000 а у вас всего ${rows[0].money}, накопите еще ${5000 - rows[0].money}`);
+		if(!args[0]) return message.channel.send("Доступные фоны: `polygon`, `aura`, `water`, `chaotic_piano`, `redgreen`, `pixel`, `lines2`, `lines`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
+		if(rows[0].money < 5000) return message.channel.send(`Простите, но этот фон стоит 4000 а у вас всего ${rows[0].money}, накопите еще ${4000 - rows[0].money}`);
 		if(args[0] === 'glitch') {
 			    con.query(`UPDATE xp SET bg = 'https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'water') {
 			    con.query(`UPDATE xp SET bg = 'http://www.gfxvoid.com/tutorials/1/sigbackground/final.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
-		}
-		if(args[0] === 'glitch2') {
-			    con.query(`UPDATE xp SET bg = 'http://i69.photobucket.com/albums/i74/blizzed/PBT8.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'chaotic_piano') {
 			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/chaotic_piano_rank_bg.png' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'redgreen') {
 			    con.query(`UPDATE xp SET bg = 'https://tatsumaki.xyz/images/backgrounds/rank/RedGreenLineBG.png' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'anime') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485044019265536000/158fbb59b6671521b08529c6bd74798628380fc8_00.png' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'anime2') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485044185997639692/nightcore_forgiven_anime_devushka_ushi_art_102632_300x240.png' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'pixel') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485040744588115975/Rojos.png' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'leaves') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485040415406555156/30452966.png' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'leaves2') {
 			    con.query(`UPDATE xp SET bg = 'https://media.discordapp.net/attachments/472655542079455233/485039713590181888/1121898710_w0_h0_18806.png' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'lines') {
 			    con.query(`UPDATE xp SET bg = ' http://asset.treering.com.s3.amazonaws.com/wp-content/uploads/20160804083721/Copy-of-Poses-21.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'polygon') {
 			    con.query(`UPDATE xp SET bg = 'http://mooxidesign.com/wp-content/uploads/2014/06/5-premium-free-polygon-backgrounds.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'aura') {
 			    con.query(`UPDATE xp SET bg = 'http://barbmayer.com/images/backgrounds/aura-background-large-1.jpg' WHERE id = '${message.author.id}'`);
@@ -4114,11 +4111,11 @@ message.channel.stopTyping()
 		}
 		if(args[0] === 'lines2') {
 			    con.query(`UPDATE xp SET bg = 'https://cdn.dribbble.com/users/1742866/screenshots/3522446/09_rounded_lines.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'default') {
 			    con.query(`UPDATE xp SET bg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQVSJVegQW7Jq1nvnNCqvT9Y65g76jNp5YTUTtCStpjatuyQpUPw' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		con.query(`UPDATE xp SET money = ${rows[0].money - 5000} WHERE id = '${message.author.id}'`);
 	});
