@@ -4005,8 +4005,8 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
 });
 });
 message.channel.stopTyping()
-} /*else if(['bg'].includes(command)) {
-	if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `glitch2`, `anime`, `anime2`, `leaves`, `leaves2`");
+} else if(['bg'].includes(command)) {
+	if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
 		if(args[0] === 'glitch') {
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setImage("https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg")
@@ -4015,11 +4015,6 @@ message.channel.stopTyping()
 		if(args[0] === 'water') {
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setImage("http://www.gfxvoid.com/tutorials/1/sigbackground/final.jpg")
-				     })
-		}
-		if(args[0] === 'glitch2') {
-		message.channel.send({embed: new Discord.RichEmbed()
-				      .setImage("http://i69.photobucket.com/albums/i74/blizzed/PBT8.jpg")
 				     })
 		}
 		if(args[0] === 'chaotic_piano') {
@@ -4062,7 +4057,7 @@ message.channel.stopTyping()
 				      .setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQVSJVegQW7Jq1nvnNCqvT9Y65g76jNp5YTUTtCStpjatuyQpUPw")
 				     })
 		}
-}*/ else if(['setbg'].includes(command)) {
+} else if(['setbg'].includes(command)) {
 	actFUN++; actALL++;
 	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
 		
