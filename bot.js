@@ -3917,7 +3917,7 @@ message.channel.stopTyping()
 					jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image3) {
 						jimp.read(rows[0].bg).then(function(image4) {
 							jimp.loadFont("fonts/rus.fnt").then(function(font2) {
-								jimp.loadFont(jimp.FONT_SANS_32_WHITE).then(function(font) {
+								jimp.loadFont(jimp.FONT_SANS_32_BLACK).then(function(font) {
 									jimp.read("https://www.babybedding.com/images/fabric/silver-gray-minky-fabric_large.jpg").then(function(xpback) {
 										jimp.read("https://photogora.ru//img/product/th/3676/1473676296162003676.jpg").then(function(xpbar) {
 											jimp.read("https://i.ytimg.com/vi/ATXHi89Wjgs/maxresdefault.jpg").then(function(ma) {
@@ -3941,7 +3941,7 @@ message.channel.stopTyping()
 												image2.print(font2, 10, 180, `Money: ${rows[0].money}`);
 												image2.print(font2, 10, 250, `REP: ${rows[0].rep}`);
 												image2.print(font2, 10, 320, `Total XP: ${totalxp}`);
-												image2.print(font, 380, 535, `${Number(xpnumber).toFixed(2)}/100%`);
+												image2.print(font, 380, 550, `${Number(xpnumber).toFixed(2)}/100%`);
 												//if(rows[0].married !== 'no') image2.print(font2, 500, 30, `Married with`);
 												//if(rows[0].married !== 'no') image2.print(font2, 500, 50, client.users.get(rows[0].married).username);
 												//if(rows[0].married !== 'no') image2.composite(mavatar, 500, 120);
