@@ -3920,28 +3920,33 @@ message.channel.stopTyping()
 								jimp.read("https://www.babybedding.com/images/fabric/silver-gray-minky-fabric_large.jpg").then(function(xpback) {
 									jimp.read("https://photogora.ru//img/product/th/3676/1473676296162003676.jpg").then(function(xpbar) {
 										jimp.read("https://i.ytimg.com/vi/ATXHi89Wjgs/maxresdefault.jpg").then(function(ma) {
-											xpback.resize(610, 20)
-											xpbar.resize(length, 20)
-											image.resize(115, 115)
-											image2.resize(800, 600)
-											ma.resize(300, 200)
-											if(rows[0].married !== 'no') image2.composite(ma, 500, 30)
-											image2.fade(0.4)
-											image4.resize(800, 600)
-											image3.resize(160, 160);
-											image2.composite(xpback, 150, 550);
-											image2.composite(xpbar ,150, 550);
-											image2.composite(image, 15, 480);
-											image2.print(font2, 10, 45, `XP: ${xp}/${NeedXp}`);
-											image2.print(font2, 10, 115, `LVL: ${rows[0].lvl}`);
-											image2.print(font2, 10, 180, `Money: ${rows[0].money}`);
-											image2.print(font2, 10, 250, `REP: ${rows[0].rep}`);
-											image2.print(font2, 10, 320, `Total XP: ${totalxp}`);
-											if(rows[0].married !== 'no') image2.print(font2, 500, 30, `married with ${client.users.get(rows[0].married).username}`);
-											image2.print(font2, 140, 500, client.users.get(user.user.id).username);
-											image4.composite(image2, 0, 0)
-											image4.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-											message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
+											if(rows[0].married !== 'no') jimp.read(client.users.get(rows[0].married).avatarURL).then(function(mavatar) {
+												xpback.resize(610, 20)
+												xpbar.resize(length, 20)
+												image.resize(115, 115)
+												image2.resize(800, 600)
+												if(rows[0].married !== 'no') mavatar.resize(115, 115);
+												ma.resize(300, 200)
+												ma.fade(0.4)
+												if(rows[0].married !== 'no') image2.composite(ma, 500, 30)
+												image2.fade(0.4)
+												image4.resize(800, 600)
+												image3.resize(160, 160);
+												image2.composite(xpback, 150, 550);
+												image2.composite(xpbar ,150, 550);
+												image2.composite(image, 15, 480);
+												image2.print(font2, 10, 45, `XP: ${xp}/${NeedXp}`);
+												image2.print(font2, 10, 115, `LVL: ${rows[0].lvl}`);
+												image2.print(font2, 10, 180, `Money: ${rows[0].money}`);
+												image2.print(font2, 10, 250, `REP: ${rows[0].rep}`);
+												image2.print(font2, 10, 320, `Total XP: ${totalxp}`);
+												if(rows[0].married !== 'no') image2.print(font2, 500, 30, `Married with \n${client.users.get(rows[0].married).username}`);
+												if(rows[0].married !== 'no') image2.composite(mavatar, 500, 100);
+												image2.print(font2, 140, 500, client.users.get(user.user.id).username);
+												image4.composite(image2, 0, 0)
+												image4.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+												message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
+												});
 											});
 										});
 									});
