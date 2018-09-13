@@ -265,8 +265,9 @@ async function color () {
 }
 client.on('message', async (message) => {
 	if (message.channel.type === 'dm') {
+		let at;
 		if(message.attachments.first()) {
-			let at = message.attachments.first();
+			at = message.attachments.first();
 		}
         if ([`${client.user.id}`].includes(message.author.id)) return;
 		let mss = '';
