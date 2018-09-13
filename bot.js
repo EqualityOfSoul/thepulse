@@ -3942,16 +3942,17 @@ message.channel.stopTyping()
 											image4.composite(image2, 0, 0)
 											image4.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 											message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
-											})
+											});
+										});
 									});
 								});
 							});
 						});
 					});
 				});
-			})
-		})
-	message.channel.stopTyping()
+			});
+		});
+	message.channel.stopTyping();
 });
 	 pf.add(message.author.id);
         setTimeout(() => {
