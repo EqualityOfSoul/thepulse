@@ -1409,9 +1409,9 @@ message.channel.send(`Варны для пользователя ${member} на 
         message.channel.send(embed);
         message.delete();
 
-    } else if (['admin'].includes(command) && (message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "447376843708956682")) {
+    } else if (['admin'].includes(command) && (message.author.id === "412338841651904516" || message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "447376843708956682")) {
 	    if(!args[0] || args[0] === 'help') {
-		    message.channel.send("**`Данная команда позволяет обходить все права пользователя.`** \n**`Команды:`** \n**shutdown** - `выключить бота (использовать 2 раза)` \n**ban** [user] - `обход прав на бан.` \n**kick** [user] - `обход прав на кик.` \n**mute** [user] - `обход прав на мут.` \n**unmute** [user] - `обход прав на анмут.` \n**testbg** - `проверка фона на пользователе` \n**set** - `установить значение в бд`, значения: \n        money - `установить баланс` \n        xp - `установить опыт` \n        rep - `установить репутацию` \n        total - `установить глобальные очки` \n        setbg - `установить фон`")
+		    message.channel.send("**`Данная команда позволяет обходить все права пользователя.`** \n**`Команды:`** \n**shutdown** - `выключить бота (использовать 2 раза)` \n**ban** [user] - `обход прав на бан.` \n**kick** [user] - `обход прав на кик.` \n**mute** [user] - `обход прав на мут.` \n**unmute** [user] - `обход прав на анмут.` \n**warn** [id / user] - вадать сис варн. \n**testbg** - `проверка фона на пользователе` \n**set** - `установить значение в бд`, значения: \n        money - `установить баланс` \n        xp - `установить опыт` \n        rep - `установить репутацию` \n        total - `установить глобальные очки` \n        setbg - `установить фон`")
 	    }
 	    if(args[0] === 'shutdown') {
 		    message.channel.send("ok")
@@ -4006,13 +4006,13 @@ message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
 });
 message.channel.stopTyping()
 } else if(['bg'].includes(command)) {
-	if(!args[0]) return message.channel.send("Доступные фоны: `water`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
-		if(args[0] === 'glitch') {
+	if(!args[0]) return message.channel.send("Доступные фоны: `aura`, `polygon`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
+		if(args[0] === 'aura') {
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setImage("https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg")
 				     })
 		}
-		if(args[0] === 'water') {
+		if(args[0] === 'polygon') {
 		message.channel.send({embed: new Discord.RichEmbed()
 				      .setImage("http://www.gfxvoid.com/tutorials/1/sigbackground/final.jpg")
 				     })
@@ -4063,7 +4063,7 @@ message.channel.stopTyping()
 		
 		if(!rows) return message.channel.send("У вас нет аккаунта, он был создан.");
 		if(!args[0]) return message.channel.send("Доступные фоны: `polygon`, `aura`, `water`, `chaotic_piano`, `redgreen`, `pixel`, `lines2`, `lines`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
-		if(rows[0].money < 5000) return message.channel.send(`Простите, но этот фон стоит 4000 а у вас всего ${rows[0].money}, накопите еще ${4000 - rows[0].money}`);
+		if(rows[0].money < 4000) return message.channel.send(`Простите, но этот фон стоит 4000 а у вас всего ${rows[0].money}, накопите еще ${4000 - rows[0].money}`);
 		if(args[0] === 'glitch') {
 			    con.query(`UPDATE xp SET bg = 'https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg' WHERE id = '${message.author.id}'`);
 		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
@@ -4110,7 +4110,7 @@ message.channel.stopTyping()
 		}
 		if(args[0] === 'aura') {
 			    con.query(`UPDATE xp SET bg = 'http://barbmayer.com/images/backgrounds/aura-background-large-1.jpg' WHERE id = '${message.author.id}'`);
-		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 5000}**`);
+		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
 		if(args[0] === 'lines2') {
 			    con.query(`UPDATE xp SET bg = 'https://cdn.dribbble.com/users/1742866/screenshots/3522446/09_rounded_lines.jpg' WHERE id = '${message.author.id}'`);
@@ -4120,7 +4120,7 @@ message.channel.stopTyping()
 			    con.query(`UPDATE xp SET bg = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQVSJVegQW7Jq1nvnNCqvT9Y65g76jNp5YTUTtCStpjatuyQpUPw' WHERE id = '${message.author.id}'`);
 		message.channel.send(`Профиль обновлен, теперь на вашем балансе **${rows[0].money - 4000}**`);
 		}
-		con.query(`UPDATE xp SET money = ${rows[0].money - 5000} WHERE id = '${message.author.id}'`);
+		con.query(`UPDATE xp SET money = ${rows[0].money - 4000} WHERE id = '${message.author.id}'`);
 	});
 		  } else if (['work'].includes(command)) {
 			  actFUN++; actALL++;
