@@ -4009,12 +4009,12 @@ message.channel.stopTyping()
 	if(!args[0]) return message.channel.send("Доступные фоны: `aura`, `polygon`, `chaotic_piano`, `redgreen`, `pixel`, `glitch`, `anime`, `anime2`, `leaves`, `leaves2`");
 		if(args[0] === 'aura') {
 		message.channel.send({embed: new Discord.RichEmbed()
-				      .setImage("https://s-media-cache-ak0.pinimg.com/originals/b1/34/a6/b134a6187a51b88fdb9128dcbfacb380.jpg")
+				      .setImage("http://barbmayer.com/images/backgrounds/aura-background-large-1.jpg")
 				     })
 		}
 		if(args[0] === 'polygon') {
 		message.channel.send({embed: new Discord.RichEmbed()
-				      .setImage("http://www.gfxvoid.com/tutorials/1/sigbackground/final.jpg")
+				      .setImage("http://mooxidesign.com/wp-content/uploads/2014/06/5-premium-free-polygon-backgrounds.jpg")
 				     })
 		}
 		if(args[0] === 'chaotic_piano') {
