@@ -3899,92 +3899,58 @@ message.channel.stopTyping()
 	let user = message.mentions.members.first();
 	if(!args[0]) return message.channel.send("Укажите пользователя или похожее к нему имя");
 	if(user.user.bot) return message.channel.send("У ботов нет аккаунтов");
-	let members = [];
-	let indexes = [];
+	con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
+        	message.channel.startTyping()
+		jimp.read(user.user.avatarURL).then(function(image) {
+			con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
+				let lvl = rows[0].lvl;
+				let xp = rows[0].xp;
+				let money = rows[0].money;
+				let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
+				let totalxp = rows[0].global;
+				const number = xp / 100;
+				const xpnumber =  NeedXp / number;
+				const length = xpnumber * 6;
 
-	message.guild.members.forEach(function(member){
-	members.push(user.user.username);
-	indexes.push(user.id);
+				jimp.read("https://media.discordapp.net/attachments/464882068766195715/489798509571342347/1536847441069.jpeg").then(function(image2) {
+					jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image3) {
+						jimp.read(rows[0].bg).then(function(image4) {
+							jimp.loadFont("fonts/rus.fnt").then(function(font2) {
+								jimp.read("https://www.babybedding.com/images/fabric/silver-gray-minky-fabric_large.jpg").then(function(xpback) {
+									jimp.read("https://photogora.ru//img/product/th/3676/1473676296162003676.jpg").then(function(xpbar) {
 
-	})
-	let match = sm.findBestMatch(user.user.username, members);
-let username = match.bestMatch.target;
-
-if(!user) {
-	user = message.guild.members.get(indexes[members.indexOf(username)])
-	con.query(`SELECT * FROM xp WHERE id = '${user}'`, (err, rows) => {
-		message.channel.startTyping()
-    jimp.read(user.avatarURL).then(function(image) {
-        con.query(`SELECT * FROM xp WHERE id = '${user}'`, (err, rows) => {
-        jimp.read("https://media.discordapp.net/attachments/464882068766195715/485169722862862346/1535743865221.png").then(function(image2) {
-jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image3) {
-jimp.read(rows[0].bg).then(function(image4) {
-jimp.loadFont("fonts/rus.fnt").then(function(font2) {
-let lvl = rows[0].lvl;
-        let xp = rows[0].xp;
-        let money = rows[0].money;
-            let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
-        let totalxp = rows[0].global;
-image.resize(160, 160)
-image4.resize(800, 600)
-image2.mask(image4, 0, 0)
-image3.resize(160, 160);
-image.mask(image3,0,0)
-image2.composite(image, 330, 235);
-image2.print(font2, 40, 123, `XP: ${xp}/${NeedXp}`);
-image2.print(font2, 40, 190, `Money: ${rows[0].money}`);
-image2.print(font2, 425, 123, `LVL: ${rows[0].lvl}`);
-image2.print(font2, 425, 190, `REP: ${rows[0].rep}`);
-image2.print(font2, 220, 440, `Total XP: ${totalxp}`);
-image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
-})
+										xpback.resize(600, 20)
+										xpback.opacity(0.8)
+										xpbar.resize(length, 20)
+										xpbar.opacity(0.8)
+										image.resize(115, 115)
+										image2.resize(800, 600)
+										image2.fade(0.4)
+										image4.resize(800, 600)
+										image3.resize(160, 160);
+										image2.composite(xpback, 150, 550);
+										image2.composite(xpbar ,150, 550);
+										image2.composite(image, 15, 480);
+										image2.print(font2, 10, 45, `XP: ${xp}/${NeedXp}`);
+										image2.print(font2, 10, 115, `LVL: ${rows[0].lvl}`);
+										image2.print(font2, 10, 180, `Money: ${rows[0].money}`);
+										image2.print(font2, 10, 250, `REP: ${rows[0].rep}`);
+										image2.print(font2, 10, 320, `Total XP: ${totalxp}`);
+										image2.print(font2, 140, 500, client.users.get(user.user.id).username);
+										image4.composite(image2, 0, 0)
+										image4.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+										message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
+										})
+									});
+								});
+							});
+						});
+					});
+				});
+			})
+		})
+	message.channel.stopTyping()
 });
-});
-});
-});
-});
-});
-message.channel.stopTyping()
-	});
-return;
-}
-con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
-            if(!rows[0]) return message.channel.send(`${user.user.username} не имеет аккаунта, он должен отправить хотя бы 1 сообщение.`);
-    });
-	message.channel.startTyping()
-    jimp.read(user.user.avatarURL).then(function(image) {
-        con.query(`SELECT * FROM xp WHERE id = '${user.user.id}'`, (err, rows) => {
-        jimp.read("https://media.discordapp.net/attachments/464882068766195715/485169722862862346/1535743865221.png").then(function(image2) {
-jimp.read("https://cloud.githubusercontent.com/assets/414918/11165709/051d10b0-8b0f-11e5-864a-20ef0bada8d6.png").then(function(image3) {
-jimp.read(rows[0].bg).then(function(image4) {
-jimp.loadFont("fonts/rus.fnt").then(function(font2) {
-let lvl = rows[0].lvl;
-        let xp = rows[0].xp;
-        let money = rows[0].money;
-            let NeedXp = 5 * (rows[0].lvl ^ 2) + 400 * rows[0].lvl + 100;
-        let totalxp = rows[0].global;
-image.resize(160, 160)
-image4.resize(800, 600)
-image2.mask(image4, 0, 0)
-image3.resize(160, 160);
-image.mask(image3,0,0)
-image2.composite(image, 330, 235);
-image2.print(font2, 40, 123, `XP: ${xp}/${NeedXp}`);
-image2.print(font2, 40, 190, `Money: ${rows[0].money}`);
-image2.print(font2, 425, 123, `LVL: ${rows[0].lvl}`);
-image2.print(font2, 425, 190, `REP: ${rows[0].rep}`);
-image2.print(font2, 220, 440, `Total XP: ${totalxp}`);
-image2.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
-})
-});
-});
-});
-});
-});
-});
-message.channel.stopTyping()
 	 pf.add(message.author.id);
         setTimeout(() => {
           pf.delete(message.author.id);
