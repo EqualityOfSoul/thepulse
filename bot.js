@@ -3940,8 +3940,9 @@ message.channel.stopTyping()
 												image2.print(font2, 10, 180, `Money: ${rows[0].money}`);
 												image2.print(font2, 10, 250, `REP: ${rows[0].rep}`);
 												image2.print(font2, 10, 320, `Total XP: ${totalxp}`);
-												if(rows[0].married !== 'no') image2.print(font2, 500, 30, `Married with \n${client.users.get(rows[0].married).username}`);
-												if(rows[0].married !== 'no') image2.composite(mavatar, 500, 100);
+												if(rows[0].married !== 'no') image2.print(font2, 500, 30, `Married with`);
+												if(rows[0].married !== 'no') image2.print(font2, 500, 45, client.users.get(rows[0].married).username);
+												if(rows[0].married !== 'no') image2.composite(mavatar, 500, 110);
 												image2.print(font2, 140, 500, client.users.get(user.user.id).username);
 												image4.composite(image2, 0, 0)
 												image4.getBuffer(jimp.MIME_PNG, (error, buffer) => {
