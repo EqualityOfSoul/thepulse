@@ -4217,7 +4217,7 @@ message.channel.stopTyping()
 			  if(member.bot) return message.channel.send("У ботов нет профиля");
 			  if(member === message.author) return message.channel.send("Самому себе не получится");
 			  con.query(`SELECT * FROM xp WHERE id = '${member.id}'`, (err, rows) => {
-				  con.query(`UPDATE xp SET rep = ${rows[0].rep + 1} WHERE id = '${message.author.id}'`);
+				  con.query(`UPDATE xp SET rep = ${rows[0].rep + 1} WHERE id = '${member.id}'`);
 				  message.channel.send(`${message.author} дал ${member} репутацию`);
 				  repe.add(message.author.id);
 			  setTimeout(() => {
