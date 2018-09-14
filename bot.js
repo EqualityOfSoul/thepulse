@@ -3929,7 +3929,7 @@ message.channel.stopTyping()
 														badge.resize(150, 150)
 														image2.resize(800, 600)
 														if(rows[0].married !== 'no')  { mavatar.resize(115, 115) }
-														ma.resize(500, 350)
+														ma.resize(200, 350)
 														ma.fade(0.4)
 														image2.composite(ma, 500, 30)
 														image2.fade(0.4)
