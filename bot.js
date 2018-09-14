@@ -3928,7 +3928,7 @@ message.channel.stopTyping()
 														image.resize(115, 115)
 														badge.resize(150, 150)
 														image2.resize(800, 600)
-														if(rows[0].married !== 'no')  { mavatar.resize(115, 115) }
+													//	if(rows[0].married !== 'no')  { mavatar.resize(115, 115) }
 													//	ma.resize(300, 220)
 													//	ma.fade(0.4)
 // 														image2.composite(ma, 500, 30)
