@@ -406,12 +406,17 @@ run()
 	    const lang = 'css';
 	    message.channel.sendCode(lang, `Version: ${process.version} \n\n`+'New profile system \nWelcome fixed')
     } else if (['il', 'invitelogs'].includes(command)) {
+	    if(!message.guild.id === '449284842534993931') return;
+	    if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply("Вы должны быть администратором.");
 	    client.channels.get("485148028173287427").createInvite({
 		temporary: true,
 		maxAge: 86400,
 		maxUses: 1,
 		unique: true,
-	}, 'request for invite')
+	}, 'request for invite').then(invite => {
+		    message.channel.send('Одноразовае приглашение было отправлено вам в личные сообщения.')
+		    message.author.send(`https://discord.gg/${invite.code}`);
+	    })
     } else if (['eval', 'эмулировать'].includes(command) && (["361951318929309707", "421030089732653057", "447376843708956682", "412338841651904516"].includes(message.author.id))) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 
