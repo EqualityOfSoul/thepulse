@@ -94,7 +94,7 @@ music(client, {
 anyoneCanSkip: false
 });
 const dbl = require("dblposter");
-const DBLPoster = new dbl('Wolke '+process.env.BOT_KEY, client);
+const DBLPoster = new dbl(process.env.BOT_KEY, client);
 DBLPoster.bind();
 client.on('ready', () => {
         console.log(`Успешный старт.`)
@@ -615,7 +615,7 @@ message.member.voiceChannel.join()
 		coll.on('collect', async(reaction) => {
     if (reaction.emoji.name === "⬛") {
 	    count = count + 1;
-   bot.edit(`⬛ - добавить +1. ⚡ - завершить игру \n${count} кликов`);
+   bot.edit(`\`⬛\` - добавить +1. \`⚡\` - завершить игру \n${count} кликов`);
     }
    if (reaction.emoji.name === "⚡") {
     message.delete()
@@ -4240,12 +4240,17 @@ message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
 			  
 		  } else if (['resize'].includes(command)) {
 			  actFUN++; actALL++;
+			  if(!args[0] && !message.attachments.first()) return message.channel.send("Добавьте ссылку или картинку");
+			  let img = args[0];
+			  if(!img) {
+				  img = message.attachments.first().url;
+			  }
 			  jimp.read(args[0]).then(function(i) {
 				  i.resize(900, 900);
 				  i.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'resize.png', attachment: buffer }] })
-}).catch()
-			  }).catch()
+})
+			  })
 		  } else if(['channels'].includes(command) && message.author.id === '361951318929309707' || message.author.id === '447376843708956682' || message.author.id === '421030089732653057') {
 			   const q = client.guilds.get(args[0]);
 message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
