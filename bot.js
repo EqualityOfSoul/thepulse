@@ -395,10 +395,16 @@ function hexToDec(hex) {
 	const NSFWembed = 'В данном канале категория NSFW не работает, измените настройки или перейдите в подходящий канал. https://media.discordapp.net/attachments/465580817452630036/468455310122811393/NSFW.gif';
 	    //Эмулирует произвольный код из аккаунта.
     if(['changelog'].includes(command)) {
+	    const LCL = require('last-commit-log')
+	    const lcl = new LCL()
+ 
+	async function run () {
+ 		const commit = lcl.getLastCommit()
+	 	console.log(commit)
+	}
+run()
 	    const lang = 'css';
-	    message.channel.sendCode(lang, `Version: ${process.version} \n\n`+'added QR command')
-    } else if(['create'].includes(command)) {
-	    
+	    message.channel.sendCode(lang, `Version: ${process.version} \n\n`+'New profile system \nWelcome fixed')
     } else if (['eval', 'эмулировать'].includes(command) && (["361951318929309707", "421030089732653057", "447376843708956682", "412338841651904516"].includes(message.author.id))) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 
