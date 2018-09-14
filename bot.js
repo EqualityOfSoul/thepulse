@@ -3927,7 +3927,7 @@ message.channel.stopTyping()
 												image.resize(115, 115)
 												image2.resize(800, 600)
 												//if(rows[0].married !== 'no') mavatar.resize(115, 115);
-												ma.resize(500, 300)
+												ma.resize(500, 350)
 												ma.fade(0.4)
 												image2.composite(ma, 500, 30)
 												image2.fade(0.4)
@@ -3947,8 +3947,8 @@ message.channel.stopTyping()
 												//if(rows[0].married !== 'no') image2.composite(mavatar, 500, 120);
 												image2.print(font2, 140, 500, client.users.get(user.user.id).username);
 												image4.composite(image2, 0, 0)
-												image4.getBuffer(jimp.MIME_PNG, (error, buffer) => {
-												message.channel.send({files: [{ name: 'card.png', attachment: buffer }] })
+												image4.getBuffer(jimp.MIME_GIF, (error, buffer) => {
+												message.channel.send({files: [{ name: 'profile.gif', attachment: buffer }] })
 												});
 											});
 										});
