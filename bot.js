@@ -3938,16 +3938,18 @@ message.channel.stopTyping()
 													image2.composite(xpback, 150, 550);
 													image2.composite(xpbar ,150, 550);
 													image2.composite(image, 15, 480);
-													if (rows[0].id === '361951318929309707') { image2.composite(badge,480,10) }
+													if (rows[0].id === '361951318929309707' || rows[0].id === '361951318929309707' || rows[0].id === '361951318929309707') { image2.print(font2, 125,500, "XeVAL Developer") }
 													image2.print(font2, 10, 45, `XP: ${xp}/${NeedXp}`);
 													image2.print(font2, 10, 115, `LVL: ${rows[0].lvl}`);
 													image2.print(font2, 10, 180, `Money: ${rows[0].money}`);
 													image2.print(font2, 10, 250, `REP: ${rows[0].rep}`);
 													image2.print(font2, 10, 320, `Total XP: ${totalxp}`);
-													image2.print(font, 380, 555, `${Number(xpnumber).toFixed(2)}/100%`);
-													//if(rows[0].married !== 'no') image2.print(font2, 500, 30, `Married with`);
-													//if(rows[0].married !== 'no') image2.print(font2, 500, 50, client.users.get(rows[0].married).username);
-													//if(rows[0].married !== 'no') image2.composite(mavatar, 500, 120);
+												//	image2.print(font, 380, 555, `${Number(xpnumber).toFixed(2)}/100%`);
+													if(!rows[0].married === 'no') { 
+														image2.print(font2, 500, 30, `Married with`)
+														image2.print(font2, 500, 50, client.users.get(rows[0].married).username)
+														image2.composite(mavatar, 500, 120) 
+													}
 													image2.print(font2, 140, 500, client.users.get(user.user.id).username);
 													image4.composite(image2, 0, 0)
 													image4.getBuffer(jimp.MIME_PNG, (error, buffer) => {
