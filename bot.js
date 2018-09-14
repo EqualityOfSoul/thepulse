@@ -3922,14 +3922,14 @@ message.channel.stopTyping()
 										jimp.read("https://photogora.ru//img/product/th/3676/1473676296162003676.jpg").then(function(xpbar) {
 											jimp.read("https://i.ytimg.com/vi/ATXHi89Wjgs/maxresdefault.jpg").then(function(ma) {
 												jimp.read("https://cdn2.iconfinder.com/data/icons/nodejs-1/512/nodejs-512.png").then(function(badge) {
-													jimp.read(client.users.get(rows[0].married).avatarURL).then(function(mavatar) {
+													if(rows[0].married !== 'no') { jimp.read(client.users.get(rows[0].married).avatarURL).then(function(mavatar) { }
 														xpback.resize(610, 40)
 														xpbar.resize(length, 40)
 														image.resize(115, 115)
 														badge.resize(150, 150)
 														image2.resize(800, 600)
 														if(rows[0].married !== 'no')  { mavatar.resize(115, 115) }
-														ma.resize(200, 350)
+														ma.resize(300, 220)
 														ma.fade(0.4)
 														image2.composite(ma, 500, 30)
 														image2.fade(0.4)
