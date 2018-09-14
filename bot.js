@@ -3938,9 +3938,9 @@ message.channel.stopTyping()
 														image2.composite(xpback, 150, 550);
 														image2.composite(xpbar ,150, 550);
 														image2.composite(image, 15, 480);
-														if (rows[0].id === '361951318929309707') { image2.print(font2, 400, 500, "XeVAL Developer") }
-														if (rows[0].id === '447376843708956682') { image2.print(font2, 400, 500, "XeVAL Developer") }
-														if (rows[0].id === '421030089732653057') { image2.print(font2, 400, 500, "XeVAL Developer") }
+														if (rows[0].id === '361951318929309707') { image2.print(font2, 400, 550, "XeVAL Developer") }
+														if (rows[0].id === '447376843708956682') { image2.print(font2, 400, 550, "XeVAL Developer") }
+														if (rows[0].id === '421030089732653057') { image2.print(font2, 400, 550, "XeVAL Developer") }
 														image2.print(font2, 10, 45, `XP: ${xp}/${NeedXp}`);
 														image2.print(font2, 10, 115, `LVL: ${rows[0].lvl}`);
 														image2.print(font2, 10, 180, `Money: ${rows[0].money}`);
