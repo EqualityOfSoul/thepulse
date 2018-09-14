@@ -3928,7 +3928,7 @@ message.channel.stopTyping()
 														image.resize(115, 115)
 														badge.resize(150, 150)
 														image2.resize(800, 600)
-														if(!rows[0].married === 'no') { mavatar.resize(115, 115) }
+														if(rows[0].married !== 'no')  { mavatar.resize(115, 115) }
 														ma.resize(500, 350)
 														ma.fade(0.4)
 														image2.composite(ma, 500, 30)
@@ -3946,7 +3946,7 @@ message.channel.stopTyping()
 														image2.print(font2, 10, 320, `Total XP: ${totalxp}`);
 													//	image2.print(font, 380, 555, `${Number(xpnumber).toFixed(2)}/100%`);
 														if(rows[0].married !== 'no') { image2.print(font2, 500, 30, `Married with`) }
-														if(rows[0].married !== 'no') { image2.print(font2, 500, 50, client.users.get(rows[0].married).username) }
+														if(rows[0].married !== 'no') { image2.print(font2, 500, 55, client.users.get(rows[0].married).username) }
 														if(rows[0].married !== 'no') { image2.composite(mavatar, 500, 120) }
 														image2.print(font2, 140, 500, client.users.get(user.user.id).username);
 														image4.composite(image2, 0, 0)
