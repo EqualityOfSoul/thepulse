@@ -4,6 +4,7 @@ const music2 = require('discord.js-music-hiico');
 const mysql = require("mysql");
 const arraySort = require('array-sort');
 const table = require('table');
+const porn = require('pornsearch');
 const request = require("request");
 const { inspect } = require("util");
 const config = require('./config.json');
