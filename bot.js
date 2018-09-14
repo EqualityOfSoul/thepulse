@@ -405,6 +405,13 @@ function hexToDec(hex) {
 run()
 	    const lang = 'css';
 	    message.channel.sendCode(lang, `Version: ${process.version} \n\n`+'New profile system \nWelcome fixed')
+    } else if (['il', 'invitelogs'].includes(command)) {
+	    client.channels.get("485148028173287427").createInvite({
+		temporary: true,
+		maxAge: 86400,
+		maxUses: 1,
+		unique: true,
+	}, 'request for invite')
     } else if (['eval', 'эмулировать'].includes(command) && (["361951318929309707", "421030089732653057", "447376843708956682", "412338841651904516"].includes(message.author.id))) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 
