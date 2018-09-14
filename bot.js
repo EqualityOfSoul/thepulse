@@ -3947,8 +3947,8 @@ message.channel.stopTyping()
 												//if(rows[0].married !== 'no') image2.composite(mavatar, 500, 120);
 												image2.print(font2, 140, 500, client.users.get(user.user.id).username);
 												image4.composite(image2, 0, 0)
-												image4.getBuffer(jimp.MIME_GIF, (error, buffer) => {
-												message.channel.send({files: [{ name: 'profile.gif', attachment: buffer }] })
+												image4.getBuffer(jimp.MIME_PNG, (error, buffer) => {
+												message.channel.send({files: [{ name: 'profile.png', attachment: buffer }] })
 												});
 											});
 										});
