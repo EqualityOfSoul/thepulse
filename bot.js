@@ -3920,18 +3920,18 @@ message.channel.stopTyping()
 								jimp.loadFont(jimp.FONT_SANS_32_BLACK).then(function(font) {
 									jimp.read("https://www.babybedding.com/images/fabric/silver-gray-minky-fabric_large.jpg").then(function(xpback) {
 										jimp.read("https://photogora.ru//img/product/th/3676/1473676296162003676.jpg").then(function(xpbar) {
-											jimp.read("https://i.ytimg.com/vi/ATXHi89Wjgs/maxresdefault.jpg").then(function(ma) {
+										//	jimp.read("https://i.ytimg.com/vi/ATXHi89Wjgs/maxresdefault.jpg").then(function(ma) {
 												jimp.read("https://cdn2.iconfinder.com/data/icons/nodejs-1/512/nodejs-512.png").then(function(badge) {
-													if(rows[0].married !== 'no') { jimp.read(client.users.get(rows[0].married).avatarURL).then(function(mavatar) { }
+													//if(rows[0].married !== 'no') { jimp.read(client.users.get(rows[0].married).avatarURL).then(function(mavatar) { }
 														xpback.resize(610, 40)
 														xpbar.resize(length, 40)
 														image.resize(115, 115)
 														badge.resize(150, 150)
 														image2.resize(800, 600)
 														if(rows[0].married !== 'no')  { mavatar.resize(115, 115) }
-														ma.resize(300, 220)
-														ma.fade(0.4)
-														image2.composite(ma, 500, 30)
+													//	ma.resize(300, 220)
+													//	ma.fade(0.4)
+// 														image2.composite(ma, 500, 30)
 														image2.fade(0.4)
 														image4.resize(800, 600)
 														image3.resize(160, 160);
@@ -3945,9 +3945,9 @@ message.channel.stopTyping()
 														image2.print(font2, 10, 250, `REP: ${rows[0].rep}`);
 														image2.print(font2, 10, 320, `Total XP: ${totalxp}`);
 													//	image2.print(font, 380, 555, `${Number(xpnumber).toFixed(2)}/100%`);
-														if(rows[0].married !== 'no') { image2.print(font2, 500, 30, `Married with`) }
-														if(rows[0].married !== 'no') { image2.print(font2, 500, 55, client.users.get(rows[0].married).username) }
-														if(rows[0].married !== 'no') { image2.composite(mavatar, 500, 120) }
+														//if(rows[0].married !== 'no') { image2.print(font2, 500, 30, `Married with`) }
+														//if(rows[0].married !== 'no') { image2.print(font2, 500, 55, client.users.get(rows[0].married).username) }
+														//if(rows[0].married !== 'no') { image2.composite(mavatar, 500, 120) }
 														image2.print(font2, 140, 500, client.users.get(user.user.id).username);
 														image4.composite(image2, 0, 0)
 														image4.getBuffer(jimp.MIME_PNG, (error, buffer) => {
@@ -3957,8 +3957,8 @@ message.channel.stopTyping()
 																	      attachment: buffer 
 																      }]
 																			})
-														});
-													});
+														//});
+											//		});
 												});
 											});
 										});
