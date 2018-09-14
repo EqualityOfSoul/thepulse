@@ -4245,7 +4245,7 @@ message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
 			  if(!img) {
 				  img = message.attachments.first().url;
 			  }
-			  jimp.read(args[0]).then(function(i) {
+			  jimp.read(img).then(function(i) {
 				  i.resize(900, 900);
 				  i.getBuffer(jimp.MIME_PNG, (error, buffer) => {
 message.channel.send({files: [{ name: 'resize.png', attachment: buffer }] })
