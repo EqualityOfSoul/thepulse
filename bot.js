@@ -3927,9 +3927,9 @@ message.channel.stopTyping()
 												image.resize(115, 115)
 												image2.resize(800, 600)
 												//if(rows[0].married !== 'no') mavatar.resize(115, 115);
-												//ma.resize(300, 200)
-												//ma.fade(0.4)
-												//if(rows[0].married !== 'no') image2.composite(ma, 500, 30)
+												ma.resize(500, 300)
+												ma.fade(0.4)
+												image2.composite(ma, 500, 30)
 												image2.fade(0.4)
 												image4.resize(800, 600)
 												image3.resize(160, 160);
