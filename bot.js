@@ -274,7 +274,7 @@ client.on('message', async (message) => {
 		if(at) {
 			mss += message.attachments.first().url;
 		}
-        client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+' | ' +message.author.id+': ```'+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```' + mss)
+        client.channels.get('449845125816909834').send('Сообщение от '+message.author.username+' | ' +message.author.id+': ``` '+message.content.replace(/`/g, "`" + String.fromCharCode(8203))+'```' + mss)
 		return;
     }
 });
@@ -405,8 +405,7 @@ function hexToDec(hex) {
 run()
 	    const lang = 'css';
 	    message.channel.sendCode(lang, `Version: ${process.version} \n\n`+'New profile system \nWelcome fixed')
-    } else if (['il', 'invitelogs'].includes(command)) {
-	    if(!message.guild.id === '449284842534993931') return;
+    } else if (['il', 'invitelogs'].includes(command) && message.guild.id === '449284842534993931') {
 	    if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply("Вы должны быть администратором.");
 	    client.channels.get("485148028173287427").createInvite({
 		temporary: true,
