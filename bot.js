@@ -1449,6 +1449,8 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    if(!rows[0]) return message.channel.send("У пользователя нет аккаунта.");
 			    con.query(`UPDATE xp SET access = 'mod' WHERE id = '${member}'`);
 			    message.channel.send(`${client.users.get(member).username} был повышен | понижен до модератора`);
+		    mods.add(member);
+		    admins.delete(member);
 		    });
     } else if (['addadmin'].includes(command) && message.author.id === '361951318929309707') {
 	    	    let ids;
@@ -1465,6 +1467,8 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    if(!rows[0]) return message.channel.send("У пользователя нет аккаунта.");
 			    con.query(`UPDATE xp SET access = 'admin' WHERE id = '${member}'`);
 			    message.channel.send(`${client.users.get(member).username} был повышен до админа`);
+		    mods.delete(member);
+		    admins.add(member);
 		    });
     } else if (['removeperms'].includes(command) && message.author.id === '361951318929309707') {
 	    	    let ids;
@@ -1481,6 +1485,8 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    if(!rows[0]) return message.channel.send("У пользователя нет аккаунта.");
 			    con.query(`UPDATE xp SET access = 'USER' WHERE id = '${member}'`);
 			    message.channel.send(`${client.users.get(member).username} был понижен`);
+		    mods.delete(member);
+		    admins.delete(member);
 		    });
     } else if (['admin'].includes(command) && admins.has(message.author.id)) {
 	    if(!args[0] || args[0] === 'help') {
