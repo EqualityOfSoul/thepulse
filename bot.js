@@ -93,8 +93,8 @@ music(client, {
 anyoneCanSkip: false
 });
 const dbl = require("dblposter");
-const DBLPoster = new dbl(process.env.BOT_KEY);
-DBLPoster.bind(client);
+const DBLPoster = new dbl(process.env.BOT_KEY, client);
+DBLPoster.bind();
 client.on('ready', () => {
         console.log(`Успешный старт.`)
 	console.log("|----------Количество---------- ")
