@@ -50,6 +50,8 @@ const pf = new Set();
 const tet = new Set();
 const worked = new Set();
 const repe = new Set();
+const bugged = new Set();
+
 let serversPlay = {}
 vm.createContext(codeContext);
 const bl = new Set();
@@ -4530,7 +4532,8 @@ message.channel.send({embed: new Discord.RichEmbed()
 							   });
 					    });
 			  }
-		  } else if (['bugreport'].includes(command)) {
+		  } else if (['bugreport', 'bug'].includes(command)) {
+			  if(bugged.has(message.author.id)) return message.channel.send("Подождите 3 часа перед повторной отправкой");
 			  if(!args[0]) return message.channel.send("А сообщение?");
 			  client.channels.get('490595738636648448').send({embed: new Discord.RichEmbed()
 									  .setTitle(message.author.username)
@@ -4538,7 +4541,11 @@ message.channel.send({embed: new Discord.RichEmbed()
 									  .addField('Content', args.join(" "))
 									  .setThumbnail(message.author.avatarURL)
 									 }).catch(err => message.channel.send("Произошла ошибка, попробуйте поже"));
-			  message.channel.send("Отправлено, ожидайте ответа, за репорт не по теме вы получите сис варн.")
+			  message.channel.send("Отправлено, ожидайте ответа. \nЗа репорт не по теме вы получите системный варн.")
+			  bugged.add(message.author.id);
+        setTimeout(() => {
+          bugged.delete(message.author.id);
+        }, 10800000);
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
