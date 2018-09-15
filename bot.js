@@ -313,20 +313,7 @@ client.on('message', async (message) => {
 	if(message.attachments.first()) {
 		let at = message.attachments.first().url;
 	}
-	let bduser;
-	let bdrep;
-	let bdxp;
-	let bdmarried;
-	let bdtotal;
-	let bdmoney;
-	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
-		if(!rows) return;
-		bduser = rows[0].id;
-		bdrep = rows[0].rep;
-		bdxp = rows[0].xp;
-		bdtotal = rows[0].global;
-		bdmoney = rows[0].money;
-	});
+
     if (message.content.startsWith("бот пиши")) {
         //Отвечает за то чтобы бот начал писать в вызваном чате.
         message.channel.startTyping();
