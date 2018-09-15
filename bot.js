@@ -4440,7 +4440,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 .setThumbnail(us.avatarURL)
 }).catch(err => {});
 }).catch(err => {});
-		  } else if (['admin'].includes(command) && admins.has(message.author.id)) {
+		  } else if (['mod'].includes(command) && mods.has(message.author.id)) {
 		    	  if(!args[0] || args[0] === 'help') {
 			   	 message.channel.send("Вот ваши команды: \n"
 							+"**`mod warn [user or id] [reason]`** - `сис варн` \n"
