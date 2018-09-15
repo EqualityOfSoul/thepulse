@@ -326,15 +326,12 @@ client.guilds.forEach(g => {
 bmembers = bmembers + g.memberCount;
 })
 	con.query(`SELECT * FROM bl WHERE stage >= 2`, (err, rows) => {
-		f(!rows[0]) return;
 	rows.forEach(r => bl.add(r.id))
 	});
-	con.query(`SELECT * FROM xp WHERE access = 1`, (err, rows) => {
-		f(!rows[0]) return;
+	con.query(`SELECT * FROM xp WHERE access = 'mod'`, (err, rows) => {
 	rows.forEach(r => mods.add(r.id))
 	});
-	con.query(`SELECT * FROM xp WHERE access = 2`, (err, rows) => {
-		if(!rows[0]) return;
+	con.query(`SELECT * FROM xp WHERE access = 'admin'`, (err, rows) => {
 	rows.forEach(r => admins.add(r.id))
 	});
 	if (bl.has(message.author.id)) return;
