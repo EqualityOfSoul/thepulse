@@ -4448,7 +4448,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 							+"**`mod channels [guild id]`** - `проверить каналы сервера`")
 		    }
 			  if(args[0] === 'channels') {
-				  const q = client.guilds.get(args[2]);
+				  const q = client.guilds.get(args[1]);
             			  message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
 			  }
 			  if(args[0] === 'snipe') {
@@ -4473,7 +4473,7 @@ message.channel.send({embed: new Discord.RichEmbed()
 						    if (!ids) {
 							    member = args[1];
 						    }
-						    if(!args[0]) return message.channel.send("Указать чела или id?");
+						    if(!args[1]) return message.channel.send("Указать чела или id?");
 						    //let member = message.mentions.members.first().user.id || args[1];
 						    //if(!member) return message.channel.send("Указать чела забыл");
 						    if(member === '361951318929309707') return message.channel.send('не прихуел ли ты?');
