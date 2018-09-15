@@ -1655,86 +1655,8 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    client.users.get(member).send("C вас сняты все варны.").catch(err => message.channel.send("У него было заблочено лс, и я не смог отправить ему сообщение"));
 		    });
 	    }
-    } else if (['mod'].includes(command) && admins.has(message.author.id) || mods.has(message.author.id)) {
-	     if(args[0] === 'help') return message.channel.send("Вот ваши команды: \n`mod warn [user | id] [reason] - сис варн` \n`snipe [channel id] [ammout]` - **просмотреть содержимое канала** \n`channels [guild id]` - **просмотреть каналы сервера**");
-	     if(args[0] === 'channels') {
-			const q = client.guilds.get(args[1]);
-			message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
-	     }
-	    if(args[0] === 'snipe') {
-		    let qw;
-			  if(args[1] > 99) return message.channel.send("меньше плиз");
-			  client.channels.get(args[0]).fetchMessages({
-                limit: args[1],
-                }).then((messages) => {		  			  
-message.channel.send({embed: new Discord.RichEmbed()
-		      .setDescription(messages.map(m => `${m.author.tag}: ${m.content} | [${m.author.bot}]`).join("\n\n"))
-		      .setColor('RANDOM')
-		     }).catch(e => message.channel.send("Стоит урезать зону поиска"));
-})
-	    }
-	    if(args[0] === 'warn') {
-		    let ids;
-		    let member;
-		    ids = message.mentions.members.first()
-		    if (ids) {
-			    member = ids.user.id;
-		    }
-		    if (!ids) {
-			    member = args[1];
-		    }
-		    if(!args[0]) return message.channel.send("Указать чела или id?");
-		    //let member = message.mentions.members.first().user.id || args[1];
-		    //if(!member) return message.channel.send("Указать чела забыл");
-		    if(member === '361951318929309707') return message.channel.send('не прихуел ли ты?');
-		    if(member === message.author.id) return message.channel.send("Ты дурак? окда");
-		     if(admins.has(member)) return message.channel.send("Самый умный?");
-		     if(mods.has(member)) return message.channel.send("Самый умный?");
-		    let time = moment(Date.now()).format('MMMM Do YYYY')
-		    args.shift()
-		    args.shift(1)
-		    let reason = args.join(" ");
-		     if(!reason) return message.channel.send("Нужна причина как никак");
-		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
-			    if(!rows[0]) {
-			    con.query(`INSERT INTO bl (id, date, reason, stage) VALUES ('${member}', '${reason}', '${time}', 1)`)
-				    
-			    message.channel.send(`${client.users.get(member).username} получает предупреждение.`)
-			    } else {
-				    let ww = rows[0].stage + 1;
-			    con.query(`UPDATE bl SET stage = ${ww} WHERE id = '${member}'`);
-			    message.channel.send(`${client.users.get(member).username} получает блок.`) 
-			    }
-			    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
-			    client.channels.get('489439351709761547').send({embed: new Discord.RichEmbed()
-									    .setTitle('WARN')
-									    .addField('Moderator', message.author.username)
-									    .addField('ID', member)
-									    .addField('User', client.users.get(member) + ' || ' + client.users.get(member).username)
-									    .addField('Stage', rows[0].stage)
-									    .addField('Reason', reason)
-									   });
-				    let w;
-				    if(rows[0].stage === 1) {
-					    w = 'FIRST'
-				    }
-				    if(rows[0].stage === 2) {
-					    w = 'LAST'
-				    }
-				    if(rows[0].stage === 3) {
-					    w = 'THREE'
-				    }
-				    client.users.get(member).send({embed: new Discord.RichEmbed()
-						 .setTitle(`THIS IS YOUR ${w} WARNING`)
-						 .addField('Moderator', message.author.username)
-						 .addField('Причина', reason + '\n\nFIRST WARNING = предупреждение\nLAST WARNING = отключение всего функционала бота вплоть до админ команд')
-						 .setFooter('Если вы думаете что это ошибка, напишите боту в личные сообщения "apillation + текст апелляции"')
-						}).catch(err => message.channel.send("У него было заблочено лс, и я не смог отправить ему сообщение"));
-				    return;
-			   });
-	    });
-	    }
-    } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
+    } 
+	 else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
 	    actFUN = actFUN + 1;actALL = actALL +1;
 	    let guilds = [];
 	    const user = message.mentions.users.first();
