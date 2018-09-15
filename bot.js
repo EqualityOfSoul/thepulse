@@ -4530,6 +4530,15 @@ message.channel.send({embed: new Discord.RichEmbed()
 							   });
 					    });
 			  }
+		  } else if (['bugreport'].includes(command)) {
+			  if(!args[0]) return message.channel.send("А сообщение?");
+			  client.channels.get('490595738636648448').send({embed: new Discord.RichEmbed()
+									  .setTitle(message.author.username)
+									  .addField('Author ID', message.author.id)
+									  .addField('Content', args.join(" "))
+									  .setThumbnail(message.author.avatarURL)
+									 }).catch(err => message.channel.send("Произошла ошибка, попробуйте поже"));
+			  message.channel.send("Отправлено, ожидайте ответа, за репорт не по теме вы получите сис варн.")
 		  }
 });
 client.login(process.env.BOT_TOKEN).catch(console.error);
