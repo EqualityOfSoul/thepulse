@@ -1656,8 +1656,24 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    });
 	    }
     } else if (['mod'].includes(command) && admins.has(message.author.id) || mods.has(message.author.id)) {
-	    if(!args[0]) return message.channel.send("Вот ваши команды: \n`mod warn [user | id] [reason]` [\n`snipe [channel id] [ammout]` - **просмотреть содержимое канала** \n`channels [guild id]` - **просмотреть каналы сервера**");
-	     if(args[0] === 'warn') {
+	     if(args[0] === 'help') return message.channel.send("Вот ваши команды: \n`mod warn [user | id] [reason] - сис варн` \n`snipe [channel id] [ammout]` - **просмотреть содержимое канала** \n`channels [guild id]` - **просмотреть каналы сервера**");
+	     if(args[0] === 'channels') {
+			const q = client.guilds.get(args[1]);
+			message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
+	     }
+	    if(args[0] === 'snipe') {
+		    let qw;
+			  if(args[1] > 99) return message.channel.send("меньше плиз");
+			  client.channels.get(args[0]).fetchMessages({
+                limit: args[1],
+                }).then((messages) => {		  			  
+message.channel.send({embed: new Discord.RichEmbed()
+		      .setDescription(messages.map(m => `${m.author.tag}: ${m.content} | [${m.author.bot}]`).join("\n\n"))
+		      .setColor('RANDOM')
+		     }).catch(e => message.channel.send("Стоит урезать зону поиска"));
+})
+	    }
+	    if(args[0] === 'warn') {
 		    let ids;
 		    let member;
 		    ids = message.mentions.members.first()
@@ -1685,8 +1701,8 @@ message.channel.send(`Варны для пользователя ${member} на 
 				    
 			    message.channel.send(`${client.users.get(member).username} получает предупреждение.`)
 			    } else {
-				    let www = rows[0].stage + 1;
-			    con.query(`UPDATE bl SET stage = ${www} WHERE id = '${member}'`);
+				    let ww = rows[0].stage + 1;
+			    con.query(`UPDATE bl SET stage = ${ww} WHERE id = '${member}'`);
 			    message.channel.send(`${client.users.get(member).username} получает блок.`) 
 			    }
 			    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
@@ -4378,10 +4394,10 @@ message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
 message.channel.send({files: [{ name: 'resize.png', attachment: buffer }] })
 })
 			  })
-		  } else if(['channels'].includes(command) && admins.has(message.author.id) || mods.has(message.author.id)) {
-			   const q = client.guilds.get(args[0]);
-message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
-		  } else if(['snipe'].includes(command) && admins.has(message.author.id) || mods.has(message.author.id)) {
+		  } else if(['channels'].includes(command) && admins.has(message.author.id)) {
+			const q = client.guilds.get(args[0]);
+			message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
+		  } else if(['snipe'].includes(command) && admins.has(message.author.id)) {
 			  let qw;
 			  if(args[1] > 99) return message.channel.send("меньше плиз");
 			  client.channels.get(args[0]).fetchMessages({
