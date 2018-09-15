@@ -46,13 +46,15 @@ let gameCount = 0;
 let sms = 0;
 const talkedRecently = new Set();
 const talked = new Set();
-const bl = new Set();
 const pf = new Set();
 const tet = new Set();
 const worked = new Set();
 const repe = new Set();
 let serversPlay = {}
 vm.createContext(codeContext);
+const bl = new Set();
+const mods = new Set();
+const admins = new Set();
 
 
 var rate = 48000;
@@ -324,8 +326,14 @@ client.guilds.forEach(g => {
 bmembers = bmembers + g.memberCount;
 })
 	con.query(`SELECT * FROM bl WHERE stage >= 2`, (err, rows) => {
-rows.forEach(r => bl.add(r.id))
-});
+	rows.forEach(r => bl.add(r.id))
+	});
+	con.query(`SELECT * FROM xp WHERE access = 'mod'`, (err, rows) => {
+	rows.forEach(r => mods.add(r.id))
+	});
+	con.query(`SELECT * FROM xp WHERE access = 'admin'`, (err, rows) => {
+	rows.forEach(r => admins.add(r.id))
+	});
 	if (bl.has(message.author.id)) return;
 
 	if (message.content.startsWith(".t") && message.author.id === '361951318929309707') {
@@ -1426,7 +1434,39 @@ message.channel.send(`Варны для пользователя ${member} на 
         message.channel.send(embed);
         message.delete();
 
-    } else if (['admin'].includes(command) && (message.author.id === "412338841651904516" || message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "447376843708956682")) {
+    } else if (['addmod'].includes(command) && message.author.id === '361951318929309707') {
+	    	    let ids;
+		    let member;
+		    ids = message.mentions.members.first()
+		    if (ids) {
+			    member = ids.user.id;
+		    }
+		    if (!ids) {
+			    member = args[1];
+		    }
+		    if(!member) return message.channel.send("Указать чела или id?");
+	    con.query(`SELECT * FROM xp WHERE id = '${member}'`, (err, rows) => {
+			    if(!rows[0]) return message.channel.send("У пользователя нет аккаунта.");
+			    con.query(`UPDATE xp SET access = 'mod' WHERE id = '${member}'`);
+			    message.channel.send(`${client.users.get(member).username} был повышен | понижен до модератора`);
+		    });
+    } else if (['addadmin'].includes(command) && message.author.id === '361951318929309707') {
+	    	    let ids;
+		    let member;
+		    ids = message.mentions.members.first()
+		    if (ids) {
+			    member = ids.user.id;
+		    }
+		    if (!ids) {
+			    member = args[1];
+		    }
+		    if(!member) return message.channel.send("Указать чела или id?");
+	    con.query(`SELECT * FROM xp WHERE id = '${member}'`, (err, rows) => {
+			    if(!rows[0]) return message.channel.send("У пользователя нет аккаунта.");
+			    con.query(`UPDATE xp SET access = 'admin' WHERE id = '${member}'`);
+			    message.channel.send(`${client.users.get(member).username} был повышен до админа`);
+		    });
+    } else if (['admin'].includes(command) && admins.has(message.author.id)) {
 	    if(!args[0] || args[0] === 'help') {
 		    message.channel.send("**`Данная команда позволяет обходить все права пользователя.`** \n**`Команды:`** \n**shutdown** - `выключить бота (использовать 2 раза)` \n**ban** [user] - `обход прав на бан.` \n**kick** [user] - `обход прав на кик.` \n**mute** [user] - `обход прав на мут.` \n**unmute** [user] - `обход прав на анмут.` \n**warn** [id / user] - вадать сис варн. \n**testbg** - `проверка фона на пользователе` \n**set** - `установить значение в бд`, значения: \n        money - `установить баланс` \n        xp - `установить опыт` \n        rep - `установить репутацию` \n        total - `установить глобальные очки` \n        setbg - `установить фон`")
 	    }
@@ -1533,6 +1573,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    //let member = message.mentions.members.first().user.id || args[1];
 		    //if(!member) return message.channel.send("Указать чела забыл");
 		    if(member === '361951318929309707') return message.channel.send('не прихуел ли ты?');
+		    if(member === message.author.id) return message.channel.send("Ты дурак? окда");
 		    let time = moment(Date.now()).format('MMMM Do YYYY')
 		    args.shift()
 		    args.shift(1)
@@ -1571,7 +1612,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 						 .addField('Moderator', message.author.username)
 						 .addField('Причина', reason + '\n\nFIRST WARNING = предупреждение\nLAST WARNING = отключение всего функционала бота вплоть до админ команд')
 						 .setFooter('Если вы думаете что это ошибка, напишите боту в личные сообщения "apillation + текст апелляции"')
-						});
+						}).catch(err => message.channel.send("У него было заблочено лс, и я не смог отправить ему сообщение"));
 				    return;
 			   });
 	    });
@@ -1587,13 +1628,75 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    member = args[1];
 		    }
 		    if(!member) return message.channel.send("Указать чела забыл");
+		    if(member === message.author.id) return message.channel.send("Самый умный?");
+		    if(member === mods.has(member) || admins.has(member)) return message.channel.send("Самый умный?");
 		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
-			    if(!rows) return message.channel.send(`${client.users.get(member).username} не имеет варнов.`)
+			    if(!rows[0]) return message.channel.send(`${client.users.get(member).username} не имеет варнов.`)
 			    con.query(`DELETE FROM bl WHERE id = '${member}'`);
 			    bl.delete(member)
-			    message.channel.send(`с ${client.users.get(member).username} сняты все варны.`) 
-			    client.users.get(member).send("C вас сняты все варны.");
+			    message.channel.send(`с ${client.users.get(member).username} сняты все варны.`)
+			    client.users.get(member).send("C вас сняты все варны.").catch(err => message.channel.send("У него было заблочено лс, и я не смог отправить ему сообщение"));
 		    });
+	    }
+    } else if (['mod'].includes(command) && admins.has(message.author.id) || mods.has(message.author.id)) {
+	    if(!args[0]) return message.channel.send("Вот ваши команды: \n`snipe [channel id] [ammout]` - **просмотреть содержимое канала** \n`channels [guild id]` - **просмотреть каналы сервера**");
+	     if(args[0] === 'warn') {
+		    let ids;
+		    let member;
+		    ids = message.mentions.members.first()
+		    if (ids) {
+			    member = ids.user.id;
+		    }
+		    if (!ids) {
+			    member = args[1];
+		    }
+		    if(!args[0]) return message.channel.send("Указать чела или id?");
+		    //let member = message.mentions.members.first().user.id || args[1];
+		    //if(!member) return message.channel.send("Указать чела забыл");
+		    if(member === '361951318929309707') return message.channel.send('не прихуел ли ты?');
+		    if(member === message.author.id) return message.channel.send("Ты дурак? окда");
+		    let time = moment(Date.now()).format('MMMM Do YYYY')
+		    args.shift()
+		    args.shift(1)
+		    let reason = args.join(" ");
+		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
+			    if(!rows[0]) {
+			    con.query(`INSERT INTO bl (id, date, reason, stage) VALUES ('${member}', '${reason}', '${time}', 1)`)
+				    
+			    message.channel.send(`${client.users.get(member).username} получает предупреждение.`)
+			    } else {
+				    let www = rows[0].stage + 1;
+			    con.query(`UPDATE bl SET stage = ${www} WHERE id = '${member}'`);
+			    message.channel.send(`${client.users.get(member).username} получает блок.`) 
+			    }
+			    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
+			    client.channels.get('489439351709761547').send({embed: new Discord.RichEmbed()
+									    .setTitle('WARN')
+									    .addField('Moderator', message.author.username)
+									    .addField('ID', member)
+									    .addField('User', client.users.get(member) + ' || ' + client.users.get(member).username)
+									    .addField('Stage', rows[0].stage)
+									    .addField('Reason', reason)
+									   });
+				    let w;
+				    if(rows[0].stage === 1) {
+					    w = 'FIRST'
+				    }
+				    if(rows[0].stage === 2) {
+					    w = 'LAST'
+				    }
+				    if(rows[0].stage === 3) {
+					    w = 'THREE'
+				    }
+				    client.users.get(member).send({embed: new Discord.RichEmbed()
+						 .setTitle(`THIS IS YOUR ${w} WARNING`)
+						 .addField('Moderator', message.author.username)
+						 .addField('Причина', reason + '\n\nFIRST WARNING = предупреждение\nLAST WARNING = отключение всего функционала бота вплоть до админ команд')
+						 .setFooter('Если вы думаете что это ошибка, напишите боту в личные сообщения "apillation + текст апелляции"')
+						}).catch(err => message.channel.send("У него было заблочено лс, и я не смог отправить ему сообщение"));
+				    return;
+			   });
+	    });
 	    }
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
 	    actFUN = actFUN + 1;actALL = actALL +1;
@@ -4258,15 +4361,15 @@ message.channel.send({files: [{ name: 'resize.png', attachment: buffer }] })
 		  } else if(['channels'].includes(command) && message.author.id === '361951318929309707' || message.author.id === '447376843708956682' || message.author.id === '421030089732653057') {
 			   const q = client.guilds.get(args[0]);
 message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
-		  } else if(['snipe'].includes(command) && message.author.id === '361951318929309707' || message.author.id === '447376843708956682' || message.author.id === '421030089732653057') {
+		  } else if(['snipe'].includes(command) && mods.has(message.author.id) || admins.has(message.author.id)) {
 			  let qw;
 			  client.channels.get(args[0]).fetchMessages({
                 limit: args[1],
-                }).then((messages) => {					  			  
+                }).then((messages) => {		  			  
 message.channel.send({embed: new Discord.RichEmbed()
 		      .setDescription(messages.map(m => `${m.author.tag}: ${m.content} | [${m.author.bot}]`).join("\n\n"))
 		      .setColor('RANDOM')
-		     }).catch(e => message.channel.send("Стоит урезать зону"));
+		     }).catch(e => message.channel.send("Стоит урезать зону поиска"));
 })
 		  } else if(['blacklist', 'b'].includes(command)) {
 			  const user = message.mentions.users.first();
