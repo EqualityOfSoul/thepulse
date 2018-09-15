@@ -71,7 +71,6 @@ con.connect(err => {
 	if (err) throw err;
   console.log("connected")
 })
-const Wolken = require('wolken');
 const wrapper = require('weeb-wrapper');
 const weeb = new wrapper("Wolke "+process.env.WEEB_KEY);
 /*const Sharder = require('eris-sharder').Master;
@@ -94,8 +93,8 @@ music(client, {
 anyoneCanSkip: false
 });
 const dbl = require("dblposter");
-const DBLPoster = new dbl(process.env.BOT_KEY, client);
-DBLPoster.bind();
+const DBLPoster = new dbl(process.env.BOT_KEY);
+DBLPoster.bind(client);
 client.on('ready', () => {
         console.log(`Успешный старт.`)
 	console.log("|----------Количество---------- ")
