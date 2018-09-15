@@ -313,6 +313,11 @@ client.on('message', async (message) => {
 	if(message.attachments.first()) {
 		let at = message.attachments.first().url;
 	}
+	let bduser;
+	con.query(`SELECT * FROM xp WHERE id = '${message.author.id}'`, (err, rows) => {
+		if(!rows) return;
+		bduser = rows[0];
+	});
     if (message.content.startsWith("бот пиши")) {
         //Отвечает за то чтобы бот начал писать в вызваном чате.
         message.channel.startTyping();
