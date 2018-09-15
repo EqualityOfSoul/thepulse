@@ -1578,6 +1578,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    args.shift()
 		    args.shift(1)
 		    let reason = args.join(" ");
+		    if(!reason) return message.channel.send("Нужна причина как никак");
 		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
 			    if(!rows[0]) {
 			    con.query(`INSERT INTO bl (id, date, reason, stage) VALUES ('${member}', '${reason}', '${time}', 1)`)
@@ -1629,7 +1630,8 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    }
 		    if(!member) return message.channel.send("Указать чела забыл");
 		    if(member === message.author.id) return message.channel.send("Самый умный?");
-		    if(member === mods.has(member) || admins.has(member)) return message.channel.send("Самый умный?");
+		    if(mods.has(member)) return message.channel.send("Самый умный?");
+		    if(admins.has(member)) return message.channel.send("Самый умный?");
 		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
 			    if(!rows[0]) return message.channel.send(`${client.users.get(member).username} не имеет варнов.`)
 			    con.query(`DELETE FROM bl WHERE id = '${member}'`);
@@ -1639,7 +1641,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    });
 	    }
     } else if (['mod'].includes(command) && admins.has(message.author.id) || mods.has(message.author.id)) {
-	    if(!args[0]) return message.channel.send("Вот ваши команды: \n`snipe [channel id] [ammout]` - **просмотреть содержимое канала** \n`channels [guild id]` - **просмотреть каналы сервера**");
+	    if(!args[0]) return message.channel.send("Вот ваши команды: \n`mod warn [user | id] [reason]` [\n`snipe [channel id] [ammout]` - **просмотреть содержимое канала** \n`channels [guild id]` - **просмотреть каналы сервера**");
 	     if(args[0] === 'warn') {
 		    let ids;
 		    let member;
@@ -1659,6 +1661,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    args.shift()
 		    args.shift(1)
 		    let reason = args.join(" ");
+		     if(!reason) return message.channel.send("Нужна причина как никак");
 		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
 			    if(!rows[0]) {
 			    con.query(`INSERT INTO bl (id, date, reason, stage) VALUES ('${member}', '${reason}', '${time}', 1)`)
@@ -4358,11 +4361,12 @@ message.channel.send({files: [{ name: 'mask.png', attachment: buffer }] })
 message.channel.send({files: [{ name: 'resize.png', attachment: buffer }] })
 })
 			  })
-		  } else if(['channels'].includes(command) && message.author.id === '361951318929309707' || message.author.id === '447376843708956682' || message.author.id === '421030089732653057') {
+		  } else if(['channels'].includes(command) && admins.has(message.author.id) || mods.has(message.author.id)) {
 			   const q = client.guilds.get(args[0]);
 message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
-		  } else if(['snipe'].includes(command) && mods.has(message.author.id) || admins.has(message.author.id)) {
+		  } else if(['snipe'].includes(command) && admins.has(message.author.id) || mods.has(message.author.id)) {
 			  let qw;
+			  if(args[1] > 99) return message.channel.send("меньше плиз");
 			  client.channels.get(args[0]).fetchMessages({
                 limit: args[1],
                 }).then((messages) => {		  			  
