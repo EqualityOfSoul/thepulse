@@ -323,7 +323,7 @@ client.on('message', async (message) => {
 client.guilds.forEach(g => {
 bmembers = bmembers + g.memberCount;
 })
-	con.query(`SELECT * FROM bl WHERE stage = 2`, (err, rows) => {
+	con.query(`SELECT * FROM bl WHERE stage >= 2`, (err, rows) => {
 rows.forEach(r => bl.add(r.id))
 });
 	if (bl.has(message.author.id)) return;
@@ -1554,6 +1554,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 									    .addField('ID', member)
 									    .addField('User', client.users.get(member) + ' || ' + client.users.get(member).username)
 									    .addField('Stage', rows[0].stage)
+									    .addField('Reason', reason)
 									   });
 				    let w;
 				    if(rows[0].stage === 1) {
@@ -1561,6 +1562,9 @@ message.channel.send(`Варны для пользователя ${member} на 
 				    }
 				    if(rows[0].stage === 2) {
 					    w = 'LAST'
+				    }
+				    if(rows[0].stage === 3) {
+					    w = 'THREE'
 				    }
 				    client.users.get(member).send({embed: new Discord.RichEmbed()
 						 .setTitle(`THIS IS YOUR ${w} WARNING`)
@@ -1588,6 +1592,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    con.query(`DELETE FROM bl WHERE id = '${member}'`);
 			    bl.delete(member)
 			    message.channel.send(`с ${client.users.get(member).username} сняты все варны.`) 
+			    client.users.get(member).send("C вас сняты все варны.");
 		    });
 	    }
     } else if (['servers'].includes(command) && message.author.id === '361951318929309707') {
