@@ -1885,8 +1885,8 @@ let voice = 0;
             .setTimestamp();*/
 	    const embed = new Discord.RichEmbed()
 	    .setTitle("Help")
-	    .addField("Russian", "Помощь по командам можно найти тут https://xeval.ga/")
-	    .addField("English", "Help can be found at https://xeval.ga/")
+	    .addField("Russian", "Простите, помощь вреено недоступна, мы пытаемся востановить сайт, ожидайте востановления до 48 часов")
+	//    .addField("English", "")
 	    .setColor('RANDOM');
 	    message.channel.send(embed)
 		    .catch(error => message.channel.send("Error"));
