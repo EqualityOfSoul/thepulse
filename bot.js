@@ -1466,6 +1466,22 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    con.query(`UPDATE xp SET access = 'admin' WHERE id = '${member}'`);
 			    message.channel.send(`${client.users.get(member).username} был повышен до админа`);
 		    });
+    } else if (['removeperms'].includes(command) && message.author.id === '361951318929309707') {
+	    	    let ids;
+		    let member;
+		    ids = message.mentions.members.first()
+		    if (ids) {
+			    member = ids.user.id;
+		    }
+		    if (!ids) {
+			    member = args[1];
+		    }
+		    if(!member) return message.channel.send("Указать чела или id?");
+	    con.query(`SELECT * FROM xp WHERE id = '${member}'`, (err, rows) => {
+			    if(!rows[0]) return message.channel.send("У пользователя нет аккаунта.");
+			    con.query(`UPDATE xp SET access = 'USER' WHERE id = '${member}'`);
+			    message.channel.send(`${client.users.get(member).username} был понижен`);
+		    });
     } else if (['admin'].includes(command) && admins.has(message.author.id)) {
 	    if(!args[0] || args[0] === 'help') {
 		    message.channel.send("**`Данная команда позволяет обходить все права пользователя.`** \n**`Команды:`** \n**shutdown** - `выключить бота (использовать 2 раза)` \n**ban** [user] - `обход прав на бан.` \n**kick** [user] - `обход прав на кик.` \n**mute** [user] - `обход прав на мут.` \n**unmute** [user] - `обход прав на анмут.` \n**warn** [id / user] - вадать сис варн. \n**testbg** - `проверка фона на пользователе` \n**set** - `установить значение в бд`, значения: \n        money - `установить баланс` \n        xp - `установить опыт` \n        rep - `установить репутацию` \n        total - `установить глобальные очки` \n        setbg - `установить фон`")
@@ -1630,7 +1646,6 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    }
 		    if(!member) return message.channel.send("Указать чела забыл");
 		    if(member === message.author.id) return message.channel.send("Самый умный?");
-		    if(mods.has(member)) return message.channel.send("Самый умный?");
 		    if(admins.has(member)) return message.channel.send("Самый умный?");
 		    con.query(`SELECT * FROM bl WHERE id = '${member}'`, (err, rows) => {
 			    if(!rows[0]) return message.channel.send(`${client.users.get(member).username} не имеет варнов.`)
@@ -1657,6 +1672,8 @@ message.channel.send(`Варны для пользователя ${member} на 
 		    //if(!member) return message.channel.send("Указать чела забыл");
 		    if(member === '361951318929309707') return message.channel.send('не прихуел ли ты?');
 		    if(member === message.author.id) return message.channel.send("Ты дурак? окда");
+		     if(admins.has(member)) return message.channel.send("Самый умный?");
+		     if(mods.has(member)) return message.channel.send("Самый умный?");
 		    let time = moment(Date.now()).format('MMMM Do YYYY')
 		    args.shift()
 		    args.shift(1)
