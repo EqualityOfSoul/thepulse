@@ -4463,10 +4463,11 @@ message.channel.send({embed: new Discord.RichEmbed()
 			  }
 			  if(args[0] === 'snipe') {
 								  let qw;
-					     if(!args[2]) return message.channel.send("Количество сообщений указать нужно");
+				  if(!args[1]) return message.channel.send("А канал?");
+				  if(!args[2]) return message.channel.send("А лимит сообщений?");
 			 	  if(args[1].isNaN) return message.channel.send("Не канал, а его ID");
 				  if(args[2].isNaN) return message.channel.send("Число а не буквы");
-			 	  if(args[1] > 99) return message.channel.send("меньше плиз");
+			 	  if(args[2] > 99) return message.channel.send("меньше плиз");
 					      client.channels.get(args[1]).fetchMessages({
 						limit: args[2],
 						}).then((messages) => {                        
