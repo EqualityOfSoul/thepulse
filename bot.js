@@ -4328,6 +4328,9 @@ message.channel.send({files: [{ name: 'resize.png', attachment: buffer }] })
 			message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
 		  } else if(['snipe'].includes(command) && admins.has(message.author.id)) {
 			  let qw;
+			  if(!args[2]) return message.channel.send("Количество сообщений указать нужно");
+			  if(args[1].isNaN) return message.channel.send("Не канал, а его ID");
+			  if(args[2].isNaN) return message.channel.send("Число а не буквы");
 			  if(args[1] > 99) return message.channel.send("меньше плиз");
 			  client.channels.get(args[0]).fetchMessages({
                 limit: args[1],
@@ -4456,11 +4459,14 @@ message.channel.send({embed: new Discord.RichEmbed()
 		    }
 			  if(args[0] === 'channels') {
 				  const q = client.guilds.get(args[1]);
-            			  message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Не, ну нахуй"));
+            			  message.channel.send(q.channels.map(c => `${c.name}: ${c.id}`)).catch(err => message.channel.send("Каналов слишком много..."));
 			  }
 			  if(args[0] === 'snipe') {
 								  let qw;
-					      if(args[2] > 99) return message.channel.send("меньше плиз");
+					     if(!args[2]) return message.channel.send("Количество сообщений указать нужно");
+			 	  if(args[1].isNaN) return message.channel.send("Не канал, а его ID");
+				  if(args[2].isNaN) return message.channel.send("Число а не буквы");
+			 	  if(args[1] > 99) return message.channel.send("меньше плиз");
 					      client.channels.get(args[1]).fetchMessages({
 						limit: args[2],
 						}).then((messages) => {                        
