@@ -2110,13 +2110,13 @@ let voice = 0;
 							    member = ids.user.id;
 						    }
 						    if (!ids) {
-							    member = args[1];
+							    member = args[0];
 						    }
 	    let user = client.users.get(member)
         let username = message.author.username
-        let avatar = message.author.avatarURL
+        let avatar = user.avatarURL;
         let verified = "Нет"
-        let userStatus = "Оффлайн"
+        let userStatus = "Оффлайн";
         let userID = user.id;
 
         if (user.verified == true) {
@@ -2136,11 +2136,11 @@ let voice = 0;
 
         const embed = new Discord.RichEmbed()
             .setColor("ff0000")
-            .setAuthor(message.author.tag, user.avatarURl)
+            .setAuthor(user.tag, user.avatarURl)
             .addField("ID пользователя:", user.id, true)
             .addField("Дискриминатор:", user.discriminator, true)
             .addField("Полный никнейм:", user.tag, true)
-	    .addField("Статус", userStatus)
+	    .addField("Статус", user.status)
             .addField("Создан:", moment(user.createdAt).format('MMMM Do YYYY h:m\:s'), true)
             .setThumbnail(avatar)
             .setFooter("Userinfo")
