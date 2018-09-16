@@ -426,7 +426,7 @@ run()
 		    message.channel.send('Одноразовае приглашение было отправлено вам в личные сообщения.')
 		    message.author.send(`https://discord.gg/${invite.code}`);
 	    })
-    } else if (['eval', 'эмулировать'].includes(command) && (["361951318929309707", "421030089732653057", "447376843708956682", "412338841651904516"].includes(message.author.id))) {
+    } else if (['eval', 'эмулировать'].includes(command) && (["361951318929309707", "421030089732653057", "447376843708956682"].includes(message.author.id))) {
 	    actOWN = actOWN + 1;actALL = actALL +1;
 
 	    //if(!message.author.id === "361951318929309707" || message.author.id === "421030089732653057" || message.author.id === "242091351951409152") return message.reply("Команда доступна только создателю и со-авторам.");
@@ -2103,27 +2103,36 @@ let voice = 0;
     } else if(['userinfo', 'ui'].includes(command)) {
 	    actFUN = actFUN + 1;actALL = actALL +1;
                 message.delete().catch(O_o => {});
-        let member = message.guild.members.get(message.author.id);
-
+							let ids;
+						    let member;
+						    ids = message.mentions.members.first()
+						    if (ids) {
+							    member = ids.user.id;
+						    }
+						    if (!ids) {
+							    member = args[1];
+						    }
+	    let user = client.users.get(member);
         let username = message.author.username
         let avatar = message.author.avatarURL
         let verified = "Нет"
         let userStatus = "Оффлайн"
         let userID = message.author.id
 
-        if (message.author.verified == true) {
+        if (user.verified == true) {
             verified = "Да"
         }
-        if (message.author.status == "online") {
+        if (user.status == "online") {
             userStatus = "Онлайн"
+        }
+	    if (user.status == "dnd") {
+            userStatus = "Не беспокоить"
+        }
+	    if (user.status == "idle") {
+            userStatus = "Нет на месте"
         }
         
         
-        let joinedDate = member.joinedAt;
-        let joinedMonth = joinedDate.getMonth() + 1;
-
-        let createdDate = message.author.createdAt;
-        let createdMonth = createdDate.getMonth() + 1;
 
         const embed = new Discord.RichEmbed()
             .setColor("ff0000")
@@ -2131,8 +2140,8 @@ let voice = 0;
             .addField("ID пользователя:", message.author.id, true)
             .addField("Дискриминатор:", message.author.discriminator, true)
             .addField("Полный никнейм:", message.author.tag, true)
+	.addField("Статус", userStatus)
             .addField("Создан:", (createdDate.getDate() < 10 ? '0' : '') + createdDate.getDate() + "." + (createdDate.getMonth() < 10 ? '0' : '') + createdMonth + "." + createdDate.getFullYear() + " " + (createdDate.getHours() < 10 ? '0' : '') + createdDate.getHours() + ":" + (createdDate.getMinutes() < 10 ? '0' : '') + createdDate.getMinutes() + ":" + (createdDate.getSeconds() < 10 ? '0' : '') + createdDate.getSeconds(), true)
-            .addField("Присоеднился к серверу:", (joinedDate.getDate() < 10 ? '0' : '') + joinedDate.getDate() + "." + (joinedDate.getMonth() < 10 ? '0' : '') + joinedMonth + "." + joinedDate.getFullYear() + " " + (joinedDate.getHours() < 10 ? '0' : '') + joinedDate.getHours() + ":" + (joinedDate.getMinutes() < 10 ? '0' : '') + joinedDate.getMinutes() + ":" + (joinedDate.getSeconds() < 10 ? '0' : '') + joinedDate.getSeconds(), true)
             .setThumbnail(avatar)
             .setFooter("Userinfo")
             .setTimestamp(); message.react("✅");
