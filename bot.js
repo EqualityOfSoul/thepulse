@@ -2146,8 +2146,6 @@ let voice = 0;
             .setFooter("Userinfo")
             .setTimestamp();
         message.channel.send(embed);
-    } else {
-	    message.channel.send('указан неверный пользователь');
     } else if(['say'].includes(command)) {
 	    if (message.channel.guild.id === 389335832693309441) return message.reply("отключено для данного сервера");
 	    actFUN = actFUN + 1;actALL = actALL +1;
