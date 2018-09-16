@@ -2140,7 +2140,6 @@ let voice = 0;
             .addField("ID пользователя:", user.id, true)
             .addField("Дискриминатор:", user.discriminator, true)
             .addField("Полный никнейм:", user.tag, true)
-	    .addField("Статус", user.status)
             .addField("Создан:", moment(user.createdAt).format('MMMM Do YYYY h:m\:s'), true)
             .setThumbnail(avatar)
             .setFooter("Userinfo")
