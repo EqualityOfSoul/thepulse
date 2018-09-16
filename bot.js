@@ -1356,8 +1356,8 @@ message.channel.send(`Варны для пользователя ${member} на 
 })
     } else if(['warninfo'].includes(command)) {
 	    if(!args[0]) return message.channel.send("Укажите спец ID варна");
+	    	if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
-	if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
         if(err) throw err;
 		    if(!rows[0]) return message.channel.send("Такого варна нет");
 		    const warnid = rows[0].id;
