@@ -1355,10 +1355,9 @@ let searchUrl = `https://www.google.com/search?q=${encodeURIComponent(searh)}`;
 message.channel.send(`Варны для пользователя ${member} на сервере ${message.guild.name}: \n${rows.map(r => `ID: ${r.id}, Причина: ${r.reason}`).join("\n")}`)
 })
     } else if(['warninfo'].includes(command)) {
-	   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
 	    if(!args[0]) return message.channel.send("Укажите спец ID варна");
-
 	    con.query(`SELECT * FROM warns WHERE id = '${args[0]}' AND guild = '${message.guild.id}'`, (err, rows) => {
+	if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send("Вам нужен уровень прав 'MANAGE_MESSAGES' или выше чтобы выполнить данную команду");
         if(err) throw err;
 		    if(!rows[0]) return message.channel.send("Такого варна нет");
 		    const warnid = rows[0].id;
