@@ -1443,7 +1443,7 @@ message.channel.send(`Варны для пользователя ${member} на 
 			    member = ids.user.id;
 		    }
 		    if (!ids) {
-			    member = args[1];
+			    member = args[0];
 		    }
 		    if(!member) return message.channel.send("Указать чела или id?");
 	    con.query(`SELECT * FROM xp WHERE id = '${member}'`, (err, rows) => {
