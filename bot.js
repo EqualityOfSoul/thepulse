@@ -2112,12 +2112,12 @@ let voice = 0;
 						    if (!ids) {
 							    member = args[1];
 						    }
-	    let user = client.users.get(member);
+	    let user = client.users.get(member)
         let username = message.author.username
         let avatar = message.author.avatarURL
         let verified = "Нет"
         let userStatus = "Оффлайн"
-        let userID = message.author.id
+        let userID = user.id;
 
         if (user.verified == true) {
             verified = "Да"
@@ -2136,16 +2136,18 @@ let voice = 0;
 
         const embed = new Discord.RichEmbed()
             .setColor("ff0000")
-            .setAuthor(message.author.tag, message.author.avatarURl)
-            .addField("ID пользователя:", message.author.id, true)
-            .addField("Дискриминатор:", message.author.discriminator, true)
-            .addField("Полный никнейм:", message.author.tag, true)
-	.addField("Статус", userStatus)
-            .addField("Создан:", (createdDate.getDate() < 10 ? '0' : '') + createdDate.getDate() + "." + (createdDate.getMonth() < 10 ? '0' : '') + createdMonth + "." + createdDate.getFullYear() + " " + (createdDate.getHours() < 10 ? '0' : '') + createdDate.getHours() + ":" + (createdDate.getMinutes() < 10 ? '0' : '') + createdDate.getMinutes() + ":" + (createdDate.getSeconds() < 10 ? '0' : '') + createdDate.getSeconds(), true)
+            .setAuthor(message.author.tag, user.avatarURl)
+            .addField("ID пользователя:", user.id, true)
+            .addField("Дискриминатор:", user.discriminator, true)
+            .addField("Полный никнейм:", user.tag, true)
+	    .addField("Статус", userStatus)
+            .addField("Создан:", moment(user.createdAt).format('MMMM Do YYYY h:m\:s', true)
             .setThumbnail(avatar)
             .setFooter("Userinfo")
-            .setTimestamp(); message.react("✅");
+            .setTimestamp();
         message.channel.send(embed);
+    } else {
+	    message.channel.send('указан неверный пользователь');
     } else if(['say'].includes(command)) {
 	    if (message.channel.guild.id === 389335832693309441) return message.reply("отключено для данного сервера");
 	    actFUN = actFUN + 1;actALL = actALL +1;
